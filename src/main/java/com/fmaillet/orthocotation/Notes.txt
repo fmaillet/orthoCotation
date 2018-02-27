@@ -1,0 +1,11 @@
+! Numéro de version dans OrthoCotation.java
+
+A FAIRE :
+- 
+
+v0.2.0 (en cours)
+- adding radio graph
+
+v0.1.0 (26-02-2018)
+- Tabs
+- cacul de l'âge en années/mois

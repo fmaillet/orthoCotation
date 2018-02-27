@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -27,6 +26,14 @@ import javax.swing.JTabbedPane;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.SpiderWebPlot;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.ui.RectangleEdge;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -43,6 +50,10 @@ public class OrthoCotation extends JFrame {
     static JDatePickerImpl dateBirth ;
     static JLabel labelAge ;
     
+    //Graphique
+    static CategoryDataset dataset ;
+    static JPanel radioPanel ;
+    
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMONSTRATION (NON CONNECTE)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,7 +65,7 @@ public class OrthoCotation extends JFrame {
         //Menu
         JMenuBar barreMenus = new JMenuBar () ;
         setJMenuBar (barreMenus) ;
-        //Entrée Menus "Fichiers"
+        //EntrÃ©e Menus "Fichiers"
         JMenu fileMenu = new JMenu ("Fichier") ;
         barreMenus.add(fileMenu) ;
         
@@ -92,7 +103,7 @@ public class OrthoCotation extends JFrame {
         Properties p = new Properties();
         p.put("text.today", "Aujourd'hui");
         p.put("text.month", "Mois");
-        p.put("text.year", "Année");
+        p.put("text.year", "AnnÃ©e");
         JDatePanelImpl datePanel = new JDatePanelImpl(modelBilan, p);
         dateBilan = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         dateBilan.setBounds(110, 20, 130, 50);
@@ -131,6 +142,60 @@ public class OrthoCotation extends JFrame {
         return basePanel ;
     }
     
+    private static JPanel  addRadioChart () {
+        dataset = createDataset () ;
+        SpiderWebPlot plot = new SpiderWebPlot(dataset);
+        plot.setStartAngle(54);
+        plot.setInteriorGap(0.40);
+        JFreeChart chart = new JFreeChart("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques",
+            TextTitle.DEFAULT_FONT, plot, false);
+        //chart.getTitle().setFont;
+        LegendTitle legendtitle = new LegendTitle(plot);   
+        legendtitle.setPosition(RectangleEdge.BOTTOM);   
+        chart.addSubtitle(legendtitle);
+        return new ChartPanel(chart);
+    }
+    
+    private static CategoryDataset createDataset() {
+
+        // row keys...
+        String series1 = "First";
+        String series2 = "Second";
+        String series3 = "Third";
+
+        // column keys...
+        String category1 = "Category 1";
+        String category2 = "Category 2";
+        String category3 = "Category 3";
+        String category4 = "Category 4";
+        String category5 = "Category 5";
+
+        // create the dataset...
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        dataset.addValue(1.0, series1, category1);
+        dataset.addValue(4.0, series1, category2);
+        dataset.addValue(3.0, series1, category3);
+        dataset.addValue(5.0, series1, category4);
+        dataset.addValue(5.0, series1, category5);
+
+        dataset.addValue(5.0, series2, category1);
+        dataset.addValue(7.0, series2, category2);
+        dataset.addValue(6.0, series2, category3);
+        dataset.addValue(8.0, series2, category4);
+        dataset.addValue(4.0, series2, category5);
+
+        dataset.addValue(4.0, series3, category1);
+        dataset.addValue(3.0, series3, category2);
+        dataset.addValue(2.0, series3, category3);
+        dataset.addValue(3.0, series3, category4);
+        dataset.addValue(6.0, series3, category5);
+
+        return dataset;
+
+    }
+
+    
     private static void calculateAge () {
         Date b = (Date) dateBilan.getModel().getValue() ;
         if (b == null) return ;
@@ -153,10 +218,22 @@ public class OrthoCotation extends JFrame {
         fen.setVisible(true) ;
         tabbedPane.setBounds (0, 0, 700, fen.getContentPane().getHeight() + 10);
         fen.setResizable(false);
+        
+        radioPanel = addRadioChart () ;
+        radioPanel.setBounds(750, 20, 350, 350);
+        radioPanel.setVisible(true);
+        fen.getContentPane().add (radioPanel) ;
+        //fen.getContentPane().revalidate();
+        fen.repaint();
+        
+        /*JPanel test = new JPanel () ;
+        test.setBackground(Color.red);
+        radioPanel.setBounds(700, 300, 100, 100);
+        fen.getContentPane().add (test) ;*/
     }
     
     public static String getSoftVersion () {
-        return "v0.1.0-BETA du 26/02/2018" ;
+        return "v0.2.0-BETA du 27/02/2018" ;
     }
 }
 

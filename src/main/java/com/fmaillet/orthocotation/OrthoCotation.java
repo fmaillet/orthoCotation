@@ -5,13 +5,16 @@
  */
 package com.fmaillet.orthocotation;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Insets;
+import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,7 +35,6 @@ import javax.swing.JTabbedPane;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
@@ -40,10 +42,8 @@ import org.jfree.chart.axis.NumberTick;
 import org.jfree.chart.plot.PolarPlot;
 import org.jfree.chart.plot.SpiderWebPlot;
 import org.jfree.chart.renderer.DefaultPolarItemRenderer;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
-import static org.jfree.chart.ui.Align.TOP_LEFT;
 import org.jfree.chart.ui.RectangleEdge;
 import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.chart.ui.TextAnchor;
@@ -197,6 +197,8 @@ public class OrthoCotation extends JFrame {
         renderer.setSeriesFilled(0, false);
         renderer.setSeriesFilled(1, true);
         renderer.setSeriesPaint(1, Color.RED);
+        renderer.setSeriesStroke(1, new BasicStroke (0));
+        
         
         Shape shape  = new Ellipse2D.Double(0,0,0,0);
         renderer.setSeriesShape(1, shape);
@@ -232,13 +234,12 @@ public class OrthoCotation extends JFrame {
         chart.setTitle(title);
         chart.setBackgroundPaint(Color.WHITE);
         chart.setBorderVisible(false);
-        /*JFreeChart chart = ChartFactory.createPolarChart(
-            "Polar Chart Example | WWW.BORAJI.COM", // Chart title
-            dataset,
-            true,
-            true,
-            false
-            );*/
+        
+        /*Rectangle2D drawRect = new Rectangle2D.Double(0, 0, 3, 3);
+        BufferedImage image = new BufferedImage(10 , 10, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = image.createGraphics();
+        //g2.fillRect(0, 0, 3, 3);
+	chart.draw(g2, drawRect);*/
         
       chart.removeLegend();
       ChartPanel panel = new ChartPanel(chart);
@@ -262,15 +263,28 @@ public class OrthoCotation extends JFrame {
       dataset.addSeries(series1);
       
       XYSeries series2 = new XYSeries("series2");
-      series2.add(0, -1.5);
+      for (int i=0; i<=360; i=i+5) series2.add(i, -1.5);
+      /*series2.add(0, -1.5);
+      series2.add(20, -1.5);
       series2.add(45, -1.5);
       series2.add(90, -1.5);
       series2.add(135, -1.5);
       series2.add(180, -1.5);
       series2.add(225, -1.5);
       series2.add(270, -1.5);
-      series2.add(315, -1.5);
+      series2.add(315, -1.5);*/
       dataset.addSeries(series2);
+      
+      XYSeries series3 = new XYSeries("series3");
+      series3.add(0, 1);
+      series3.add(45, 1);
+      series3.add(90, 1);
+      series3.add(135, 1);
+      series3.add(180, 1);
+      series3.add(225, 1);
+      series3.add(270, 1);
+      series3.add(315, 1);
+      dataset.addSeries(series3);
       
       return dataset;
    }
@@ -339,7 +353,7 @@ public class OrthoCotation extends JFrame {
         fen.setResizable(false);
         
         radioPanel = addPolarChart () ;
-        radioPanel.setBounds(750, 20, 400, 400);
+        radioPanel.setBounds(750, 20, 420, 420);
         radioPanel.setVisible(true);
         fen.getContentPane().add (radioPanel) ;
         //fen.getContentPane().revalidate();

@@ -6,9 +6,12 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -37,6 +40,7 @@ import org.jfree.chart.axis.NumberTick;
 import org.jfree.chart.plot.PolarPlot;
 import org.jfree.chart.plot.SpiderWebPlot;
 import org.jfree.chart.renderer.DefaultPolarItemRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
 import static org.jfree.chart.ui.Align.TOP_LEFT;
@@ -183,11 +187,19 @@ public class OrthoCotation extends JFrame {
         numberAxis.setTickLabelInsets(new RectangleInsets(0.0, 0.0, 0.0, 0.0));
         numberAxis.setAxisLineVisible(false);
         numberAxis.setAutoRange(false);
-        numberAxis.setRange(-3, +3);
+        numberAxis.setRange(-5, +3);
         numberAxis.setVisible(true);
         
         DefaultPolarItemRenderer renderer = new DefaultPolarItemRenderer();
         renderer.setShapesVisible(true);
+        //renderer.setSeriesShape(1, Shape.);
+        renderer.setSeriesPaint(0, Color.BLUE);
+        renderer.setSeriesFilled(0, false);
+        renderer.setSeriesFilled(1, true);
+        renderer.setSeriesPaint(1, Color.RED);
+        
+        Shape shape  = new Ellipse2D.Double(0,0,0,0);
+        renderer.setSeriesShape(1, shape);
         
         PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
 
@@ -209,9 +221,17 @@ public class OrthoCotation extends JFrame {
         
         plot.setAngleGridlinesVisible(true);
         plot.setRadiusMinorGridlinesVisible(false);
+        plot.setBackgroundPaint(Color.white);
+        plot.setAngleGridlinePaint(Color.black);
+        plot.setRadiusGridlinePaint(Color.lightGray);
+        plot.setOutlineVisible(false);
         
-        JFreeChart chart = new JFreeChart ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+        TextTitle title = new TextTitle ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", new java.awt.Font("SansSerif", Font.PLAIN, 14) ) ;
         
+        JFreeChart chart = new JFreeChart ("Title", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+        chart.setTitle(title);
+        chart.setBackgroundPaint(Color.WHITE);
+        chart.setBorderVisible(false);
         /*JFreeChart chart = ChartFactory.createPolarChart(
             "Polar Chart Example | WWW.BORAJI.COM", // Chart title
             dataset,
@@ -220,7 +240,7 @@ public class OrthoCotation extends JFrame {
             false
             );*/
         
-      
+      chart.removeLegend();
       ChartPanel panel = new ChartPanel(chart);
       panel.setMouseZoomable(false);
       return panel ;
@@ -240,6 +260,17 @@ public class OrthoCotation extends JFrame {
       series1.add(270, -0.2);
       series1.add(315, 0.1);
       dataset.addSeries(series1);
+      
+      XYSeries series2 = new XYSeries("series2");
+      series2.add(0, -1.5);
+      series2.add(45, -1.5);
+      series2.add(90, -1.5);
+      series2.add(135, -1.5);
+      series2.add(180, -1.5);
+      series2.add(225, -1.5);
+      series2.add(270, -1.5);
+      series2.add(315, -1.5);
+      dataset.addSeries(series2);
       
       return dataset;
    }
@@ -308,7 +339,7 @@ public class OrthoCotation extends JFrame {
         fen.setResizable(false);
         
         radioPanel = addPolarChart () ;
-        radioPanel.setBounds(750, 20, 350, 350);
+        radioPanel.setBounds(750, 20, 400, 400);
         radioPanel.setVisible(true);
         fen.getContentPane().add (radioPanel) ;
         //fen.getContentPane().revalidate();

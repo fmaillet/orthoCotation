@@ -6,6 +6,7 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Color;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -13,8 +14,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -26,14 +29,26 @@ import javax.swing.JTabbedPane;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTick;
+import org.jfree.chart.plot.PolarPlot;
 import org.jfree.chart.plot.SpiderWebPlot;
+import org.jfree.chart.renderer.DefaultPolarItemRenderer;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
+import static org.jfree.chart.ui.Align.TOP_LEFT;
 import org.jfree.chart.ui.RectangleEdge;
+import org.jfree.chart.ui.RectangleInsets;
+import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 
 /**
  *
@@ -145,16 +160,89 @@ public class OrthoCotation extends JFrame {
     private static JPanel  addRadioChart () {
         dataset = createDataset () ;
         SpiderWebPlot plot = new SpiderWebPlot(dataset);
-        plot.setStartAngle(54);
+        plot.setStartAngle(0);
         plot.setInteriorGap(0.40);
+        plot.setWebFilled(false);
+        
         JFreeChart chart = new JFreeChart("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques",
             TextTitle.DEFAULT_FONT, plot, false);
         //chart.getTitle().setFont;
         LegendTitle legendtitle = new LegendTitle(plot);   
         legendtitle.setPosition(RectangleEdge.BOTTOM);   
         chart.addSubtitle(legendtitle);
+        
         return new ChartPanel(chart);
     }
+    
+    private static JPanel addPolarChart () {
+        XYDataset dataset = getXYDataset();
+        
+        NumberAxis numberAxis = new NumberAxis();
+        numberAxis.setTickLabelsVisible(true);
+        numberAxis.setTickMarksVisible(false);
+        numberAxis.setTickLabelInsets(new RectangleInsets(0.0, 0.0, 0.0, 0.0));
+        numberAxis.setAxisLineVisible(false);
+        numberAxis.setAutoRange(false);
+        numberAxis.setRange(-3, +3);
+        numberAxis.setVisible(true);
+        
+        DefaultPolarItemRenderer renderer = new DefaultPolarItemRenderer();
+        renderer.setShapesVisible(true);
+        
+        PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
+
+            @Override
+            protected List refreshAngleTicks() {
+                List ticks = new ArrayList();
+                ticks.add(new NumberTick(0, "PPC", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(45, "P", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(90, "C", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(135, "D", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(180, "C'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(180, "D'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(225, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(270, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(315, "P'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                return ticks;
+            }
+        };
+        
+        plot.setAngleGridlinesVisible(true);
+        plot.setRadiusMinorGridlinesVisible(false);
+        
+        JFreeChart chart = new JFreeChart ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+        
+        /*JFreeChart chart = ChartFactory.createPolarChart(
+            "Polar Chart Example | WWW.BORAJI.COM", // Chart title
+            dataset,
+            true,
+            true,
+            false
+            );*/
+        
+      
+      ChartPanel panel = new ChartPanel(chart);
+      panel.setMouseZoomable(false);
+      return panel ;
+    }
+    
+    private static XYDataset getXYDataset() {
+     
+      XYSeriesCollection dataset = new XYSeriesCollection();
+
+      XYSeries series1 = new XYSeries("Series1");
+      series1.add(0, -1);
+      series1.add(45, +1);
+      series1.add(90, -1.3);
+      series1.add(135, 0);
+      series1.add(180, +0.5);
+      series1.add(225, +1.3);
+      series1.add(270, -0.2);
+      series1.add(315, 0.1);
+      dataset.addSeries(series1);
+      
+      return dataset;
+   }
     
     private static CategoryDataset createDataset() {
 
@@ -164,11 +252,11 @@ public class OrthoCotation extends JFrame {
         String series3 = "Third";
 
         // column keys...
-        String category1 = "Category 1";
-        String category2 = "Category 2";
-        String category3 = "Category 3";
-        String category4 = "Category 4";
-        String category5 = "Category 5";
+        String category1 = "Phorie (P)";
+        String category2 = "Phorie (L)";
+        String category3 = "D'";
+        String category4 = "C'";
+        String category5 = "C";
 
         // create the dataset...
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -219,7 +307,7 @@ public class OrthoCotation extends JFrame {
         tabbedPane.setBounds (0, 0, 700, fen.getContentPane().getHeight() + 10);
         fen.setResizable(false);
         
-        radioPanel = addRadioChart () ;
+        radioPanel = addPolarChart () ;
         radioPanel.setBounds(750, 20, 350, 350);
         radioPanel.setVisible(true);
         fen.getContentPane().add (radioPanel) ;

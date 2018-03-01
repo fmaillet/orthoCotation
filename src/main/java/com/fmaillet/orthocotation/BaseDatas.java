@@ -63,6 +63,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jPhorieLds.setForeground(java.awt.Color.red);
         jPhorieLds.setText("...");
 
+        jCheckPhorieP.setSelected(true);
         jCheckPhorieP.setText("Phorie (P) :");
         jCheckPhorieP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +71,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
+        jCheckPhorieP1.setSelected(true);
         jCheckPhorieP1.setText("Phorie (L) :");
         jCheckPhorieP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

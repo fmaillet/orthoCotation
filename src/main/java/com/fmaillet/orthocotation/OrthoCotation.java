@@ -5,6 +5,7 @@
  */
 package com.fmaillet.orthocotation;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -68,6 +69,7 @@ public class OrthoCotation extends JFrame {
     static JDatePickerImpl dateBilan ;
     static JDatePickerImpl dateBirth ;
     static JLabel labelAge ;
+    static BaseDatas baseDatas ;
     
     //Graphique
     static CategoryDataset dataset ;
@@ -158,6 +160,14 @@ public class OrthoCotation extends JFrame {
         labelAge.setBounds(150, 70, 200, 30);
         basePanel.add(labelAge) ;
         
+        //Panel Base Datas
+        baseDatas = new BaseDatas () ;
+        baseDatas.setBounds(20,120, 400, 460);
+        baseDatas.setVisible(true);
+        basePanel.add(baseDatas) ;
+        //basePanel.revalidate() ;
+        //basePanel.repaint() ;
+        
         return basePanel ;
     }
     
@@ -191,6 +201,7 @@ public class OrthoCotation extends JFrame {
         numberAxis.setVisible(true);
         
         DefaultPolarItemRenderer renderer = new DefaultPolarItemRenderer();
+        renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.25f));
         renderer.setShapesVisible(true);
         //renderer.setSeriesShape(1, Shape.);
         renderer.setSeriesPaint(0, Color.BLUE);
@@ -198,10 +209,12 @@ public class OrthoCotation extends JFrame {
         renderer.setSeriesFilled(1, true);
         renderer.setSeriesPaint(1, Color.RED);
         renderer.setSeriesStroke(1, new BasicStroke (0));
+        renderer.setSeriesPaint(2, Color.GREEN);
         
         
         Shape shape  = new Ellipse2D.Double(0,0,0,0);
         renderer.setSeriesShape(1, shape);
+        renderer.setSeriesShape(2, shape);
         
         PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
 
@@ -260,7 +273,7 @@ public class OrthoCotation extends JFrame {
       series1.add(225, +1.3);
       series1.add(270, -0.2);
       series1.add(315, 0.1);
-      dataset.addSeries(series1);
+      
       
       XYSeries series2 = new XYSeries("series2");
       for (int i=0; i<=360; i=i+5) series2.add(i, -1.5);
@@ -273,7 +286,7 @@ public class OrthoCotation extends JFrame {
       series2.add(225, -1.5);
       series2.add(270, -1.5);
       series2.add(315, -1.5);*/
-      dataset.addSeries(series2);
+      
       
       XYSeries series3 = new XYSeries("series3");
       series3.add(0, 1);
@@ -284,6 +297,10 @@ public class OrthoCotation extends JFrame {
       series3.add(225, 1);
       series3.add(270, 1);
       series3.add(315, 1);
+      
+      //On ajoute les séries
+      dataset.addSeries(series1);
+      dataset.addSeries(series2);
       dataset.addSeries(series3);
       
       return dataset;

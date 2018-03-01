@@ -39,6 +39,9 @@ public class OrthoCotation extends JFrame {
     static JTabbedPane tabbedPane ;
     static JPanel basePanel ;
     
+    //Synthèse des valeurs
+    public static BaseDSValues baseValues = new BaseDSValues () ;
+    
     //Dates bilan et naissance
     static JDatePickerImpl dateBilan ;
     static JDatePickerImpl dateBirth ;
@@ -46,7 +49,8 @@ public class OrthoCotation extends JFrame {
     static BaseDatas baseDatas ;
     
     //Graphique
-    static JPanel radioPanel ;
+    public static MyPolarChart polarChart = new MyPolarChart () ;
+    public static JPanel radioPanel ;
     
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMONSTRATION (NON CONNECTE)");
@@ -164,7 +168,7 @@ public class OrthoCotation extends JFrame {
         tabbedPane.setBounds (0, 0, 700, fen.getContentPane().getHeight() + 10);
         fen.setResizable(false);
         
-        MyPolarChart polarChart = new MyPolarChart () ;
+        
         
         radioPanel = polarChart.addPolarPanel();
         radioPanel.setBounds(750, 20, 420, 420);

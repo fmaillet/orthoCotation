@@ -10,13 +10,44 @@ package com.fmaillet.orthocotation;
  * @author Fred
  */
 public class BaseDSValues {
-    static double phorieP ;
-    static double phorieL ;
-    static double fusionCp ;
-    static double fusionDp ;
-    static double fusionCl ;
-    static double fusionDl ;
-    static double ppa ;
-    static double ppc ;
+    static Values phorieP ;
+    static Values phorieL ;
+    static Values fusionCp ;
+    static Values fusionDp ;
+    static Values fusionCl ;
+    static Values fusionDl ;
+    static Values ppa ;
+    static Values ppc ;
     
+    public BaseDSValues () {
+        phorieP = new Values () ;
+        phorieL = new Values () ;
+    }
+    
+    public double updatePhorieP (int p, boolean s) {
+        double ds = - Math.abs((double) p + 3.0 ) / 3.0 ;
+        phorieP.raw = (double) p ;
+        phorieP.ds = ds ;
+        phorieP.selected = s ;
+        //maj du graph
+        OrthoCotation.polarChart.updateDataset () ;
+        return ds ;
+    }
+    
+    public double updatePhorieL (int p, boolean s) {
+        double ds = - Math.abs((double) p + 3.0 ) / 3.0 ;
+        phorieL.raw = (double) p ;
+        phorieL.ds = ds ;
+        phorieL.selected = s ;
+        //maj du graph
+        OrthoCotation.polarChart.updateDataset () ;
+        return ds ;
+    }
+    
+}
+
+class Values {
+    boolean selected ;
+    double raw;
+    double ds;
 }

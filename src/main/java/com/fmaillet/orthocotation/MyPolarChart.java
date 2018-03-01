@@ -86,6 +86,7 @@ public class MyPolarChart {
             }
         };
         
+        
         plot.setAngleGridlinesVisible(true);
         plot.setRadiusMinorGridlinesVisible(false);
         plot.setBackgroundPaint(Color.white);
@@ -124,30 +125,94 @@ public class MyPolarChart {
         XYSeries darkGreenRing = new XYSeries("darkGreenRing");
         for (int i=0; i<=360; i=i+5) darkGreenRing.add(i, 3.0);
         
-        //On ajoute dans l'ordre
-        dataset.addSeries(redRing);
-        dataset.addSeries(greenRing);
-        dataset.addSeries(darkGreenRing);
-        
         //On adapte l'apparence
         renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.25f));
         renderer.setShapesVisible(true);
         //On adapte l'apparence du cercle rouge
-        renderer.setSeriesFilled(0, true);
-        renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesStroke(0, new BasicStroke (0));
-        renderer.setSeriesShape(0, nullShape);
+        renderer.setSeriesFilled(2, true);
+        renderer.setSeriesPaint(2, Color.RED);
+        renderer.setSeriesStroke(2, new BasicStroke (0));
+        renderer.setSeriesShape(2, nullShape);
         //On adapte l'apparence du cercle vert
         renderer.setSeriesFilled(1, true);
         renderer.setSeriesPaint(1, Color.GREEN);
         renderer.setSeriesStroke(1, new BasicStroke (0));
         renderer.setSeriesShape(1, nullShape);
         //On adapte l'apparence du cercle vert
-        renderer.setSeriesFilled(2, true);
-        renderer.setSeriesPaint(2, Color.GREEN.darker());
-        renderer.setSeriesStroke(2, new BasicStroke (0));
-        renderer.setSeriesShape(2, nullShape);
+        renderer.setSeriesFilled(0, true);
+        renderer.setSeriesPaint(0, Color.GREEN.darker());
+        renderer.setSeriesStroke(0, new BasicStroke (0));
+        renderer.setSeriesShape(0, nullShape);
+        //Apparence des données
+        renderer.setSeriesPaint(3, Color.BLUE);
+        renderer.setSeriesFilled(3, false);
         
+        //Les données maintenant
+        XYSeries datas = new XYSeries("datas");
+        int index  = 0 ;
+        if (OrthoCotation.baseValues.phorieL.selected) {
+            datas.add(index, OrthoCotation.baseValues.phorieL.ds);
+            index = index + 45 ;
+        }
+        if (OrthoCotation.baseValues.phorieP.selected) {
+            datas.add(index, OrthoCotation.baseValues.phorieP.ds);
+            index = index + 45 ;
+        }
+        
+        //On ajoute dans l'ordre
+        dataset.addSeries(darkGreenRing);
+        dataset.addSeries(greenRing);
+        dataset.addSeries(redRing);
+        dataset.addSeries (datas) ;
+        
+        //On formate l'axe
+        NumberAxis numberAxis = new NumberAxis();
+        numberAxis.setTickLabelsVisible(true);
+        numberAxis.setTickMarksVisible(false);
+        numberAxis.setTickLabelInsets(new RectangleInsets(0.0, 0.0, 0.0, 0.0));
+        numberAxis.setAxisLineVisible(false);
+        numberAxis.setAutoRange(false);
+        numberAxis.setRange(-5, +3);
+        numberAxis.setVisible(true);
+        //Update plot
+        PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
+
+            @Override
+            protected List refreshAngleTicks() {
+                List ticks = new ArrayList();
+                int index  = 0 ;
+                if (OrthoCotation.baseValues.phorieL.selected) {
+                    ticks.add(new NumberTick(index, "Phorie(L)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                    index = index + 45 ;
+                }
+                if (OrthoCotation.baseValues.phorieP.selected) {
+                    ticks.add(new NumberTick(index, "Phorie(P)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                    index = index + 45 ;
+                }
+                /*ticks.add(new NumberTick(90, "C", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(135, "D", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(180, "C'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(180, "D'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(225, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(270, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+                ticks.add(new NumberTick(315, "P'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));*/
+                return ticks;
+            }
+        };
+        plot.setAngleGridlinesVisible(true);
+        plot.setRadiusMinorGridlinesVisible(false);
+        plot.setBackgroundPaint(Color.white);
+        plot.setAngleGridlinePaint(Color.black);
+        plot.setRadiusGridlinePaint(Color.lightGray);
+        plot.setOutlineVisible(false);
+        
+        chart = new JFreeChart ("Title", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+        TextTitle title = new TextTitle ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", new java.awt.Font("SansSerif", Font.PLAIN, 14) ) ;
+       chart.setTitle(title);
+        chart.setBackgroundPaint(Color.WHITE);
+        chart.setBorderVisible(false);
+        
+        chart.removeLegend();
     }
     
     private static XYDataset getXYDataset() {

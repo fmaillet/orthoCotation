@@ -6,6 +6,7 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -26,7 +27,6 @@ import javax.swing.JTabbedPane;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import org.jfree.data.category.CategoryDataset;
 
 
 /**
@@ -177,7 +177,7 @@ public class OrthoCotation extends JFrame {
         //fen.getContentPane().revalidate();
         fen.repaint();
         
-        polarChart.updateDataset();
+        //polarChart.updateDataset();
     }
     
     public static String getSoftVersion () {

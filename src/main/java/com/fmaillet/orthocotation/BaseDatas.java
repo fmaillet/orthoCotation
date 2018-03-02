@@ -18,6 +18,12 @@ public class BaseDatas extends javax.swing.JPanel {
         initComponents();
         jPhoriePStateChanged (null) ;
         jPhorieLStateChanged (null) ;
+        jFusionDPStateChanged (null) ;
+        jFusionCPStateChanged (null) ;
+        jFusionDLStateChanged (null) ;
+        jFusionCLStateChanged (null) ;
+        jPPAStateChanged (null) ;
+        jPPCStateChanged (null) ;
     }
 
     /**
@@ -38,6 +44,21 @@ public class BaseDatas extends javax.swing.JPanel {
         jCheckFusionDP = new javax.swing.JCheckBox();
         jFusionDP = new javax.swing.JSpinner();
         jFusionDPds = new javax.swing.JLabel();
+        jCheckFusionCP = new javax.swing.JCheckBox();
+        jFusionCP = new javax.swing.JSpinner();
+        jFusionCPds = new javax.swing.JLabel();
+        jCheckFusionDL = new javax.swing.JCheckBox();
+        jFusionDL = new javax.swing.JSpinner();
+        jFusionDLds = new javax.swing.JLabel();
+        jCheckFusionCL = new javax.swing.JCheckBox();
+        jFusionCL = new javax.swing.JSpinner();
+        jFusionCLds = new javax.swing.JLabel();
+        jPPC = new javax.swing.JSpinner();
+        jPPA = new javax.swing.JSpinner();
+        jPPCds = new javax.swing.JLabel();
+        jPPAds = new javax.swing.JLabel();
+        jCheckPPC = new javax.swing.JCheckBox();
+        jCheckPPA = new javax.swing.JCheckBox();
 
         jPhorieL.setModel(new javax.swing.SpinnerNumberModel());
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -73,11 +94,6 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckPhorieLStateChanged(evt);
             }
         });
-        jCheckPhorieL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckPhorieLActionPerformed(evt);
-            }
-        });
 
         jCheckPhorieP.setSelected(true);
         jCheckPhorieP.setText("Phorie (P) :");
@@ -86,22 +102,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckPhoriePStateChanged(evt);
             }
         });
-        jCheckPhorieP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckPhoriePActionPerformed(evt);
-            }
-        });
 
         jCheckFusionDP.setSelected(true);
         jCheckFusionDP.setText("D' :");
         jCheckFusionDP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckFusionDPStateChanged(evt);
-            }
-        });
-        jCheckFusionDP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckFusionDPActionPerformed(evt);
             }
         });
 
@@ -116,19 +122,124 @@ public class BaseDatas extends javax.swing.JPanel {
         jFusionDPds.setForeground(java.awt.Color.red);
         jFusionDPds.setText("...");
 
+        jCheckFusionCP.setSelected(true);
+        jCheckFusionCP.setText("C' :");
+        jCheckFusionCP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckFusionCPStateChanged(evt);
+            }
+        });
+
+        jFusionCP.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionCP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFusionCPStateChanged(evt);
+            }
+        });
+
+        jFusionCPds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFusionCPds.setForeground(java.awt.Color.red);
+        jFusionCPds.setText("...");
+
+        jCheckFusionDL.setSelected(true);
+        jCheckFusionDL.setText("D :");
+        jCheckFusionDL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckFusionDLStateChanged(evt);
+            }
+        });
+
+        jFusionDL.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionDL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFusionDLStateChanged(evt);
+            }
+        });
+
+        jFusionDLds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFusionDLds.setForeground(java.awt.Color.red);
+        jFusionDLds.setText("...");
+
+        jCheckFusionCL.setSelected(true);
+        jCheckFusionCL.setText("C :");
+        jCheckFusionCL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckFusionCLStateChanged(evt);
+            }
+        });
+        jCheckFusionCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckFusionCLActionPerformed(evt);
+            }
+        });
+
+        jFusionCL.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionCL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFusionCLStateChanged(evt);
+            }
+        });
+
+        jFusionCLds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFusionCLds.setForeground(java.awt.Color.red);
+        jFusionCLds.setText("...");
+
+        jPPC.setModel(new javax.swing.SpinnerNumberModel());
+        jPPC.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jPPCStateChanged(evt);
+            }
+        });
+        jPPC.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jPPCPropertyChange(evt);
+            }
+        });
+
+        jPPA.setModel(new javax.swing.SpinnerNumberModel());
+        jPPA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jPPAStateChanged(evt);
+            }
+        });
+
+        jPPCds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPPCds.setForeground(java.awt.Color.red);
+        jPPCds.setText("...");
+
+        jPPAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPPAds.setForeground(java.awt.Color.red);
+        jPPAds.setText("...");
+
+        jCheckPPC.setSelected(true);
+        jCheckPPC.setText("PPC :");
+        jCheckPPC.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckPPCStateChanged(evt);
+            }
+        });
+
+        jCheckPPA.setSelected(true);
+        jCheckPPA.setText("PPA :");
+        jCheckPPA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckPPAStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckFusionDP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckPPA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jFusionDPds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckPhorieP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -136,11 +247,35 @@ public class BaseDatas extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPhorieL)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckPhorieL)
+                            .addComponent(jCheckFusionDP)
+                            .addComponent(jCheckFusionCP)
+                            .addComponent(jCheckFusionCL)
+                            .addComponent(jCheckFusionDL)
+                            .addComponent(jCheckPPC))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFusionDPds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCPds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -151,17 +286,42 @@ public class BaseDatas extends javax.swing.JPanel {
                     .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPhorieLds)
                     .addComponent(jCheckPhorieL))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPhoriePds)
                     .addComponent(jCheckPhorieP))
-                .addGap(33, 33, 33)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckFusionDP)
                     .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFusionDPds))
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckFusionCP)
+                    .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFusionCPds))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckFusionCL)
+                    .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFusionCLds))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckFusionDL)
+                    .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFusionDLds))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPPCds)
+                    .addComponent(jCheckPPC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPPAds)
+                    .addComponent(jCheckPPA))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,41 +342,104 @@ public class BaseDatas extends javax.swing.JPanel {
         jPhoriePds.setText(String.format("%+.2f", ds) + " DS");
     }//GEN-LAST:event_jPhoriePStateChanged
 
-    private void jCheckPhorieLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckPhorieLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckPhorieLActionPerformed
-
-    private void jCheckPhoriePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckPhoriePActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckPhoriePActionPerformed
-
     private void jCheckPhorieLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPhorieLStateChanged
-        jPhoriePStateChanged (null) ;
+        jPhorieLStateChanged (null) ;
     }//GEN-LAST:event_jCheckPhorieLStateChanged
 
     private void jCheckPhoriePStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPhoriePStateChanged
-        jPhorieLStateChanged (null) ;
+        jPhoriePStateChanged (null) ;
     }//GEN-LAST:event_jCheckPhoriePStateChanged
 
     private void jCheckFusionDPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionDPStateChanged
-        // TODO add your handling code here:
+        jFusionDPStateChanged (null) ;
     }//GEN-LAST:event_jCheckFusionDPStateChanged
 
-    private void jCheckFusionDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFusionDPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckFusionDPActionPerformed
-
     private void jFusionDPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionDPStateChanged
-        // TODO add your handling code here:
+        int p = (int) jFusionDP.getValue() ;
+        double ds = OrthoCotation.baseValues.updateFusionDP ( p, jCheckFusionDP.isSelected() ) ;
+        jFusionDPds.setText(String.format("%+.2f", ds) + " DS");
     }//GEN-LAST:event_jFusionDPStateChanged
+
+    private void jCheckFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCPStateChanged
+        jFusionCPStateChanged (null) ;
+    }//GEN-LAST:event_jCheckFusionCPStateChanged
+
+    private void jFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionCPStateChanged
+        int p = (int) jFusionCP.getValue() ;
+        double ds = OrthoCotation.baseValues.updateFusionCP ( p, jCheckFusionCP.isSelected() ) ;
+        jFusionCPds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jFusionCPStateChanged
+
+    private void jCheckFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionDLStateChanged
+        jFusionDLStateChanged (null) ;
+    }//GEN-LAST:event_jCheckFusionDLStateChanged
+
+    private void jFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionDLStateChanged
+        int p = (int) jFusionDL.getValue() ;
+        double ds = OrthoCotation.baseValues.updateFusionDL ( p, jCheckFusionDL.isSelected() ) ;
+        jFusionDLds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jFusionDLStateChanged
+
+    private void jCheckFusionCLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCLStateChanged
+        jFusionCLStateChanged (null) ;
+    }//GEN-LAST:event_jCheckFusionCLStateChanged
+
+    private void jFusionCLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionCLStateChanged
+        int p = (int) jFusionCL.getValue() ;
+        double ds = OrthoCotation.baseValues.updateFusionCL ( p, jCheckFusionCL.isSelected() ) ;
+        jFusionCLds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jFusionCLStateChanged
+
+    private void jCheckFusionCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFusionCLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckFusionCLActionPerformed
+
+    private void jPPCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPCStateChanged
+        int p = (int) jPPC.getValue() ;
+        double ds = OrthoCotation.baseValues.updatePPC ( p, jCheckPPC.isSelected() ) ;
+        jPPCds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jPPCStateChanged
+
+    private void jPPCPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPPCPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPPCPropertyChange
+
+    private void jPPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPAStateChanged
+        int p = (int) jPPA.getValue() ;
+        double ds = OrthoCotation.baseValues.updatePPA ( p, jCheckPPA.isSelected() ) ;
+        jPPAds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jPPAStateChanged
+
+    private void jCheckPPCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPPCStateChanged
+        jPPCStateChanged (null) ;
+    }//GEN-LAST:event_jCheckPPCStateChanged
+
+    private void jCheckPPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPPAStateChanged
+        jPPAStateChanged (null) ;
+    }//GEN-LAST:event_jCheckPPAStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckFusionCL;
+    private javax.swing.JCheckBox jCheckFusionCP;
+    private javax.swing.JCheckBox jCheckFusionDL;
     private javax.swing.JCheckBox jCheckFusionDP;
+    private javax.swing.JCheckBox jCheckPPA;
+    private javax.swing.JCheckBox jCheckPPC;
     private javax.swing.JCheckBox jCheckPhorieL;
     private javax.swing.JCheckBox jCheckPhorieP;
+    private javax.swing.JSpinner jFusionCL;
+    private javax.swing.JLabel jFusionCLds;
+    private javax.swing.JSpinner jFusionCP;
+    private javax.swing.JLabel jFusionCPds;
+    private javax.swing.JSpinner jFusionDL;
+    private javax.swing.JLabel jFusionDLds;
     private javax.swing.JSpinner jFusionDP;
     private javax.swing.JLabel jFusionDPds;
+    private javax.swing.JSpinner jPPA;
+    private javax.swing.JLabel jPPAds;
+    private javax.swing.JSpinner jPPC;
+    private javax.swing.JLabel jPPCds;
     private javax.swing.JSpinner jPhorieL;
     private javax.swing.JLabel jPhorieLds;
     private javax.swing.JSpinner jPhorieP;

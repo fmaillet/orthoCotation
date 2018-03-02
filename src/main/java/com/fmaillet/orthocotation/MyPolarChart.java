@@ -9,8 +9,13 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -18,9 +23,11 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTick;
+import org.jfree.chart.plot.PlotRenderingInfo;
 import org.jfree.chart.plot.PolarPlot;
 import org.jfree.chart.renderer.DefaultPolarItemRenderer;
 import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.title.Title;
 import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.CategoryDataset;
@@ -40,6 +47,9 @@ public class MyPolarChart {
     static DefaultPolarItemRenderer renderer ;
     Shape nullShape  = new Ellipse2D.Double(0,0,0,0);
     
+    ChartPanel panel ;
+    List ticks ;
+    
     public MyPolarChart () {
         XYDataset dataset = getXYDataset();
         
@@ -54,7 +64,9 @@ public class MyPolarChart {
         numberAxis.setVisible(true);
         
         //Renderer
-        renderer = new DefaultPolarItemRenderer();
+        renderer = new DefaultPolarItemRenderer() ;
+        
+        
         renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.25f));
         renderer.setShapesVisible(true);
         //renderer.setSeriesShape(1, Shape.);
@@ -68,20 +80,12 @@ public class MyPolarChart {
         renderer.setSeriesShape(1, nullShape);
         renderer.setSeriesShape(2, nullShape);
         
+        ticks = new ArrayList();
+        
         PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
 
             @Override
             protected List refreshAngleTicks() {
-                List ticks = new ArrayList();
-                ticks.add(new NumberTick(0, "PPC", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(45, "P", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(90, "C", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(135, "D", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(180, "C'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(180, "D'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(225, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(270, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(315, "P'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
                 return ticks;
             }
         };
@@ -94,22 +98,74 @@ public class MyPolarChart {
         plot.setRadiusGridlinePaint(Color.lightGray);
         plot.setOutlineVisible(false);
         
-        TextTitle title = new TextTitle ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", new java.awt.Font("SansSerif", Font.PLAIN, 14) ) ;
+        TextTitle title = new TextTitle ("Ecarts à la norme des principaux indicateurs orthoptiques", new java.awt.Font("SansSerif", Font.BOLD, 14) ) ;
         
         chart = new JFreeChart ("Title", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         chart.setTitle(title);
         chart.setBackgroundPaint(Color.WHITE);
         chart.setBorderVisible(false);
-        
+        List<Title> subTitles = new ArrayList<Title>();
+        subTitles.add(new TextTitle("(exprimé en déviation standard, DS)"));
+        chart.setSubtitles(subTitles);
         chart.removeLegend();
         
         
     }
     
     public JPanel addPolarPanel () {
-        ChartPanel panel = new ChartPanel(chart);
+        panel = new ChartPanel(chart);
         panel.setMouseZoomable(false);
         return panel ;
+    }
+    
+    public int updateTicks () {
+        ticks.clear();
+        int n = (OrthoCotation.baseValues.phorieL.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.phorieP.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fusionDP.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fusionCP.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fusionCL.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fusionDL.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.ppc.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.ppa.selected ? 1 : 0) ;
+        if (n > 0) n = 380 / n ;
+        else return 0 ;
+        
+        int index = 0 ;
+        if (OrthoCotation.baseValues.phorieL.selected) {
+            ticks.add(new NumberTick(index, "Phorie(L)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.phorieP.selected) {
+            ticks.add(new NumberTick(index, "Phorie(P)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionDP.selected) {
+            ticks.add(new NumberTick(index, "D'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionCP.selected) {
+            ticks.add(new NumberTick(index, "C'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionCL.selected) {
+            ticks.add(new NumberTick(index, "C", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionDL.selected) {
+            ticks.add(new NumberTick(index, "D", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.ppc.selected) {
+            ticks.add(new NumberTick(index, "PPC", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.ppa.selected) {
+            ticks.add(new NumberTick(index, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        
+        return n ;
     }
     
     public void updateDataset () {
@@ -150,13 +206,40 @@ public class MyPolarChart {
         //Les données maintenant
         XYSeries datas = new XYSeries("datas");
         int index  = 0 ;
+        int n = updateTicks () ;
+        if (n == 0 ) return ;
+        
         if (OrthoCotation.baseValues.phorieL.selected) {
             datas.add(index, OrthoCotation.baseValues.phorieL.ds);
-            index = index + 45 ;
+            index = index + n ;
         }
         if (OrthoCotation.baseValues.phorieP.selected) {
             datas.add(index, OrthoCotation.baseValues.phorieP.ds);
-            index = index + 45 ;
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionDP.selected) {
+            datas.add(index, OrthoCotation.baseValues.fusionDP.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionCP.selected) {
+            datas.add(index, OrthoCotation.baseValues.fusionCP.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionCL.selected) {
+            datas.add(index, OrthoCotation.baseValues.fusionCL.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fusionDL.selected) {
+            datas.add(index, OrthoCotation.baseValues.fusionDL.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.ppc.selected) {
+            datas.add(index, OrthoCotation.baseValues.ppc.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.ppa.selected) {
+            datas.add(index, OrthoCotation.baseValues.ppa.ds);
+            index = index + n ;
         }
         
         //On ajoute dans l'ordre
@@ -165,54 +248,9 @@ public class MyPolarChart {
         dataset.addSeries(redRing);
         dataset.addSeries (datas) ;
         
-        //On formate l'axe
-        NumberAxis numberAxis = new NumberAxis();
-        numberAxis.setTickLabelsVisible(true);
-        numberAxis.setTickMarksVisible(false);
-        numberAxis.setTickLabelInsets(new RectangleInsets(0.0, 0.0, 0.0, 0.0));
-        numberAxis.setAxisLineVisible(false);
-        numberAxis.setAutoRange(false);
-        numberAxis.setRange(-5, +3);
-        numberAxis.setVisible(true);
-        //Update plot
-        PolarPlot plot = new PolarPlot(dataset, numberAxis, renderer) {
-
-            @Override
-            protected List refreshAngleTicks() {
-                List ticks = new ArrayList();
-                int index  = 0 ;
-                if (OrthoCotation.baseValues.phorieL.selected) {
-                    ticks.add(new NumberTick(index, "Phorie(L)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                    index = index + 45 ;
-                }
-                if (OrthoCotation.baseValues.phorieP.selected) {
-                    ticks.add(new NumberTick(index, "Phorie(P)", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                    index = index + 45 ;
-                }
-                /*ticks.add(new NumberTick(90, "C", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(135, "D", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(180, "C'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(180, "D'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(225, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(270, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
-                ticks.add(new NumberTick(315, "P'", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));*/
-                return ticks;
-            }
-        };
-        plot.setAngleGridlinesVisible(true);
-        plot.setRadiusMinorGridlinesVisible(false);
-        plot.setBackgroundPaint(Color.white);
-        plot.setAngleGridlinePaint(Color.black);
-        plot.setRadiusGridlinePaint(Color.lightGray);
-        plot.setOutlineVisible(false);
         
-        chart = new JFreeChart ("Title", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
-        TextTitle title = new TextTitle ("Ecarts à la norme (DS) des principaux\nindicateurs orthoptiques", new java.awt.Font("SansSerif", Font.PLAIN, 14) ) ;
-       chart.setTitle(title);
-        chart.setBackgroundPaint(Color.WHITE);
-        chart.setBorderVisible(false);
         
-        chart.removeLegend();
+        
     }
     
     private static XYDataset getXYDataset() {

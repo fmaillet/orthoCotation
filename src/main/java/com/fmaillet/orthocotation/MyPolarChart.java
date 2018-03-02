@@ -172,32 +172,44 @@ public class MyPolarChart {
         dataset.removeAllSeries();
         
         //Cercle rouge interne
-        XYSeries redRing = new XYSeries("redRing");
+        XYSeries redRing = new XYSeries("redRing", true);
         for (int i=0; i<=360; i=i+5) redRing.add(i, -1.5);
         //Cercle vert externe
-        XYSeries greenRing = new XYSeries("greenRing");
-        for (int i=0; i<=360; i=i+5) greenRing.add(i, 1.0);
+        XYSeries greenRing = new XYSeries("greenRing", false);
+        for (int i=0; i<380; i=i+5) greenRing.add(i, 1.0);
+        for (int i=375; i>=0; i=i-5) greenRing.add(i, -1.5) ;
         //Cercle vert foncé externe
-        XYSeries darkGreenRing = new XYSeries("darkGreenRing");
-        for (int i=0; i<=360; i=i+5) darkGreenRing.add(i, 3.0);
+        XYSeries darkGreenRing = new XYSeries("darkGreenRing", false);
+        for (int i=0; i<380; i=i+5) darkGreenRing.add(i, 3.0);
+        for (int i=375; i>=0; i=i-5) darkGreenRing.add(i, 1.0) ;
+        
+        float[] dash_array = new float[2];
+        dash_array[0] = Float.MIN_VALUE; //visible
+        dash_array[1] = Float.MAX_VALUE; //invisible
+        BasicStroke stroke = new BasicStroke(0.0f,
+            BasicStroke.CAP_SQUARE,
+            BasicStroke.JOIN_ROUND,
+            10f,
+            dash_array,
+            0f);
         
         //On adapte l'apparence
-        renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.25f));
+        renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.30f));
         renderer.setShapesVisible(true);
         //On adapte l'apparence du cercle rouge
         renderer.setSeriesFilled(2, true);
         renderer.setSeriesPaint(2, Color.RED);
-        renderer.setSeriesStroke(2, new BasicStroke (0));
+        renderer.setSeriesStroke(2, stroke);
         renderer.setSeriesShape(2, nullShape);
         //On adapte l'apparence du cercle vert
         renderer.setSeriesFilled(1, true);
         renderer.setSeriesPaint(1, Color.GREEN);
-        renderer.setSeriesStroke(1, new BasicStroke (0));
+        renderer.setSeriesStroke(1, stroke);
         renderer.setSeriesShape(1, nullShape);
-        //On adapte l'apparence du cercle vert
+        //On adapte l'apparence du cercle vert foncé
         renderer.setSeriesFilled(0, true);
         renderer.setSeriesPaint(0, Color.GREEN.darker());
-        renderer.setSeriesStroke(0, new BasicStroke (0));
+        renderer.setSeriesStroke(0, stroke);
         renderer.setSeriesShape(0, nullShape);
         //Apparence des données
         renderer.setSeriesPaint(3, Color.BLUE);

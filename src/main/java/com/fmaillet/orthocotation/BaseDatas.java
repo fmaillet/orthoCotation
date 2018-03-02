@@ -24,6 +24,10 @@ public class BaseDatas extends javax.swing.JPanel {
         jFusionCLStateChanged (null) ;
         jPPAStateChanged (null) ;
         jPPCStateChanged (null) ;
+        
+        //Unités
+        jUnit1.setText("\u0394");jUnit2.setText("\u0394");jUnit3.setText("\u0394");jUnit4.setText("\u0394");
+        jUnit5.setText("\u0394");jUnit6.setText("\u0394");jUnit7.setText("\u0394");
     }
 
     /**
@@ -59,6 +63,14 @@ public class BaseDatas extends javax.swing.JPanel {
         jPPAds = new javax.swing.JLabel();
         jCheckPPC = new javax.swing.JCheckBox();
         jCheckPPA = new javax.swing.JCheckBox();
+        jUnit1 = new javax.swing.JLabel();
+        jUnit2 = new javax.swing.JLabel();
+        jUnit3 = new javax.swing.JLabel();
+        jUnit4 = new javax.swing.JLabel();
+        jUnit5 = new javax.swing.JLabel();
+        jUnit6 = new javax.swing.JLabel();
+        jUnit7 = new javax.swing.JLabel();
+        jUnit8 = new javax.swing.JLabel();
 
         jPhorieL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -196,7 +208,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jPPA.setModel(new javax.swing.SpinnerNumberModel());
+        jPPA.setModel(new javax.swing.SpinnerNumberModel(10.0d, 1.0d, null, 0.5d));
         jPPA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPPAStateChanged(evt);
@@ -227,6 +239,30 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
+        jUnit1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit1.setText("d");
+
+        jUnit2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit2.setText("d");
+
+        jUnit3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit3.setText("d");
+
+        jUnit4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit4.setText("d");
+
+        jUnit5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit5.setText("d");
+
+        jUnit6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit6.setText("d");
+
+        jUnit7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit7.setText("d");
+
+        jUnit8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit8.setText("d");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,9 +273,7 @@ public class BaseDatas extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckPhorieP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckPhorieL)
@@ -250,32 +284,38 @@ public class BaseDatas extends javax.swing.JPanel {
                             .addComponent(jCheckPPC)
                             .addComponent(jCheckPPA))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPPAds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                                    .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFusionDLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                            .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jUnit8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,42 +324,50 @@ public class BaseDatas extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPhorieLds)
-                    .addComponent(jCheckPhorieL))
+                    .addComponent(jCheckPhorieL)
+                    .addComponent(jUnit1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPhoriePds)
-                    .addComponent(jCheckPhorieP))
+                    .addComponent(jCheckPhorieP)
+                    .addComponent(jUnit3))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckFusionDP)
                     .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionDPds))
+                    .addComponent(jFusionDPds)
+                    .addComponent(jUnit2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckFusionCP)
                     .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionCPds))
+                    .addComponent(jFusionCPds)
+                    .addComponent(jUnit4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckFusionCL)
                     .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionCLds))
+                    .addComponent(jFusionCLds)
+                    .addComponent(jUnit5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckFusionDL)
                     .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionDLds))
+                    .addComponent(jFusionDLds)
+                    .addComponent(jUnit6))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPPCds)
-                    .addComponent(jCheckPPC))
+                    .addComponent(jCheckPPC)
+                    .addComponent(jUnit7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPPAds)
-                    .addComponent(jCheckPPA))
+                    .addComponent(jCheckPPA)
+                    .addComponent(jUnit8))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -403,10 +451,22 @@ public class BaseDatas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPPCPropertyChange
 
+    public void updateFromAge () {
+        jPPAStateChanged (null) ;
+        jCheckPPA.setSelected(true) ;
+    }
+    
     private void jPPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPAStateChanged
-        int p = (int) jPPA.getValue() ;
+        double p = (double) jPPA.getValue() ;
+        p = 100 / p ;
         double ds = OrthoCotation.baseValues.updatePPA ( p, jCheckPPA.isSelected() ) ;
-        jPPAds.setText(String.format("%+.2f", ds) + " DS");
+        jUnit8.setText ("cm (soit " + String.format("%+.2f", p) + " \u03B4)") ;
+        if (OrthoCotation.baseValues.patientAge.years != 0)
+            jPPAds.setText(String.format("%+.2f", ds) + " DS");
+        else {
+            jPPAds.setText("...") ;
+            jCheckPPA.setSelected(false) ;
+        }
     }//GEN-LAST:event_jPPAStateChanged
 
     private void jCheckPPCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPPCStateChanged
@@ -443,5 +503,13 @@ public class BaseDatas extends javax.swing.JPanel {
     private javax.swing.JLabel jPhorieLds;
     private javax.swing.JSpinner jPhorieP;
     private javax.swing.JLabel jPhoriePds;
+    private javax.swing.JLabel jUnit1;
+    private javax.swing.JLabel jUnit2;
+    private javax.swing.JLabel jUnit3;
+    private javax.swing.JLabel jUnit4;
+    private javax.swing.JLabel jUnit5;
+    private javax.swing.JLabel jUnit6;
+    private javax.swing.JLabel jUnit7;
+    private javax.swing.JLabel jUnit8;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,14 @@
 ! Numéro de version dans OrthoCotation.java
 
 A FAIRE :
-- Calcul correct des DS !!!
+- Calcul PPA from cm !!!
 
-v0.3.0 (en cours)
+v0.4.0 (en cours)
+
+v0.3.0 (02-03-2018)
 - better ring colors
 - age out of tabbed panes
+- DS calc ok except for PPA
 
 v0.2.0 (02-03-2018)
 - adding polarPlot graph

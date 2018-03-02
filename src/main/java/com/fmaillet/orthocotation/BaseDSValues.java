@@ -94,7 +94,7 @@ public class BaseDSValues {
     }
     
     public double updatePPC (double p, boolean s) {
-        double ds = ( p - 2.5 ) / 2.5 ;
+        double ds = ( 2.5 - p ) / 2.5 ;
         ppc.raw = (double) p ;
         ppc.ds = ds ;
         ppc.selected = s ;
@@ -103,8 +103,9 @@ public class BaseDSValues {
         return ds ;
     }
     
-    public double updatePPA (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+    public double updatePPA (double p, boolean s) {
+        double attendu = (18 - patientAge.years / 3) ;
+        double ds = ( p - attendu ) / 2.0 ;
         ppa.raw = (double) p ;
         ppa.ds = ds ;
         ppa.selected = s ;

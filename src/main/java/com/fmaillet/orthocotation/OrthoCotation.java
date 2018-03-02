@@ -183,6 +183,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
         baseValues.patientAge.years = age.getYears() ;
         baseValues.patientAge.months = age.getMonths() ;
         baseValues.patientAge.days = age.getDays() ;
+        //Update values
+        baseDatas.updateFromAge () ;
     }
     
     public static void main(String[] args) {
@@ -208,7 +210,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v0.3.0-BETA du 02/03/2018" ;
+        return "v0.4.0-BETA du 02/03/2018" ;
     }
 
     @Override

@@ -6,6 +6,7 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,6 +67,8 @@ public class OrthoCotation extends JFrame {
         //EntrÃ©e Menus "Fichiers"
         JMenu fileMenu = new JMenu ("Fichier") ;
         barreMenus.add(fileMenu) ;
+        //Barre d'âge
+        initDateLabels () ;
     }
     
     private static void addTabbedPanes () {
@@ -74,7 +77,7 @@ public class OrthoCotation extends JFrame {
         tabbedPane.setBounds(0, 0, 700, 500);
         
         //Premier tab
-        tabbedPane.addTab("Base", addBasePanel () );
+        tabbedPane.addTab("Vision binoculaire", addTabPanel_VB () );
         
         //Second tab
         JPanel panel2 = new JPanel(false);
@@ -85,15 +88,11 @@ public class OrthoCotation extends JFrame {
         
     }
     
-    private static JPanel addBasePanel () {
-        basePanel = new JPanel () ;
-        basePanel.setLayout(null);
-        
+    private void initDateLabels () {
         // Date du bilan
         JLabel lab1 = new JLabel ("Date du bilan :") ;
-        lab1.setBounds(20, 20, 150, 30);
-        basePanel.add(lab1) ;
-        
+        lab1.setBounds(10, 10, 150, 30);
+        getContentPane().add(lab1) ;
         UtilDateModel modelBilan = new UtilDateModel() ;
         Properties p = new Properties();
         p.put("text.today", "Aujourd'hui");
@@ -101,42 +100,51 @@ public class OrthoCotation extends JFrame {
         p.put("text.year", "AnnÃ©e");
         JDatePanelImpl datePanel = new JDatePanelImpl(modelBilan, p);
         dateBilan = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        dateBilan.setBounds(110, 20, 130, 50);
+        dateBilan.setBounds(100, 10, 130, 27);
         dateBilan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 calculateAge () ;
             }
             }) ;
-        basePanel.add(dateBilan);
+        getContentPane().add(dateBilan);
+        //Date du jour par défaut
+        LocalDate now = LocalDate.now();
+        
+        modelBilan.setDate(now.getYear(), now.getMonthValue(), now.getDayOfMonth());
+        modelBilan.setSelected(true);
+        
         // Date de naissance
         JLabel lab2 = new JLabel ("Date de naissance :") ;
-        lab2.setBounds(280, 20, 150, 30);
-        basePanel.add(lab2) ;
+        lab2.setBounds(250, 10, 150, 30);
+        getContentPane().add(lab2) ;
         
         UtilDateModel modelBirth = new UtilDateModel() ;
         JDatePanelImpl dateB = new JDatePanelImpl(modelBirth, p);
         dateBirth = new JDatePickerImpl(dateB, new DateLabelFormatter());
-        dateBirth.setBounds(400, 20, 130, 50);
+        dateBirth.setBounds(375, 10, 130, 27);
         dateBirth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 calculateAge () ;
             }
             }) ;
-        basePanel.add(dateBirth);
+        getContentPane().add(dateBirth);
         
-        // Age
-        JLabel lab3 = new JLabel ("Age :") ;
-        lab3.setBounds(20, 70, 50, 30);
-        basePanel.add(lab3) ;
-        labelAge = new JLabel ("...") ;
-        labelAge.setBounds(150, 70, 200, 30);
-        basePanel.add(labelAge) ;
+        labelAge = new JLabel ("[no age]") ;
+        labelAge.setBounds(540, 10, 200, 30);
+        labelAge.setFont(new Font(labelAge.getName(), Font.BOLD, 18));
+        labelAge.setForeground(Color.BLUE);
+        getContentPane().add(labelAge) ;
+    }
+    
+    private static JPanel addTabPanel_VB () {
+        basePanel = new JPanel () ;
+        basePanel.setLayout(null);
         
         //Panel Base Datas
         baseDatas = new BaseDatas () ;
-        baseDatas.setBounds(20,120, 400, 460);
+        baseDatas.setBounds(10,10, 400, 460);
         baseDatas.setVisible(true);
         basePanel.add(baseDatas) ;
         //basePanel.revalidate() ;
@@ -162,10 +170,11 @@ public class OrthoCotation extends JFrame {
     public static void main(String[] args) {
         // fenetre principale
         fen = new OrthoCotation () ;
+        
         addTabbedPanes () ;
         fen.getContentPane().add (tabbedPane) ;
         fen.setVisible(true) ;
-        tabbedPane.setBounds (0, 0, 700, fen.getContentPane().getHeight() + 10);
+        tabbedPane.setBounds (0, 50, 700, fen.getContentPane().getHeight() + 10);
         fen.setResizable(false);
         
         
@@ -181,7 +190,7 @@ public class OrthoCotation extends JFrame {
     }
     
     public static String getSoftVersion () {
-        return "v0.2.0-BETA du 27/02/2018" ;
+        return "v0.3.0-BETA du 02/03/2018" ;
     }
 }
 

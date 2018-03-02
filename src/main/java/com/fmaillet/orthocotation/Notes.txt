@@ -3,8 +3,12 @@
 A FAIRE :
 - 
 
-v0.2.0 (en cours)
-- adding radio graph
+v0.3.0 (en cours)
+-
+
+v0.2.0 (02-03-2018)
+- adding polarPlot graph
+- all orthoptics values ! DS Calc is false !
 
 v0.1.0 (26-02-2018)
 - Tabs

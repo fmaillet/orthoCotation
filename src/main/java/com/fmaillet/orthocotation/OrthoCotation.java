@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -18,11 +19,16 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -34,7 +40,7 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author Fred
  */
-public class OrthoCotation extends JFrame {
+public class OrthoCotation extends JFrame implements ActionListener {
     
     static OrthoCotation fen ;
     static JTabbedPane tabbedPane ;
@@ -53,6 +59,9 @@ public class OrthoCotation extends JFrame {
     public static MyPolarChart polarChart = new MyPolarChart () ;
     public static JPanel radioPanel ;
     
+    //Menus
+    JMenuItem exitItem ;
+    
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMONSTRATION (NON CONNECTE)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,6 +76,11 @@ public class OrthoCotation extends JFrame {
         //EntrÃ©e Menus "Fichiers"
         JMenu fileMenu = new JMenu ("Fichier") ;
         barreMenus.add(fileMenu) ;
+        exitItem = new JMenuItem("Quitter");
+        exitItem.addActionListener(this);
+        fileMenu.add(exitItem);
+        
+        
         //Barre d'âge
         initDateLabels () ;
     }
@@ -132,8 +146,8 @@ public class OrthoCotation extends JFrame {
         getContentPane().add(dateBirth);
         
         labelAge = new JLabel ("[no age]") ;
-        labelAge.setBounds(540, 10, 200, 30);
-        labelAge.setFont(new Font(labelAge.getName(), Font.BOLD, 18));
+        labelAge.setBounds(535, 10, 200, 30);
+        labelAge.setFont(new Font(labelAge.getName(), Font.PLAIN, 18));
         labelAge.setForeground(Color.BLUE);
         getContentPane().add(labelAge) ;
     }
@@ -163,8 +177,12 @@ public class OrthoCotation extends JFrame {
         LocalDate birth = n.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         Period age = Period.between(birth, bilan);
-        System.out.println (age.getYears() + "y " + age.getMonths() + "m") ;
-        labelAge.setText(age.getYears() + " ans " + age.getMonths() + " mois");
+        
+        labelAge.setText("<html><b>" + age.getYears() + "</b> ans <b>" + age.getMonths() + "</b> mois (" + age.getDays() + " j.)<html>");
+        //Update Base
+        baseValues.patientAge.years = age.getYears() ;
+        baseValues.patientAge.months = age.getMonths() ;
+        baseValues.patientAge.days = age.getDays() ;
     }
     
     public static void main(String[] args) {
@@ -191,6 +209,15 @@ public class OrthoCotation extends JFrame {
     
     public static String getSoftVersion () {
         return "v0.3.0-BETA du 02/03/2018" ;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //Source ?
+        Object source = e.getSource () ;
+        if (source == exitItem) {
+            System.exit(0);
+        }
     }
 }
 

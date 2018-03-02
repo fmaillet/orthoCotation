@@ -19,6 +19,8 @@ public class BaseDSValues {
     static Values ppa ;
     static Values ppc ;
     
+    static Age patientAge ;
+    
     public BaseDSValues () {
         phorieP = new Values () ;
         phorieL = new Values () ;
@@ -28,6 +30,8 @@ public class BaseDSValues {
         fusionCL = new Values () ;
         ppc = new Values () ;
         ppa = new Values () ;
+        
+        patientAge = new Age () ;
     }
     
     public double updatePhorieP (int p, boolean s) {
@@ -41,7 +45,7 @@ public class BaseDSValues {
     }
     
     public double updatePhorieL (int p, boolean s) {
-        double ds = - Math.abs((double) p + 3.0 ) / 3.0 ;
+        double ds = - Math.abs((double) p + 1.0 ) / 2.0 ;
         phorieL.raw = (double) p ;
         phorieL.ds = ds ;
         phorieL.selected = s ;
@@ -51,7 +55,7 @@ public class BaseDSValues {
     }
     
     public double updateFusionDP (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+        double ds = ((double) p - 12.0 ) / 5.0 ;
         fusionDP.raw = (double) p ;
         fusionDP.ds = ds ;
         fusionDP.selected = s ;
@@ -61,7 +65,7 @@ public class BaseDSValues {
     }
     
     public double updateFusionCP (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+        double ds = ((double) p - 23.0 ) / 8.0 ;
         fusionCP.raw = (double) p ;
         fusionCP.ds = ds ;
         fusionCP.selected = s ;
@@ -70,7 +74,7 @@ public class BaseDSValues {
         return ds ;
     }
     public double updateFusionCL (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+        double ds = ((double) p - 11.0 ) / 7.0 ;
         fusionCL.raw = (double) p ;
         fusionCL.ds = ds ;
         fusionCL.selected = s ;
@@ -80,7 +84,7 @@ public class BaseDSValues {
     }
     
     public double updateFusionDL (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+        double ds = ((double) p - 7.0 ) / 3.0 ;
         fusionDL.raw = (double) p ;
         fusionDL.ds = ds ;
         fusionDL.selected = s ;
@@ -89,8 +93,8 @@ public class BaseDSValues {
         return ds ;
     }
     
-    public double updatePPC (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 8.0 ;
+    public double updatePPC (double p, boolean s) {
+        double ds = ( p - 2.5 ) / 2.5 ;
         ppc.raw = (double) p ;
         ppc.ds = ds ;
         ppc.selected = s ;
@@ -115,4 +119,10 @@ class Values {
     boolean selected ;
     double raw;
     double ds;
+}
+
+class Age {
+    int years ;
+    int months ;
+    int days ;
 }

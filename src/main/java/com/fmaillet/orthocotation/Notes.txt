@@ -1,10 +1,11 @@
 ! Numéro de version dans OrthoCotation.java
 
 A FAIRE :
-- 
+- Calcul correct des DS !!!
 
 v0.3.0 (en cours)
 - better ring colors
+- age out of tabbed panes
 
 v0.2.0 (02-03-2018)
 - adding polarPlot graph

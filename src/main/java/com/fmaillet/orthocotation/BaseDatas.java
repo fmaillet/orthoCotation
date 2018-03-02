@@ -60,7 +60,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jCheckPPC = new javax.swing.JCheckBox();
         jCheckPPA = new javax.swing.JCheckBox();
 
-        jPhorieL.setModel(new javax.swing.SpinnerNumberModel());
+        jPhorieL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhorieLStateChanged(evt);
@@ -72,7 +72,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jPhorieP.setModel(new javax.swing.SpinnerNumberModel());
+        jPhorieP.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
         jPhorieP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhoriePStateChanged(evt);
@@ -111,7 +111,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jFusionDP.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionDP.setModel(new javax.swing.SpinnerNumberModel(12, null, null, 1));
         jFusionDP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionDPStateChanged(evt);
@@ -130,7 +130,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jFusionCP.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionCP.setModel(new javax.swing.SpinnerNumberModel(23, null, null, 1));
         jFusionCP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionCPStateChanged(evt);
@@ -149,7 +149,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jFusionDL.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionDL.setModel(new javax.swing.SpinnerNumberModel(7, null, null, 1));
         jFusionDL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionDLStateChanged(evt);
@@ -173,7 +173,7 @@ public class BaseDatas extends javax.swing.JPanel {
             }
         });
 
-        jFusionCL.setModel(new javax.swing.SpinnerNumberModel());
+        jFusionCL.setModel(new javax.swing.SpinnerNumberModel(11, null, null, 1));
         jFusionCL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionCLStateChanged(evt);
@@ -184,7 +184,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jFusionCLds.setForeground(java.awt.Color.red);
         jFusionCLds.setText("...");
 
-        jPPC.setModel(new javax.swing.SpinnerNumberModel());
+        jPPC.setModel(new javax.swing.SpinnerNumberModel(2.5d, null, null, 0.5d));
         jPPC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPPCStateChanged(evt);
@@ -235,12 +235,6 @@ public class BaseDatas extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPPA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckPhorieP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,13 +247,18 @@ public class BaseDatas extends javax.swing.JPanel {
                             .addComponent(jCheckFusionCP)
                             .addComponent(jCheckFusionCL)
                             .addComponent(jCheckFusionDL)
-                            .addComponent(jCheckPPC))
+                            .addComponent(jCheckPPC)
+                            .addComponent(jCheckPPA))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPPAds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -271,12 +270,12 @@ public class BaseDatas extends javax.swing.JPanel {
                                     .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFusionDPds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionCPds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionCLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                                    .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFusionDLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +394,7 @@ public class BaseDatas extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckFusionCLActionPerformed
 
     private void jPPCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPCStateChanged
-        int p = (int) jPPC.getValue() ;
+        double p = (double) jPPC.getValue() ;
         double ds = OrthoCotation.baseValues.updatePPC ( p, jCheckPPC.isSelected() ) ;
         jPPCds.setText(String.format("%+.2f", ds) + " DS");
     }//GEN-LAST:event_jPPCStateChanged

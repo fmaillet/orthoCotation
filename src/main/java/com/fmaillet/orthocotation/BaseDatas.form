@@ -20,20 +20,13 @@
               <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jCheckPPA" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPPA" min="-2" pref="55" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPPAds" min="-2" pref="57" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Component id="jCheckPhorieP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPhorieP" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPhoriePds" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jCheckPhorieL" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckFusionDP" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -41,13 +34,19 @@
                           <Component id="jCheckFusionCL" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckFusionDL" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckPPC" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckPPA" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPPA" min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jPPAds" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="jPPC" min="-2" pref="55" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jPPCds" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="jPPCds" min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jPhorieL" min="-2" pref="55" max="-2" attributes="0"/>
@@ -62,17 +61,17 @@
                                   <Component id="jFusionDL" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jFusionDPds" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="jFusionCPds" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="jFusionCLds" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <Component id="jFusionDLds" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jFusionDPds" alignment="0" pref="66" max="32767" attributes="0"/>
+                                  <Component id="jFusionCPds" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jFusionCLds" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jFusionDLds" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="141" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,7 +135,7 @@
     <Component class="javax.swing.JSpinner" name="jPhorieL">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="-1" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -147,7 +146,7 @@
     <Component class="javax.swing.JSpinner" name="jPhorieP">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="-3" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -206,7 +205,7 @@
     <Component class="javax.swing.JSpinner" name="jFusionDP">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="12" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -236,7 +235,7 @@
     <Component class="javax.swing.JSpinner" name="jFusionCP">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="23" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -266,7 +265,7 @@
     <Component class="javax.swing.JSpinner" name="jFusionDL">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="7" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -297,7 +296,7 @@
     <Component class="javax.swing.JSpinner" name="jFusionCL">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="11" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
       <Events>
@@ -318,7 +317,7 @@
     <Component class="javax.swing.JSpinner" name="jPPC">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="2.5" numberType="java.lang.Double" stepSize="0.5" type="number"/>
         </Property>
       </Properties>
       <Events>

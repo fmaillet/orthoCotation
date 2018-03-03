@@ -4,7 +4,8 @@ A FAIRE :
 - Calcul PPA from cm !!!
 
 v0.5.0 (en cours)
-- tooltips
+- qqs tooltips
+- ACA (pas le DS)
 
 v0.4.0 (03-03-2018)
 - PPA DS calc ok

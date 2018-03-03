@@ -18,6 +18,7 @@ public class BaseDSValues {
     static Values fusionDL ;
     static Values ppa ;
     static Values ppc ;
+    static Values aca ;
     
     static Age patientAge ;
     
@@ -28,10 +29,21 @@ public class BaseDSValues {
         fusionCP = new Values () ;
         fusionDL = new Values () ;
         fusionCL = new Values () ;
+        aca = new Values () ;
         ppc = new Values () ;
         ppa = new Values () ;
         
         patientAge = new Age () ;
+    }
+    
+    public double updateACA (double a, boolean s) {
+        double ds = - Math.abs( a - 4.0 ) / 2.0 ;
+        aca.raw = (double) a ;
+        aca.ds = ds ;
+        aca.selected = s ;
+        //maj du graph
+        OrthoCotation.polarChart.updateDataset () ;
+        return ds ;
     }
     
     public double updatePhorieP (int p, boolean s) {

@@ -9,13 +9,8 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -23,15 +18,12 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTick;
-import org.jfree.chart.plot.PlotRenderingInfo;
 import org.jfree.chart.plot.PolarPlot;
 import org.jfree.chart.renderer.DefaultPolarItemRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.title.Title;
 import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.chart.ui.TextAnchor;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -127,9 +119,13 @@ public class MyPolarChart {
                 (OrthoCotation.baseValues.fusionCL.selected ? 1 : 0) +
                 (OrthoCotation.baseValues.fusionDL.selected ? 1 : 0) +
                 (OrthoCotation.baseValues.ppc.selected ? 1 : 0) +
-                (OrthoCotation.baseValues.ppa.selected ? 1 : 0) ;
-        if (n > 0) n = 380 / n ;
+                (OrthoCotation.baseValues.ppa.selected ? 1 : 0) +
+                 (OrthoCotation.baseValues.aca.selected ? 1 : 0);
+        System.out.print (n + " : " ) ;
+        if (n > 0) n = 360 / n ;
         else return 0 ;
+        
+        System.out.println (n) ;
         
         int index = 0 ;
         if (OrthoCotation.baseValues.phorieL.selected) {
@@ -164,6 +160,10 @@ public class MyPolarChart {
             ticks.add(new NumberTick(index, "PPA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
             index = index + n ;
         }
+        if (OrthoCotation.baseValues.aca.selected) {
+            ticks.add(new NumberTick(index, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
         
         return n ;
     }
@@ -176,12 +176,12 @@ public class MyPolarChart {
         for (int i=0; i<=360; i=i+5) redRing.add(i, -1.5);
         //Cercle vert externe
         XYSeries greenRing = new XYSeries("greenRing", false);
-        for (int i=0; i<380; i=i+5) greenRing.add(i, 1.0);
-        for (int i=375; i>=0; i=i-5) greenRing.add(i, -1.5) ;
+        for (int i=0; i<=360; i=i+5) greenRing.add(i, 1.0);
+        for (int i=360; i>=0; i=i-5) greenRing.add(i, -1.5) ;
         //Cercle vert foncé externe
         XYSeries darkGreenRing = new XYSeries("darkGreenRing", false);
-        for (int i=0; i<380; i=i+5) darkGreenRing.add(i, 3.0);
-        for (int i=375; i>=0; i=i-5) darkGreenRing.add(i, 1.0) ;
+        for (int i=0; i<=360; i=i+5) darkGreenRing.add(i, 3.0);
+        for (int i=360; i>=0; i=i-5) darkGreenRing.add(i, 1.0) ;
         
         float[] dash_array = new float[2];
         dash_array[0] = Float.MIN_VALUE; //visible
@@ -251,6 +251,10 @@ public class MyPolarChart {
         }
         if (OrthoCotation.baseValues.ppa.selected) {
             datas.add(index, OrthoCotation.baseValues.ppa.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.aca.selected) {
+            datas.add(index, OrthoCotation.baseValues.aca.ds);
             index = index + n ;
         }
         

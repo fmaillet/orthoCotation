@@ -5,6 +5,10 @@
  */
 package com.fmaillet.orthocotation;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JSpinner;
+
 /**
  *
  * @author Fred
@@ -28,6 +32,24 @@ public class BaseDatas extends javax.swing.JPanel {
         //Unités
         jUnit1.setText("\u0394");jUnit2.setText("\u0394");jUnit3.setText("\u0394");jUnit4.setText("\u0394");
         jUnit5.setText("\u0394");jUnit6.setText("\u0394");jUnit7.setText("\u0394");
+        
+        ((JSpinner.DefaultEditor)jACA_0.getEditor()).addMouseListener(new MyMouseListener()) ;
+    }
+    
+    private void gradientACA () {
+        int p0 = (int) jACA_0.getValue() ;
+        int p1 = (int) jACA_1.getValue() ;
+        int p2 = (int) jACA_2.getValue() ;
+        int p3 = (int) jACA_3.getValue() ;
+        
+        double aca = (double)( (double)(p3-p2) + (double)(p2-p1) + (double)(p1-p0) ) / 3.0 ;
+        
+        jGradient.setText(String.format("%+.2f", aca));
+        jCheckACA.setSelected(true);
+    }
+    
+    private void calculACA () {
+        System.out.println ("calcuul aca") ;
     }
 
     /**
@@ -71,8 +93,32 @@ public class BaseDatas extends javax.swing.JPanel {
         jUnit6 = new javax.swing.JLabel();
         jUnit7 = new javax.swing.JLabel();
         jUnit8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jCheckACA = new javax.swing.JCheckBox();
+        jACA_0 = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jACA_1 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        jACA_2 = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        jACA_3 = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jGradient = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jEIP = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        jUnit9 = new javax.swing.JLabel();
+        jACA_PL = new javax.swing.JSpinner();
+        jACA_PP = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jACA_Calcul = new javax.swing.JTextField();
+
+        setPreferredSize(new java.awt.Dimension(500, 460));
 
         jPhorieL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
+        jPhorieL.setToolTipText("Exo en négatif, éso en positif");
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhorieLStateChanged(evt);
@@ -85,6 +131,7 @@ public class BaseDatas extends javax.swing.JPanel {
         });
 
         jPhorieP.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
+        jPhorieP.setToolTipText("Exo en négatif, éso en positif");
         jPhorieP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhoriePStateChanged(evt);
@@ -197,6 +244,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jFusionCLds.setText("...");
 
         jPPC.setModel(new javax.swing.SpinnerNumberModel(2.5d, null, null, 0.5d));
+        jPPC.setToolTipText("PPC (en cm)");
         jPPC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPPCStateChanged(evt);
@@ -209,6 +257,7 @@ public class BaseDatas extends javax.swing.JPanel {
         });
 
         jPPA.setModel(new javax.swing.SpinnerNumberModel(10.0d, 1.0d, null, 0.5d));
+        jPPA.setToolTipText("Amplitude accommodative (en cm)");
         jPPA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPPAStateChanged(evt);
@@ -221,7 +270,7 @@ public class BaseDatas extends javax.swing.JPanel {
 
         jPPAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPPAds.setForeground(java.awt.Color.red);
-        jPPAds.setText("...");
+        jPPAds.setText("[no age]");
 
         jCheckPPC.setSelected(true);
         jCheckPPC.setText("PPC :");
@@ -263,59 +312,246 @@ public class BaseDatas extends javax.swing.JPanel {
         jUnit8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit8.setText("d");
 
+        jLabel1.setText("Gradient :");
+
+        jCheckACA.setText("AC/A :");
+        jCheckACA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckACAStateChanged(evt);
+            }
+        });
+
+        jACA_0.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
+        jACA_0.setToolTipText("Exo en négatif, éso en positif");
+        jACA_0.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_0StateChanged(evt);
+            }
+        });
+        jACA_0.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_0PropertyChange(evt);
+            }
+        });
+
+        jLabel2.setText("(-1)");
+
+        jACA_1.setModel(new javax.swing.SpinnerNumberModel());
+        jACA_1.setToolTipText("Exo en négatif, éso en positif");
+        jACA_1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_1StateChanged(evt);
+            }
+        });
+        jACA_1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_1PropertyChange(evt);
+            }
+        });
+
+        jLabel3.setText("(-2)");
+
+        jACA_2.setModel(new javax.swing.SpinnerNumberModel(6, null, null, 1));
+        jACA_2.setToolTipText("Exo en négatif, éso en positif");
+        jACA_2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_2StateChanged(evt);
+            }
+        });
+        jACA_2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_2PropertyChange(evt);
+            }
+        });
+
+        jLabel4.setText("(-3)");
+
+        jACA_3.setModel(new javax.swing.SpinnerNumberModel(9, null, null, 1));
+        jACA_3.setToolTipText("Exo en négatif, éso en positif");
+        jACA_3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_3StateChanged(evt);
+            }
+        });
+        jACA_3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_3PropertyChange(evt);
+            }
+        });
+
+        jLabel5.setText("->");
+
+        jGradient.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jGradient.setText("...");
+        jGradient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGradientActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Calculé :");
+
+        jEIP.setModel(new javax.swing.SpinnerNumberModel(5.5d, 0.0d, null, 0.1d));
+        jEIP.setToolTipText("Ecart Inter-pupillaire");
+        jEIP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jEIPStateChanged(evt);
+            }
+        });
+        jEIP.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jEIPPropertyChange(evt);
+            }
+        });
+
+        jLabel7.setText("EIP :");
+        jLabel7.setToolTipText("Ecart Inter-pupillaire");
+
+        jUnit9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit9.setText("cm");
+
+        jACA_PL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
+        jACA_PL.setToolTipText("Exo en négatif, éso en positif");
+        jACA_PL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_PLStateChanged(evt);
+            }
+        });
+        jACA_PL.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_PLPropertyChange(evt);
+            }
+        });
+
+        jACA_PP.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
+        jACA_PP.setToolTipText("Exo en négatif, éso en positif");
+        jACA_PP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jACA_PPStateChanged(evt);
+            }
+        });
+        jACA_PP.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jACA_PPPropertyChange(evt);
+            }
+        });
+
+        jLabel8.setText("P(L):");
+
+        jLabel9.setText("P(P):");
+
+        jLabel10.setText("->");
+
+        jACA_Calcul.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jACA_Calcul.setText("...");
+        jACA_Calcul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jACA_CalculActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPhorieP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckPhorieL)
-                            .addComponent(jCheckFusionDP)
-                            .addComponent(jCheckFusionCP)
-                            .addComponent(jCheckFusionCL)
-                            .addComponent(jCheckFusionDL)
-                            .addComponent(jCheckPPC)
-                            .addComponent(jCheckPPA))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jUnit8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCheckPhorieP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckPhorieL)
+                                    .addComponent(jCheckFusionDP)
+                                    .addComponent(jCheckFusionCP)
+                                    .addComponent(jCheckFusionCL)
+                                    .addComponent(jCheckFusionDL)
+                                    .addComponent(jCheckPPC)
+                                    .addComponent(jCheckPPA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jUnit8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckACA)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jEIP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jUnit9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jACA_PL, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel9)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jACA_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +604,33 @@ public class BaseDatas extends javax.swing.JPanel {
                     .addComponent(jPPAds)
                     .addComponent(jCheckPPA)
                     .addComponent(jUnit8))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jCheckACA)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jEIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jUnit9)
+                    .addComponent(jACA_PL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jACA_PP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -464,7 +726,7 @@ public class BaseDatas extends javax.swing.JPanel {
         if (OrthoCotation.baseValues.patientAge.years != 0)
             jPPAds.setText(String.format("%+.2f", ds) + " DS");
         else {
-            jPPAds.setText("...") ;
+            jPPAds.setText("[no age]") ;
             jCheckPPA.setSelected(false) ;
         }
     }//GEN-LAST:event_jPPAStateChanged
@@ -477,8 +739,84 @@ public class BaseDatas extends javax.swing.JPanel {
         jPPAStateChanged (null) ;
     }//GEN-LAST:event_jCheckPPAStateChanged
 
+    private void jCheckACAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckACAStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckACAStateChanged
+
+    private void jACA_0StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_0StateChanged
+        gradientACA () ;
+    }//GEN-LAST:event_jACA_0StateChanged
+
+    private void jACA_0PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_0PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_0PropertyChange
+
+    private void jACA_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_1StateChanged
+        gradientACA () ;
+    }//GEN-LAST:event_jACA_1StateChanged
+
+    private void jACA_1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_1PropertyChange
+
+    private void jACA_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_2StateChanged
+        gradientACA () ;
+    }//GEN-LAST:event_jACA_2StateChanged
+
+    private void jACA_2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_2PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_2PropertyChange
+
+    private void jACA_3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_3StateChanged
+        gradientACA () ;
+    }//GEN-LAST:event_jACA_3StateChanged
+
+    private void jACA_3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_3PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_3PropertyChange
+
+    private void jGradientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGradientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGradientActionPerformed
+
+    private void jEIPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jEIPStateChanged
+        calculACA () ;
+    }//GEN-LAST:event_jEIPStateChanged
+
+    private void jEIPPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jEIPPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jEIPPropertyChange
+
+    private void jACA_PLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_PLStateChanged
+        calculACA () ;
+    }//GEN-LAST:event_jACA_PLStateChanged
+
+    private void jACA_PLPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_PLPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_PLPropertyChange
+
+    private void jACA_PPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_PPStateChanged
+        calculACA () ;
+    }//GEN-LAST:event_jACA_PPStateChanged
+
+    private void jACA_PPPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_PPPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_PPPropertyChange
+
+    private void jACA_CalculActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jACA_CalculActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jACA_CalculActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner jACA_0;
+    private javax.swing.JSpinner jACA_1;
+    private javax.swing.JSpinner jACA_2;
+    private javax.swing.JSpinner jACA_3;
+    private javax.swing.JTextField jACA_Calcul;
+    private javax.swing.JSpinner jACA_PL;
+    private javax.swing.JSpinner jACA_PP;
+    private javax.swing.JCheckBox jCheckACA;
     private javax.swing.JCheckBox jCheckFusionCL;
     private javax.swing.JCheckBox jCheckFusionCP;
     private javax.swing.JCheckBox jCheckFusionDL;
@@ -487,6 +825,7 @@ public class BaseDatas extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckPPC;
     private javax.swing.JCheckBox jCheckPhorieL;
     private javax.swing.JCheckBox jCheckPhorieP;
+    private javax.swing.JSpinner jEIP;
     private javax.swing.JSpinner jFusionCL;
     private javax.swing.JLabel jFusionCLds;
     private javax.swing.JSpinner jFusionCP;
@@ -495,6 +834,17 @@ public class BaseDatas extends javax.swing.JPanel {
     private javax.swing.JLabel jFusionDLds;
     private javax.swing.JSpinner jFusionDP;
     private javax.swing.JLabel jFusionDPds;
+    private javax.swing.JTextField jGradient;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jPPA;
     private javax.swing.JLabel jPPAds;
     private javax.swing.JSpinner jPPC;
@@ -511,5 +861,17 @@ public class BaseDatas extends javax.swing.JPanel {
     private javax.swing.JLabel jUnit6;
     private javax.swing.JLabel jUnit7;
     private javax.swing.JLabel jUnit8;
+    private javax.swing.JLabel jUnit9;
     // End of variables declaration//GEN-END:variables
+}
+
+class MyMouseListener extends MouseAdapter {
+  public void mouseClicked(MouseEvent evt) {
+      System.out.println("click");
+    if (evt.getClickCount() == 3) {
+      System.out.println("triple-click");
+    } else if (evt.getClickCount() == 2) {
+      System.out.println("double-click");
+    }
+  }
 }

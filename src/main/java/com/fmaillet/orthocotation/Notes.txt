@@ -3,7 +3,11 @@
 A FAIRE :
 - Calcul PPA from cm !!!
 
-v0.4.0 (en cours)
+v0.5.0 (en cours)
+- tooltips
+
+v0.4.0 (03-03-2018)
+- PPA DS calc ok
 
 v0.3.0 (02-03-2018)
 - better ring colors

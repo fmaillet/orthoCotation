@@ -158,7 +158,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         
         //Panel Base Datas
         baseDatas = new BaseDatas () ;
-        baseDatas.setBounds(10,10, 400, 460);
+        baseDatas.setBounds(10,10, 550, 460);
         baseDatas.setVisible(true);
         basePanel.add(baseDatas) ;
         //basePanel.revalidate() ;

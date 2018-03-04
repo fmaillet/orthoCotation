@@ -35,6 +35,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jUnit1.setText("\u0394");jUnit2.setText("\u0394");jUnit3.setText("\u0394");jUnit4.setText("\u0394");
         jUnit5.setText("\u0394");jUnit6.setText("\u0394");jUnit7.setText("\u0394");
         jUnit10.setText("\u0394/\u03B4");
+        //jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
         
         ((JSpinner.DefaultEditor)jACA_0.getEditor()).addMouseListener(new MyMouseListener()) ;
     }
@@ -59,8 +60,9 @@ public class BaseDatas extends javax.swing.JPanel {
         gradientACA = (double)( (double)(p3-p2) + (double)(p2-p1) + (double)(p1-p0) ) / 3.0 ;
         
         jGradient.setText(String.format("%+.2f", gradientACA));
-        jCheckACA.setSelected(true);
         gradientACA_isValid = true ;
+        jCheckACA.setSelected(true);
+        
         if (calculACA_isValid) meanACA = (gradientACA + calculACA) / 2 ;
         else meanACA = gradientACA ;
         jACA.setValue(Double.valueOf(meanACA)) ;
@@ -76,8 +78,9 @@ public class BaseDatas extends javax.swing.JPanel {
         
         calculACA = e + .40 * (double) (p - l) ;
         jACA_Calcul.setText(String.format("%+.2f", calculACA));
-        jCheckACA.setSelected(true);
         calculACA_isValid = true ;
+        jCheckACA.setSelected(true);
+        
         if (gradientACA_isValid) meanACA = (gradientACA + calculACA) / 2 ;
         else meanACA = calculACA ;
         jACA.setValue(Double.valueOf(meanACA)) ;
@@ -153,9 +156,10 @@ public class BaseDatas extends javax.swing.JPanel {
         jACAds = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(500, 460));
+        setLayout(null);
 
         jPhorieL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
-        jPhorieL.setToolTipText("Exo en négatif, éso en positif");
+        jPhorieL.setToolTipText("<html>Phorie de loin<br>Exo en négatif, éso en positif</html>");
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhorieLStateChanged(evt);
@@ -166,76 +170,100 @@ public class BaseDatas extends javax.swing.JPanel {
                 jPhorieLPropertyChange(evt);
             }
         });
+        add(jPhorieL);
+        jPhorieL.setBounds(120, 11, 55, 20);
 
         jPhorieP.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
-        jPhorieP.setToolTipText("Exo en négatif, éso en positif");
+        jPhorieP.setToolTipText("<html>Phorie de près<br>Exo en négatif, éso en positif</html>");
         jPhorieP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhoriePStateChanged(evt);
             }
         });
+        add(jPhorieP);
+        jPhorieP.setBounds(120, 42, 55, 20);
 
         jPhorieLds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPhorieLds.setForeground(java.awt.Color.red);
         jPhorieLds.setText("...");
+        add(jPhorieLds);
+        jPhorieLds.setBounds(207, 13, 57, 15);
 
         jPhoriePds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPhoriePds.setForeground(java.awt.Color.red);
         jPhoriePds.setText("...");
+        add(jPhoriePds);
+        jPhoriePds.setBounds(207, 44, 57, 15);
 
         jCheckPhorieL.setSelected(true);
-        jCheckPhorieL.setText("Phorie (L) :");
+        jCheckPhorieL.setText("Phorie L :");
         jCheckPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckPhorieLStateChanged(evt);
             }
         });
+        add(jCheckPhorieL);
+        jCheckPhorieL.setBounds(35, 10, 80, 23);
 
         jCheckPhorieP.setSelected(true);
-        jCheckPhorieP.setText("Phorie (P) :");
+        jCheckPhorieP.setText("Phorie P :");
         jCheckPhorieP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckPhoriePStateChanged(evt);
             }
         });
+        add(jCheckPhorieP);
+        jCheckPhorieP.setBounds(35, 41, 80, 23);
 
-        jCheckFusionDP.setSelected(true);
         jCheckFusionDP.setText("D' :");
         jCheckFusionDP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckFusionDPStateChanged(evt);
             }
         });
+        add(jCheckFusionDP);
+        jCheckFusionDP.setBounds(35, 110, 50, 23);
 
         jFusionDP.setModel(new javax.swing.SpinnerNumberModel(12, null, null, 1));
+        jFusionDP.setToolTipText("<html>Fusion en divergence de près<br>(sans signe)</html>");
         jFusionDP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionDPStateChanged(evt);
             }
         });
+        add(jFusionDP);
+        jFusionDP.setBounds(120, 111, 55, 20);
 
         jFusionDPds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFusionDPds.setForeground(java.awt.Color.red);
         jFusionDPds.setText("...");
+        add(jFusionDPds);
+        jFusionDPds.setBounds(207, 113, 66, 15);
 
-        jCheckFusionCP.setSelected(true);
         jCheckFusionCP.setText("C' :");
         jCheckFusionCP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckFusionCPStateChanged(evt);
             }
         });
+        add(jCheckFusionCP);
+        jCheckFusionCP.setBounds(35, 141, 50, 23);
 
         jFusionCP.setModel(new javax.swing.SpinnerNumberModel(23, null, null, 1));
+        jFusionCP.setToolTipText("<html>Fusion en convergence de près<br>(sans signe)</html>");
         jFusionCP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionCPStateChanged(evt);
             }
         });
+        add(jFusionCP);
+        jFusionCP.setBounds(120, 142, 55, 20);
 
         jFusionCPds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFusionCPds.setForeground(java.awt.Color.red);
         jFusionCPds.setText("...");
+        add(jFusionCPds);
+        jFusionCPds.setBounds(207, 144, 66, 15);
 
         jCheckFusionDL.setSelected(true);
         jCheckFusionDL.setText("D :");
@@ -244,17 +272,24 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckFusionDLStateChanged(evt);
             }
         });
+        add(jCheckFusionDL);
+        jCheckFusionDL.setBounds(35, 203, 50, 23);
 
         jFusionDL.setModel(new javax.swing.SpinnerNumberModel(7, null, null, 1));
+        jFusionDL.setToolTipText("<html>Fusion en divergence de loin<br>(sans signe)</html>");
         jFusionDL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionDLStateChanged(evt);
             }
         });
+        add(jFusionDL);
+        jFusionDL.setBounds(120, 204, 55, 20);
 
         jFusionDLds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFusionDLds.setForeground(java.awt.Color.red);
         jFusionDLds.setText("...");
+        add(jFusionDLds);
+        jFusionDLds.setBounds(207, 206, 66, 15);
 
         jCheckFusionCL.setSelected(true);
         jCheckFusionCL.setText("C :");
@@ -268,20 +303,27 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckFusionCLActionPerformed(evt);
             }
         });
+        add(jCheckFusionCL);
+        jCheckFusionCL.setBounds(35, 172, 50, 23);
 
         jFusionCL.setModel(new javax.swing.SpinnerNumberModel(11, null, null, 1));
+        jFusionCL.setToolTipText("<html>Fusion en convergence de loin<br>(sans signe)</html>");
         jFusionCL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFusionCLStateChanged(evt);
             }
         });
+        add(jFusionCL);
+        jFusionCL.setBounds(120, 173, 55, 20);
 
         jFusionCLds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFusionCLds.setForeground(java.awt.Color.red);
         jFusionCLds.setText("...");
+        add(jFusionCLds);
+        jFusionCLds.setBounds(207, 175, 66, 15);
 
         jPPC.setModel(new javax.swing.SpinnerNumberModel(2.5d, null, null, 0.5d));
-        jPPC.setToolTipText("PPC (en cm)");
+        jPPC.setToolTipText("PPC (en cm) sur cible acc.");
         jPPC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPPCStateChanged(evt);
@@ -292,6 +334,8 @@ public class BaseDatas extends javax.swing.JPanel {
                 jPPCPropertyChange(evt);
             }
         });
+        add(jPPC);
+        jPPC.setBounds(120, 254, 55, 20);
 
         jPPA.setModel(new javax.swing.SpinnerNumberModel(10.0d, 1.0d, null, 0.5d));
         jPPA.setToolTipText("Amplitude accommodative (en cm)");
@@ -300,14 +344,20 @@ public class BaseDatas extends javax.swing.JPanel {
                 jPPAStateChanged(evt);
             }
         });
+        add(jPPA);
+        jPPA.setBounds(120, 285, 55, 20);
 
         jPPCds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPPCds.setForeground(java.awt.Color.red);
         jPPCds.setText("...");
+        add(jPPCds);
+        jPPCds.setBounds(207, 256, 66, 15);
 
         jPPAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPPAds.setForeground(java.awt.Color.red);
         jPPAds.setText("[no age]");
+        add(jPPAds);
+        jPPAds.setBounds(284, 287, 66, 15);
 
         jCheckPPC.setSelected(true);
         jCheckPPC.setText("PPC :");
@@ -316,6 +366,8 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckPPCStateChanged(evt);
             }
         });
+        add(jCheckPPC);
+        jCheckPPC.setBounds(35, 253, 60, 23);
 
         jCheckPPA.setSelected(true);
         jCheckPPA.setText("PPA :");
@@ -324,32 +376,52 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckPPAStateChanged(evt);
             }
         });
+        add(jCheckPPA);
+        jCheckPPA.setBounds(35, 284, 60, 23);
 
         jUnit1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit1.setText("d");
+        add(jUnit1);
+        jUnit1.setBounds(185, 15, 22, 13);
 
         jUnit2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit2.setText("d");
+        add(jUnit2);
+        jUnit2.setBounds(185, 115, 22, 13);
 
         jUnit3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit3.setText("d");
+        add(jUnit3);
+        jUnit3.setBounds(185, 46, 22, 13);
 
         jUnit4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit4.setText("d");
+        add(jUnit4);
+        jUnit4.setBounds(185, 146, 22, 13);
 
         jUnit5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit5.setText("d");
+        add(jUnit5);
+        jUnit5.setBounds(185, 177, 22, 13);
 
         jUnit6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit6.setText("d");
+        add(jUnit6);
+        jUnit6.setBounds(185, 208, 22, 13);
 
         jUnit7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit7.setText("d");
+        add(jUnit7);
+        jUnit7.setBounds(185, 258, 22, 13);
 
         jUnit8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit8.setText("d");
+        add(jUnit8);
+        jUnit8.setBounds(185, 289, 78, 13);
 
         jLabel1.setText("Gradient :");
+        add(jLabel1);
+        jLabel1.setBounds(51, 376, 60, 14);
 
         jCheckACA.setText("AC/A :");
         jCheckACA.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -357,6 +429,8 @@ public class BaseDatas extends javax.swing.JPanel {
                 jCheckACAStateChanged(evt);
             }
         });
+        add(jCheckACA);
+        jCheckACA.setBounds(35, 331, 70, 23);
 
         jACA_0.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
         jACA_0.setToolTipText("Exo en négatif, éso en positif");
@@ -370,8 +444,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_0PropertyChange(evt);
             }
         });
+        add(jACA_0);
+        jACA_0.setBounds(117, 373, 43, 20);
 
         jLabel2.setText("(-1)");
+        add(jLabel2);
+        jLabel2.setBounds(170, 376, 20, 14);
 
         jACA_1.setModel(new javax.swing.SpinnerNumberModel());
         jACA_1.setToolTipText("Exo en négatif, éso en positif");
@@ -385,8 +463,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_1PropertyChange(evt);
             }
         });
+        add(jACA_1);
+        jACA_1.setBounds(198, 373, 43, 20);
 
         jLabel3.setText("(-2)");
+        add(jLabel3);
+        jLabel3.setBounds(251, 376, 20, 14);
 
         jACA_2.setModel(new javax.swing.SpinnerNumberModel(6, null, null, 1));
         jACA_2.setToolTipText("Exo en négatif, éso en positif");
@@ -400,8 +482,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_2PropertyChange(evt);
             }
         });
+        add(jACA_2);
+        jACA_2.setBounds(279, 373, 43, 20);
 
         jLabel4.setText("(-3)");
+        add(jLabel4);
+        jLabel4.setBounds(332, 376, 30, 14);
 
         jACA_3.setModel(new javax.swing.SpinnerNumberModel(9, null, null, 1));
         jACA_3.setToolTipText("Exo en négatif, éso en positif");
@@ -415,8 +501,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_3PropertyChange(evt);
             }
         });
+        add(jACA_3);
+        jACA_3.setBounds(366, 373, 43, 20);
 
         jLabel5.setText("->");
+        add(jLabel5);
+        jLabel5.setBounds(419, 376, 12, 14);
 
         jGradient.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jGradient.setText("...");
@@ -425,8 +515,12 @@ public class BaseDatas extends javax.swing.JPanel {
                 jGradientActionPerformed(evt);
             }
         });
+        add(jGradient);
+        jGradient.setBounds(441, 372, 45, 21);
 
         jLabel6.setText("Calculé :");
+        add(jLabel6);
+        jLabel6.setBounds(51, 415, 60, 14);
 
         jEIP.setModel(new javax.swing.SpinnerNumberModel(5.5d, 0.0d, null, 0.1d));
         jEIP.setToolTipText("Ecart Inter-pupillaire");
@@ -440,15 +534,21 @@ public class BaseDatas extends javax.swing.JPanel {
                 jEIPPropertyChange(evt);
             }
         });
+        add(jEIP);
+        jEIP.setBounds(150, 412, 43, 20);
 
         jLabel7.setText("EIP :");
         jLabel7.setToolTipText("Ecart Inter-pupillaire");
+        add(jLabel7);
+        jLabel7.setBounds(117, 415, 30, 14);
 
         jUnit9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit9.setText("cm");
+        add(jUnit9);
+        jUnit9.setBounds(203, 416, 24, 13);
 
         jACA_PL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
-        jACA_PL.setToolTipText("Exo en négatif, éso en positif");
+        jACA_PL.setToolTipText("<html>Phorie de loin<br>Exo en négatif, éso en positif</html>");
         jACA_PL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jACA_PLStateChanged(evt);
@@ -459,9 +559,11 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_PLPropertyChange(evt);
             }
         });
+        add(jACA_PL);
+        jACA_PL.setBounds(279, 412, 43, 20);
 
         jACA_PP.setModel(new javax.swing.SpinnerNumberModel(-3, null, null, 1));
-        jACA_PP.setToolTipText("Exo en négatif, éso en positif");
+        jACA_PP.setToolTipText("<html>Phorie de près<br>Exo en négatif, éso en positif</html>");
         jACA_PP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jACA_PPStateChanged(evt);
@@ -472,12 +574,20 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_PPPropertyChange(evt);
             }
         });
+        add(jACA_PP);
+        jACA_PP.setBounds(366, 412, 43, 20);
 
         jLabel8.setText("P(L):");
+        add(jLabel8);
+        jLabel8.setBounds(246, 415, 30, 14);
 
         jLabel9.setText("P(P):");
+        add(jLabel9);
+        jLabel9.setBounds(332, 415, 30, 14);
 
         jLabel10.setText("->");
+        add(jLabel10);
+        jLabel10.setBounds(419, 415, 12, 14);
 
         jACA_Calcul.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jACA_Calcul.setText("...");
@@ -486,6 +596,8 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACA_CalculActionPerformed(evt);
             }
         });
+        add(jACA_Calcul);
+        jACA_Calcul.setBounds(441, 411, 45, 21);
 
         jACA.setModel(new javax.swing.SpinnerNumberModel(3.0d, 1.0d, null, 0.5d));
         jACA.setToolTipText("Rapport Accommodation-Convergence");
@@ -494,209 +606,19 @@ public class BaseDatas extends javax.swing.JPanel {
                 jACAStateChanged(evt);
             }
         });
+        add(jACA);
+        jACA.setBounds(120, 332, 55, 20);
 
         jUnit10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit10.setText("d");
+        add(jUnit10);
+        jUnit10.setBounds(185, 336, 17, 13);
 
         jACAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jACAds.setForeground(java.awt.Color.red);
         jACAds.setText("...");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPhorieP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckPhorieL)
-                            .addComponent(jCheckFusionDP)
-                            .addComponent(jCheckFusionCP)
-                            .addComponent(jCheckFusionCL)
-                            .addComponent(jCheckFusionDL)
-                            .addComponent(jCheckPPC)
-                            .addComponent(jCheckPPA))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jACA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jCheckACA))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jUnit10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPPCds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFusionDPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionCPds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionCLds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jEIP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jUnit9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jACA_PL, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jUnit8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jACA_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPhorieLds)
-                    .addComponent(jCheckPhorieL)
-                    .addComponent(jUnit1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPhoriePds)
-                    .addComponent(jCheckPhorieP)
-                    .addComponent(jUnit3))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckFusionDP)
-                    .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionDPds)
-                    .addComponent(jUnit2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckFusionCP)
-                    .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionCPds)
-                    .addComponent(jUnit4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckFusionCL)
-                    .addComponent(jFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionCLds)
-                    .addComponent(jUnit5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckFusionDL)
-                    .addComponent(jFusionDL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFusionDLds)
-                    .addComponent(jUnit6))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPPCds)
-                    .addComponent(jCheckPPC)
-                    .addComponent(jUnit7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPPAds)
-                    .addComponent(jCheckPPA)
-                    .addComponent(jUnit8))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckACA)
-                    .addComponent(jACA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jUnit10)
-                    .addComponent(jACAds))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jEIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jUnit9)
-                    .addComponent(jACA_PL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jACA_PP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        add(jACAds);
+        jACAds.setBounds(208, 334, 66, 15);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPhorieLPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPhorieLPropertyChange
@@ -730,8 +652,18 @@ public class BaseDatas extends javax.swing.JPanel {
 
     private void jFusionDPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionDPStateChanged
         int p = (int) jFusionDP.getValue() ;
-        double ds = OrthoCotation.baseValues.updateFusionDP ( p, jCheckFusionDP.isSelected() ) ;
-        jFusionDPds.setText(String.format("%+.2f", ds) + " DS");
+        if (OrthoCotation.baseValues.patientAge.years != 0) {
+            double ds = OrthoCotation.baseValues.updateFusionDP ( p, jCheckFusionDP.isSelected() ) ;
+            jFusionDPds.setText(String.format("%+.2f", ds) + " DS");
+            jFusionDPds.setToolTipText(null);
+            jFusionDPds.setForeground(Color.RED);
+        }
+        else {
+            jFusionDPds.setText("[no age]") ;
+            jFusionDPds.setToolTipText("Précisez la date de naissance...");
+            jCheckFusionDP.setSelected(false) ;
+            jFusionDPds.setForeground(Color.BLUE);
+        }
     }//GEN-LAST:event_jFusionDPStateChanged
 
     private void jCheckFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCPStateChanged
@@ -740,8 +672,18 @@ public class BaseDatas extends javax.swing.JPanel {
 
     private void jFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionCPStateChanged
         int p = (int) jFusionCP.getValue() ;
-        double ds = OrthoCotation.baseValues.updateFusionCP ( p, jCheckFusionCP.isSelected() ) ;
-        jFusionCPds.setText(String.format("%+.2f", ds) + " DS");
+        if (OrthoCotation.baseValues.patientAge.years != 0) {
+            double ds = OrthoCotation.baseValues.updateFusionCP ( p, jCheckFusionCP.isSelected() ) ;
+            jFusionCPds.setText(String.format("%+.2f", ds) + " DS");
+            jFusionCPds.setToolTipText(null);
+            jFusionCPds.setForeground(Color.RED);
+        }
+        else {
+            jFusionCPds.setText("[no age]") ;
+            jFusionCPds.setToolTipText("Précisez la date de naissance...");
+            jCheckFusionCP.setSelected(false) ;
+            jFusionCPds.setForeground(Color.BLUE);
+        }
     }//GEN-LAST:event_jFusionCPStateChanged
 
     private void jCheckFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionDLStateChanged
@@ -779,6 +721,13 @@ public class BaseDatas extends javax.swing.JPanel {
     }//GEN-LAST:event_jPPCPropertyChange
 
     public void updateFromAge () {
+        // D'
+        jFusionDPStateChanged (null) ;
+        jCheckFusionDP.setSelected(true) ;
+        // C'
+        jFusionCPStateChanged (null) ;
+        jCheckFusionCP.setSelected(true) ;
+        //PPA
         jPPAStateChanged (null) ;
         jCheckPPA.setSelected(true) ;
     }
@@ -786,12 +735,19 @@ public class BaseDatas extends javax.swing.JPanel {
     private void jPPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPAStateChanged
         double p = (double) jPPA.getValue() ;
         p = 100 / p ;
-        double ds = OrthoCotation.baseValues.updatePPA ( p, jCheckPPA.isSelected() ) ;
-        jUnit8.setText ("cm (soit " + String.format("%+.2f", p) + " \u03B4)") ;
-        if (OrthoCotation.baseValues.patientAge.years != 0)
+        if (OrthoCotation.baseValues.patientAge.years != 0) {
+            double ds = OrthoCotation.baseValues.updatePPA ( p, jCheckPPA.isSelected() ) ;
+            jUnit8.setText ("cm (soit " + String.format("%+.2f", p) + " \u03B4)") ;
             jPPAds.setText(String.format("%+.2f", ds) + " DS");
+            jPPAds.setToolTipText(null);
+            jPPAds.setForeground(Color.RED);
+            jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
+            jUnit8.setSize(150, jUnit8.getHeight());
+        }
         else {
             jPPAds.setText("[no age]") ;
+            jPPAds.setForeground(Color.BLUE);
+            jPPAds.setToolTipText("Précisez la date de naissance...");
             jCheckPPA.setSelected(false) ;
         }
     }//GEN-LAST:event_jPPAStateChanged
@@ -805,7 +761,11 @@ public class BaseDatas extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckPPAStateChanged
 
     private void jCheckACAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckACAStateChanged
-        
+        if (!gradientACA_isValid & !calculACA_isValid) jCheckACA.setSelected(false);
+        else {
+            OrthoCotation.baseValues.aca.selected = jCheckACA.isSelected() ;
+            OrthoCotation.polarChart.updateDataset () ;
+        }
     }//GEN-LAST:event_jCheckACAStateChanged
 
     private void jACA_0StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_0StateChanged
@@ -873,7 +833,13 @@ public class BaseDatas extends javax.swing.JPanel {
     }//GEN-LAST:event_jACA_CalculActionPerformed
 
     private void jACAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACAStateChanged
-        // TODO add your handling code here:
+        double a = (double) jACA.getValue() ;
+        if (!gradientACA_isValid & !calculACA_isValid) jCheckACA.setSelected(false);
+        else {
+            double ds = OrthoCotation.baseValues.updateACA(a, jCheckACA.isSelected()) ;
+            jACAds.setText(String.format("%+.2f", ds) + " DS");
+            OrthoCotation.polarChart.updateDataset () ;
+        }
     }//GEN-LAST:event_jACAStateChanged
 
 

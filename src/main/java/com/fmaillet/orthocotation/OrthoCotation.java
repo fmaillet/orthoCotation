@@ -7,10 +7,8 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,10 +17,6 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-import javafx.application.Platform;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -210,7 +204,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v0.5.0-BETA du 03/03/2018" ;
+        return "v0.6.0-BETA du 04/03/2018" ;
     }
 
     @Override

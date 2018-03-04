@@ -55,7 +55,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static JDatePickerImpl dateBilan ;
     static JDatePickerImpl dateBirth ;
     static JLabel labelAge ;
-    static BaseDatas baseDatas ;
+    static Panel_VB panelVB ;
+    static Panel_DEM panelDEM ;
     
     //Graphique
     public static MyPolarChart polarChart = new MyPolarChart () ;
@@ -71,7 +72,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         setLayout(null);  setSize(1200, 700);
         
         //Image du trophé
-        //tinyTrophy = getToolkit().getImage(getClass().getResource("resources/connect.png"));
+        //tinyTrophy = getToolkit().getImage(getClass().getResource("connect.png"));
         
         getContentPane().setBackground(Color.CYAN);
         setLocationRelativeTo(null);
@@ -128,8 +129,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         tabbedPane.addTab("Vision binoculaire", addTabPanel_VB () );
         
         //Second tab
-        JPanel panel2 = new JPanel(false);
-        tabbedPane.addTab("DEM", panel2);
+        tabbedPane.addTab("DEM, NSUCO", addTabPanel_DEM ());
          //third tab
         JPanel panel3 = new JPanel(false);
         tabbedPane.addTab("TVPS", panel3);
@@ -191,14 +191,28 @@ public class OrthoCotation extends JFrame implements ActionListener {
         basePanel.setLayout(null);
         
         //Panel Base Datas
-        baseDatas = new BaseDatas () ;
-        baseDatas.setBounds(10,10, 600, 460);
-        baseDatas.setVisible(true);
-        basePanel.add(baseDatas) ;
+        panelVB = new Panel_VB () ;
+        panelVB.setSize(600, 460);
+        panelVB.setVisible(true);
+        //basePanel.add(baseDatas) ;
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
         
-        return basePanel ;
+        return panelVB ;
+    }
+    
+    private static JPanel addTabPanel_DEM () {
+        
+        
+        //Panel Base Datas
+        panelDEM = new Panel_DEM () ;
+        panelDEM.setSize(700, 460);
+        panelDEM.setVisible(true);
+        //basePanel.add(baseDatas) ;
+        //basePanel.revalidate() ;
+        //basePanel.repaint() ;
+        
+        return panelDEM ;
     }
     
     private static void calculateAge () {
@@ -218,11 +232,11 @@ public class OrthoCotation extends JFrame implements ActionListener {
         baseValues.patientAge.months = age.getMonths() ;
         baseValues.patientAge.days = age.getDays() ;
         //Update values
-        baseDatas.updateFromAge () ;
+        panelVB.updateFromAge () ;
     }
     
     public static void connected () {
-        System.out.println ("From main : Connected " + OrthoCotation.user.nom) ;
+        //System.out.println ("From main : Connected " + OrthoCotation.user.nom) ;
         if (OrthoCotation.user.nom != null) {
             comMenu.setEnabled(false) ;
             barreMenus.setEnabled(true);

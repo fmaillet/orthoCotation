@@ -15,12 +15,12 @@ import javax.swing.JSpinner;
  *
  * @author Fred
  */
-public class BaseDatas extends javax.swing.JPanel {
+public class Panel_VB extends javax.swing.JPanel {
 
     /**
      * Creates new form BaseDatas
      */
-    public BaseDatas() {
+    public Panel_VB() {
         initComponents();
         jPhoriePStateChanged (null) ;
         jPhorieLStateChanged (null) ;
@@ -37,7 +37,7 @@ public class BaseDatas extends javax.swing.JPanel {
         jUnit10.setText("\u0394/\u03B4");
         //jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
         
-        ((JSpinner.DefaultEditor)jACA_0.getEditor()).addMouseListener(new MyMouseListener()) ;
+        //((JSpinner.DefaultEditor)jACA_0.getEditor()).addMouseListener(new MyMouseListener()) ;
     }
     
     protected void paintComponent(Graphics g) {

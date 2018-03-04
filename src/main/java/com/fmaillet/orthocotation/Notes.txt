@@ -3,9 +3,11 @@
 A FAIRE :
 - Calcul PPA from cm !!!
 
+v0.7.0
+- server connection
+- some help files menu
 
-
-v0.6.1 (en cours)
+v0.6.1 (04-03-2018)
 - intégration normes selon l'âge
 - correction de bugs
 

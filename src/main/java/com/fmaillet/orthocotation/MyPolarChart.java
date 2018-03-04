@@ -121,11 +121,11 @@ public class MyPolarChart {
                 (OrthoCotation.baseValues.ppc.selected ? 1 : 0) +
                 (OrthoCotation.baseValues.ppa.selected ? 1 : 0) +
                  (OrthoCotation.baseValues.aca.selected ? 1 : 0);
-        System.out.print (n + " : " ) ;
+        
         if (n > 0) n = 360 / n ;
         else return 0 ;
         
-        System.out.println (n) ;
+        //System.out.println (n) ;
         
         int index = 0 ;
         if (OrthoCotation.baseValues.phorieL.selected) {

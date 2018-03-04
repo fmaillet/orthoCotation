@@ -67,7 +67,11 @@ public class BaseDSValues {
     }
     
     public double updateFusionDP (int p, boolean s) {
-        double ds = ((double) p - 12.0 ) / 5.0 ;
+        double ds ;
+        if (patientAge.years <= 12)
+            ds = ((double) p - 12.0 ) / 5.0 ;
+        else
+            ds = ((double) p - 13.0 ) / 6.0 ;
         fusionDP.raw = (double) p ;
         fusionDP.ds = ds ;
         fusionDP.selected = s ;
@@ -77,7 +81,11 @@ public class BaseDSValues {
     }
     
     public double updateFusionCP (int p, boolean s) {
-        double ds = ((double) p - 23.0 ) / 8.0 ;
+        double ds ;
+        if (patientAge.years<= 12 )
+            ds = ((double) p - 23.0 ) / 8.0 ;
+        else
+            ds = ((double) p - 19.0 ) / 9.0 ;
         fusionCP.raw = (double) p ;
         fusionCP.ds = ds ;
         fusionCP.selected = s ;

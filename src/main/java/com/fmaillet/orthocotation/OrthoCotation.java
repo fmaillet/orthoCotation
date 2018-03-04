@@ -7,6 +7,7 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -25,6 +26,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -36,9 +39,14 @@ import org.jdatepicker.impl.UtilDateModel;
  */
 public class OrthoCotation extends JFrame implements ActionListener {
     
+    static public UserInfo user ;
+    static public MySQLClass mySQLConnection ;
+    
     static OrthoCotation fen ;
     static JTabbedPane tabbedPane ;
     static JPanel basePanel ;
+    
+    public Image tinyTrophy ;
     
     //Synthèse des valeurs
     public static BaseDSValues baseValues = new BaseDSValues () ;
@@ -54,24 +62,56 @@ public class OrthoCotation extends JFrame implements ActionListener {
     public static JPanel radioPanel ;
     
     //Menus
-    JMenuItem exitItem ;
+    static JMenuBar barreMenus ;
+    static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsItem, comMenu ;
     
     public OrthoCotation () {
-        setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMONSTRATION (NON CONNECTE)");
+        setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMO (NON CONNECTE)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);  setSize(1200, 700);
+        
+        //Image du trophé
+        //tinyTrophy = getToolkit().getImage(getClass().getResource("resources/connect.png"));
         
         getContentPane().setBackground(Color.CYAN);
         setLocationRelativeTo(null);
         
         //Menu
-        JMenuBar barreMenus = new JMenuBar () ;
+        barreMenus = new JMenuBar () ;
         setJMenuBar (barreMenus) ;
-        //EntrÃ©e Menus "Fichiers"
+        barreMenus.setEnabled(false);
+        //Entrée Menus "Fichiers"
         JMenu fileMenu = new JMenu ("Fichier") ;
         barreMenus.add(fileMenu) ;
+        comMenu = new JMenuItem ("Connexion au serveur") ;
+        fileMenu.add(comMenu) ;
+        comMenu.addActionListener(this);
+        comMenu.setEnabled(true);
+        comMenu.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+              if (user.nom != null)
+                  setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - Connecté au serveur : " + OrthoCotation.user.titre + " " +OrthoCotation.user.nom.toUpperCase() + " " + OrthoCotation.user.prenom ) ;
+
+            }
+          });
+        //Entrée menu Aide
+        JMenu helpMenu = new JMenu ("Aide") ;
+        barreMenus.add(helpMenu) ;
+        helpVBItem = new JMenuItem ("Vision binoculaire") ;
+        helpVBItem.addActionListener(this);
+        helpMenu.add(helpVBItem) ;
+        helpNormsItem = new JMenuItem ("Normes utilisées") ;
+        helpNormsItem.addActionListener(this);
+        helpMenu.add(helpNormsItem) ;
+        // A propos
+        helpMenu.addSeparator();
+        aboutItem = new JMenuItem ("A Propos") ;
+        aboutItem.addActionListener(this);
+        helpMenu.add(aboutItem) ;
+        //Entrée menu Exit
         exitItem = new JMenuItem("Quitter");
         exitItem.addActionListener(this);
+        //fileMenu.addSeparator();
         fileMenu.add(exitItem);
         
         
@@ -181,7 +221,21 @@ public class OrthoCotation extends JFrame implements ActionListener {
         baseDatas.updateFromAge () ;
     }
     
+    public static void connected () {
+        System.out.println ("From main : Connected " + OrthoCotation.user.nom) ;
+        if (OrthoCotation.user.nom != null) {
+            comMenu.setEnabled(false) ;
+            barreMenus.setEnabled(true);
+        }
+        else comMenu.setEnabled(true) ;
+    }
+    
     public static void main(String[] args) {
+        
+        //For connection
+        user = new UserInfo () ;
+        mySQLConnection = new MySQLClass () ;
+        
         // fenetre principale
         fen = new OrthoCotation () ;
         
@@ -200,18 +254,45 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //fen.getContentPane().revalidate();
         fen.repaint();
         
-        //polarChart.updateDataset();
+        //AutoConnect
+        AutoConnect auto = new AutoConnect () ;
+        auto.start () ;
     }
     
     public static String getSoftVersion () {
-        return "v0.6.0-BETA du 04/03/2018" ;
+        return "v0.6.1 du 04/03/2018" ;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //Source ?
         Object source = e.getSource () ;
-        if (source == exitItem) {
+        //A Propos
+        if (source == aboutItem) {
+            AboutJDialog about = new AboutJDialog(this, true);
+            about.pack();
+            about.setLocationRelativeTo(null) ;
+            about.setVisible(true);
+        }
+        else if (source == helpVBItem) {
+            VB_JDialog about = new VB_JDialog(this, true);
+            about.pack();
+            about.setLocationRelativeTo(null) ;
+            about.setVisible(true);
+        }
+        else if (source == helpNormsItem) {
+            Norms_JDialog about = new Norms_JDialog(this, true);
+            about.pack();
+            about.setLocationRelativeTo(null) ;
+            about.setVisible(true);
+        }
+        else if (source == comMenu) {
+            ConnectDialog connect = new ConnectDialog (this, true) ;
+            connect.setLocationRelativeTo(null);
+            connect.setVisible (true) ;
+            comMenu.setEnabled(OrthoCotation.user.nom != null);
+        }
+        else if (source == exitItem) {
             System.exit(0);
         }
     }

@@ -3,9 +3,15 @@
 A FAIRE :
 - Calcul PPA from cm !!!
 
-v0.5.0 (en cours)
+
+
+v0.6.1 (en cours)
+- intégration normes selon l'âge
+- correction de bugs
+
+v0.5.0 (03-03-2018)
 - qqs tooltips
-- ACA (pas le DS)
+- ACA
 
 v0.4.0 (03-03-2018)
 - PPA DS calc ok

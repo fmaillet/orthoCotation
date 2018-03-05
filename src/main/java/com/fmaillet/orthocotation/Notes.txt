@@ -3,7 +3,9 @@
 A FAIRE :
 - Calcul PPA from cm !!!
 
-v0.7.0
+v0.8.0 (en cours)
+
+v0.7.0 (04-03-2018)
 - server connection
 - some help files menu
 

@@ -3,7 +3,9 @@
 A FAIRE :
 - Calcul PPA from cm !!!
 
-v0.8.0 (en cours)
+v0.8.1 (en cours)
+- Critère de Sheard VL
+- Help Norms extended
 
 v0.7.0 (04-03-2018)
 - server connection

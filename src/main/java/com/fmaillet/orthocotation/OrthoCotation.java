@@ -274,7 +274,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v0.8.0 du 05/03/2018" ;
+        return "v0.8.1 du 06/03/2018" ;
     }
 
     @Override

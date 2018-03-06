@@ -37,7 +37,7 @@ public class Panel_VB extends javax.swing.JPanel {
         
         //Unités
         jUnit1.setText("\u0394");jUnit2.setText("\u0394");jUnit3.setText("\u0394");jUnit4.setText("\u0394");
-        jUnit5.setText("\u0394");jUnit6.setText("\u0394");jUnit7.setText("\u0394");
+        jUnit5.setText("\u0394");jUnit6.setText("\u0394");jUnit7.setText("cm");jUnit8.setText("cm");
         jUnit10.setText("\u0394/\u03B4");
         //jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
         
@@ -61,6 +61,29 @@ public class Panel_VB extends javax.swing.JPanel {
     double gradientACA, calculACA, meanACA ;
     boolean gradientACA_isValid = false ;
     boolean calculACA_isValid = false ;
+    
+    private void updateSheardVL () {
+        if (OrthoCotation.baseValues.phorieL.raw < 0) {
+            if (OrthoCotation.baseValues.fusionCL.raw < -2 * OrthoCotation.baseValues.phorieL.raw) {
+                jSheardVL.setText("nok") ;
+                jSheardVL.setForeground(Color.RED);
+            }
+            else {
+                jSheardVL.setText("ok") ;
+                jSheardVL.setForeground(Color.GREEN);
+            }
+        }
+        else if (OrthoCotation.baseValues.phorieL.raw > 0) {
+            if (OrthoCotation.baseValues.fusionDL.raw < 2 * OrthoCotation.baseValues.phorieL.raw) {
+                jSheardVL.setText("nok") ;
+                jSheardVL.setForeground(Color.RED);
+            }
+            else {
+                jSheardVL.setText("ok") ;
+                jSheardVL.setForeground(Color.GREEN);
+            }
+        }
+    }
     
     private void gradientACA () {
         int p0 = (int) jACA_0.getValue() ;
@@ -167,6 +190,8 @@ public class Panel_VB extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jACAds = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jSheardVL = new javax.swing.JLabel();
+        jSheardVP = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(600, 490));
 
@@ -175,11 +200,6 @@ public class Panel_VB extends javax.swing.JPanel {
         jPhorieL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jPhorieLStateChanged(evt);
-            }
-        });
-        jPhorieL.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jPhorieLPropertyChange(evt);
             }
         });
 
@@ -524,6 +544,14 @@ public class Panel_VB extends javax.swing.JPanel {
 
         jLabel12.setText("Critère de Sheard (VL) :");
 
+        jSheardVL.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jSheardVL.setForeground(java.awt.Color.red);
+        jSheardVL.setText("...");
+
+        jSheardVP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jSheardVP.setForeground(java.awt.Color.red);
+        jSheardVP.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -531,16 +559,6 @@ public class Panel_VB extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -550,7 +568,9 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSheardVP, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -646,8 +666,20 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jUnit10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(86, 86, 86))
+                        .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSheardVL, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -669,7 +701,9 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jSheardVL))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -684,7 +718,9 @@ public class Panel_VB extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jPhoriePds))
-                    .addComponent(jLabel11))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jSheardVP)))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckFusionDP)
@@ -833,15 +869,12 @@ public class Panel_VB extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPhorieLPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPhorieLPropertyChange
-        
-    }//GEN-LAST:event_jPhorieLPropertyChange
-
     private void jPhorieLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPhorieLStateChanged
         int p = (int) jPhorieL.getValue() ;
 
         double ds = OrthoCotation.baseValues.updatePhorieL ( p, jCheckPhorieL.isSelected() ) ;
         jPhorieLds.setText(String.format("%+.2f", ds) + " DS");
+        updateSheardVL () ;
     }//GEN-LAST:event_jPhorieLStateChanged
 
     private void jPhoriePStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPhoriePStateChanged
@@ -906,6 +939,7 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jFusionDL.getValue() ;
         double ds = OrthoCotation.baseValues.updateFusionDL ( p, jCheckFusionDL.isSelected() ) ;
         jFusionDLds.setText(String.format("%+.2f", ds) + " DS");
+        updateSheardVL () ;
     }//GEN-LAST:event_jFusionDLStateChanged
 
     private void jCheckFusionCLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCLStateChanged
@@ -916,6 +950,7 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jFusionCL.getValue() ;
         double ds = OrthoCotation.baseValues.updateFusionCL ( p, jCheckFusionCL.isSelected() ) ;
         jFusionCLds.setText(String.format("%+.2f", ds) + " DS");
+        updateSheardVL () ;
     }//GEN-LAST:event_jFusionCLStateChanged
 
     private void jCheckFusionCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFusionCLActionPerformed
@@ -1104,6 +1139,8 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JLabel jPhorieLds;
     private javax.swing.JSpinner jPhorieP;
     private javax.swing.JLabel jPhoriePds;
+    private javax.swing.JLabel jSheardVL;
+    private javax.swing.JLabel jSheardVP;
     private javax.swing.JLabel jUnit1;
     private javax.swing.JLabel jUnit10;
     private javax.swing.JLabel jUnit2;

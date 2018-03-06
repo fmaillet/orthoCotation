@@ -25,10 +25,15 @@ public class Norms_JDialog extends javax.swing.JDialog {
         String HTMLTEXT = "<html><u>Source :</u><br>"
                 + "Scheiman, M., & Wick, B. (2014). Clinical Management of Binocular Vision: Heterophoric, Accommodative,<br>and Eye Movement Disorders (fourth edition). Lippincott Williams & Wilkins."
                 + "<br><br><table border=\"1\" style=\"width:80%\">"
-               
                 + "<tr><th>Cover Test</th><th>Moyenne</th><th>DS</th></tr>"
                 + "<tr><td>Vision de près</td><td align=\"center\">X'3</td><td align=\"center\">+/-3</td></tr>"
                 + "<tr><td>Vision de loin</td><td align=\"center\">X1</td><td align=\"center\">+/-2</td></tr>"
+                + "</table>"
+                + "<br><br><table border=\"1\" style=\"width:80%\">"
+                + "<tr><th>Fusion</th><th>Moyenne</th><th>DS</th></tr>"
+                + "<tr><td>Divergence de loin</td><td align=\"center\">D7</td><td align=\"center\">+/-3</td></tr>"
+                + "<tr><td>Convergence de loin</td><td align=\"center\">C11</td><td align=\"center\">+/-7</td></tr>"
+                + "<tr><td></td><td align=\"center\"></td><td align=\"center\"></td></tr>"
                 + "</table>"
                 + "<br><br><i>(à suivre...)</i></html>";
         

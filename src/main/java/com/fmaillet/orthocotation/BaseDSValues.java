@@ -10,12 +10,12 @@ package com.fmaillet.orthocotation;
  * @author Fred
  */
 public class BaseDSValues {
-    static Values phorieP ;
-    static Values phorieL ;
+    static public Values phorieP ;
+    static public Values phorieL ;
     static Values fusionCP ;
     static Values fusionDP ;
-    static Values fusionCL ;
-    static Values fusionDL ;
+    static public Values fusionCL ;
+    static public Values fusionDL ;
     static Values ppa ;
     static Values ppc ;
     static Values aca ;

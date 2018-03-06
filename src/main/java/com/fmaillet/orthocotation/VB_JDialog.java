@@ -24,7 +24,11 @@ public class VB_JDialog extends javax.swing.JDialog {
                 + "<blockquote>Les exophories sont notées négativement, les ésophories positivement.<br>"
                 + "Exemple : <b>X'8</b> sera saisi <b>-8</b>, et <b>E'3</b> sera saisi <b>+3</b>.</blockquote>"
                 + "<h3>Amplitudes de fusion</h3><hr><blockquote>Elles sont notées directement, sans signe.<br>"
-                + "Exemple <b>D'12</b> ou <b>C'12</b> seront saisis <b>12</b> dans les deux cas.</blockquote>"
+                + "Exemple <b>D'12</b> ou <b>C'12</b> seront saisis <b>12</b> dans les deux cas.<br>"
+                + "Mesure recommandée sur cible accommodative et d'en retenir la valeur de flou,<br>"
+                + "bien qu'à la barre de prisme elle soit plus difficile à différencier de la valeur de bris (diplopie).</blockquote>"
+                + "<h3>PPC</h3><hr><blockquote>Il est rapporté en cm. Il est recommandé sur cible accommodative et de le<br>"
+                + "répéter trois fois pour ne retenir que la dernière valeur afin de rendre compte de la fatigabilité.</blockquote>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
         //Texte

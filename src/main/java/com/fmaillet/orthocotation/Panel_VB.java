@@ -85,6 +85,34 @@ public class Panel_VB extends javax.swing.JPanel {
         }
     }
     
+    private void updateSheardVP () {
+        if (OrthoCotation.baseValues.patientAge.years == 0) {
+            jSheardVP.setText("[age ?]") ;
+            jSheardVP.setForeground(Color.BLUE);
+            return ;
+        }
+        if (OrthoCotation.baseValues.phorieP.raw < 0) {
+            if (OrthoCotation.baseValues.fusionCP.raw < -2 * OrthoCotation.baseValues.phorieP.raw) {
+                jSheardVP.setText("nok") ;
+                jSheardVP.setForeground(Color.RED);
+            }
+            else {
+                jSheardVP.setText("ok") ;
+                jSheardVP.setForeground(Color.GREEN);
+            }
+        }
+        else if (OrthoCotation.baseValues.phorieP.raw > 0) {
+            if (OrthoCotation.baseValues.fusionDP.raw < 2 * OrthoCotation.baseValues.phorieP.raw) {
+                jSheardVP.setText("nok") ;
+                jSheardVP.setForeground(Color.RED);
+            }
+            else {
+                jSheardVP.setText("ok") ;
+                jSheardVP.setForeground(Color.GREEN);
+            }
+        }
+    }
+    
     private void gradientACA () {
         int p0 = (int) jACA_0.getValue() ;
         int p1 = (int) jACA_1.getValue() ;
@@ -345,7 +373,7 @@ public class Panel_VB extends javax.swing.JPanel {
 
         jPPAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPPAds.setForeground(java.awt.Color.red);
-        jPPAds.setText("[no age]");
+        jPPAds.setText("[age ?]");
 
         jCheckPPC.setSelected(true);
         jCheckPPC.setText("PPC :");
@@ -703,8 +731,7 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(jSheardVL))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(jSheardVL))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -881,6 +908,7 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jPhorieP.getValue() ;
         double ds = OrthoCotation.baseValues.updatePhorieP ( p, jCheckPhorieP.isSelected() ) ;
         jPhoriePds.setText(String.format("%+.2f", ds) + " DS");
+        updateSheardVP () ;
     }//GEN-LAST:event_jPhoriePStateChanged
 
     private void jCheckPhorieLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPhorieLStateChanged
@@ -904,11 +932,12 @@ public class Panel_VB extends javax.swing.JPanel {
             jFusionDPds.setForeground(Color.RED);
         }
         else {
-            jFusionDPds.setText("[no age]") ;
+            jFusionDPds.setText("[age ?]") ;
             jFusionDPds.setToolTipText("Précisez la date de naissance...");
             jCheckFusionDP.setSelected(false) ;
             jFusionDPds.setForeground(Color.BLUE);
         }
+        updateSheardVP () ;
     }//GEN-LAST:event_jFusionDPStateChanged
 
     private void jCheckFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCPStateChanged
@@ -924,11 +953,12 @@ public class Panel_VB extends javax.swing.JPanel {
             jFusionCPds.setForeground(Color.RED);
         }
         else {
-            jFusionCPds.setText("[no age]") ;
+            jFusionCPds.setText("[age ?]") ;
             jFusionCPds.setToolTipText("Précisez la date de naissance...");
             jCheckFusionCP.setSelected(false) ;
             jFusionCPds.setForeground(Color.BLUE);
         }
+        updateSheardVP () ;
     }//GEN-LAST:event_jFusionCPStateChanged
 
     private void jCheckFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionDLStateChanged
@@ -992,7 +1022,7 @@ public class Panel_VB extends javax.swing.JPanel {
             jUnit8.setSize(150, jUnit8.getHeight());
         }
         else {
-            jPPAds.setText("[no age]") ;
+            jPPAds.setText("[age ?]") ;
             jPPAds.setForeground(Color.BLUE);
             jPPAds.setToolTipText("Précisez la date de naissance...");
             jCheckPPA.setSelected(false) ;

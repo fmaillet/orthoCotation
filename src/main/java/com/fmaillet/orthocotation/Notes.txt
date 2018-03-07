@@ -1,9 +1,15 @@
 ! Numéro de version dans OrthoCotation.java
 
 A FAIRE :
-- Calcul PPA from cm !!!
+- critère de sheard sans l'âge => récupérer directement les bonens valeurs de phorie, etc... car
+elles ne sont pas dans baseDS
 
-v0.8.1 (en cours)
+v0.9.0 (en cours)
+- help about & VB extended
+- DEM time V
+
+
+v0.8.1 (06-03-18)
 - Critère de Sheard VL
 - Help Norms extended
 

@@ -38,7 +38,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTest_A1" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <Component id="jTest_B" min="-2" pref="53" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jUnit2" min="-2" pref="22" max="-2" attributes="0"/>
                                       </Group>
@@ -194,7 +194,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTest_A1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTest_B" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jUnit2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -238,6 +238,9 @@
           <SpinnerModel initial="15.0" minimum="1.0" numberType="java.lang.Double" stepSize="0.1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTest_AStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -257,12 +260,15 @@
         <Property name="text" type="java.lang.String" value="Test B :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jTest_A1">
+    <Component class="javax.swing.JSpinner" name="jTest_B">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="15.0" minimum="1.0" numberType="java.lang.Double" stepSize="0.1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTest_BStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jUnit2">
       <Properties>
@@ -363,9 +369,6 @@
           <Dimension value="[45, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jH_TimeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jUnit4">
       <Properties>
@@ -432,9 +435,6 @@
           <Dimension value="[45, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jErrorsActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>

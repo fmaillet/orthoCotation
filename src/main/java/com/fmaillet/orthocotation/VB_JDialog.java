@@ -29,6 +29,10 @@ public class VB_JDialog extends javax.swing.JDialog {
                 + "bien qu'à la barre de prisme elle soit plus difficile à différencier de la valeur de bris (diplopie).</blockquote>"
                 + "<h3>PPC</h3><hr><blockquote>Il est rapporté en cm. Il est recommandé sur cible accommodative et de le<br>"
                 + "répéter trois fois pour ne retenir que la dernière valeur afin de rendre compte de la fatigabilité.</blockquote>"
+                + "<h3>PPA</h3><hr><blockquote>Il est rapporté en cm. L'application calcule l'amplitude accommodative correspondante<br>"
+                + "et la valeur attendue en fonction de l'âge pour permettre l'évaluation de l'écart à la norme.<br>"
+                + "Bien qu'il puisse être mesuré en monoculaire et en binoculaire, une seule mesure<br>"
+                + "synthétique est reportée ici afin de ne pas alourdir le schéma.</blockquote>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
         //Texte

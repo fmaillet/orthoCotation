@@ -268,13 +268,19 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //fen.getContentPane().revalidate();
         fen.repaint();
         
+        //Label "clic droit"
+        JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour sauver ou copier)") ;
+        infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
+        infoClic.setBounds(radioPanel.getX(), radioPanel.getY()+radioPanel.getHeight()+10, 250, 25);
+        fen.getContentPane().add (infoClic) ;
+        
         //AutoConnect
         AutoConnect auto = new AutoConnect () ;
         auto.start () ;
     }
     
     public static String getSoftVersion () {
-        return "v0.8.1 du 06/03/2018" ;
+        return "v0.9.0 du 07/03/2018" ;
     }
 
     @Override
@@ -285,6 +291,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         if (source == aboutItem) {
             AboutJDialog about = new AboutJDialog(this, true);
             about.pack();
+            about.getContentPane().setBackground(Color.CYAN);
             about.setLocationRelativeTo(null) ;
             about.setVisible(true);
         }

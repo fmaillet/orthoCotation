@@ -19,6 +19,7 @@ public class Panel_DEM extends javax.swing.JPanel {
      */
     public Panel_DEM() {
         initComponents();
+        updateResults () ;
     }
     
     protected void paintComponent(Graphics g) {
@@ -31,6 +32,15 @@ public class Panel_DEM extends javax.swing.JPanel {
         g.drawLine(jV_Time.getX()-10, jV_Time.getY()+30, jV_Time.getX()+120, jV_Time.getY()+30);
         /*g.setColor(Color.RED);  
         g.fillRect(230,80,10,10); */ 
+    }
+    
+    public void updateResults () {
+        //Temps vertical
+        double testA = (double) jTest_A.getValue() ;
+        double testB = (double) jTest_B.getValue() ;
+        double time_V = testA + testB ;
+        jV_Time.setText(String.format("%+.2f", time_V));
+        //Temps horizontal corrigé
     }
 
     /**
@@ -46,7 +56,7 @@ public class Panel_DEM extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jUnit1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTest_A1 = new javax.swing.JSpinner();
+        jTest_B = new javax.swing.JSpinner();
         jUnit2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTest_A2 = new javax.swing.JSpinner();
@@ -85,6 +95,11 @@ public class Panel_DEM extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(700, 415));
 
         jTest_A.setModel(new javax.swing.SpinnerNumberModel(15.0d, 1.0d, null, 0.1d));
+        jTest_A.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTest_AStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Test A :");
 
@@ -93,7 +108,12 @@ public class Panel_DEM extends javax.swing.JPanel {
 
         jLabel3.setText("Test B :");
 
-        jTest_A1.setModel(new javax.swing.SpinnerNumberModel(15.0d, 1.0d, null, 0.1d));
+        jTest_B.setModel(new javax.swing.SpinnerNumberModel(15.0d, 1.0d, null, 0.1d));
+        jTest_B.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTest_BStateChanged(evt);
+            }
+        });
 
         jUnit2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit2.setText("sec.");
@@ -130,11 +150,6 @@ public class Panel_DEM extends javax.swing.JPanel {
         jH_Time.setEditable(false);
         jH_Time.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jH_Time.setPreferredSize(new java.awt.Dimension(45, 20));
-        jH_Time.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jH_TimeActionPerformed(evt);
-            }
-        });
 
         jUnit4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit4.setText("sec.");
@@ -162,11 +177,6 @@ public class Panel_DEM extends javax.swing.JPanel {
         jErrors.setEditable(false);
         jErrors.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jErrors.setPreferredSize(new java.awt.Dimension(45, 20));
-        jErrors.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jErrorsActionPerformed(evt);
-            }
-        });
 
         jLabel14.setText("Resultats [2012, Italian norms]");
 
@@ -214,7 +224,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel3)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jTest_A1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTest_B, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
@@ -335,7 +345,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                             .addComponent(jUnit1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTest_A1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTest_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jUnit2))
                         .addGap(18, 18, 18)
@@ -365,13 +375,13 @@ public class Panel_DEM extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jErrorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jErrorsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jErrorsActionPerformed
+    private void jTest_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTest_AStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jTest_AStateChanged
 
-    private void jH_TimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jH_TimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jH_TimeActionPerformed
+    private void jTest_BStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTest_BStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jTest_BStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -405,8 +415,8 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jTest_A;
-    private javax.swing.JSpinner jTest_A1;
     private javax.swing.JSpinner jTest_A2;
+    private javax.swing.JSpinner jTest_B;
     private javax.swing.JLabel jUnit1;
     private javax.swing.JLabel jUnit2;
     private javax.swing.JLabel jUnit3;

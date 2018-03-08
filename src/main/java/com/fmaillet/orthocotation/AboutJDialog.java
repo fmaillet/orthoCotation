@@ -53,7 +53,7 @@ public class AboutJDialog extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Application dédiée à simplifier la rédaction des comptes-rendus en centralisant la cotation de\nl'essentiel des outils utilisés par l'orthoptiste dans sa pratique régulière.\n\nDévelopper une application prend du temps.\nLa cotation et le schéma de synthèse de la vision binoculaire (aka \"schéma de maillet\") sont\nen accès libre.\nL'accès aux autres fonctionnalités est subordonné à une modeste participation forfaire\nannuelle à cet effort de développement.\n\n(c) Frédéric Maillet\nOrthoptiste\nNeuropsychologue spécialiste de la vision\n\n(Toulouse 2018)");
+        jTextArea1.setText("Application dédiée à simplifier la rédaction des comptes-rendus en centralisant la cotation de\nl'essentiel des outils utilisés par l'orthoptiste dans sa pratique régulière.\n\nDévelopper une application prend du temps.\nLa cotation et le schéma de synthèse de la vision binoculaire (aka \"schéma de maillet\") sont\nen accès libre.\nL'accès aux autres fonctionnalités est subordonné à une modeste participation forfaitaire\nannuelle à cet effort de développement.\n\n(c) Frédéric Maillet\nOrthoptiste\nNeuropsychologue spécialiste de la vision\n\n(Toulouse 2018)");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

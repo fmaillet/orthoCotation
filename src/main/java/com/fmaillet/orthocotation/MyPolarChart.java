@@ -173,11 +173,11 @@ public class MyPolarChart {
         
         //Cercle rouge interne
         XYSeries redRing = new XYSeries("redRing", true);
-        for (int i=0; i<=360; i=i+5) redRing.add(i, -1.5);
+        for (int i=0; i<=360; i=i+5) redRing.add(i, -1.0);
         //Cercle vert externe
         XYSeries greenRing = new XYSeries("greenRing", false);
         for (int i=0; i<=360; i=i+5) greenRing.add(i, 1.0);
-        for (int i=360; i>=0; i=i-5) greenRing.add(i, -1.5) ;
+        for (int i=360; i>=0; i=i-5) greenRing.add(i, -1.0) ;
         //Cercle vert foncé externe
         XYSeries darkGreenRing = new XYSeries("darkGreenRing", false);
         for (int i=0; i<=360; i=i+5) darkGreenRing.add(i, 3.0);

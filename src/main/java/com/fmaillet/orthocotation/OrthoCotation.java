@@ -132,7 +132,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
         tabbedPane.addTab("DEM, NSUCO", addTabPanel_DEM ());
          //third tab
         JPanel panel3 = new JPanel(false);
-        tabbedPane.addTab("TVPS", panel3);
+        tabbedPane.addTab("TVPS-3", panel3);
+        JPanel panel4 = new JPanel(false);
+        tabbedPane.addTab("TVPS-4", panel4);
         
     }
     
@@ -179,7 +181,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
             }) ;
         getContentPane().add(dateBirth);
         
-        labelAge = new JLabel ("[no age]") ;
+        labelAge = new JLabel ("[age ?]") ;
         labelAge.setBounds(535, 10, 200, 30);
         labelAge.setFont(new Font(labelAge.getName(), Font.PLAIN, 18));
         labelAge.setForeground(Color.BLUE);
@@ -240,6 +242,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
         if (OrthoCotation.user.nom != null) {
             comMenu.setEnabled(false) ;
             barreMenus.setEnabled(true);
+            // msg panel DEM
+            Panel_DEM.jMsgDemo.setVisible(false);
         }
         else comMenu.setEnabled(true) ;
     }
@@ -280,7 +284,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v0.9.0 du 07/03/2018" ;
+        return "v0.9.1 du 08/03/2018" ;
     }
 
     @Override

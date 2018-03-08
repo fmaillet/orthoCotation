@@ -41,7 +41,9 @@ public class Panel_VB extends javax.swing.JPanel {
         jUnit10.setText("\u0394/\u03B4");
         //jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
         
-        //((JSpinner.DefaultEditor)jACA_0.getEditor()).addMouseListener(new MyMouseListener()) ;
+        jSphere_1.addMouseListener(new MyMouseListener()) ;
+        jSphere_2.addMouseListener(new MyMouseListener()) ;
+        jSphere_3.addMouseListener(new MyMouseListener()) ;
     }
     
     protected void paintComponent(Graphics g) {
@@ -88,10 +90,12 @@ public class Panel_VB extends javax.swing.JPanel {
     private void updateSheardVP () {
         if (OrthoCotation.baseValues.patientAge.years == 0) {
             jSheardVP.setText("[age ?]") ;
+            jSheardVP.setToolTipText("Précisez la date de naissance...");
             jSheardVP.setForeground(Color.BLUE);
             return ;
         }
         if (OrthoCotation.baseValues.phorieP.raw < 0) {
+            jSheardVP.setToolTipText(null);
             if (OrthoCotation.baseValues.fusionCP.raw < -2 * OrthoCotation.baseValues.phorieP.raw) {
                 jSheardVP.setText("nok") ;
                 jSheardVP.setForeground(Color.RED);
@@ -195,11 +199,11 @@ public class Panel_VB extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jCheckACA = new javax.swing.JCheckBox();
         jACA_0 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
+        jSphere_1 = new javax.swing.JLabel();
         jACA_1 = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
+        jSphere_2 = new javax.swing.JLabel();
         jACA_2 = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
+        jSphere_3 = new javax.swing.JLabel();
         jACA_3 = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         jGradient = new javax.swing.JTextField();
@@ -437,7 +441,7 @@ public class Panel_VB extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("(-1)");
+        jSphere_1.setText("(-1)");
 
         jACA_1.setModel(new javax.swing.SpinnerNumberModel());
         jACA_1.setToolTipText("Exo en négatif, éso en positif");
@@ -452,7 +456,7 @@ public class Panel_VB extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("(-2)");
+        jSphere_2.setText("(-2)");
 
         jACA_2.setModel(new javax.swing.SpinnerNumberModel(6, null, null, 1));
         jACA_2.setToolTipText("Exo en négatif, éso en positif");
@@ -467,7 +471,7 @@ public class Panel_VB extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setText("(-3)");
+        jSphere_3.setText("(-3)");
 
         jACA_3.setModel(new javax.swing.SpinnerNumberModel(9, null, null, 1));
         jACA_3.setToolTipText("Exo en négatif, éso en positif");
@@ -652,15 +656,15 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSphere_1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSphere_2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSphere_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -842,19 +846,19 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel2))
+                        .addComponent(jSphere_1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel3))
+                        .addComponent(jSphere_2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel4))
+                        .addComponent(jSphere_3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1123,9 +1127,9 @@ public class Panel_VB extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jACA;
     private javax.swing.JSpinner jACA_0;
-    private javax.swing.JSpinner jACA_1;
-    private javax.swing.JSpinner jACA_2;
-    private javax.swing.JSpinner jACA_3;
+    public static javax.swing.JSpinner jACA_1;
+    public static javax.swing.JSpinner jACA_2;
+    public static javax.swing.JSpinner jACA_3;
     private javax.swing.JTextField jACA_Calcul;
     private javax.swing.JSpinner jACA_PL;
     private javax.swing.JSpinner jACA_PP;
@@ -1153,9 +1157,6 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1171,6 +1172,9 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JLabel jPhoriePds;
     private javax.swing.JLabel jSheardVL;
     private javax.swing.JLabel jSheardVP;
+    public static javax.swing.JLabel jSphere_1;
+    public static javax.swing.JLabel jSphere_2;
+    public static javax.swing.JLabel jSphere_3;
     private javax.swing.JLabel jUnit1;
     private javax.swing.JLabel jUnit10;
     private javax.swing.JLabel jUnit2;
@@ -1186,11 +1190,11 @@ public class Panel_VB extends javax.swing.JPanel {
 
 class MyMouseListener extends MouseAdapter {
   public void mouseClicked(MouseEvent evt) {
-      System.out.println("click");
-    if (evt.getClickCount() == 3) {
-      System.out.println("triple-click");
-    } else if (evt.getClickCount() == 2) {
-      System.out.println("double-click");
-    }
+        if (evt.getClickCount() != 2) return ;
+        //Source ?
+        Object source = evt.getSource () ;
+        if (source == Panel_VB.jSphere_1) Panel_VB.jACA_1.setEnabled(!Panel_VB.jACA_1.isEnabled());
+        else if (source == Panel_VB.jSphere_2) Panel_VB.jACA_2.setEnabled(!Panel_VB.jACA_2.isEnabled());
+        else if (source == Panel_VB.jSphere_3) Panel_VB.jACA_3.setEnabled(!Panel_VB.jACA_3.isEnabled());
   }
 }

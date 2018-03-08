@@ -40,7 +40,19 @@ public class Panel_DEM extends javax.swing.JPanel {
         double testB = (double) jTest_B.getValue() ;
         double time_V = testA + testB ;
         jV_Time.setText(String.format("%+.2f", time_V));
+        //Errors
+        int err_o = (int) jError_O.getValue() ;
+        int err_a = (int) jError_A.getValue() ;
+        int err = (int) jError_S.getValue() + err_o + err_a + (int) jError_T.getValue() ;
+        jErrors.setText(String.valueOf (err));
         //Temps horizontal corrigé
+        double testC = (double) jTest_C.getValue() ;
+        double time_H = testC * 80 / ( 80 - err_o + err_a) ;
+        jH_Time.setText(String.format("%+.2f", time_H));
+        //ratio
+        double ratio = time_H / time_V ;
+        jRatio.setText(String.format("%+.2f", ratio));
+        
     }
 
     /**
@@ -59,24 +71,23 @@ public class Panel_DEM extends javax.swing.JPanel {
         jTest_B = new javax.swing.JSpinner();
         jUnit2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTest_A2 = new javax.swing.JSpinner();
+        jTest_C = new javax.swing.JSpinner();
         jUnit3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jError_S = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        jError_O = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
+        jError_A = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
+        jError_T = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         jH_Time = new javax.swing.JTextField();
         jUnit4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jRatio = new javax.swing.JTextField();
-        jUnit5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jV_Time = new javax.swing.JTextField();
         jUnit6 = new javax.swing.JLabel();
@@ -91,6 +102,7 @@ public class Panel_DEM extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jMsgDemo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(700, 415));
 
@@ -120,12 +132,22 @@ public class Panel_DEM extends javax.swing.JPanel {
 
         jLabel4.setText("Test C :");
 
-        jTest_A2.setModel(new javax.swing.SpinnerNumberModel(20.0d, 1.0d, null, 0.1d));
+        jTest_C.setModel(new javax.swing.SpinnerNumberModel(20.0d, 1.0d, null, 0.1d));
+        jTest_C.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTest_CStateChanged(evt);
+            }
+        });
 
         jUnit3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit3.setText("sec.");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jError_S.setModel(new javax.swing.SpinnerNumberModel());
+        jError_S.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jError_SStateChanged(evt);
+            }
+        });
 
         jLabel5.setText("Vertical");
 
@@ -135,15 +157,30 @@ public class Panel_DEM extends javax.swing.JPanel {
 
         jLabel7.setText("o :");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jError_O.setModel(new javax.swing.SpinnerNumberModel());
+        jError_O.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jError_OStateChanged(evt);
+            }
+        });
 
         jLabel8.setText("a :");
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jError_A.setModel(new javax.swing.SpinnerNumberModel());
+        jError_A.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jError_AStateChanged(evt);
+            }
+        });
 
         jLabel9.setText("t :");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jError_T.setModel(new javax.swing.SpinnerNumberModel());
+        jError_T.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jError_TStateChanged(evt);
+            }
+        });
 
         jLabel10.setText("H Time (adj.):");
 
@@ -159,9 +196,6 @@ public class Panel_DEM extends javax.swing.JPanel {
         jRatio.setEditable(false);
         jRatio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jRatio.setPreferredSize(new java.awt.Dimension(45, 20));
-
-        jUnit5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jUnit5.setText("sec.");
 
         jLabel12.setText("V Time :");
 
@@ -204,6 +238,9 @@ public class Panel_DEM extends javax.swing.JPanel {
         jLabel16.setForeground(java.awt.Color.gray);
         jLabel16.setText("NSUCO");
 
+        jMsgDemo.setForeground(java.awt.Color.red);
+        jMsgDemo.setText("(Les écarts à la norme ne sont pas calculés en mode démo)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,7 +276,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                                         .addGap(11, 11, 11)
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTest_A2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTest_C, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
@@ -248,19 +285,19 @@ public class Panel_DEM extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jError_S, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel7))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jError_A, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jError_T, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jError_O, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,10 +314,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jRatio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jRatio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jV_Time, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -296,17 +330,22 @@ public class Panel_DEM extends javax.swing.JPanel {
                         .addGap(108, 108, 108))
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)))
+                        .addComponent(jLabel16)
+                        .addContainerGap(639, Short.MAX_VALUE))
+                    .addComponent(jSeparator1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jMsgDemo)
+                        .addGap(150, 150, 150))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jMsgDemo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -331,7 +370,6 @@ public class Panel_DEM extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jRatio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUnit5)
                             .addComponent(jPhoriePds2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -352,26 +390,26 @@ public class Panel_DEM extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTest_A2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTest_C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(jUnit3))
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jError_S, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jError_O, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jError_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jError_T, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
                 .addGap(42, 42, 42)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -383,8 +421,32 @@ public class Panel_DEM extends javax.swing.JPanel {
         updateResults () ;
     }//GEN-LAST:event_jTest_BStateChanged
 
+    private void jError_SStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jError_SStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jError_SStateChanged
+
+    private void jError_OStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jError_OStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jError_OStateChanged
+
+    private void jError_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jError_AStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jError_AStateChanged
+
+    private void jError_TStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jError_TStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jError_TStateChanged
+
+    private void jTest_CStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTest_CStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jTest_CStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner jError_A;
+    private javax.swing.JSpinner jError_O;
+    private javax.swing.JSpinner jError_S;
+    private javax.swing.JSpinner jError_T;
     private javax.swing.JTextField jErrors;
     private javax.swing.JTextField jH_Time;
     private javax.swing.JLabel jLabel1;
@@ -403,6 +465,7 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public static javax.swing.JLabel jMsgDemo;
     private javax.swing.JLabel jPhoriePds;
     private javax.swing.JLabel jPhoriePds1;
     private javax.swing.JLabel jPhoriePds2;
@@ -410,18 +473,13 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JTextField jRatio;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jTest_A;
-    private javax.swing.JSpinner jTest_A2;
     private javax.swing.JSpinner jTest_B;
+    private javax.swing.JSpinner jTest_C;
     private javax.swing.JLabel jUnit1;
     private javax.swing.JLabel jUnit2;
     private javax.swing.JLabel jUnit3;
     private javax.swing.JLabel jUnit4;
-    private javax.swing.JLabel jUnit5;
     private javax.swing.JLabel jUnit6;
     private javax.swing.JTextField jV_Time;
     // End of variables declaration//GEN-END:variables

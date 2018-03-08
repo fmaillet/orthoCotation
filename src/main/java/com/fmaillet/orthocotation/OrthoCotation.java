@@ -235,6 +235,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         baseValues.patientAge.days = age.getDays() ;
         //Update values
         panelVB.updateFromAge () ;
+        panelDEM.updateResults();
     }
     
     public static void connected () {
@@ -284,7 +285,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v0.9.1 du 08/03/2018" ;
+        return "v1.0.0 du 08/03/2018" ;
     }
 
     @Override

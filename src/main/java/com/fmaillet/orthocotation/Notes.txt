@@ -1,10 +1,16 @@
 ! Numéro de version dans OrthoCotation.java
 
 A FAIRE :
-- critère de sheard sans l'âge => récupérer directement les bonens valeurs de phorie, etc... car
+- critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
+- baseVB : ds in red-green comme dans DEM
 
-v0.9.1 (en cours)
+v1.0.0 (en cours)
+- DEM Italian norms(2012) ok
+- DEM DS in red-green
+- 
+
+v0.9.1 (08-03-2018)
 - Correction seuil patho à -1 DS
 - gradient ACA : double clic sur la sphere ok
 - DEM : fin du calcul des valeurs (manque ecarts)

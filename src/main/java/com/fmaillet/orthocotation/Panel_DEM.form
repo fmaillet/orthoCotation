@@ -120,10 +120,10 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPhoriePds" min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds1" min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds2" min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds3" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="jH_Time_ds" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="jV_Time_ds" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="jRatio_ds" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="jErrors_ds" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
@@ -165,26 +165,26 @@
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jH_Time" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jUnit4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jH_Time_ds" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jV_Time" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jUnit6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jV_Time_ds" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRatio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRatio_ds" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jErrors" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPhoriePds3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jErrors_ds" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -449,7 +449,7 @@
         <Property name="text" type="java.lang.String" value="Resultats [2012, Italian norms]"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jPhoriePds">
+    <Component class="javax.swing.JLabel" name="jH_Time_ds">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -460,7 +460,7 @@
         <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jPhoriePds1">
+    <Component class="javax.swing.JLabel" name="jV_Time_ds">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -471,7 +471,7 @@
         <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jPhoriePds2">
+    <Component class="javax.swing.JLabel" name="jRatio_ds">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -482,7 +482,7 @@
         <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jPhoriePds3">
+    <Component class="javax.swing.JLabel" name="jErrors_ds">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>

@@ -7,6 +7,9 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,11 +17,36 @@ import java.awt.Graphics;
  */
 public class Panel_DEM extends javax.swing.JPanel {
 
+    double error_M[]  = {14.9, 7.9, 4.0, 2.6, 2.0, 1.7, 1.1, 1.2, 0.6};
+    double error_DS[] = {8.3, 7.6, 4.6, 3.8, 2.6, 2.0, 1.8, 1.9, 0.9} ;
+    double ratio_M[]  = {1.53, 1.43, 1.31, 1.24, 1.18, 1.13, 1.12, 1.12, 1.12 } ;
+    double ratio_DS[] = {0.29, 0.25, 0.20, 0.18, 0.12, 0.12, 0.09, 0.12, 0.07} ;
+    double AHT_M[]    = {108.12, 75.01, 59.91, 52.04, 44.72, 39.49, 35.34, 33.16, 32.33} ;
+    double AHT_DS[]   = {30.49, 19.33, 14.87, 12.78, 8.08, 8.44, 6.47, 6.57, 5.29} ;
+    double VT_M[]     = {72.29, 52.74, 45.77, 41.98, 38.13, 35.06, 31.55, 29.71, 29.01} ;
+    double VT_DS[]    = {20.99, 10.17, 9.68, 7.89, 6.35, 6.41, 5.74, 4.58, 4.91} ;
+    
     /**
      * Creates new form Panel_DEM
      */
     public Panel_DEM() {
         initComponents();
+        
+        //O ajoute des listenrs sur les DS pour chger de couleur
+        PropertyChangeListener l = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                JLabel source = (JLabel) evt.getSource () ;
+                double t  = Double.parseDouble(source.getText().replace(",",".") ) ;
+                if (t> -1.0) source.setForeground(Color.GREEN);
+                else source.setForeground(Color.RED);
+            }
+        };
+        jH_Time_ds.addPropertyChangeListener("text", l);
+        jV_Time_ds.addPropertyChangeListener("text", l);
+        jRatio_ds.addPropertyChangeListener("text", l);
+        jErrors_ds.addPropertyChangeListener("text", l);
+        
         updateResults () ;
     }
     
@@ -39,7 +67,7 @@ public class Panel_DEM extends javax.swing.JPanel {
         double testA = (double) jTest_A.getValue() ;
         double testB = (double) jTest_B.getValue() ;
         double time_V = testA + testB ;
-        jV_Time.setText(String.format("%+.2f", time_V));
+        jV_Time.setText(String.format("%.2f", time_V));
         //Errors
         int err_o = (int) jError_O.getValue() ;
         int err_a = (int) jError_A.getValue() ;
@@ -48,11 +76,26 @@ public class Panel_DEM extends javax.swing.JPanel {
         //Temps horizontal corrigé
         double testC = (double) jTest_C.getValue() ;
         double time_H = testC * 80 / ( 80 - err_o + err_a) ;
-        jH_Time.setText(String.format("%+.2f", time_H));
+        jH_Time.setText(String.format("%.2f", time_H));
         //ratio
         double ratio = time_H / time_V ;
-        jRatio.setText(String.format("%+.2f", ratio));
-        
+        jRatio.setText(String.format("%.2f", ratio));
+        //if connected
+        if (OrthoCotation.user.nom == null) return ;
+        int y = OrthoCotation.baseValues.patientAge.years - 6;
+        if (y > 9) return ;
+        //DS errors
+        double t = (error_M[y] - err) / error_DS[y] ;
+        jErrors_ds.setText(String.format("%+.2f", t));
+        //DS VT
+        t = (VT_M[y] - time_V) / VT_DS[y] ;
+        jV_Time_ds.setText(String.format("%+.2f", t));
+        //DS VH
+        t = (AHT_M[y] - time_H) / AHT_DS[y] ;
+        jH_Time_ds.setText(String.format("%+.2f", t));
+        //DS VT
+        t = (ratio_M[y] - ratio) / ratio_DS[y] ;
+        jRatio_ds.setText(String.format("%+.2f", t));
     }
 
     /**
@@ -94,10 +137,10 @@ public class Panel_DEM extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jErrors = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jPhoriePds = new javax.swing.JLabel();
-        jPhoriePds1 = new javax.swing.JLabel();
-        jPhoriePds2 = new javax.swing.JLabel();
-        jPhoriePds3 = new javax.swing.JLabel();
+        jH_Time_ds = new javax.swing.JLabel();
+        jV_Time_ds = new javax.swing.JLabel();
+        jRatio_ds = new javax.swing.JLabel();
+        jErrors_ds = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
@@ -214,21 +257,21 @@ public class Panel_DEM extends javax.swing.JPanel {
 
         jLabel14.setText("Resultats [2012, Italian norms]");
 
-        jPhoriePds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jPhoriePds.setForeground(java.awt.Color.red);
-        jPhoriePds.setText("...");
+        jH_Time_ds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jH_Time_ds.setForeground(java.awt.Color.red);
+        jH_Time_ds.setText("...");
 
-        jPhoriePds1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jPhoriePds1.setForeground(java.awt.Color.red);
-        jPhoriePds1.setText("...");
+        jV_Time_ds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jV_Time_ds.setForeground(java.awt.Color.red);
+        jV_Time_ds.setText("...");
 
-        jPhoriePds2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jPhoriePds2.setForeground(java.awt.Color.red);
-        jPhoriePds2.setText("...");
+        jRatio_ds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRatio_ds.setForeground(java.awt.Color.red);
+        jRatio_ds.setText("...");
 
-        jPhoriePds3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jPhoriePds3.setForeground(java.awt.Color.red);
-        jPhoriePds3.setText("...");
+        jErrors_ds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jErrors_ds.setForeground(java.awt.Color.red);
+        jErrors_ds.setText("...");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(java.awt.Color.gray);
@@ -323,10 +366,10 @@ public class Panel_DEM extends javax.swing.JPanel {
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhoriePds1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhoriePds2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhoriePds3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jH_Time_ds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jV_Time_ds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRatio_ds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jErrors_ds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(108, 108, 108))
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
@@ -359,23 +402,23 @@ public class Panel_DEM extends javax.swing.JPanel {
                             .addComponent(jLabel10)
                             .addComponent(jH_Time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jUnit4)
-                            .addComponent(jPhoriePds))
+                            .addComponent(jH_Time_ds))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jV_Time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jUnit6)
-                            .addComponent(jPhoriePds1))
+                            .addComponent(jV_Time_ds))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jRatio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhoriePds2))
+                            .addComponent(jRatio_ds))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jErrors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPhoriePds3)))
+                            .addComponent(jErrors_ds)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTest_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,7 +491,9 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JSpinner jError_S;
     private javax.swing.JSpinner jError_T;
     private javax.swing.JTextField jErrors;
+    private javax.swing.JLabel jErrors_ds;
     private javax.swing.JTextField jH_Time;
+    private javax.swing.JLabel jH_Time_ds;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -466,11 +511,8 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel jMsgDemo;
-    private javax.swing.JLabel jPhoriePds;
-    private javax.swing.JLabel jPhoriePds1;
-    private javax.swing.JLabel jPhoriePds2;
-    private javax.swing.JLabel jPhoriePds3;
     private javax.swing.JTextField jRatio;
+    private javax.swing.JLabel jRatio_ds;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner jTest_A;
@@ -482,5 +524,6 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jUnit4;
     private javax.swing.JLabel jUnit6;
     private javax.swing.JTextField jV_Time;
+    private javax.swing.JLabel jV_Time_ds;
     // End of variables declaration//GEN-END:variables
 }

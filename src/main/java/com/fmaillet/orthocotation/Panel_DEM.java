@@ -32,7 +32,7 @@ public class Panel_DEM extends javax.swing.JPanel {
     public Panel_DEM() {
         initComponents();
         
-        //O ajoute des listenrs sur les DS pour chger de couleur
+        //On ajoute des listenrs sur les DS pour chger de couleur
         PropertyChangeListener l = new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -80,10 +80,11 @@ public class Panel_DEM extends javax.swing.JPanel {
         //ratio
         double ratio = time_H / time_V ;
         jRatio.setText(String.format("%.2f", ratio));
-        //if connected
+        //if connected and correct age range
         if (OrthoCotation.user.nom == null) return ;
         int y = OrthoCotation.baseValues.patientAge.years - 6;
-        if (y > 9) return ;
+        if (y<0) y = 0 ;
+        else if (y>9) y = 9 ;
         //DS errors
         double t = (error_M[y] - err) / error_DS[y] ;
         jErrors_ds.setText(String.format("%+.2f", t));

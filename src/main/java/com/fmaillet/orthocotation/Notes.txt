@@ -8,7 +8,7 @@ elles ne sont pas dans baseDS
 v1.0.0 (en cours)
 - DEM Italian norms(2012) ok
 - DEM DS in red-green
-- 
+- App icons & connect png
 
 v0.9.1 (08-03-2018)
 - Correction seuil patho à -1 DS

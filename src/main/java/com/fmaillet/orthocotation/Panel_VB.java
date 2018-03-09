@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JSpinner;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -22,15 +24,7 @@ public class Panel_VB extends javax.swing.JPanel {
      */
     public Panel_VB() {
         initComponents();
-        jPhoriePStateChanged (null) ;
-        jPhorieLStateChanged (null) ;
-        jFusionDPStateChanged (null) ;
-        jFusionCPStateChanged (null) ;
-        jFusionDLStateChanged (null) ;
-        jFusionCLStateChanged (null) ;
-        jPPAStateChanged (null) ;
-        jPPCStateChanged (null) ;
-        
+               
         //placement
         jLabel11.setLocation(jLabel12.getX()+50, jPhoriePds.getY());
         jLabel12.setLocation(jLabel12.getX()+50, jPhorieLds.getY());
@@ -44,6 +38,40 @@ public class Panel_VB extends javax.swing.JPanel {
         jSphere_1.addMouseListener(new MyMouseListener()) ;
         jSphere_2.addMouseListener(new MyMouseListener()) ;
         jSphere_3.addMouseListener(new MyMouseListener()) ;
+        
+        //Couleur des DS
+        PropertyChangeListener l = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                JLabel source = (JLabel) evt.getSource () ;
+                try {
+                    String s  = source.getText() ;
+                    double t  = Double.parseDouble(s.substring(0, s.length()-2).replace(",",".") ) ;
+                    if (t> -1.0) source.setForeground(Color.GREEN);
+                     else source.setForeground(Color.RED);
+                } catch (Exception e) {}
+            }
+        };
+        
+        jPhorieLds.addPropertyChangeListener("text", l);
+        jPhoriePds.addPropertyChangeListener("text", l);
+        jFusionDPds.addPropertyChangeListener("text", l);
+        jFusionCPds.addPropertyChangeListener("text", l);
+        jFusionDLds.addPropertyChangeListener("text", l);
+        jFusionCLds.addPropertyChangeListener("text", l);
+        jPPCds.addPropertyChangeListener("text", l);
+        jPPAds.addPropertyChangeListener("text", l);
+        jACAds.addPropertyChangeListener("text", l);
+        
+        //Update all
+        jPhoriePStateChanged (null) ;
+        jPhorieLStateChanged (null) ;
+        jFusionDPStateChanged (null) ;
+        jFusionCPStateChanged (null) ;
+        jFusionDLStateChanged (null) ;
+        jFusionCLStateChanged (null) ;
+        jPPAStateChanged (null) ;
+        jPPCStateChanged (null) ;
     }
     
     protected void paintComponent(Graphics g) {
@@ -131,6 +159,7 @@ public class Panel_VB extends javax.swing.JPanel {
         
         if (calculACA_isValid) meanACA = (gradientACA + calculACA) / 2 ;
         else meanACA = gradientACA ;
+        meanACA = Math.round(meanACA * 100.0) / 100.0 ;
         jACA.setValue(Double.valueOf(meanACA)) ;
         //Déviation standard
         double ds = OrthoCotation.baseValues.updateACA ( meanACA, jCheckACA.isSelected() ) ;
@@ -149,6 +178,7 @@ public class Panel_VB extends javax.swing.JPanel {
         
         if (gradientACA_isValid) meanACA = (gradientACA + calculACA) / 2 ;
         else meanACA = calculACA ;
+        meanACA = Math.round(meanACA * 100.0) / 100.0 ;
         jACA.setValue(Double.valueOf(meanACA)) ;
         //Déviation standard
         double ds = OrthoCotation.baseValues.updateACA ( meanACA, jCheckACA.isSelected() ) ;
@@ -933,7 +963,7 @@ public class Panel_VB extends javax.swing.JPanel {
             double ds = OrthoCotation.baseValues.updateFusionDP ( p, jCheckFusionDP.isSelected() ) ;
             jFusionDPds.setText(String.format("%+.2f", ds) + " DS");
             jFusionDPds.setToolTipText(null);
-            jFusionDPds.setForeground(Color.RED);
+            //jFusionDPds.setForeground(Color.RED);
         }
         else {
             jFusionDPds.setText("[age ?]") ;
@@ -954,7 +984,7 @@ public class Panel_VB extends javax.swing.JPanel {
             double ds = OrthoCotation.baseValues.updateFusionCP ( p, jCheckFusionCP.isSelected() ) ;
             jFusionCPds.setText(String.format("%+.2f", ds) + " DS");
             jFusionCPds.setToolTipText(null);
-            jFusionCPds.setForeground(Color.RED);
+            //jFusionCPds.setForeground(Color.RED);
         }
         else {
             jFusionCPds.setText("[age ?]") ;
@@ -1021,7 +1051,7 @@ public class Panel_VB extends javax.swing.JPanel {
             jUnit8.setText ("cm (soit " + String.format("%+.2f", p) + " \u03B4)") ;
             jPPAds.setText(String.format("%+.2f", ds) + " DS");
             jPPAds.setToolTipText(null);
-            jPPAds.setForeground(Color.RED);
+            //jPPAds.setForeground(Color.RED);
             jUnit8.setLocation(jUnit7.getX(), jUnit8.getY());
             jUnit8.setSize(150, jUnit8.getHeight());
         }

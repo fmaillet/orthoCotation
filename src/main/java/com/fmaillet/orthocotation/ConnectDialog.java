@@ -86,6 +86,8 @@ public class ConnectDialog extends java.awt.Dialog {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fmaillet/orthocotation/connect.png"))); // NOI18N
+
         jMessages.setColumns(20);
         jMessages.setRows(5);
         jScrollPane1.setViewportView(jMessages);

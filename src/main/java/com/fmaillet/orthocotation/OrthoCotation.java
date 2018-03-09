@@ -10,14 +10,18 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,7 +50,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static JTabbedPane tabbedPane ;
     static JPanel basePanel ;
     
-    public Image tinyTrophy ;
+    public Image iconConnect, iconApp ;
     
     //Synthèse des valeurs
     public static BaseDSValues baseValues = new BaseDSValues () ;
@@ -72,7 +76,24 @@ public class OrthoCotation extends JFrame implements ActionListener {
         setLayout(null);  setSize(1200, 700);
         
         //Image du trophé
-        //tinyTrophy = getToolkit().getImage(getClass().getResource("connect.png"));
+        iconConnect = getToolkit().getImage(getClass().getResource("connect.png"));
+        //Icone de l'appli
+        //iconApp = getToolkit().getImage(getClass().getResource("iconorg.png"));
+        List<Image> icons = new ArrayList<Image>();
+        URL iconURL = getClass().getResource("iconOrg.png_256x256.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        iconURL = getClass().getResource("iconOrg.png_64x64.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        iconURL = getClass().getResource("iconOrg.png_128x128.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        iconURL = getClass().getResource("iconOrg.png_16x16.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        iconURL = getClass().getResource("iconOrg.png_48x48.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        iconURL = getClass().getResource("iconOrg.png_32x32.png");
+        icons.add(new ImageIcon(iconURL).getImage());
+        //ImageIcon icon = new ImageIcon(iconURL);
+        setIconImages(icons);
         
         getContentPane().setBackground(Color.CYAN);
         setLocationRelativeTo(null);

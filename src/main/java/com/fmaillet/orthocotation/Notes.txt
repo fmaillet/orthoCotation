@@ -4,7 +4,9 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.1.0 (en cours)
+v1.2.0 (en cours)
+
+v1.1.0 (09-03-2018)
 - editable birth datePicker
 - Facilities (V & A)
 

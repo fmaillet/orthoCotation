@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.JLabel;
+import javax.swing.border.MatteBorder;
 
 /**
  *
@@ -98,6 +99,11 @@ public class Panel_DEM extends javax.swing.JPanel {
         t = (ratio_M[y] - ratio) / ratio_DS[y] ;
         jRatio_ds.setText(String.format("%+.2f", t));
     }
+    
+    private void updateNSUCO () {
+        jNSUCO_S_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        jNSUCO_P_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,6 +160,14 @@ public class Panel_DEM extends javax.swing.JPanel {
         jNSUCO_S_H = new javax.swing.JSpinner();
         jNSUCO_S_B = new javax.swing.JSpinner();
         jMsgDemo1 = new javax.swing.JLabel();
+        jNSUCO_P_A = new javax.swing.JSpinner();
+        jNSUCO_P_P = new javax.swing.JSpinner();
+        jNSUCO_P_H = new javax.swing.JSpinner();
+        jNSUCO_P_B = new javax.swing.JSpinner();
+        jUnit5 = new javax.swing.JLabel();
+        jUnit7 = new javax.swing.JLabel();
+        jUnit8 = new javax.swing.JLabel();
+        jUnit9 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -328,6 +342,46 @@ public class Panel_DEM extends javax.swing.JPanel {
         jMsgDemo1.setForeground(java.awt.Color.red);
         jMsgDemo1.setText("(en cours de développement)");
 
+        jNSUCO_P_A.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_A.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jNSUCO_P_AStateChanged(evt);
+            }
+        });
+
+        jNSUCO_P_P.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_P.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jNSUCO_P_PStateChanged(evt);
+            }
+        });
+
+        jNSUCO_P_H.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_H.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jNSUCO_P_HStateChanged(evt);
+            }
+        });
+
+        jNSUCO_P_B.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_B.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jNSUCO_P_BStateChanged(evt);
+            }
+        });
+
+        jUnit5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit5.setText("Hab.");
+
+        jUnit7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit7.setText("Prec.");
+
+        jUnit8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit8.setText("Tête");
+
+        jUnit9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit9.setText("Corps");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -433,13 +487,31 @@ public class Panel_DEM extends javax.swing.JPanel {
                             .addComponent(jLabel18)
                             .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jNSUCO_S_A, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jNSUCO_S_P, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jNSUCO_S_H, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jNSUCO_S_B, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jNSUCO_P_A, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jNSUCO_P_P, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jNSUCO_P_H, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jNSUCO_P_B, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jNSUCO_S_A, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jUnit7)
+                                    .addComponent(jNSUCO_S_P, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jNSUCO_S_H, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUnit8))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jUnit9)
+                                    .addComponent(jNSUCO_S_B, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -514,7 +586,13 @@ public class Panel_DEM extends javax.swing.JPanel {
                     .addComponent(jMsgDemo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jUnit5)
+                    .addComponent(jUnit7)
+                    .addComponent(jUnit8)
+                    .addComponent(jUnit9))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jNSUCO_S_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -522,8 +600,13 @@ public class Panel_DEM extends javax.swing.JPanel {
                     .addComponent(jNSUCO_S_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jNSUCO_S_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel18)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jNSUCO_P_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jNSUCO_P_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jNSUCO_P_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jNSUCO_P_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -556,20 +639,36 @@ public class Panel_DEM extends javax.swing.JPanel {
     }//GEN-LAST:event_jTest_CStateChanged
 
     private void jNSUCO_S_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_S_AStateChanged
-        // TODO add your handling code here:
+        updateNSUCO () ;
     }//GEN-LAST:event_jNSUCO_S_AStateChanged
 
     private void jNSUCO_S_PStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_S_PStateChanged
-        // TODO add your handling code here:
+        updateNSUCO () ;
     }//GEN-LAST:event_jNSUCO_S_PStateChanged
 
     private void jNSUCO_S_HStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_S_HStateChanged
-        // TODO add your handling code here:
+        updateNSUCO () ;
     }//GEN-LAST:event_jNSUCO_S_HStateChanged
 
     private void jNSUCO_S_BStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_S_BStateChanged
-        // TODO add your handling code here:
+        updateNSUCO () ;
     }//GEN-LAST:event_jNSUCO_S_BStateChanged
+
+    private void jNSUCO_P_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_P_AStateChanged
+        updateNSUCO () ;
+    }//GEN-LAST:event_jNSUCO_P_AStateChanged
+
+    private void jNSUCO_P_PStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_P_PStateChanged
+        updateNSUCO () ;
+    }//GEN-LAST:event_jNSUCO_P_PStateChanged
+
+    private void jNSUCO_P_HStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_P_HStateChanged
+        updateNSUCO () ;
+    }//GEN-LAST:event_jNSUCO_P_HStateChanged
+
+    private void jNSUCO_P_BStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jNSUCO_P_BStateChanged
+        updateNSUCO () ;
+    }//GEN-LAST:event_jNSUCO_P_BStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -601,6 +700,10 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel jMsgDemo;
     public static javax.swing.JLabel jMsgDemo1;
+    private javax.swing.JSpinner jNSUCO_P_A;
+    private javax.swing.JSpinner jNSUCO_P_B;
+    private javax.swing.JSpinner jNSUCO_P_H;
+    private javax.swing.JSpinner jNSUCO_P_P;
     private javax.swing.JSpinner jNSUCO_S_A;
     private javax.swing.JSpinner jNSUCO_S_B;
     private javax.swing.JSpinner jNSUCO_S_H;
@@ -616,7 +719,11 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jUnit2;
     private javax.swing.JLabel jUnit3;
     private javax.swing.JLabel jUnit4;
+    private javax.swing.JLabel jUnit5;
     private javax.swing.JLabel jUnit6;
+    private javax.swing.JLabel jUnit7;
+    private javax.swing.JLabel jUnit8;
+    private javax.swing.JLabel jUnit9;
     private javax.swing.JTextField jV_Time;
     private javax.swing.JLabel jV_Time_ds;
     // End of variables declaration//GEN-END:variables

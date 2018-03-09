@@ -120,7 +120,9 @@ public class MyPolarChart {
                 (OrthoCotation.baseValues.fusionDL.selected ? 1 : 0) +
                 (OrthoCotation.baseValues.ppc.selected ? 1 : 0) +
                 (OrthoCotation.baseValues.ppa.selected ? 1 : 0) +
-                 (OrthoCotation.baseValues.aca.selected ? 1 : 0);
+                (OrthoCotation.baseValues.aca.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fdv.selected ? 1 : 0) +
+                (OrthoCotation.baseValues.fda.selected ? 1 : 0) ;
         
         if (n > 0) n = 360 / n ;
         else return 0 ;
@@ -162,6 +164,14 @@ public class MyPolarChart {
         }
         if (OrthoCotation.baseValues.aca.selected) {
             ticks.add(new NumberTick(index, "AC/A", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fdv.selected) {
+            ticks.add(new NumberTick(index, "FdV", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fda.selected) {
+            ticks.add(new NumberTick(index, "FdA", TextAnchor.TOP_LEFT, TextAnchor.TOP_LEFT, 0));
             index = index + n ;
         }
         
@@ -255,6 +265,14 @@ public class MyPolarChart {
         }
         if (OrthoCotation.baseValues.aca.selected) {
             datas.add(index, OrthoCotation.baseValues.aca.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fdv.selected) {
+            datas.add(index, OrthoCotation.baseValues.fdv.ds);
+            index = index + n ;
+        }
+        if (OrthoCotation.baseValues.fda.selected) {
+            datas.add(index, OrthoCotation.baseValues.fda.ds);
             index = index + n ;
         }
         

@@ -62,6 +62,8 @@ public class Panel_VB extends javax.swing.JPanel {
         jPPCds.addPropertyChangeListener("text", l);
         jPPAds.addPropertyChangeListener("text", l);
         jACAds.addPropertyChangeListener("text", l);
+        jFDVds.addPropertyChangeListener("text", l);
+        jFDAds.addPropertyChangeListener("text", l);
         
         //Update all
         jPhoriePStateChanged (null) ;
@@ -72,6 +74,8 @@ public class Panel_VB extends javax.swing.JPanel {
         jFusionCLStateChanged (null) ;
         jPPAStateChanged (null) ;
         jPPCStateChanged (null) ;
+        jFDVStateChanged (null) ;
+        jFDAStateChanged (null) ;
     }
     
     protected void paintComponent(Graphics g) {
@@ -254,8 +258,16 @@ public class Panel_VB extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jSheardVL = new javax.swing.JLabel();
         jSheardVP = new javax.swing.JLabel();
+        jCheckFDV = new javax.swing.JCheckBox();
+        jFDV = new javax.swing.JSpinner();
+        jUnit11 = new javax.swing.JLabel();
+        jFDVds = new javax.swing.JLabel();
+        jCheckFDA = new javax.swing.JCheckBox();
+        jFDA = new javax.swing.JSpinner();
+        jUnit12 = new javax.swing.JLabel();
+        jFDAds = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(600, 490));
+        setPreferredSize(new java.awt.Dimension(600, 550));
 
         jPhorieL.setModel(new javax.swing.SpinnerNumberModel(-1, null, null, 1));
         jPhorieL.setToolTipText("<html>Phorie de loin<br>Exo en négatif, éso en positif</html>");
@@ -614,6 +626,67 @@ public class Panel_VB extends javax.swing.JPanel {
         jSheardVP.setForeground(java.awt.Color.red);
         jSheardVP.setText("...");
 
+        jCheckFDV.setSelected(true);
+        jCheckFDV.setText("Fluidité des vergences :");
+        jCheckFDV.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckFDVStateChanged(evt);
+            }
+        });
+
+        jFDV.setModel(new javax.swing.SpinnerNumberModel(12, 0, null, 1));
+        jFDV.setToolTipText("Fluidité des Vergences (cycles par mn).");
+        jFDV.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFDVStateChanged(evt);
+            }
+        });
+        jFDV.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFDVPropertyChange(evt);
+            }
+        });
+
+        jUnit11.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit11.setText("cpm");
+
+        jFDVds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFDVds.setForeground(java.awt.Color.red);
+        jFDVds.setText("...");
+
+        jCheckFDA.setSelected(true);
+        jCheckFDA.setText("Fluidité accommodative :");
+        jCheckFDA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckFDAStateChanged(evt);
+            }
+        });
+        jCheckFDA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckFDAActionPerformed(evt);
+            }
+        });
+
+        jFDA.setModel(new javax.swing.SpinnerNumberModel(10, 0, null, 1));
+        jFDA.setToolTipText("<html>Fluidité accommodative binoculaire<br>(cycles par mn)</html>");
+        jFDA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFDAStateChanged(evt);
+            }
+        });
+        jFDA.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFDAPropertyChange(evt);
+            }
+        });
+
+        jUnit12.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit12.setText("cpm");
+
+        jFDAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFDAds.setForeground(java.awt.Color.red);
+        jFDAds.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -621,6 +694,18 @@ public class Panel_VB extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSheardVL, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -631,7 +716,7 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(jSheardVP, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,6 +767,14 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(21, 21, 21)
                         .addComponent(jPPAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckACA, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jACA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jUnit10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -722,50 +815,46 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckACA, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jACA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jUnit10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jPhorieLds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSheardVL, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCheckFDA)
+                            .addComponent(jCheckFDV, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jFDV, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jUnit11, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jFDVds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jFDA, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jUnit12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jFDAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckPhorieL)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jUnit1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jPhorieLds))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel12))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckPhorieL)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jPhorieL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jUnit1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jPhorieLds)))
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jSheardVL))))
+                        .addComponent(jSheardVL)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -779,9 +868,10 @@ public class Panel_VB extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jPhoriePds))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(jSheardVP)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel11))
+                    .addComponent(jSheardVP))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckFusionDP)
@@ -926,7 +1016,29 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(4, 4, 4)
                         .addComponent(jLabel10))
                     .addComponent(jACA_Calcul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckFDV)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jUnit11)
+                            .addComponent(jFDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jFDVds)))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckFDA)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jFDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jUnit12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jFDAds))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1041,6 +1153,9 @@ public class Panel_VB extends javax.swing.JPanel {
         //PPA
         jPPAStateChanged (null) ;
         jCheckPPA.setSelected(true) ;
+        //FDA
+        jFDAStateChanged (null) ;
+        jCheckFDA.setSelected(true) ;
     }
     
     private void jPPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPPAStateChanged
@@ -1153,6 +1268,47 @@ public class Panel_VB extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jACAStateChanged
 
+    private void jCheckFDVStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFDVStateChanged
+        jFDVStateChanged (null) ;
+    }//GEN-LAST:event_jCheckFDVStateChanged
+
+    private void jFDVStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFDVStateChanged
+        int p = (int) jFDV.getValue() ;
+        double ds = OrthoCotation.baseValues.updateFDV ( p, jCheckFDV.isSelected() ) ;
+        jFDVds.setText(String.format("%+.2f", ds) + " DS");
+    }//GEN-LAST:event_jFDVStateChanged
+
+    private void jFDVPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFDVPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFDVPropertyChange
+
+    private void jCheckFDAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFDAStateChanged
+        jFDAStateChanged (null) ;
+    }//GEN-LAST:event_jCheckFDAStateChanged
+
+    private void jFDAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFDAStateChanged
+        int p = (int) jFDA.getValue() ;
+        if (OrthoCotation.baseValues.patientAge.years != 0) {
+            double ds = OrthoCotation.baseValues.updateFDA ( p, jCheckFDA.isSelected() ) ;
+            jFDAds.setText(String.format("%+.2f", ds) + " DS");
+            jFDAds.setToolTipText(null);
+        }
+        else {
+            jFDAds.setText("[age ?]") ;
+            jFDAds.setForeground(Color.BLUE);
+            jFDAds.setToolTipText("Précisez la date de naissance...");
+            jCheckFDA.setSelected(false) ;
+        }
+    }//GEN-LAST:event_jFDAStateChanged
+
+    private void jFDAPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFDAPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFDAPropertyChange
+
+    private void jCheckFDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFDAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckFDAActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jACA;
@@ -1165,6 +1321,8 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JSpinner jACA_PP;
     private javax.swing.JLabel jACAds;
     private javax.swing.JCheckBox jCheckACA;
+    private javax.swing.JCheckBox jCheckFDA;
+    private javax.swing.JCheckBox jCheckFDV;
     private javax.swing.JCheckBox jCheckFusionCL;
     private javax.swing.JCheckBox jCheckFusionCP;
     private javax.swing.JCheckBox jCheckFusionDL;
@@ -1174,6 +1332,10 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckPhorieL;
     private javax.swing.JCheckBox jCheckPhorieP;
     private javax.swing.JSpinner jEIP;
+    private javax.swing.JSpinner jFDA;
+    private javax.swing.JLabel jFDAds;
+    private javax.swing.JSpinner jFDV;
+    private javax.swing.JLabel jFDVds;
     private javax.swing.JSpinner jFusionCL;
     private javax.swing.JLabel jFusionCLds;
     private javax.swing.JSpinner jFusionCP;
@@ -1207,6 +1369,8 @@ public class Panel_VB extends javax.swing.JPanel {
     public static javax.swing.JLabel jSphere_3;
     private javax.swing.JLabel jUnit1;
     private javax.swing.JLabel jUnit10;
+    private javax.swing.JLabel jUnit11;
+    private javax.swing.JLabel jUnit12;
     private javax.swing.JLabel jUnit2;
     private javax.swing.JLabel jUnit3;
     private javax.swing.JLabel jUnit4;

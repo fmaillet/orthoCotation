@@ -19,6 +19,7 @@ public class BaseDSValues {
     static Values ppa ;
     static Values ppc ;
     static Values aca ;
+    static Values fdv, fda ;
     
     static Age patientAge ;
     
@@ -32,8 +33,38 @@ public class BaseDSValues {
         aca = new Values () ;
         ppc = new Values () ;
         ppa = new Values () ;
+        fdv = new Values () ;
+        fda = new Values () ;
         
         patientAge = new Age () ;
+    }
+    
+    public double updateFDV (int a, boolean s) {
+        double ds = - Math.abs( (double) a - 15.0 ) / 3.0 ;
+        fdv.raw = (double) a ;
+        fdv.ds = ds ;
+        fdv.selected = s ;
+        //maj du graph
+        OrthoCotation.polarChart.updateDataset () ;
+        return ds ;
+    }
+    
+    public double updateFDA (int p, boolean s) {
+        double ds ;
+        if (patientAge.years <= 6)
+            ds = ((double) p - 3.0 ) / 2.5 ;
+        else if (patientAge.years == 7)
+            ds = ((double) p - 3.5 ) / 2.5 ;
+        else if (patientAge.years >= 8 & patientAge.years <= 12)
+            ds = ((double) p - 5.0 ) / 2.5 ;
+        else
+            ds = ((double) p - 10.0 ) / 5.0 ;
+        fda.raw = (double) p ;
+        fda.ds = ds ;
+        fda.selected = s ;
+        //maj du graph
+        OrthoCotation.polarChart.updateDataset () ;
+        return ds ;
     }
     
     public double updateACA (double a, boolean s) {

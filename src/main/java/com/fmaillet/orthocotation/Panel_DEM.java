@@ -84,7 +84,7 @@ public class Panel_DEM extends javax.swing.JPanel {
         if (OrthoCotation.user.nom == null) return ;
         int y = OrthoCotation.baseValues.patientAge.years - 6;
         if (y<0) y = 0 ;
-        else if (y>9) y = 9 ;
+        else if (y>8) y = 8 ;
         //DS errors
         double t = (error_M[y] - err) / error_DS[y] ;
         jErrors_ds.setText(String.format("%+.2f", t));

@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,14 +24,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -168,7 +173,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         Properties p = new Properties();
         p.put("text.today", "Aujourd'hui");
         p.put("text.month", "Mois");
-        p.put("text.year", "AnnÃ©e");
+        p.put("text.year", "Année");
         JDatePanelImpl datePanel = new JDatePanelImpl(modelBilan, p);
         dateBilan = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         dateBilan.setBounds(100, 10, 130, 27);
@@ -194,12 +199,26 @@ public class OrthoCotation extends JFrame implements ActionListener {
         JDatePanelImpl dateB = new JDatePanelImpl(modelBirth, p);
         dateBirth = new JDatePickerImpl(dateB, new DateLabelFormatter());
         dateBirth.setBounds(375, 10, 130, 27);
+        ((JTextField) dateBirth.getComponent(0)).setToolTipText("Format : jj/mm/aaaa");
+        ((JButton) dateBirth.getComponent(1)).setToolTipText("Format : jj/mm/aaaa");
+        dateBirth.setTextEditable(true);
+        dateBirth.getJFormattedTextField().setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
         dateBirth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 calculateAge () ;
             }
-            }) ;
+        }) ;
+        
+        dateBirth.getModel().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+                calculateAge() ;
+            }
+        });
+        
+        
         getContentPane().add(dateBirth);
         
         labelAge = new JLabel ("[age ?]") ;
@@ -317,7 +336,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.0.0 du 08/03/2018" ;
+        return "v1.0.1 du 09/03/2018" ;
     }
 
     @Override
@@ -358,13 +377,15 @@ public class OrthoCotation extends JFrame implements ActionListener {
 
 class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
-        private String datePattern = "dd-MMM-yyyy";
+        private String datePattern = "dd/MM/yyyy";
         private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
 
         @Override
         public Object stringToValue(String text) throws ParseException {
-            return dateFormatter.parseObject(text);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime((Date) dateFormatter.parseObject(text));
+            return cal;
         }
 
         @Override

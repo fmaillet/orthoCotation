@@ -4,6 +4,9 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
+v1.0.1 (en cours)
+- editable birth datePicker
+
 v1.0.0 (09-03-2018)
 - DEM Italian norms(2012) ok
 - DEM & VB DS auto red-green

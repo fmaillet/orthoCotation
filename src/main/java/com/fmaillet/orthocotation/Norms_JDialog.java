@@ -23,17 +23,24 @@ public class Norms_JDialog extends javax.swing.JDialog {
         
         
         String HTMLTEXT = "<html><u>Source :</u><br>"
-                + "Scheiman, M., & Wick, B. (2014). Clinical Management of Binocular Vision: Heterophoric, Accommodative,<br>and Eye Movement Disorders (fourth edition). Lippincott Williams & Wilkins."
+                + "Scheiman, M., & Wick, B. (2014). Clinical Management of Binocular Vision: Heterophoric,<br> Accommodative, and Eye Movement Disorders (fourth edition). Lippincott Williams & Wilkins."
                 + "<br><br><table border=\"1\" style=\"width:80%\">"
                 + "<tr><th>Cover Test</th><th>Moyenne</th><th>DS</th></tr>"
                 + "<tr><td>Vision de près</td><td align=\"center\">X'3</td><td align=\"center\">+/-3</td></tr>"
                 + "<tr><td>Vision de loin</td><td align=\"center\">X1</td><td align=\"center\">+/-2</td></tr>"
                 + "</table>"
                 + "<br><br><table border=\"1\" style=\"width:80%\">"
-                + "<tr><th>Fusion</th><th>Moyenne</th><th>DS</th></tr>"
-                + "<tr><td>Divergence de loin</td><td align=\"center\">D7</td><td align=\"center\">+/-3</td></tr>"
-                + "<tr><td>Convergence de loin</td><td align=\"center\">C11</td><td align=\"center\">+/-7</td></tr>"
-                + "<tr><td></td><td align=\"center\"></td><td align=\"center\"></td></tr>"
+                + "<tr><th>Fusion (Adultes)</th><th>Moyenne</th><th>DS</th></tr>"
+                + "<tr><td>Divergence de loin (D)</td><td align=\"center\">D7</td><td align=\"center\">+/-3</td></tr>"
+                + "<tr><td>Convergence de loin (C)</td><td align=\"center\">C11</td><td align=\"center\">+/-7</td></tr>"
+                + "<tr><td>Divergence de près (D')</td><td align=\"center\">D'13</td><td align=\"center\">+/-6</td></tr>"
+                + "<tr><td>Convergence de près (C')</td><td align=\"center\">C'19</td><td align=\"center\">+/-9</td></tr>"
+                + "</table>"
+                + "<br><br><table border=\"1\" style=\"width:80%\">"
+                + "<tr><th>Fusion (7-12 ans)</th><th>Moyenne</th><th>DS</th></tr>"
+                + "<tr><td>Divergence de près (D')</td><td align=\"center\">D'12</td><td align=\"center\">+/-5</td></tr>"
+                + "<tr><td>Convergence de près (C')</td><td align=\"center\">C'23</td><td align=\"center\">+/-8</td></tr>"
+                + "<tr><td colspan=\"3\" align=\"center\"><i><small>(pas de normes pour la vision de loin : on utilise les normes adultes)</small></i></td></tr>"
                 + "</table>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
@@ -57,6 +64,7 @@ public class Norms_JDialog extends javax.swing.JDialog {
         jTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 502));
 
         jButton1.setText("Fermer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +92,7 @@ public class Norms_JDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jLabel1))
-                        .addGap(0, 420, Short.MAX_VALUE)))
+                        .addGap(0, 468, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

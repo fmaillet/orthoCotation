@@ -3,12 +3,12 @@
 A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
-- baseVB : ds in red-green comme dans DEM
 
-v1.0.0 (en cours)
+v1.0.0 (09-03-2018)
 - DEM Italian norms(2012) ok
-- DEM DS in red-green
+- DEM & VB DS auto red-green
 - App icons & connect png
+- polar chart in panel_VB !
 
 v0.9.1 (08-03-2018)
 - Correction seuil patho à -1 DS

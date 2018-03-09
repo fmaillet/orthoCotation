@@ -141,11 +141,11 @@ public class OrthoCotation extends JFrame implements ActionListener {
         initDateLabels () ;
     }
     
-    private static void addTabbedPanes () {
+    private static void addTabbedPanes (int w, int h) {
         //Tabbed panes
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(0, 0, 700, 500);
-        
+        //tabbedPane.setBounds(0, 0, 700, h-200);
+
         //Premier tab
         tabbedPane.addTab("Vision binoculaire", addTabPanel_VB () );
         
@@ -221,6 +221,17 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
         
+        radioPanel = polarChart.addPolarPanel();
+        radioPanel.setBounds(750, 20, 420, 420);
+        radioPanel.setVisible(true);
+        panelVB.add (radioPanel) ;
+        
+        //Label "clic droit"
+        JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
+        infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
+        infoClic.setBounds(radioPanel.getX(), radioPanel.getY()+radioPanel.getHeight()+10, 270, 25);
+        panelVB.add (infoClic) ;
+        
         return panelVB ;
     }
     
@@ -279,18 +290,18 @@ public class OrthoCotation extends JFrame implements ActionListener {
         // fenetre principale
         fen = new OrthoCotation () ;
         
-        addTabbedPanes () ;
+        addTabbedPanes (fen.getContentPane().getWidth(), fen.getContentPane().getHeight()) ;
         fen.getContentPane().add (tabbedPane) ;
         fen.setVisible(true) ;
-        tabbedPane.setBounds (0, 50, 700, fen.getContentPane().getHeight() + 10);
+        tabbedPane.setBounds (0, 50, fen.getContentPane().getWidth()+10, fen.getContentPane().getHeight()-40);
         fen.setResizable(false);
         
         
         
-        radioPanel = polarChart.addPolarPanel();
+        /*radioPanel = polarChart.addPolarPanel();
         radioPanel.setBounds(750, 20, 420, 420);
         radioPanel.setVisible(true);
-        fen.getContentPane().add (radioPanel) ;
+        fen.getContentPane().add (radioPanel) ;*/
         //fen.getContentPane().revalidate();
         fen.repaint();
         

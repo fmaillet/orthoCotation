@@ -22,6 +22,7 @@ public class BaseDSValues {
     static Values fdv, fda ;
     
     static Age patientAge ;
+    static boolean homme ;
     
     public BaseDSValues () {
         phorieP = new Values () ;
@@ -37,6 +38,7 @@ public class BaseDSValues {
         fda = new Values () ;
         
         patientAge = new Age () ;
+        homme = true ;
     }
     
     public double updateFDV (int a, boolean s) {

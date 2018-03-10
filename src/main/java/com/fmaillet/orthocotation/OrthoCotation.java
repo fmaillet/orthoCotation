@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.URL;
@@ -23,6 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -33,6 +36,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
@@ -226,6 +230,24 @@ public class OrthoCotation extends JFrame implements ActionListener {
         labelAge.setFont(new Font(labelAge.getName(), Font.PLAIN, 18));
         labelAge.setForeground(Color.BLUE);
         getContentPane().add(labelAge) ;
+        
+        //Sexe
+        ButtonGroup grp = new ButtonGroup();
+        JRadioButton h = new JRadioButton("Garçon"); grp.add(h);
+        JRadioButton f = new JRadioButton("Fille");  grp.add(f);
+        h.setBounds(750, 13, 90, 27); f.setBounds(850, 13, 90, 27);
+        h.setOpaque(false); f.setOpaque(false);
+        h.setSelected(true); h.setFont(new Font(h.getName(), Font.PLAIN, 18));
+        f.setFont(new Font(h.getName(), Font.PLAIN, 18));
+        getContentPane().add(h) ; getContentPane().add(f) ;
+        h.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                OrthoCotation.baseValues.homme = h.isSelected() ;
+                panelDEM.updateNSUCO();
+            }
+        });
+        
     }
     
     private static JPanel addTabPanel_VB () {
@@ -287,6 +309,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //Update values
         panelVB.updateFromAge () ;
         panelDEM.updateResults();
+        panelDEM.updateNSUCO();
     }
     
     public static void connected () {
@@ -295,7 +318,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
             comMenu.setEnabled(false) ;
             barreMenus.setEnabled(true);
             // msg panel DEM
-            Panel_DEM.jMsgDemo.setVisible(false);
+            Panel_DEM.jMsgDEM.setText(null);
+            Panel_DEM.jMsgNSUCO.setText(null);
         }
         else comMenu.setEnabled(true) ;
     }
@@ -336,7 +360,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.1.0 du 09/03/2018" ;
+        return "v1.2.0 du 10/03/2018" ;
     }
 
     @Override

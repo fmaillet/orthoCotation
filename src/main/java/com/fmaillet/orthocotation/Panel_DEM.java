@@ -27,6 +27,15 @@ public class Panel_DEM extends javax.swing.JPanel {
     double VT_M[]     = {72.29, 52.74, 45.77, 41.98, 38.13, 35.06, 31.55, 29.71, 29.01} ;
     double VT_DS[]    = {20.99, 10.17, 9.68, 7.89, 6.35, 6.41, 5.74, 4.58, 4.91} ;
     
+    int nsucoS_P[][]  = { {3, 3, 3, 3, 3, 3, 3, 3, 3, 4}, {3, 3, 3, 3, 3, 3, 3, 3, 3, 3} } ; //0: H 1: F
+    int nsucoS_H[][]  = { {2, 2, 3, 3, 3, 3, 3, 3, 3, 3}, {2, 3, 3, 3, 3, 4, 4, 4, 4, 4} } ; //0: H 1: F
+    int nsucoS_B[][]  = { {3, 3, 3, 4, 4, 4, 4, 4, 5, 5}, {4, 4, 4, 4, 4, 4, 5, 5, 5, 5} } ; //0: H 1: F
+    
+    int nsucoP_A[][]  = { {4, 4, 5, 5, 5, 5, 5, 5, 5, 5}, {5, 5, 5, 5, 5, 5, 5, 5, 5, 5} } ; //0: H 1: F
+    int nsucoP_P[][]  = { {2, 2, 3, 3, 3, 4, 4, 4, 5, 5}, {3, 3, 3, 3, 4, 4, 4, 4, 4, 4} } ; //0: H 1: F
+    int nsucoP_H[][]  = { {2, 2, 3, 3, 3, 4, 4, 4, 5, 5}, {3, 3, 3, 3, 3, 4, 4, 4, 4, 4} } ; //0: H 1: F
+    int nsucoP_B[][]  = { {3, 3, 3, 4, 4, 4, 4, 5, 5, 5}, {4, 4, 4, 4, 4, 5, 5, 5, 5, 5} } ; //0: H 1: F
+    
     /**
      * Creates new form Panel_DEM
      */
@@ -49,6 +58,7 @@ public class Panel_DEM extends javax.swing.JPanel {
         jErrors_ds.addPropertyChangeListener("text", l);
         
         updateResults () ;
+        updateNSUCO () ;
     }
     
     protected void paintComponent(Graphics g) {
@@ -83,9 +93,10 @@ public class Panel_DEM extends javax.swing.JPanel {
         jRatio.setText(String.format("%.2f", ratio));
         //if connected and correct age range
         if (OrthoCotation.user.nom == null) return ;
+        jMsgDEM.setText(null);
         int y = OrthoCotation.baseValues.patientAge.years - 6;
-        if (y<0) y = 0 ;
-        else if (y>8) y = 8 ;
+        if (y<0) {y = 0 ; jMsgDEM.setText("(Normes 6 ans par défaut)"); }
+        else if (y>8) {y = 8 ; jMsgDEM.setText("(Normes 14 ans par défaut)"); }
         //DS errors
         double t = (error_M[y] - err) / error_DS[y] ;
         jErrors_ds.setText(String.format("%+.2f", t));
@@ -100,9 +111,52 @@ public class Panel_DEM extends javax.swing.JPanel {
         jRatio_ds.setText(String.format("%+.2f", t));
     }
     
-    private void updateNSUCO () {
-        jNSUCO_S_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
-        jNSUCO_P_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+    public void updateNSUCO () {
+        //Connected ?
+        if (OrthoCotation.user.nom == null) return ;
+        jMsgNSUCO.setText("");
+        //Age ?
+        if (OrthoCotation.baseValues.patientAge.years == 0) return ;
+        //Age -> index
+        int y = OrthoCotation.baseValues.patientAge.years - 5;
+        if (y<0) {y = 0 ; jMsgNSUCO.setText("(Normes 5 ans par défaut)");}
+        if (y> 9) {y = 9 ; jMsgNSUCO.setText("(Normes 14 ans par défaut)");}
+        //Aptitude
+        if ((int) jNSUCO_S_A.getValue() < 5)
+            jNSUCO_S_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_S_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        if ((int) jNSUCO_P_A.getValue() < nsucoP_A[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_P_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_P_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        //Précision
+        if ((int) jNSUCO_S_P.getValue() < nsucoS_P[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_S_P.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_S_P.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        if ((int) jNSUCO_P_P.getValue() < nsucoP_P[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_P_P.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_P_P.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        //Mvt de Tête
+        if ((int) jNSUCO_S_H.getValue() < nsucoS_H[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_S_H.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_S_H.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        if ((int) jNSUCO_P_H.getValue() < nsucoP_H[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_P_H.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_P_H.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        //Mvt de Corps
+        if ((int) jNSUCO_S_B.getValue() < nsucoS_B[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_S_B.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_S_B.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
+        if ((int) jNSUCO_P_B.getValue() < nsucoP_B[OrthoCotation.baseValues.homme ? 0 : 1][y])
+            jNSUCO_P_B.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));
+        else
+            jNSUCO_P_B.setBorder(new MatteBorder(2, 4, 2, 0, Color.GREEN));
     }
 
     /**
@@ -152,14 +206,14 @@ public class Panel_DEM extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jMsgDemo = new javax.swing.JLabel();
+        jMsgDEM = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jNSUCO_S_A = new javax.swing.JSpinner();
         jNSUCO_S_P = new javax.swing.JSpinner();
         jNSUCO_S_H = new javax.swing.JSpinner();
         jNSUCO_S_B = new javax.swing.JSpinner();
-        jMsgDemo1 = new javax.swing.JLabel();
+        jMsgNSUCO = new javax.swing.JLabel();
         jNSUCO_P_A = new javax.swing.JSpinner();
         jNSUCO_P_P = new javax.swing.JSpinner();
         jNSUCO_P_H = new javax.swing.JSpinner();
@@ -303,67 +357,68 @@ public class Panel_DEM extends javax.swing.JPanel {
         jLabel16.setForeground(java.awt.Color.gray);
         jLabel16.setText("NSUCO");
 
-        jMsgDemo.setForeground(java.awt.Color.red);
-        jMsgDemo.setText("(Les écarts à la norme ne sont pas calculés en mode démo)");
+        jMsgDEM.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jMsgDEM.setForeground(java.awt.Color.red);
+        jMsgDEM.setText("(Les écarts à la norme ne sont pas calculés en mode démo)");
 
         jLabel17.setText("Saccades :");
 
         jLabel18.setText("Poursuite :");
 
-        jNSUCO_S_A.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_S_A.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_S_A.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_S_AStateChanged(evt);
             }
         });
 
-        jNSUCO_S_P.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_S_P.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_S_P.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_S_PStateChanged(evt);
             }
         });
 
-        jNSUCO_S_H.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_S_H.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_S_H.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_S_HStateChanged(evt);
             }
         });
 
-        jNSUCO_S_B.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_S_B.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_S_B.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_S_BStateChanged(evt);
             }
         });
 
-        jMsgDemo1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jMsgDemo1.setForeground(java.awt.Color.red);
-        jMsgDemo1.setText("(en cours de développement)");
+        jMsgNSUCO.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jMsgNSUCO.setForeground(java.awt.Color.red);
+        jMsgNSUCO.setText("(Ecarts à la norme non calculés en mode démo)");
 
-        jNSUCO_P_A.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_A.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_P_A.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_P_AStateChanged(evt);
             }
         });
 
-        jNSUCO_P_P.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_P.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_P_P.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_P_PStateChanged(evt);
             }
         });
 
-        jNSUCO_P_H.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_H.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_P_H.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_P_HStateChanged(evt);
             }
         });
 
-        jNSUCO_P_B.setModel(new javax.swing.SpinnerNumberModel());
+        jNSUCO_P_B.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
         jNSUCO_P_B.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jNSUCO_P_BStateChanged(evt);
@@ -371,10 +426,10 @@ public class Panel_DEM extends javax.swing.JPanel {
         });
 
         jUnit5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jUnit5.setText("Hab.");
+        jUnit5.setText("Apt.");
 
         jUnit7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jUnit7.setText("Prec.");
+        jUnit7.setText("Préc.");
 
         jUnit8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit8.setText("Tête");
@@ -396,8 +451,8 @@ public class Panel_DEM extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel15)
-                                    .addGap(127, 127, 127)
-                                    .addComponent(jMsgDemo))
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jMsgDEM))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(12, 12, 12)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,7 +535,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel16)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jMsgDemo1)))))
+                                    .addComponent(jMsgNSUCO)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -520,7 +575,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jMsgDemo))
+                    .addComponent(jMsgDEM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -583,7 +638,7 @@ public class Panel_DEM extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jMsgDemo1))
+                    .addComponent(jMsgNSUCO))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -698,8 +753,8 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    public static javax.swing.JLabel jMsgDemo;
-    public static javax.swing.JLabel jMsgDemo1;
+    public static javax.swing.JLabel jMsgDEM;
+    public static javax.swing.JLabel jMsgNSUCO;
     private javax.swing.JSpinner jNSUCO_P_A;
     private javax.swing.JSpinner jNSUCO_P_B;
     private javax.swing.JSpinner jNSUCO_P_H;

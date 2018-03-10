@@ -34,7 +34,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
@@ -70,6 +69,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static JLabel labelAge ;
     static Panel_VB panelVB ;
     static Panel_DEM panelDEM ;
+    static Panel_TVPS panelTVPS ;
     
     //Graphique
     public static MyPolarChart polarChart = new MyPolarChart () ;
@@ -161,8 +161,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //Second tab
         tabbedPane.addTab("DEM, NSUCO", addTabPanel_DEM ());
          //third tab
-        JPanel panel3 = new JPanel(false);
-        tabbedPane.addTab("TVPS-3", panel3);
+        tabbedPane.addTab("TVPS-3", addTabPanel_TVPS ());
+        //fourth tab
         JPanel panel4 = new JPanel(false);
         tabbedPane.addTab("TVPS-4", panel4);
         
@@ -288,6 +288,20 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.repaint() ;
         
         return panelDEM ;
+    }
+    
+    private static JPanel addTabPanel_TVPS () {
+        
+        
+        //Panel Base Datas
+        panelTVPS = new Panel_TVPS () ;
+        panelTVPS.setSize(700, 460);
+        panelTVPS.setVisible(true);
+        //basePanel.add(baseDatas) ;
+        //basePanel.revalidate() ;
+        //basePanel.repaint() ;
+        
+        return panelTVPS ;
     }
     
     private static void calculateAge () {

@@ -12,11 +12,26 @@ package com.fmaillet.orthocotation;
  */
 public class Panel_TVPS extends javax.swing.JPanel {
 
+    public static int tvpsStdValues[] = new int[7] ;
+    
     /**
      * Creates new form Panel_TVPS
      */
     public Panel_TVPS() {
         initComponents();
+        updateResults () ;
+    }
+    
+    public void updateResults () {
+        tvpsStdValues[0] = (int) jDIS.getValue() ;
+        tvpsStdValues[1] = (int) jMEM.getValue() ;
+        tvpsStdValues[2] = (int) jSPA.getValue() ;
+        tvpsStdValues[3] = (int) jCON.getValue() ;
+        tvpsStdValues[4] = (int) jSEQ.getValue() ;
+        tvpsStdValues[5] = (int) jFGR.getValue() ;
+        tvpsStdValues[6] = (int) jCLO.getValue() ;
+        
+        OrthoCotation.barChart.updateGraph () ;
     }
 
     /**
@@ -72,18 +87,53 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jLabel7.setText("CLO :");
 
         jDIS.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jDIS.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jDISStateChanged(evt);
+            }
+        });
 
         jMEM.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jMEM.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jMEMStateChanged(evt);
+            }
+        });
 
         jSPA.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jSPA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSPAStateChanged(evt);
+            }
+        });
 
         jCON.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jCON.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCONStateChanged(evt);
+            }
+        });
 
         jSEQ.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jSEQ.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSEQStateChanged(evt);
+            }
+        });
 
         jFGR.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jFGR.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jFGRStateChanged(evt);
+            }
+        });
 
         jCLO.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jCLO.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCLOStateChanged(evt);
+            }
+        });
 
         jLabel8.setText("Raw");
 
@@ -150,9 +200,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jMEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jSPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -172,6 +222,34 @@ public class Panel_TVPS extends javax.swing.JPanel {
                 .addContainerGap(181, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jDISStateChanged
+
+    private void jMEMStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jMEMStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jMEMStateChanged
+
+    private void jSPAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSPAStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jSPAStateChanged
+
+    private void jCONStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCONStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jCONStateChanged
+
+    private void jSEQStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSEQStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jSEQStateChanged
+
+    private void jFGRStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFGRStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jFGRStateChanged
+
+    private void jCLOStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCLOStateChanged
+        updateResults () ;
+    }//GEN-LAST:event_jCLOStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

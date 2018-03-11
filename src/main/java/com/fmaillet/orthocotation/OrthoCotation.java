@@ -73,7 +73,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     //Graphique
     public static MyPolarChart polarChart = new MyPolarChart () ;
-    public static JPanel radioPanel ;
+    public static MyBarChart barChart = new MyBarChart () ;
+    public static JPanel radioPanel, tvpsChartPanel ;
+    
     
     //Menus
     static JMenuBar barreMenus ;
@@ -287,6 +289,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
         
+        
+        
         return panelDEM ;
     }
     
@@ -300,6 +304,11 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.add(baseDatas) ;
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
+        
+        tvpsChartPanel = barChart.addBarPanel();
+        tvpsChartPanel.setBounds(660, 20, 500, 300);
+        tvpsChartPanel.setVisible(true);
+        panelTVPS.add (tvpsChartPanel) ;
         
         return panelTVPS ;
     }
@@ -374,7 +383,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.2.0 du 10/03/2018" ;
+        return "v1.3.0 du xx/03/2018" ;
     }
 
     @Override

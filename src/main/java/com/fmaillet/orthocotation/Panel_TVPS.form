@@ -97,9 +97,9 @@
                   <Component id="jMEM" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSPA" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -195,6 +195,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jDISStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jMEM">
       <Properties>
@@ -202,6 +205,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jMEMStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSPA">
       <Properties>
@@ -209,6 +215,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSPAStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jCON">
       <Properties>
@@ -216,6 +225,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCONStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSEQ">
       <Properties>
@@ -223,6 +235,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSEQStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jFGR">
       <Properties>
@@ -230,6 +245,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jFGRStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="jCLO">
       <Properties>
@@ -237,6 +255,9 @@
           <SpinnerModel initial="11" maximum="16" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCLOStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>

@@ -6,7 +6,9 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Color;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -40,18 +42,33 @@ public class MyBarChart {
          createDataset(),          
          PlotOrientation.VERTICAL,           
          true, true, false);
-         
+         panel = new ChartPanel(chart);
          chart.removeLegend();
+         //Menu
+         JPopupMenu popup = panel.getPopupMenu();
+         popup.remove(0); popup.remove(0);
+         popup.remove(2); popup.remove(2);
+         popup.remove(2); popup.remove(2);
+         popup.remove(2); popup.remove(2);popup.remove(2);
+         JMenuItem j = (JMenuItem) popup.getComponent(1) ;
+         //System.out.println (j.getText());
+         j.setText("Enregistrer");
     }
     
     public JPanel addBarPanel () {
-        panel = new ChartPanel(chart);
+        
         panel.setMouseZoomable(false);
         return panel ;
     }
     
     public void updateGraph () {
         dataset.clear();
+        
+        if (OrthoCotation.user.nom == null) {
+            panel.setEnabled(false);
+            return ;
+        }
+        else panel.setEnabled(true);
         
         dataset.addValue( Panel_TVPS.tvpsStdValues[0] , "base" , "DIS" );        
         dataset.addValue( Panel_TVPS.tvpsStdValues[1] , "base" , "MEM" );        
@@ -62,7 +79,7 @@ public class MyBarChart {
         dataset.addValue( Panel_TVPS.tvpsStdValues[6] , "base" , "CLO" );
         
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
-        plot.getDomainAxis().setLabel("Sub-Tests");
+        plot.getDomainAxis().setLabel("Subtests");
         plot.getRangeAxis().setLabel("Scores standards");
         
         BarRenderer barRenderer = (BarRenderer) plot.getRenderer();

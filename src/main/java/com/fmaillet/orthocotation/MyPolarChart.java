@@ -13,7 +13,9 @@ import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
@@ -107,6 +109,15 @@ public class MyPolarChart {
     public JPanel addPolarPanel () {
         panel = new ChartPanel(chart);
         panel.setMouseZoomable(false);
+        //Menu
+         JPopupMenu popup = panel.getPopupMenu();
+         popup.remove(0); popup.remove(0);
+         popup.remove(2); popup.remove(2);
+         popup.remove(2); popup.remove(2);
+         popup.remove(2); popup.remove(2);popup.remove(2);
+         JMenuItem j = (JMenuItem) popup.getComponent(1) ;
+         //System.out.println (j.getText());
+         j.setText("Enregistrer");
         return panel ;
     }
     

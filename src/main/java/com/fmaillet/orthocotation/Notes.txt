@@ -6,7 +6,8 @@ elles ne sont pas dans baseDS
 
 v1.3.0 (en cours)
 - Maven : added ftp pluggin (miss signing)
-- TVPS-3 begin
+- TVPS-3 begin + chart
+- Charts context menu adapted
 
 v1.2.0 (10-03-2018)
 - fin NSUCO

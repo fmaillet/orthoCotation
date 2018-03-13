@@ -333,6 +333,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelVB.updateFromAge () ;
         panelDEM.updateResults();
         panelDEM.updateNSUCO();
+        panelTVPS.updateResults();
     }
     
     public static void connected () {

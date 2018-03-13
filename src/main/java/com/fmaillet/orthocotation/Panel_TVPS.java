@@ -14,12 +14,29 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
     public static int tvpsStdValues[] = new int[7] ;
     
+    int tvps_DIS[][] = { {7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19}, //4.0
+                         {5, 7, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19},  //4.6
+                         {4, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19, 19},  //5.0
+                         {3, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19, 19, 19},   //5.6
+                         {3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 16, 18, 19, 19, 19, 19},   //6.0
+                         {2, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19, 19}    //6.6
+                        };
+    
     /**
      * Creates new form Panel_TVPS
      */
     public Panel_TVPS() {
         initComponents();
         updateResults () ;
+    }
+    
+    private int indexAge (){
+        if (OrthoCotation.baseValues.patientAge.years < 4) return 0 ;
+        int idx = (OrthoCotation.baseValues.patientAge.years - 4) * 2 ;
+        if (OrthoCotation.baseValues.patientAge.months >5) idx++ ;
+        
+        if (idx >= tvps_DIS.length) idx = tvps_DIS.length-1;
+        return idx ;
     }
     
     public void updateResults () {
@@ -30,6 +47,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvpsStdValues[4] = (int) jSEQ.getValue() ;
         tvpsStdValues[5] = (int) jFGR.getValue() ;
         tvpsStdValues[6] = (int) jCLO.getValue() ;
+        
+        if (OrthoCotation.baseValues.patientAge.years == 0) return ;
+        
+        //DIS
+        tvpsStdValues[0] = tvps_DIS[indexAge()][tvpsStdValues[0]-1] ;
+        jStd_DIS.setText(String.valueOf(tvpsStdValues[0]));
+        //MEM
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -62,13 +86,21 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jCLO = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jStd_DIS = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jStd_DIS1 = new javax.swing.JTextField();
+        jStd_DIS2 = new javax.swing.JTextField();
+        jStd_DIS3 = new javax.swing.JTextField();
+        jStd_DIS4 = new javax.swing.JTextField();
+        jStd_DIS5 = new javax.swing.JTextField();
+        jStd_DIS6 = new javax.swing.JTextField();
+        jStd_DIS7 = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -94,49 +126,49 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jLabel7.setText("CLO :");
 
-        jDIS.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jDIS.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jDIS.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jDISStateChanged(evt);
             }
         });
 
-        jMEM.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jMEM.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jMEM.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jMEMStateChanged(evt);
             }
         });
 
-        jSPA.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jSPA.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jSPA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSPAStateChanged(evt);
             }
         });
 
-        jCON.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jCON.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jCON.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCONStateChanged(evt);
             }
         });
 
-        jSEQ.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jSEQ.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jSEQ.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSEQStateChanged(evt);
             }
         });
 
-        jFGR.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jFGR.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jFGR.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFGRStateChanged(evt);
             }
         });
 
-        jCLO.setModel(new javax.swing.SpinnerNumberModel(11, 0, 16, 1));
+        jCLO.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jCLO.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCLOStateChanged(evt);
@@ -145,12 +177,12 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jLabel8.setText("Raw");
 
-        jLabel9.setText("Std Scores");
+        jLabel9.setText("Scaled");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("na");
+        jStd_DIS.setEditable(false);
+        jStd_DIS.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS.setText("na");
 
         jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(255, 255, 255));
@@ -212,6 +244,43 @@ public class Panel_TVPS extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setText("Percentile");
+
+        jStd_DIS1.setEditable(false);
+        jStd_DIS1.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS1.setText("na");
+
+        jStd_DIS2.setEditable(false);
+        jStd_DIS2.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS2.setText("na");
+
+        jStd_DIS3.setEditable(false);
+        jStd_DIS3.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS3.setText("na");
+
+        jStd_DIS4.setEditable(false);
+        jStd_DIS4.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS4.setText("na");
+
+        jStd_DIS5.setEditable(false);
+        jStd_DIS5.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS5.setText("na");
+
+        jStd_DIS6.setEditable(false);
+        jStd_DIS6.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS6.setText("na");
+
+        jStd_DIS7.setEditable(false);
+        jStd_DIS7.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS7.setText("na");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,22 +324,33 @@ public class Panel_TVPS extends javax.swing.JPanel {
                                     .addComponent(jFGR, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jCON, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7))))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                .addComponent(jTextField6)
+                                .addComponent(jTextField5)
+                                .addComponent(jTextField4)
+                                .addComponent(jTextField3)
+                                .addComponent(jTextField2)
+                                .addComponent(jStd_DIS)))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jStd_DIS1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jMsgDEM)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -279,43 +359,51 @@ public class Panel_TVPS extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jDIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jMEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jSPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jStd_DIS3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jSEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jFGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jCLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -379,6 +467,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -393,7 +482,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JSpinner jSEQ;
     private javax.swing.JSpinner jSPA;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jStd_DIS;
+    private javax.swing.JTextField jStd_DIS1;
+    private javax.swing.JTextField jStd_DIS2;
+    private javax.swing.JTextField jStd_DIS3;
+    private javax.swing.JTextField jStd_DIS4;
+    private javax.swing.JTextField jStd_DIS5;
+    private javax.swing.JTextField jStd_DIS6;
+    private javax.swing.JTextField jStd_DIS7;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

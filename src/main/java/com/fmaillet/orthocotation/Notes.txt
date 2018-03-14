@@ -4,6 +4,10 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
+v1.4.0 (en cours)
+- TVPS scaled + pctl prepared
+- DIS norms en cours
+
 v1.3.0 (12-03-2018)
 - Maven : added ftp pluggin (miss signing)
 - TVPS-3 begin + chart

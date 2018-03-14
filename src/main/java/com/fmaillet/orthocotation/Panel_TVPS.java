@@ -19,7 +19,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {4, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19, 19},  //5.0
                          {3, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19, 19, 19},   //5.6
                          {3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 16, 18, 19, 19, 19, 19},   //6.0
-                         {2, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19, 19}    //6.6
+                         {2, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19, 19},    //6.6
+                         {2, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14, 16, 18, 19, 19, 19},     //7.0
+                         {1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, 18, 19, 19},     //7.5
+                         {1, 2, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 16, 18, 19, 19},      //8.0
+                         {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 18, 19, 19},      //8.6
+                         {0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 17, 19, 19},       //9.0
+                         {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 19}        //9.5
                         };
     
     /**
@@ -31,9 +37,15 @@ public class Panel_TVPS extends javax.swing.JPanel {
     }
     
     private int indexAge (){
+        int idx ;
         if (OrthoCotation.baseValues.patientAge.years < 4) return 0 ;
-        int idx = (OrthoCotation.baseValues.patientAge.years - 4) * 2 ;
-        if (OrthoCotation.baseValues.patientAge.months >5) idx++ ;
+        else if (OrthoCotation.baseValues.patientAge.years < 10) {
+            idx = (OrthoCotation.baseValues.patientAge.years - 4) * 2 ;
+            if (OrthoCotation.baseValues.patientAge.months >5) idx++ ;
+        }
+        else {
+            idx = OrthoCotation.baseValues.patientAge.years + 2 ;
+        }
         
         if (idx >= tvps_DIS.length) idx = tvps_DIS.length-1;
         return idx ;

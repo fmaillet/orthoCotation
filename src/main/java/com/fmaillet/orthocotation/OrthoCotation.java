@@ -343,7 +343,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
             barreMenus.setEnabled(true);
             // msg panel DEM
             Panel_DEM.jMsgDEM.setText(null);
-            Panel_DEM.jMsgNSUCO.setText(null);
+            Panel_DEM.jMsgNSUCO.setText("(Age ? Vous devez indiquer une date de naissance)");
+            Panel_DEM.jMsgNSUCO.setForeground(Color.BLUE);
         }
         else comMenu.setEnabled(true) ;
     }

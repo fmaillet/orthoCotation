@@ -1,5 +1,7 @@
 package com.fmaillet.orthocotation;
 
+import org.apache.commons.math3.distribution.NormalDistribution;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +27,23 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {1, 2, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 16, 18, 19, 19},      //8.0
                          {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 18, 19, 19},      //8.6
                          {0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 17, 19, 19},       //9.0
-                         {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 19}        //9.5
+                         {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 19},        //9.5
+                         {0, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 18, 19},        //10.0
+                         {0, 0, 1, 2, 3, 4, 6, 6, 7, 8, 9, 11, 12, 14, 16, 18},         //11.0
+                         {0, 0, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 18},         //12.0
+                         {0, 0, 0, 1, 2, 3, 5, 5, 6, 7, 8, 10, 11, 12, 14, 17},         //13.0
+                         {0, 0, 0, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 17},          //14.0
+                         {0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 16},          //15.0
+                         {0, 0, 0, 0, 0, 1, 3, 4, 5, 6, 7, 8, 10, 11, 13, 16},          //16.0
+                         {0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15},           //17.0
+                         {0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14}            //18.0
+                        };
+    int tvps_MEM[][] = { {6, 7, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 19, 19, 19, 19}, //4.0
+                         {5, 6, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 19, 19, 19, 19}, //4.6
+                         {3, 5, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 19, 19, 19},  //5.0
+                         {2, 4, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19},   //5.6
+                         {2, 3, 5, 6, 7, 9, 10, 11, 12, 14, 15, 17, 18, 19, 19, 19},    //6.0
+                         {1, 2, 4, 5, 6, 8, 9, 10, 11, 13, 14, 16, 18, 19, 19, 19}      //6.6
                         };
     
     /**
@@ -34,6 +52,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
     public Panel_TVPS() {
         initComponents();
         updateResults () ;
+    }
+    
+    public static double zScoreToPercentile(double zScore) {
+		double percentile = 0;
+		
+		NormalDistribution dist = new NormalDistribution();
+		percentile = dist.cumulativeProbability(zScore) * 100;
+		return percentile;
     }
     
     private int indexAge (){
@@ -65,7 +91,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         //DIS
         tvpsStdValues[0] = tvps_DIS[indexAge()][tvpsStdValues[0]-1] ;
         jStd_DIS.setText(String.valueOf(tvpsStdValues[0]));
+        double t = ( (double) tvpsStdValues[0] - 10.0 ) / 3.0 ;
+        jPctl_DIS.setText(String.valueOf (Math.round (zScoreToPercentile(t)))) ;
         //MEM
+        tvpsStdValues[1] = tvps_MEM[indexAge()][tvpsStdValues[1]-1] ;
+        jStd_MEM.setText(String.valueOf(tvpsStdValues[1]));
+        t = ( (double) tvpsStdValues[1] - 10.0 ) / 3.0 ;
+        jPctl_MEM.setText(String.valueOf (Math.round (zScoreToPercentile(t)))) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -99,15 +131,15 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jStd_DIS = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jStd_MEM = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jStd_DIS1 = new javax.swing.JTextField();
-        jStd_DIS2 = new javax.swing.JTextField();
+        jPctl_DIS = new javax.swing.JTextField();
+        jPctl_MEM = new javax.swing.JTextField();
         jStd_DIS3 = new javax.swing.JTextField();
         jStd_DIS4 = new javax.swing.JTextField();
         jStd_DIS5 = new javax.swing.JTextField();
@@ -196,13 +228,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_DIS.setText("na");
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setText("na");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jStd_MEM.setEditable(false);
+        jStd_MEM.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_MEM.setText("na");
+        jStd_MEM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jStd_MEMActionPerformed(evt);
             }
         });
 
@@ -258,15 +290,15 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jLabel10.setText("Percentile");
 
-        jStd_DIS1.setEditable(false);
-        jStd_DIS1.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS1.setText("na");
+        jPctl_DIS.setEditable(false);
+        jPctl_DIS.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_DIS.setText("na");
 
-        jStd_DIS2.setEditable(false);
-        jStd_DIS2.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS2.setText("na");
+        jPctl_MEM.setEditable(false);
+        jPctl_MEM.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_MEM.setText("na");
 
         jStd_DIS3.setEditable(false);
         jStd_DIS3.setBackground(new java.awt.Color(255, 255, 255));
@@ -345,13 +377,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
                                 .addComponent(jTextField5)
                                 .addComponent(jTextField4)
                                 .addComponent(jTextField3)
-                                .addComponent(jTextField2)
+                                .addComponent(jStd_MEM)
                                 .addComponent(jStd_DIS)))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jStd_DIS1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_DIS2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPctl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPctl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStd_DIS3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStd_DIS4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStd_DIS5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,13 +410,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jDIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jStd_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPctl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jMEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -448,9 +480,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
         updateResults () ;
     }//GEN-LAST:event_jCLOStateChanged
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jStd_MEMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_MEMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jStd_MEMActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -491,18 +523,18 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jMEM;
     public static javax.swing.JLabel jMsgDEM;
+    private javax.swing.JTextField jPctl_DIS;
+    private javax.swing.JTextField jPctl_MEM;
     private javax.swing.JSpinner jSEQ;
     private javax.swing.JSpinner jSPA;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jStd_DIS;
-    private javax.swing.JTextField jStd_DIS1;
-    private javax.swing.JTextField jStd_DIS2;
     private javax.swing.JTextField jStd_DIS3;
     private javax.swing.JTextField jStd_DIS4;
     private javax.swing.JTextField jStd_DIS5;
     private javax.swing.JTextField jStd_DIS6;
     private javax.swing.JTextField jStd_DIS7;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jStd_MEM;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

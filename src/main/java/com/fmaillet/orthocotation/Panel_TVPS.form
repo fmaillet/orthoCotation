@@ -81,15 +81,15 @@
                               <Component id="jTextField5" max="32767" attributes="0"/>
                               <Component id="jTextField4" max="32767" attributes="0"/>
                               <Component id="jTextField3" max="32767" attributes="0"/>
-                              <Component id="jTextField2" max="32767" attributes="0"/>
+                              <Component id="jStd_MEM" max="32767" attributes="0"/>
                               <Component id="jStd_DIS" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS1" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS2" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_DIS" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_MEM" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS4" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS5" min="-2" pref="40" max="-2" attributes="0"/>
@@ -123,14 +123,14 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jDIS" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jStd_DIS" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_DIS" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jMEM" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jStd_MEM" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_MEM" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -327,7 +327,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="jStd_MEM">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -337,7 +337,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_MEMActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
@@ -410,7 +410,7 @@
         <Property name="text" type="java.lang.String" value="Percentile"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS1">
+    <Component class="javax.swing.JTextField" name="jPctl_DIS">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -420,7 +420,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS2">
+    <Component class="javax.swing.JTextField" name="jPctl_MEM">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

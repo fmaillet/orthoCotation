@@ -80,7 +80,7 @@
                               <Component id="jTextField6" max="32767" attributes="0"/>
                               <Component id="jTextField5" max="32767" attributes="0"/>
                               <Component id="jTextField4" max="32767" attributes="0"/>
-                              <Component id="jTextField3" max="32767" attributes="0"/>
+                              <Component id="jStd_SPA" max="32767" attributes="0"/>
                               <Component id="jStd_MEM" max="32767" attributes="0"/>
                               <Component id="jStd_DIS" max="32767" attributes="0"/>
                           </Group>
@@ -90,7 +90,7 @@
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <Component id="jPctl_DIS" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jPctl_MEM" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_SPA" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS4" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS5" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jStd_DIS6" min="-2" pref="40" max="-2" attributes="0"/>
@@ -141,8 +141,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jSPA" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jStd_DIS3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jStd_SPA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPctl_SPA" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -347,7 +347,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_MEMActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jStd_SPA">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -357,7 +357,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_SPAActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField4">
@@ -437,7 +437,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS3">
+    <Component class="javax.swing.JTextField" name="jPctl_SPA">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

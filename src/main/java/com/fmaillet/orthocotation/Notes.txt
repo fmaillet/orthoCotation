@@ -6,7 +6,8 @@ elles ne sont pas dans baseDS
 
 v1.4.0 (en cours)
 - TVPS scaled + pctl prepared
-- DIS norms en cours
+- DIS & MEM norms
+- barchart cosmetic & pctl values
 
 v1.3.0 (12-03-2018)
 - Maven : added ftp pluggin (miss signing)

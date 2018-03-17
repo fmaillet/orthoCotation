@@ -1,5 +1,7 @@
 package com.fmaillet.orthocotation;
 
+import java.awt.Color;
+import javax.swing.JColorChooser;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /*
@@ -15,6 +17,7 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 public class Panel_TVPS extends javax.swing.JPanel {
 
     public static int tvpsStdValues[] = new int[7] ;
+    public static int tvpsPctlValues[] = new int[7] ;
     
     int tvps_DIS[][] = { {7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19}, //4.0
                          {5, 7, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19},  //4.6
@@ -43,7 +46,22 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {3, 5, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 19, 19, 19},  //5.0
                          {2, 4, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19},   //5.6
                          {2, 3, 5, 6, 7, 9, 10, 11, 12, 14, 15, 17, 18, 19, 19, 19},    //6.0
-                         {1, 2, 4, 5, 6, 8, 9, 10, 11, 13, 14, 16, 18, 19, 19, 19}      //6.6
+                         {1, 2, 4, 5, 6, 8, 9, 10, 11, 13, 14, 16, 18, 19, 19, 19},     //6.6
+                         {1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 13, 15, 17, 19, 19, 19},      //7.0
+                         {0, 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 14, 16, 18, 19, 19},       //7.6
+                         {0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 15, 17, 19, 19},       //8.0
+                         {0, 0, 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 14, 16, 18, 19},        //8.6
+                         {0, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 14, 16, 18, 19},        //9.0
+                         {0, 0, 0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 18},         //9.6
+                         {0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 14, 16, 18},         //10.0
+                         {0, 0, 0, 0, 1, 3, 4, 5, 6, 7, 8, 10, 11, 13, 15, 17},         //11.0
+                         {0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 14, 17},          //12.0
+                         {0, 0, 0, 0, 0, 1, 2, 3, 5, 6, 7, 8, 10, 12, 14, 16},          //13.0
+                         {0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 7, 8, 9, 11, 13, 16},           //14.0
+                         {0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 6, 7, 9, 10, 12, 15},           //15.0
+                         {0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 10, 12, 15},           //16.0
+                         {0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5, 6, 8, 9, 11, 14},            //17.0
+                         {0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 6, 7, 9, 11, 14}             //18.0
                         };
     
     /**
@@ -92,12 +110,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvpsStdValues[0] = tvps_DIS[indexAge()][tvpsStdValues[0]-1] ;
         jStd_DIS.setText(String.valueOf(tvpsStdValues[0]));
         double t = ( (double) tvpsStdValues[0] - 10.0 ) / 3.0 ;
-        jPctl_DIS.setText(String.valueOf (Math.round (zScoreToPercentile(t)))) ;
+        tvpsPctlValues[0] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_DIS.setText(String.valueOf (tvpsPctlValues[0])) ;
         //MEM
         tvpsStdValues[1] = tvps_MEM[indexAge()][tvpsStdValues[1]-1] ;
         jStd_MEM.setText(String.valueOf(tvpsStdValues[1]));
         t = ( (double) tvpsStdValues[1] - 10.0 ) / 3.0 ;
-        jPctl_MEM.setText(String.valueOf (Math.round (zScoreToPercentile(t)))) ;
+        tvpsPctlValues[1] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_MEM.setText(String.valueOf (tvpsPctlValues[1])) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -145,6 +165,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jStd_DIS5 = new javax.swing.JTextField();
         jStd_DIS6 = new javax.swing.JTextField();
         jStd_DIS7 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -325,6 +346,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jStd_DIS7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_DIS7.setText("na");
 
+        jButton1.setText("Couleur");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -390,6 +418,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
                             .addComponent(jStd_DIS6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(172, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,7 +480,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
                     .addComponent(jCLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -504,8 +538,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
+        OrthoCotation.barChart.changeColor (newColor) ;
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JSpinner jCLO;
     private javax.swing.JSpinner jCON;
     private javax.swing.JSpinner jDIS;

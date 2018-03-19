@@ -76,10 +76,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField7" pref="40" max="32767" attributes="0"/>
-                              <Component id="jTextField6" max="32767" attributes="0"/>
-                              <Component id="jTextField5" max="32767" attributes="0"/>
-                              <Component id="jTextField4" max="32767" attributes="0"/>
+                              <Component id="jStd_CLO" pref="40" max="32767" attributes="0"/>
+                              <Component id="jStd_FGR" max="32767" attributes="0"/>
+                              <Component id="jStd_SEQ" max="32767" attributes="0"/>
+                              <Component id="jStd_CON" max="32767" attributes="0"/>
                               <Component id="jStd_SPA" max="32767" attributes="0"/>
                               <Component id="jStd_MEM" max="32767" attributes="0"/>
                               <Component id="jStd_DIS" max="32767" attributes="0"/>
@@ -91,10 +91,10 @@
                           <Component id="jPctl_DIS" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jPctl_MEM" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jPctl_SPA" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS4" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS5" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS6" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_DIS7" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_CON" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_SEQ" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_FGR" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jPctl_CLO" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -150,29 +150,29 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCON" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jStd_CON" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_CON" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSEQ" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jStd_SEQ" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_SEQ" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jFGR" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jStd_FGR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_FGR" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCLO" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jStd_DIS7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jStd_CLO" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPctl_CLO" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="102" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -360,7 +360,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_SPAActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="jStd_CON">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -370,10 +370,10 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_CONActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="jStd_SEQ">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -383,10 +383,10 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_SEQActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="jStd_FGR">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -396,10 +396,10 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_FGRActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField7">
+    <Component class="javax.swing.JTextField" name="jStd_CLO">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -409,7 +409,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStd_CLOActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -447,7 +447,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS4">
+    <Component class="javax.swing.JTextField" name="jPctl_CON">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -457,7 +457,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS5">
+    <Component class="javax.swing.JTextField" name="jPctl_SEQ">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -467,7 +467,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS6">
+    <Component class="javax.swing.JTextField" name="jPctl_FGR">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -477,7 +477,7 @@
         <Property name="text" type="java.lang.String" value="na"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jStd_DIS7">
+    <Component class="javax.swing.JTextField" name="jPctl_CLO">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

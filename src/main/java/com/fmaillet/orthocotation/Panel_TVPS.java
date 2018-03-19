@@ -87,6 +87,96 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 4, 5, 6, 7, 9, 11}               //18.0
                         };
     
+    int tvps_CON[][] = { {7, 9, 10, 11, 12, 14, 15, 16, 18, 19, 19, 19, 19, 19, 19, 19}, //4.0
+                         {5, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 19, 19, 19, 19, 19},  //4.6
+                         {4, 6, 7, 9, 10, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19},   //5.0
+                         {3, 5, 6, 8, 10, 11, 12, 14, 15, 16, 18, 19, 19, 19, 19, 19},    //5.6
+                         {2, 4, 6, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 19, 19, 19},     //6.0
+                         {2, 4, 5, 7, 8, 9, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19},      //6.6
+                         {1, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19, 19, 19},      //7.0
+                         {1, 2, 4, 5, 7, 8, 9, 10, 12, 13, 15, 16, 18, 19, 19, 19},       //7.6
+                         {1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19},        //8.0
+                         {1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 19, 19},         //8.6
+                         {0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 19, 19},         //9.0
+                         {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 17, 18, 19},          //9.6
+                         {0, 0, 1, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14, 16, 18, 19},          //10.0
+                         {0, 0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 14, 16, 17, 18},           //11.0
+                         {0, 0, 0, 1, 3, 4, 5, 6, 8, 9, 10, 11, 13, 15, 16, 18},           //12.0
+                         {0, 0, 0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18},            //13.0
+                         {0, 0, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 15, 17},            //14.0
+                         {0, 0, 0, 0, 1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 15, 17},             //15.0
+                         {0, 0, 0, 0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 14, 17},             //16.0
+                         {0, 0, 0, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 14, 16},             //17.0
+                         {0, 0, 0, 0, 0, 1, 2, 4, 5, 6, 7, 8, 10, 11, 13, 16}               //18.0
+                        };
+        
+    int tvps_SEQ[][] = { {}, //4.0
+                         {},  //4.6
+                         {},   //5.0
+                         {},    //5.6
+                         {},     //6.0
+                         {},      //6.6
+                         {},      //7.0
+                         {},       //7.6
+                         {},        //8.0
+                         {},         //8.6
+                         {},         //9.0
+                         {},          //9.6
+                         {},          //10.0
+                         {},           //11.0
+                         {},           //12.0
+                         {},            //13.0
+                         {},            //14.0
+                         {},             //15.0
+                         {},             //16.0
+                         {},             //17.0
+                         {}               //18.0
+                        };
+    int tvps_FGR[][] = { {}, //4.0
+                         {},  //4.6
+                         {},   //5.0
+                         {},    //5.6
+                         {},     //6.0
+                         {},      //6.6
+                         {},      //7.0
+                         {},       //7.6
+                         {},        //8.0
+                         {},         //8.6
+                         {},         //9.0
+                         {},          //9.6
+                         {},          //10.0
+                         {},           //11.0
+                         {},           //12.0
+                         {},            //13.0
+                         {},            //14.0
+                         {},             //15.0
+                         {},             //16.0
+                         {},             //17.0
+                         {}               //18.0
+                        };
+    int tvps_CLO[][] = { {}, //4.0
+                         {},  //4.6
+                         {},   //5.0
+                         {},    //5.6
+                         {},     //6.0
+                         {},      //6.6
+                         {},      //7.0
+                         {},       //7.6
+                         {},        //8.0
+                         {},         //8.6
+                         {},         //9.0
+                         {},          //9.6
+                         {},          //10.0
+                         {},           //11.0
+                         {},           //12.0
+                         {},            //13.0
+                         {},            //14.0
+                         {},             //15.0
+                         {},             //16.0
+                         {},             //17.0
+                         {}               //18.0
+                        };
+    
     /**
      * Creates new form Panel_TVPS
      */
@@ -142,11 +232,17 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvpsPctlValues[1] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_MEM.setText(String.valueOf (tvpsPctlValues[1])) ;
         //SPA
-        tvpsStdValues[2] = tvps_MEM[indexAge()][tvpsStdValues[2]-1] ;
+        tvpsStdValues[2] = tvps_SPA[indexAge()][tvpsStdValues[2]-1] ;
         jStd_SPA.setText(String.valueOf(tvpsStdValues[2]));
         t = ( (double) tvpsStdValues[2] - 10.0 ) / 3.0 ;
         tvpsPctlValues[2] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_SPA.setText(String.valueOf (tvpsPctlValues[2])) ;
+        //CON
+        tvpsStdValues[3] = tvps_CON[indexAge()][tvpsStdValues[3]-1] ;
+        jStd_CON.setText(String.valueOf(tvpsStdValues[3]));
+        t = ( (double) tvpsStdValues[3] - 10.0 ) / 3.0 ;
+        tvpsPctlValues[3] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_CON.setText(String.valueOf (tvpsPctlValues[3])) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -182,18 +278,18 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jStd_DIS = new javax.swing.JTextField();
         jStd_MEM = new javax.swing.JTextField();
         jStd_SPA = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jStd_CON = new javax.swing.JTextField();
+        jStd_SEQ = new javax.swing.JTextField();
+        jStd_FGR = new javax.swing.JTextField();
+        jStd_CLO = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPctl_DIS = new javax.swing.JTextField();
         jPctl_MEM = new javax.swing.JTextField();
         jPctl_SPA = new javax.swing.JTextField();
-        jStd_DIS4 = new javax.swing.JTextField();
-        jStd_DIS5 = new javax.swing.JTextField();
-        jStd_DIS6 = new javax.swing.JTextField();
-        jStd_DIS7 = new javax.swing.JTextField();
+        jPctl_CON = new javax.swing.JTextField();
+        jPctl_SEQ = new javax.swing.JTextField();
+        jPctl_FGR = new javax.swing.JTextField();
+        jPctl_CLO = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -298,43 +394,43 @@ public class Panel_TVPS extends javax.swing.JPanel {
             }
         });
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setText("na");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jStd_CON.setEditable(false);
+        jStd_CON.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_CON.setText("na");
+        jStd_CON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jStd_CONActionPerformed(evt);
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField5.setText("na");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jStd_SEQ.setEditable(false);
+        jStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_SEQ.setText("na");
+        jStd_SEQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jStd_SEQActionPerformed(evt);
             }
         });
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField6.setText("na");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jStd_FGR.setEditable(false);
+        jStd_FGR.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_FGR.setText("na");
+        jStd_FGR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jStd_FGRActionPerformed(evt);
             }
         });
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField7.setText("na");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jStd_CLO.setEditable(false);
+        jStd_CLO.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_CLO.setText("na");
+        jStd_CLO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jStd_CLOActionPerformed(evt);
             }
         });
 
@@ -355,25 +451,25 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_SPA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jPctl_SPA.setText("na");
 
-        jStd_DIS4.setEditable(false);
-        jStd_DIS4.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS4.setText("na");
+        jPctl_CON.setEditable(false);
+        jPctl_CON.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_CON.setText("na");
 
-        jStd_DIS5.setEditable(false);
-        jStd_DIS5.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS5.setText("na");
+        jPctl_SEQ.setEditable(false);
+        jPctl_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_SEQ.setText("na");
 
-        jStd_DIS6.setEditable(false);
-        jStd_DIS6.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS6.setText("na");
+        jPctl_FGR.setEditable(false);
+        jPctl_FGR.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_FGR.setText("na");
 
-        jStd_DIS7.setEditable(false);
-        jStd_DIS7.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS7.setText("na");
+        jPctl_CLO.setEditable(false);
+        jPctl_CLO.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_CLO.setText("na");
 
         jButton1.setText("Couleur");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -429,10 +525,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField5)
-                                .addComponent(jTextField4)
+                                .addComponent(jStd_CLO, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                .addComponent(jStd_FGR)
+                                .addComponent(jStd_SEQ)
+                                .addComponent(jStd_CON)
                                 .addComponent(jStd_SPA)
                                 .addComponent(jStd_MEM)
                                 .addComponent(jStd_DIS)))
@@ -442,10 +538,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
                             .addComponent(jPctl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPctl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPctl_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_DIS4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_DIS5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_DIS6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPctl_CON, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPctl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPctl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPctl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -489,26 +585,26 @@ public class Panel_TVPS extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jSEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jFGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jCLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStd_DIS7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStd_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(56, 56, 56))
@@ -551,21 +647,21 @@ public class Panel_TVPS extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jStd_SPAActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jStd_CONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CONActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jStd_CONActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jStd_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_SEQActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jStd_SEQActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jStd_FGRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_FGRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jStd_FGRActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jStd_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CLOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jStd_CLOActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.RED);
@@ -592,22 +688,22 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jMEM;
     public static javax.swing.JLabel jMsgDEM;
+    private javax.swing.JTextField jPctl_CLO;
+    private javax.swing.JTextField jPctl_CON;
     private javax.swing.JTextField jPctl_DIS;
+    private javax.swing.JTextField jPctl_FGR;
     private javax.swing.JTextField jPctl_MEM;
+    private javax.swing.JTextField jPctl_SEQ;
     private javax.swing.JTextField jPctl_SPA;
     private javax.swing.JSpinner jSEQ;
     private javax.swing.JSpinner jSPA;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jStd_CLO;
+    private javax.swing.JTextField jStd_CON;
     private javax.swing.JTextField jStd_DIS;
-    private javax.swing.JTextField jStd_DIS4;
-    private javax.swing.JTextField jStd_DIS5;
-    private javax.swing.JTextField jStd_DIS6;
-    private javax.swing.JTextField jStd_DIS7;
+    private javax.swing.JTextField jStd_FGR;
     private javax.swing.JTextField jStd_MEM;
+    private javax.swing.JTextField jStd_SEQ;
     private javax.swing.JTextField jStd_SPA;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

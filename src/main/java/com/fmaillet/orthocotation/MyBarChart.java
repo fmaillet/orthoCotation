@@ -95,6 +95,8 @@ public class MyBarChart {
         plot.setNoDataMessage("NO DATA!"); 
         plot.getDomainAxis().setLabel("Subtests");
         plot.getRangeAxis().setLabel("Scaled scores");
+        plot.getRangeAxis().setAutoRange(false);
+        plot.getRangeAxis().setRange(0.0, 20);
         plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
         plot.setBackgroundPaint(ChartColor.white); 
         plot.setRangeGridlinesVisible(true);

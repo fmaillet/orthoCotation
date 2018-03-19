@@ -38,6 +38,7 @@ public class VB_JDialog extends javax.swing.JDialog {
         //Texte
         jTextPane.setContentType("text/html");
         jTextPane.setText(HTMLTEXT);
+        jTextPane.setCaretPosition(0);
     }
 
     /**

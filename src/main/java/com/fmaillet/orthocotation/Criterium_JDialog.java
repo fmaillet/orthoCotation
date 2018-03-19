@@ -36,7 +36,7 @@ public class Criterium_JDialog extends javax.swing.JDialog {
                 + "convergence pour compenser confortable son exophorie.<br>"
                 + "<br><br>"
                 + "Un certain nombre d'études ont confirmé le rôle prédictif du critère de Sheard : il est à la fois bien "
-                + "corrélé aux symptômes et à leur amélioration après augemntation des réserves fusionnelles."
+                + "corrélé aux symptômes et à leur amélioration après augmentation des réserves fusionnelles."
                 + "</blockquote>"
                 + ""
                 + "<br><br><i>(à suivre...)</i></html>";
@@ -44,6 +44,7 @@ public class Criterium_JDialog extends javax.swing.JDialog {
         //Texte
         jTextPane.setContentType("text/html");
         jTextPane.setText(HTMLTEXT);
+        jTextPane.setCaretPosition(0);
     }
 
     /**

@@ -99,12 +99,16 @@ public class Panel_VB extends javax.swing.JPanel {
     boolean calculACA_isValid = false ;
     
     private void updateSheardVL () {
+        sheardCriteriumVL = 0 ;
         double requis = 0 ;
         if (OrthoCotation.baseValues.phorieL.raw < 0) {
             requis = - 2 * OrthoCotation.baseValues.phorieL.raw ;
             if (OrthoCotation.baseValues.fusionCL.raw < requis) {
                 jSheardVL.setText("nok (requis: C" + String.valueOf((int) requis) + ")") ;
                 jSheardVL.setForeground(Color.RED);
+                
+                double d = 2 * OrthoCotation.baseValues.phorieL.raw + OrthoCotation.baseValues.fusionCL.raw ;
+                sheardCriteriumVL = d / 7.0 ;
             }
             else {
                 jSheardVL.setText("ok  (requis: C" + String.valueOf((int) requis) + ")") ;
@@ -116,6 +120,9 @@ public class Panel_VB extends javax.swing.JPanel {
             if (OrthoCotation.baseValues.fusionDL.raw < requis) {
                 jSheardVL.setText("nok (requis: D" + String.valueOf((int) requis) + ")") ;
                 jSheardVL.setForeground(Color.RED);
+                
+                double d = OrthoCotation.baseValues.fusionDL.raw - 2 * OrthoCotation.baseValues.phorieL.raw;
+                sheardCriteriumVL = d / 3.0 ;
             }
             else {
                 jSheardVL.setText("ok  (requis: D" + String.valueOf((int) requis) + ")") ;
@@ -297,7 +304,7 @@ public class Panel_VB extends javax.swing.JPanel {
         jUnit12 = new javax.swing.JLabel();
         jFDAds = new javax.swing.JLabel();
         jChkSheardVP = new javax.swing.JCheckBox();
-        jChkSheardVP1 = new javax.swing.JCheckBox();
+        jChkSheardVL = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(600, 550));
 
@@ -723,11 +730,11 @@ public class Panel_VB extends javax.swing.JPanel {
             }
         });
 
-        jChkSheardVP1.setSelected(true);
-        jChkSheardVP1.setText("Critère de Sheard (VL) :");
-        jChkSheardVP1.addActionListener(new java.awt.event.ActionListener() {
+        jChkSheardVL.setSelected(true);
+        jChkSheardVL.setText("Critère de Sheard (VL) :");
+        jChkSheardVL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChkSheardVP1ActionPerformed(evt);
+                jChkSheardVLActionPerformed(evt);
             }
         });
 
@@ -881,7 +888,7 @@ public class Panel_VB extends javax.swing.JPanel {
                                         .addGap(0, 0, 0)
                                         .addComponent(jFusionDLds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jChkSheardVP1)
+                                .addComponent(jChkSheardVL)
                                 .addGap(20, 20, 20)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSheardVP, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
@@ -976,7 +983,7 @@ public class Panel_VB extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jChkSheardVP1)
+                            .addComponent(jChkSheardVL)
                             .addComponent(jSheardVL))))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1105,7 +1112,8 @@ public class Panel_VB extends javax.swing.JPanel {
 
         double ds = OrthoCotation.baseValues.updatePhorieL ( p, jCheckPhorieL.isSelected() ) ;
         jPhorieLds.setText(String.format("%+.2f", ds) + " DS");
-        updateSheardVL () ;
+        jFusionDLStateChanged (null) ;
+        jFusionCLStateChanged (null) ;
     }//GEN-LAST:event_jPhorieLStateChanged
 
     private void jPhoriePStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jPhoriePStateChanged
@@ -1185,8 +1193,14 @@ public class Panel_VB extends javax.swing.JPanel {
     private void jFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionDLStateChanged
         int p = (int) jFusionDL.getValue() ;
         double ds = OrthoCotation.baseValues.updateFusionDL ( p, jCheckFusionDL.isSelected() ) ;
-        jFusionDLds.setText(String.format("%+.2f", ds) + " DS");
         updateSheardVL () ;
+        //Si éso & ! sheard
+        if (OrthoCotation.baseValues.phorieL.raw > 0 & jChkSheardVL.isSelected() & this.sheardCriteriumVL < ds) {
+                OrthoCotation.baseValues.fusionDL.ds = ds = this.sheardCriteriumVL ;
+                OrthoCotation.polarChart.updateDataset();
+        }  
+        jFusionDLds.setText(String.format("%+.2f", ds) + " DS");
+        
     }//GEN-LAST:event_jFusionDLStateChanged
 
     private void jCheckFusionCLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCLStateChanged
@@ -1196,8 +1210,14 @@ public class Panel_VB extends javax.swing.JPanel {
     private void jFusionCLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jFusionCLStateChanged
         int p = (int) jFusionCL.getValue() ;
         double ds = OrthoCotation.baseValues.updateFusionCL ( p, jCheckFusionCL.isSelected() ) ;
-        jFusionCLds.setText(String.format("%+.2f", ds) + " DS");
         updateSheardVL () ;
+        //Si éso & ! sheard
+        if (OrthoCotation.baseValues.phorieL.raw < 0 & jChkSheardVL.isSelected() & this.sheardCriteriumVL < ds) {
+                OrthoCotation.baseValues.fusionCL.ds = ds = this.sheardCriteriumVL ;
+                OrthoCotation.polarChart.updateDataset();
+        }  
+        jFusionCLds.setText(String.format("%+.2f", ds) + " DS");
+        
     }//GEN-LAST:event_jFusionCLStateChanged
 
     private void jCheckFusionCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFusionCLActionPerformed
@@ -1387,9 +1407,10 @@ public class Panel_VB extends javax.swing.JPanel {
         jFusionCPStateChanged (null) ;
     }//GEN-LAST:event_jChkSheardVPActionPerformed
 
-    private void jChkSheardVP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChkSheardVP1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jChkSheardVP1ActionPerformed
+    private void jChkSheardVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChkSheardVLActionPerformed
+        jFusionDLStateChanged (null) ;
+        jFusionCLStateChanged (null) ;
+    }//GEN-LAST:event_jChkSheardVLActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1413,8 +1434,8 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckPPC;
     private javax.swing.JCheckBox jCheckPhorieL;
     private javax.swing.JCheckBox jCheckPhorieP;
+    private javax.swing.JCheckBox jChkSheardVL;
     private javax.swing.JCheckBox jChkSheardVP;
-    private javax.swing.JCheckBox jChkSheardVP1;
     private javax.swing.JSpinner jEIP;
     private javax.swing.JSpinner jFDA;
     private javax.swing.JLabel jFDAds;

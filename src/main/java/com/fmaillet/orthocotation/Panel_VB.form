@@ -187,7 +187,7 @@
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jChkSheardVP1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jChkSheardVL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -319,7 +319,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jChkSheardVP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jChkSheardVL" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jSheardVL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1133,13 +1133,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jChkSheardVPActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jChkSheardVP1">
+    <Component class="javax.swing.JCheckBox" name="jChkSheardVL">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Crit&#xe8;re de Sheard (VL) :"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jChkSheardVP1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jChkSheardVLActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

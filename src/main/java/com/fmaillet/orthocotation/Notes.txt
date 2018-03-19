@@ -4,10 +4,14 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.4.0 (en cours)
+v1.4.1 (en cours)
+- aide critères
+
+v1.4.0 (19-03-2018)
 - TVPS scaled + pctl prepared
-- DIS & MEM norms
+- DIS, MEM & SPA norms
 - barchart cosmetic & pctl values
+- Sheard adjust DS ok (VP & VL)
 
 v1.3.0 (12-03-2018)
 - Maven : added ftp pluggin (miss signing)

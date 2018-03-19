@@ -79,7 +79,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     //Menus
     static JMenuBar barreMenus ;
-    static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsItem, comMenu ;
+    static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsItem, comMenu, helpCriteriumItem ;
     
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMO (NON CONNECTE)");
@@ -136,6 +136,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
         helpNormsItem = new JMenuItem ("Normes utilisées") ;
         helpNormsItem.addActionListener(this);
         helpMenu.add(helpNormsItem) ;
+        helpCriteriumItem = new JMenuItem ("Critères") ;
+        helpCriteriumItem.addActionListener(this);
+        helpMenu.add(helpCriteriumItem) ;
         // A propos
         helpMenu.addSeparator();
         aboutItem = new JMenuItem ("A Propos") ;
@@ -385,7 +388,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.4.0 du xx/03/2018" ;
+        return "v1.4.1 du xx/03/2018" ;
     }
 
     @Override
@@ -408,6 +411,12 @@ public class OrthoCotation extends JFrame implements ActionListener {
         }
         else if (source == helpNormsItem) {
             Norms_JDialog about = new Norms_JDialog(this, true);
+            about.pack();
+            about.setLocationRelativeTo(null) ;
+            about.setVisible(true);
+        }
+        else if (source == helpCriteriumItem) {
+            Criterium_JDialog about = new Criterium_JDialog(this, true);
             about.pack();
             about.setLocationRelativeTo(null) ;
             about.setVisible(true);

@@ -13,7 +13,7 @@ public class BaseDSValues {
     static public Values phorieP ;
     static public Values phorieL ;
     static Values fusionCP ;
-    static Values fusionDP ;
+    static public Values fusionDP ;
     static public Values fusionCL ;
     static public Values fusionDL ;
     static Values ppa ;

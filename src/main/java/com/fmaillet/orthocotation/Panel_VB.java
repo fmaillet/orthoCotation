@@ -28,7 +28,7 @@ public class Panel_VB extends javax.swing.JPanel {
         initComponents();
                
         //placement
-        jLabel11.setLocation(jLabel12.getX()+50, jPhoriePds.getY());
+        //jLabel11.setLocation(jLabel12.getX()+50, jPhoriePds.getY());
         jLabel12.setLocation(jLabel12.getX()+50, jPhorieLds.getY());
         
         //Unités
@@ -129,10 +129,12 @@ public class Panel_VB extends javax.swing.JPanel {
             return ;
         }
         sheardCriteriumVP = 0 ;
+        double requis = 0 ;
         if (OrthoCotation.baseValues.phorieP.raw < 0) {
+            requis = - 2 * OrthoCotation.baseValues.phorieP.raw ;
             jSheardVP.setToolTipText(null);
-            if (OrthoCotation.baseValues.fusionCP.raw < -2 * OrthoCotation.baseValues.phorieP.raw) {
-                jSheardVP.setText("nok") ;
+            if (OrthoCotation.baseValues.fusionCP.raw < requis) {
+                jSheardVP.setText("nok (requis: C'" + String.valueOf((int) requis) + ")") ;
                 jSheardVP.setForeground(Color.RED);
                 
                 double d = 2 * OrthoCotation.baseValues.phorieP.raw + OrthoCotation.baseValues.fusionCP.raw ;
@@ -143,13 +145,15 @@ public class Panel_VB extends javax.swing.JPanel {
             
             }
             else {
-                jSheardVP.setText("ok") ;
+                jSheardVP.setText("ok  (requis: C'" + String.valueOf((int) requis) + ")") ;
                 jSheardVP.setForeground(Color.GREEN);
             }
+            
         }
         else if (OrthoCotation.baseValues.phorieP.raw > 0) {
-            if (OrthoCotation.baseValues.fusionDP.raw < 2 * OrthoCotation.baseValues.phorieP.raw) {
-                jSheardVP.setText("nok") ;
+            requis = 2 * OrthoCotation.baseValues.phorieP.raw ;
+            if ( OrthoCotation.baseValues.fusionDP.raw < requis ) {
+                jSheardVP.setText("nok (requis: D'" + String.valueOf((int) requis) + ")") ;
                 jSheardVP.setForeground(Color.RED);
                 
                 double d =  OrthoCotation.baseValues.fusionDP.raw - 2 * OrthoCotation.baseValues.phorieP.raw;
@@ -159,11 +163,15 @@ public class Panel_VB extends javax.swing.JPanel {
                     sheardCriteriumVP = d / 6.0 ;
             }
             else {
-                jSheardVP.setText("ok") ;
+                jSheardVP.setText("ok (requis D'" + String.valueOf((int) requis) + ")") ;
                 jSheardVP.setForeground(Color.GREEN);
             }
+            
         }
-        System.out.println (sheardCriteriumVP) ;
+        else {
+            jSheardVP.setText("ok") ;
+            jSheardVP.setForeground(Color.GREEN);
+        }
     }
     
     private void gradientACA () {
@@ -270,7 +278,6 @@ public class Panel_VB extends javax.swing.JPanel {
         jACA_Calcul = new javax.swing.JTextField();
         jACA = new javax.swing.JSpinner();
         jUnit10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jACAds = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jSheardVL = new javax.swing.JLabel();
@@ -628,8 +635,6 @@ public class Panel_VB extends javax.swing.JPanel {
         jUnit10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jUnit10.setText("d");
 
-        jLabel11.setText("Critère de Sheard (VP) :");
-
         jACAds.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jACAds.setForeground(java.awt.Color.red);
         jACAds.setText("...");
@@ -706,9 +711,10 @@ public class Panel_VB extends javax.swing.JPanel {
         jFDAds.setText("...");
 
         jChkSheardVP.setText("Critère de Sheard (VP) :");
-        jChkSheardVP.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jChkSheardVPStateChanged(evt);
+        jChkSheardVP.setEnabled(false);
+        jChkSheardVP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jChkSheardVPActionPerformed(evt);
             }
         });
 
@@ -731,14 +737,6 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSheardVL, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jFusionCPds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckFusionCL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -780,26 +778,6 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(jACAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jSphere_1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jSphere_2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jSphere_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5)
-                        .addGap(10, 10, 10)
-                        .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -838,16 +816,46 @@ public class Panel_VB extends javax.swing.JPanel {
                                 .addComponent(jUnit12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(jFDAds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jCheckPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(263, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(6, 6, 6)
+                            .addComponent(jACA_0, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jSphere_1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(8, 8, 8)
+                            .addComponent(jACA_1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jSphere_2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(8, 8, 8)
+                            .addComponent(jACA_2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jSphere_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(4, 4, 4)
+                            .addComponent(jACA_3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel5)
+                            .addGap(10, 10, 10)
+                            .addComponent(jGradient, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(jPhorieP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(jUnit3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jUnit4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jPhoriePds, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFusionCPds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCheckFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
@@ -856,13 +864,10 @@ public class Panel_VB extends javax.swing.JPanel {
                                 .addComponent(jUnit2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(jFusionDPds, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jSheardVP, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jChkSheardVP)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jChkSheardVP)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSheardVP, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -897,39 +902,38 @@ public class Panel_VB extends javax.swing.JPanel {
                         .addComponent(jUnit3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jPhoriePds))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel11))
-                    .addComponent(jSheardVP))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jCheckFusionDP)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(jUnit2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(jFusionDPds)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jChkSheardVP)
-                        .addGap(5, 5, 5)))
-                .addGap(8, 8, 8)
+                        .addComponent(jPhoriePds)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckFusionCP)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckFusionDP)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jFusionDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jUnit2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jFusionDPds)))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckFusionCP)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jFusionCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jUnit4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jFusionCPds))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jUnit4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jFusionCPds)))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jChkSheardVP)
+                            .addComponent(jSheardVP))))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckFusionCL)
@@ -1088,7 +1092,8 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jPhorieP.getValue() ;
         double ds = OrthoCotation.baseValues.updatePhorieP ( p, jCheckPhorieP.isSelected() ) ;
         jPhoriePds.setText(String.format("%+.2f", ds) + " DS");
-        updateSheardVP () ;
+        jFusionDPStateChanged (null) ;
+        jFusionCPStateChanged (null) ;
     }//GEN-LAST:event_jPhoriePStateChanged
 
     private void jCheckPhorieLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckPhorieLStateChanged
@@ -1107,6 +1112,12 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jFusionDP.getValue() ;
         if (OrthoCotation.baseValues.patientAge.years != 0) {
             double ds = OrthoCotation.baseValues.updateFusionDP ( p, jCheckFusionDP.isSelected() ) ;
+            updateSheardVP () ;
+            //Si éso & ! sheard
+            if (OrthoCotation.baseValues.phorieP.raw > 0 & jChkSheardVP.isSelected() & this.sheardCriteriumVP < ds) {
+                    OrthoCotation.baseValues.fusionDP.ds = ds = this.sheardCriteriumVP ;
+                    OrthoCotation.polarChart.updateDataset();
+            }        
             jFusionDPds.setText(String.format("%+.2f", ds) + " DS");
             jFusionDPds.setToolTipText(null);
             //jFusionDPds.setForeground(Color.RED);
@@ -1117,7 +1128,7 @@ public class Panel_VB extends javax.swing.JPanel {
             jCheckFusionDP.setSelected(false) ;
             jFusionDPds.setForeground(Color.BLUE);
         }
-        updateSheardVP () ;
+        
     }//GEN-LAST:event_jFusionDPStateChanged
 
     private void jCheckFusionCPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionCPStateChanged
@@ -1128,6 +1139,12 @@ public class Panel_VB extends javax.swing.JPanel {
         int p = (int) jFusionCP.getValue() ;
         if (OrthoCotation.baseValues.patientAge.years != 0) {
             double ds = OrthoCotation.baseValues.updateFusionCP ( p, jCheckFusionCP.isSelected() ) ;
+            updateSheardVP () ;
+            //Si exo & ! sheard
+            if (OrthoCotation.baseValues.phorieP.raw < 0 & jChkSheardVP.isSelected() & this.sheardCriteriumVP < ds) {
+                    OrthoCotation.baseValues.fusionCP.ds = ds = this.sheardCriteriumVP ;
+                    OrthoCotation.polarChart.updateDataset();
+            }  
             jFusionCPds.setText(String.format("%+.2f", ds) + " DS");
             jFusionCPds.setToolTipText(null);
             //jFusionCPds.setForeground(Color.RED);
@@ -1138,7 +1155,7 @@ public class Panel_VB extends javax.swing.JPanel {
             jCheckFusionCP.setSelected(false) ;
             jFusionCPds.setForeground(Color.BLUE);
         }
-        updateSheardVP () ;
+        
     }//GEN-LAST:event_jFusionCPStateChanged
 
     private void jCheckFusionDLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckFusionDLStateChanged
@@ -1181,6 +1198,8 @@ public class Panel_VB extends javax.swing.JPanel {
         // D'
         jFusionDPStateChanged (null) ;
         jCheckFusionDP.setSelected(true) ;
+        jChkSheardVP.setEnabled(true);
+        jChkSheardVP.setSelected(true);
         // C'
         jFusionCPStateChanged (null) ;
         jCheckFusionCP.setSelected(true) ;
@@ -1343,9 +1362,10 @@ public class Panel_VB extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckFDAActionPerformed
 
-    private void jChkSheardVPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jChkSheardVPStateChanged
-        Boolean c = jChkSheardVP.isSelected() ;
-    }//GEN-LAST:event_jChkSheardVPStateChanged
+    private void jChkSheardVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChkSheardVPActionPerformed
+        jFusionDPStateChanged (null) ;
+        jFusionCPStateChanged (null) ;
+    }//GEN-LAST:event_jChkSheardVPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1386,7 +1406,6 @@ public class Panel_VB extends javax.swing.JPanel {
     private javax.swing.JTextField jGradient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

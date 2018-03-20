@@ -7,9 +7,15 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GradientPaint;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -21,11 +27,8 @@ import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.IntervalMarker;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.ui.Layer;
-import org.jfree.chart.ui.RectangleAnchor;
 import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -49,12 +52,12 @@ public class MyBarChart {
         dataset = new DefaultCategoryDataset( );
         
          chart = ChartFactory.createBarChart(
-         "TVPS-3",           
-         "Category",            
-         "Score",            
-         dataset,          
-         PlotOrientation.VERTICAL,           
-         true, true, false);
+            "TVPS-3",           
+            "Subtests",            
+            "Scaled Scores",            
+            dataset,          
+            PlotOrientation.VERTICAL,           
+            true, true, false);
          panel = new ChartPanel(chart);
          chart.removeLegend();
          //Menu
@@ -66,6 +69,41 @@ public class MyBarChart {
          JMenuItem j = (JMenuItem) popup.getComponent(1) ;
          //System.out.println (j.getText());
          j.setText("Enregistrer");
+         
+         //Le plot
+         plot = (CategoryPlot) chart.getPlot();
+         plot.getRangeAxis().setAutoRange(false);
+        plot.getRangeAxis().setRange(0.0, 20);
+        plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
+        plot.setBackgroundPaint(ChartColor.white); 
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeGridlinePaint(ChartColor.GRAY); 
+        
+        barRenderer = (BarRenderer) plot.getRenderer();
+        Color lightBlue= new Color(51, 153, 255,155);
+        barRenderer.setSeriesPaint(0, lightBlue);
+        plot.setForegroundAlpha(0.95f);
+        
+        barRenderer.setDrawBarOutline(false);
+        
+        barRenderer.setDefaultItemLabelGenerator(
+            new StandardCategoryItemLabelGenerator() {
+             @Override
+             public String generateLabel(CategoryDataset dataset, int row, int column) {
+                 
+                    return String.valueOf(Panel_TVPS.tvpsPctlValues[column]);
+             }
+            });
+        barRenderer.setSeriesItemLabelFont(0, new Font("Arial", Font.ITALIC, 10));
+        barRenderer.setDefaultItemLabelsVisible(true);
+        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, 
+        TextAnchor.BASELINE_CENTER);
+        barRenderer.setDefaultPositiveItemLabelPosition(position);
+        
+        barRenderer.setDrawBarOutline(false);
+        barRenderer.setItemMargin(0.2);
+        barRenderer.setMaximumBarWidth(.08);
+        barRenderer.setShadowVisible(false);
     }
     
     public JPanel addBarPanel () {
@@ -91,53 +129,30 @@ public class MyBarChart {
         dataset.addValue( Panel_TVPS.tvpsStdValues[5] , "base" , "FGR" ); 
         dataset.addValue( Panel_TVPS.tvpsStdValues[6] , "base" , "CLO" );
         
-        plot = (CategoryPlot) chart.getPlot();
-        plot.setNoDataMessage("NO DATA!"); 
-        plot.getDomainAxis().setLabel("Subtests");
-        plot.getRangeAxis().setLabel("Scaled scores");
-        plot.getRangeAxis().setAutoRange(false);
-        plot.getRangeAxis().setRange(0.0, 20);
-        plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
-        plot.setBackgroundPaint(ChartColor.white); 
-        plot.setRangeGridlinesVisible(true);
-        plot.setRangeGridlinePaint(ChartColor.GRAY); 
         
-        barRenderer = (BarRenderer) plot.getRenderer();
-        Color lightBlue= new Color(51, 153, 255,155);
-        barRenderer.setSeriesPaint(0, lightBlue);
+        /*plot.setNoDataMessage("NO DATA!"); 
+        plot.getDomainAxis().setLabel("Subtests");
+        plot.getRangeAxis().setLabel("Scaled scores");*/
+        
+        
+        
+        
         //barRenderer.setSeriesPositiveItemLabelPosition(0,new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
         
-        plot.setForegroundAlpha(0.95f);
         
-        barRenderer.setDrawBarOutline(false);
         //barRenderer.setItemMargin(3.0);
         
         
         //barRenderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
         
-        barRenderer.setDefaultItemLabelGenerator(
-            new StandardCategoryItemLabelGenerator() {
-             @Override
-             public String generateLabel(CategoryDataset dataset, int row, int column) {
-                 
-                    return String.valueOf(Panel_TVPS.tvpsPctlValues[column]);
-             }
-            });
-        barRenderer.setSeriesItemLabelFont(0, new Font("Arial", Font.ITALIC, 10));
-        barRenderer.setDefaultItemLabelsVisible(true);
-        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, 
-        TextAnchor.BASELINE_CENTER);
-        barRenderer.setDefaultPositiveItemLabelPosition(position);
+        
         
         /*final GradientPaint gp0 = new GradientPaint(
             0.0f, 0.0f, Color.blue, 
             0.0f, 0.0f, Color.lightGray
         );
         barRenderer.setSeriesPaint(0, gp0);*/
-        barRenderer.setDrawBarOutline(false);
-        barRenderer.setItemMargin(0.2);
-        barRenderer.setMaximumBarWidth(.08);
-        barRenderer.setShadowVisible(false);
+        
         
         /*final IntervalMarker target = new IntervalMarker(8.0, 10.0);
         target.setLabel("Target Range");
@@ -146,10 +161,16 @@ public class MyBarChart {
         target.setLabelTextAnchor(TextAnchor.CENTER_LEFT);
         target.setPaint(new Color(222, 222, 255, 128));
         plot.addRangeMarker(target, Layer.BACKGROUND);*/
+        Panel_TVPS.jChgeColor.setEnabled(true);
     }
     
     public void changeColor(Color c) {
         barRenderer.setSeriesPaint(0, c);
+    }
+    
+    public void changeAspect (boolean titre) {
+        if (titre) chart.setTitle("TVPS-3");
+        else chart.setTitle("");
     }
     
     private CategoryDataset createDataset( ) {
@@ -170,3 +191,4 @@ public class MyBarChart {
    }
     
 }
+

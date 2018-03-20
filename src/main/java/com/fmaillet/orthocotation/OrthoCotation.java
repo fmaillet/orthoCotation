@@ -313,6 +313,16 @@ public class OrthoCotation extends JFrame implements ActionListener {
         tvpsChartPanel.setVisible(true);
         panelTVPS.add (tvpsChartPanel) ;
         
+        //Label "clic droit"
+        JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
+        infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
+        infoClic.setBounds(tvpsChartPanel.getX(), tvpsChartPanel.getY()+tvpsChartPanel.getHeight()+10, 270, 25);
+        panelTVPS.add (infoClic) ;
+        
+        //On déplace certains items
+        panelTVPS.jChgeColor.setLocation(infoClic.getX()+30, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        
         return panelTVPS ;
     }
     

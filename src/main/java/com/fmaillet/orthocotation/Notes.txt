@@ -6,6 +6,7 @@ elles ne sont pas dans baseDS
 
 v1.4.1 (en cours)
 - aide critères
+- TVPS CON & SEQ norms
 
 v1.4.0 (19-03-2018)
 - TVPS scaled + pctl prepared

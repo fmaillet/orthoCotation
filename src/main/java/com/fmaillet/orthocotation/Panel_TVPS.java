@@ -271,6 +271,12 @@ public class Panel_TVPS extends javax.swing.JPanel {
         t = ( (double) tvpsStdValues[3] - 10.0 ) / 3.0 ;
         tvpsPctlValues[3] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_CON.setText(String.valueOf (tvpsPctlValues[3])) ;
+        //SEQ
+        tvpsStdValues[4] = tvps_SEQ[indexAge()][tvpsStdValues[4]-1] ;
+        jStd_SEQ.setText(String.valueOf(tvpsStdValues[4]));
+        t = ( (double) tvpsStdValues[4] - 10.0 ) / 3.0 ;
+        tvpsPctlValues[4] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_SEQ.setText(String.valueOf (tvpsPctlValues[4])) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -318,6 +324,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_SEQ = new javax.swing.JTextField();
         jPctl_FGR = new javax.swing.JTextField();
         jPctl_CLO = new javax.swing.JTextField();
+        jCheckRange = new javax.swing.JCheckBox();
         jCheckTitre = new javax.swing.JCheckBox();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
@@ -354,23 +361,23 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jLabel3.setText("SPA :");
         add(jLabel3);
-        jLabel3.setBounds(10, 147, 26, 14);
+        jLabel3.setBounds(10, 147, 40, 14);
 
         jLabel4.setText("CON :");
         add(jLabel4);
-        jLabel4.setBounds(10, 188, 29, 14);
+        jLabel4.setBounds(10, 188, 40, 14);
 
         jLabel5.setText("SEQ :");
         add(jLabel5);
-        jLabel5.setBounds(10, 226, 27, 14);
+        jLabel5.setBounds(10, 226, 40, 14);
 
         jLabel6.setText("FGR :");
         add(jLabel6);
-        jLabel6.setBounds(10, 264, 27, 14);
+        jLabel6.setBounds(10, 264, 40, 14);
 
         jLabel7.setText("CLO :");
         add(jLabel7);
-        jLabel7.setBounds(10, 302, 27, 14);
+        jLabel7.setBounds(10, 302, 40, 14);
 
         jDIS.setModel(new javax.swing.SpinnerNumberModel(11, 1, 16, 1));
         jDIS.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -445,6 +452,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_DIS.setEditable(false);
         jStd_DIS.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_DIS.setText("na");
         add(jStd_DIS);
@@ -452,6 +460,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_MEM.setEditable(false);
         jStd_MEM.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_MEM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_MEM.setText("na");
         jStd_MEM.addActionListener(new java.awt.event.ActionListener() {
@@ -464,6 +473,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_SPA.setEditable(false);
         jStd_SPA.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_SPA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_SPA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_SPA.setText("na");
         jStd_SPA.addActionListener(new java.awt.event.ActionListener() {
@@ -476,6 +486,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_CON.setEditable(false);
         jStd_CON.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CON.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_CON.setText("na");
         jStd_CON.addActionListener(new java.awt.event.ActionListener() {
@@ -488,6 +499,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_SEQ.setEditable(false);
         jStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_SEQ.setText("na");
         jStd_SEQ.addActionListener(new java.awt.event.ActionListener() {
@@ -575,6 +587,15 @@ public class Panel_TVPS extends javax.swing.JPanel {
         add(jPctl_CLO);
         jPctl_CLO.setBounds(223, 299, 40, 20);
 
+        jCheckRange.setText("Normal Range");
+        jCheckRange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckRangeActionPerformed(evt);
+            }
+        });
+        add(jCheckRange);
+        jCheckRange.setBounds(560, 360, 110, 23);
+
         jCheckTitre.setSelected(true);
         jCheckTitre.setText("Titre");
         jCheckTitre.addActionListener(new java.awt.event.ActionListener() {
@@ -638,14 +659,19 @@ public class Panel_TVPS extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jStd_CLOActionPerformed
 
+    private void jCheckRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckRangeActionPerformed
+        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
+    }//GEN-LAST:event_jCheckRangeActionPerformed
+
     private void jCheckTitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckTitreActionPerformed
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected()) ;
+        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jCLO;
     private javax.swing.JSpinner jCON;
+    public static javax.swing.JCheckBox jCheckRange;
     public static javax.swing.JCheckBox jCheckTitre;
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;
@@ -682,64 +708,3 @@ public class Panel_TVPS extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 }
 
-class ColorChooserButton extends JButton {
-
-        private Color current;
-
-        public ColorChooserButton(Color c) {
-            setSelectedColor(c); 
-            addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent arg0) {
-                    Color newColor = JColorChooser.showDialog(null, "Choose a color", current);
-                    setSelectedColor(newColor);
-                }
-            });
-        }
-
-        public Color getSelectedColor() {
-            return current;
-        }
-
-        public void setSelectedColor(Color newColor) {
-            setSelectedColor(newColor, true);
-        }
-
-        public void setSelectedColor(Color newColor, boolean notify) {
-
-            if (newColor == null) return;
-
-            current = newColor;
-            setIcon(createIcon(current, 16, 16));
-            repaint();
-
-            if (notify) {
-                // Notify everybody that may be interested.
-                for (ColorChangedListener l : listeners) {
-                    l.colorChanged(newColor);
-                }
-            }
-        }
-
-        public static interface ColorChangedListener {
-            public void colorChanged(Color newColor);
-        }
-
-        private List<ColorChangedListener> listeners = new ArrayList<ColorChangedListener>();
-
-        public void addColorChangedListener(ColorChangedListener toAdd) {
-            listeners.add(toAdd);
-        }
-
-        public static  ImageIcon createIcon(Color main, int width, int height) {
-            BufferedImage image = new BufferedImage(width, height, java.awt.image.BufferedImage.TYPE_INT_RGB);
-            Graphics2D graphics = image.createGraphics();
-            graphics.setColor(main);
-            graphics.fillRect(0, 0, width, height);
-            graphics.setXORMode(Color.DARK_GRAY);
-            graphics.drawRect(0, 0, width-1, height-1);
-            image.flush();
-            ImageIcon icon = new ImageIcon(image);
-            return icon;
-        }
-    }

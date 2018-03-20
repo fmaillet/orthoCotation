@@ -322,6 +322,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //On déplace certains items
         panelTVPS.jChgeColor.setLocation(infoClic.getX()+30, infoClic.getY()+infoClic.getHeight()+15);
         panelTVPS.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS.jCheckRange.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+panelTVPS.jCheckTitre.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
         
         return panelTVPS ;
     }

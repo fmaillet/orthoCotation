@@ -27,8 +27,11 @@ import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.IntervalMarker;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.ui.Layer;
+import org.jfree.chart.ui.RectangleAnchor;
 import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -46,6 +49,7 @@ public class MyBarChart {
             
     DefaultCategoryDataset dataset ;
     BarRenderer barRenderer ;
+    final IntervalMarker target ;
     
     public MyBarChart () {
         
@@ -104,6 +108,15 @@ public class MyBarChart {
         barRenderer.setItemMargin(0.2);
         barRenderer.setMaximumBarWidth(.08);
         barRenderer.setShadowVisible(false);
+        
+        //Prepare Interval Range Marker
+        target = new IntervalMarker(8.0, 12.0);
+        //target.setLabel("Target Range");
+        target.setLabelFont(new Font("SansSerif", Font.ITALIC, 11));
+        target.setLabelAnchor(RectangleAnchor.LEFT);
+        target.setLabelTextAnchor(TextAnchor.CENTER_LEFT);
+        target.setPaint(new Color(222, 222, 255, 128));
+        
     }
     
     public JPanel addBarPanel () {
@@ -154,13 +167,7 @@ public class MyBarChart {
         barRenderer.setSeriesPaint(0, gp0);*/
         
         
-        /*final IntervalMarker target = new IntervalMarker(8.0, 10.0);
-        target.setLabel("Target Range");
-        target.setLabelFont(new Font("SansSerif", Font.ITALIC, 11));
-        target.setLabelAnchor(RectangleAnchor.LEFT);
-        target.setLabelTextAnchor(TextAnchor.CENTER_LEFT);
-        target.setPaint(new Color(222, 222, 255, 128));
-        plot.addRangeMarker(target, Layer.BACKGROUND);*/
+        
         Panel_TVPS.jChgeColor.setEnabled(true);
     }
     
@@ -168,9 +175,16 @@ public class MyBarChart {
         barRenderer.setSeriesPaint(0, c);
     }
     
-    public void changeAspect (boolean titre) {
+    public void changeAspect (boolean titre, boolean rge) {
+        //Titre
         if (titre) chart.setTitle("TVPS-3");
         else chart.setTitle("");
+        //Normal range
+        if (rge) {
+            if (plot.getRangeMarkers(Layer.BACKGROUND) == null) plot.addRangeMarker(target, Layer.BACKGROUND);
+            else if (plot.getRangeMarkers(Layer.BACKGROUND).isEmpty()) plot.addRangeMarker(target, Layer.BACKGROUND);
+        }
+        else plot.removeRangeMarker(target, Layer.BACKGROUND) ;
     }
     
     private CategoryDataset createDataset( ) {

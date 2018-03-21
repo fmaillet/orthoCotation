@@ -110,7 +110,7 @@ public class MyBarChart {
         barRenderer.setShadowVisible(false);
         
         //Prepare Interval Range Marker
-        target = new IntervalMarker(8.0, 12.0);
+        target = new IntervalMarker(7.0, 13.0);
         //target.setLabel("Target Range");
         target.setLabelFont(new Font("SansSerif", Font.ITALIC, 11));
         target.setLabelAnchor(RectangleAnchor.LEFT);
@@ -188,7 +188,6 @@ public class MyBarChart {
     }
     
     private CategoryDataset createDataset( ) {
-            
 
       dataset.addValue( 1.0 , "base" , "DIS" );        
       dataset.addValue( 3.0 , "base" , "MEM" );        
@@ -197,9 +196,6 @@ public class MyBarChart {
       dataset.addValue( 3.0 , "base" , "SEQ" );        
       dataset.addValue( 5.0 , "base" , "FGR" ); 
       dataset.addValue( 5.0 , "base" , "CLO" );
-     
-
-                    
 
       return dataset; 
    }

@@ -111,6 +111,18 @@ public class Panel_DEM extends javax.swing.JPanel {
         jRatio_ds.setText(String.format("%+.2f", t));
     }
     
+    public void updateGROFFMAN () {
+        //Connected ?
+        if (OrthoCotation.user.nom == null) return ;
+        //jMsgNSUCO.setText("");
+        //Age ?
+        if (OrthoCotation.baseValues.patientAge.years == 0) {
+            jMsgGROFFMAN.setText("(Age ? Vous devez indiquer une date de naissance)");
+            return ;
+        }
+        else jMsgGROFFMAN.setText("(en cours...)");
+    }
+    
     public void updateNSUCO () {
         //Connected ?
         if (OrthoCotation.user.nom == null) return ;
@@ -123,8 +135,8 @@ public class Panel_DEM extends javax.swing.JPanel {
         else jMsgNSUCO.setText("");
         //Age -> index
         int y = OrthoCotation.baseValues.patientAge.years - 5;
-        if (y<0) {y = 0 ; jMsgNSUCO.setText("(Normes 5 ans par défaut)"); jMsgNSUCO.setForeground(Color.RED);}
-        if (y> 9) {y = 9 ; jMsgNSUCO.setText("(Normes 14 ans par défaut)"); jMsgNSUCO.setForeground(Color.RED);}
+        if (y<0) {y = 0 ; jMsgNSUCO.setText("(Normes 5 ans par défaut)"); jMsgNSUCO.setForeground(Color.BLUE);}
+        if (y> 9) {y = 9 ; jMsgNSUCO.setText("(Normes 14 ans par défaut)"); jMsgNSUCO.setForeground(Color.BLUE);}
         //Aptitude
         if ((int) jNSUCO_S_A.getValue() < 5)
             jNSUCO_S_A.setBorder(new MatteBorder(2, 4, 2, 0, Color.RED));

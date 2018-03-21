@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -164,27 +165,27 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 16},             //17.0
                          {0, 0, 0, 0, 1, 2, 3, 3, 5, 6, 7, 8, 9, 10, 13, 16}               //18.0
                         };
-    int tvps_CLO[][] = { {}, //4.0
-                         {},  //4.6
-                         {},   //5.0
-                         {},    //5.6
-                         {},     //6.0
-                         {},      //6.6
-                         {},      //7.0
-                         {},       //7.6
-                         {},        //8.0
-                         {},         //8.6
-                         {},         //9.0
-                         {},          //9.6
-                         {},          //10.0
-                         {},           //11.0
-                         {},           //12.0
-                         {},            //13.0
-                         {},            //14.0
-                         {},             //15.0
-                         {},             //16.0
-                         {},             //17.0
-                         {}               //18.0
+    int tvps_CLO[][] = { {8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 19, 19, 19, 19, 19}, //4.0
+                         {7, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19, 19},  //4.6
+                         {6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 19, 19, 19, 19},   //5.0
+                         {5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 19, 19, 19, 19},    //5.6
+                         {4, 6, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19},     //6.0
+                         {3, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 19, 19, 19},      //6.6
+                         {3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 19, 19, 19},      //7.0
+                         {2, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 19, 19, 19},       //7.6
+                         {2, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 19, 19},        //8.0
+                         {2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, 19, 19, 19},         //8.6
+                         {1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 19, 19},         //9.0
+                         {1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, 18, 19},          //9.6
+                         {1, 2, 4, 5, 6, 7, 8, 9, 9, 10, 11, 13, 14, 16, 18, 19},          //10.0
+                         {0, 1, 3, 4, 5, 6, 7, 8, 9, 9, 10, 12, 13, 15, 17, 19},           //11.0
+                         {0, 1, 2, 4, 5, 6, 7, 8, 8, 9, 10, 11, 12, 14, 16, 18},           //12.0
+                         {0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 9, 10, 11, 13, 15, 17},            //13.0
+                         {0, 0, 1, 3, 4, 5, 6, 7, 7, 8, 9, 10, 11, 12, 15, 17},            //14.0
+                         {0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10, 12, 14, 16},             //15.0
+                         {0, 0, 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 13, 16},             //16.0
+                         {0, 0, 0, 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 13, 15},             //17.0
+                         {0, 0, 0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 14}               //18.0
                         };
     
     /**
@@ -207,8 +208,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
             }
         });
 
-
-        
+        //Positions
+        jIdx_BAS.setLocation(jStd_CLO.getX(), jLabel12.getY()-2);
+        jIdx_SEQ.setLocation(jStd_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
         
         updateResults () ;
     }
@@ -246,6 +249,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvpsStdValues[6] = (int) jCLO.getValue() ;
         
         if (OrthoCotation.baseValues.patientAge.years == 0) return ;
+        jMsgTVPS.setText(null);
         
         //DIS
         tvpsStdValues[0] = tvps_DIS[indexAge()][tvpsStdValues[0]-1] ;
@@ -277,6 +281,18 @@ public class Panel_TVPS extends javax.swing.JPanel {
         t = ( (double) tvpsStdValues[4] - 10.0 ) / 3.0 ;
         tvpsPctlValues[4] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_SEQ.setText(String.valueOf (tvpsPctlValues[4])) ;
+        //FGR
+        tvpsStdValues[5] = tvps_FGR[indexAge()][tvpsStdValues[5]-1] ;
+        jStd_FGR.setText(String.valueOf(tvpsStdValues[5]));
+        t = ( (double) tvpsStdValues[5] - 10.0 ) / 3.0 ;
+        tvpsPctlValues[5] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_FGR.setText(String.valueOf (tvpsPctlValues[5])) ;
+        //CLO
+        tvpsStdValues[6] = tvps_CLO[indexAge()][tvpsStdValues[6]-1] ;
+        jStd_CLO.setText(String.valueOf(tvpsStdValues[6]));
+        t = ( (double) tvpsStdValues[6] - 10.0 ) / 3.0 ;
+        tvpsPctlValues[6] = (int) Math.round(zScoreToPercentile(t)) ;
+        jPctl_CLO.setText(String.valueOf (tvpsPctlValues[6])) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -292,7 +308,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jMsgDEM = new javax.swing.JLabel();
+        jMsgTVPS = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -315,7 +331,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jStd_CON = new javax.swing.JTextField();
         jStd_SEQ = new javax.swing.JTextField();
         jStd_FGR = new javax.swing.JTextField();
-        jStd_CLO = new javax.swing.JTextField();
+        jIdx_SEQ = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPctl_DIS = new javax.swing.JTextField();
         jPctl_MEM = new javax.swing.JTextField();
@@ -326,6 +342,12 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_CLO = new javax.swing.JTextField();
         jCheckRange = new javax.swing.JCheckBox();
         jCheckTitre = new javax.swing.JCheckBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jStd_CLO = new javax.swing.JTextField();
+        jIdx_BAS = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -337,13 +359,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         add(jLabel15);
         jLabel15.setBounds(10, 11, 52, 17);
         add(jSeparator1);
-        jSeparator1.setBounds(10, 34, 518, 10);
+        jSeparator1.setBounds(10, 340, 518, 10);
 
-        jMsgDEM.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jMsgDEM.setForeground(java.awt.Color.red);
-        jMsgDEM.setText("(En cours de développement...)");
-        add(jMsgDEM);
-        jMsgDEM.setBounds(123, 11, 153, 14);
+        jMsgTVPS.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jMsgTVPS.setForeground(java.awt.Color.red);
+        jMsgTVPS.setText("(Pas de calculs en mode démo)");
+        add(jMsgTVPS);
+        jMsgTVPS.setBounds(123, 11, 310, 14);
 
         jLabel1.setText("DIS :");
         jLabel1.setMaximumSize(new java.awt.Dimension(30, 14));
@@ -512,6 +534,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_FGR.setEditable(false);
         jStd_FGR.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_FGR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_FGR.setText("na");
         jStd_FGR.addActionListener(new java.awt.event.ActionListener() {
@@ -522,17 +545,18 @@ public class Panel_TVPS extends javax.swing.JPanel {
         add(jStd_FGR);
         jStd_FGR.setBounds(147, 261, 40, 20);
 
-        jStd_CLO.setEditable(false);
-        jStd_CLO.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_CLO.setText("na");
-        jStd_CLO.addActionListener(new java.awt.event.ActionListener() {
+        jIdx_SEQ.setEditable(false);
+        jIdx_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jIdx_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jIdx_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdx_SEQ.setText("na");
+        jIdx_SEQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_CLOActionPerformed(evt);
+                jIdx_SEQActionPerformed(evt);
             }
         });
-        add(jStd_CLO);
-        jStd_CLO.setBounds(147, 299, 40, 20);
+        add(jIdx_SEQ);
+        jIdx_SEQ.setBounds(140, 430, 40, 20);
 
         jLabel10.setText("Percentile");
         add(jLabel10);
@@ -605,6 +629,47 @@ public class Panel_TVPS extends javax.swing.JPanel {
         });
         add(jCheckTitre);
         jCheckTitre.setBounds(481, 364, 70, 23);
+        add(jSeparator2);
+        jSeparator2.setBounds(10, 34, 518, 10);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("INDEX SCORES :");
+        add(jLabel11);
+        jLabel11.setBounds(10, 360, 85, 14);
+
+        jLabel12.setText("Basic Proc. :");
+        add(jLabel12);
+        jLabel12.setBounds(30, 400, 80, 14);
+
+        jLabel13.setText("Sequencing :");
+        add(jLabel13);
+        jLabel13.setBounds(30, 430, 90, 14);
+
+        jStd_CLO.setEditable(false);
+        jStd_CLO.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CLO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_CLO.setText("na");
+        jStd_CLO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jStd_CLOActionPerformed(evt);
+            }
+        });
+        add(jStd_CLO);
+        jStd_CLO.setBounds(147, 299, 40, 20);
+
+        jIdx_BAS.setEditable(false);
+        jIdx_BAS.setBackground(new java.awt.Color(255, 255, 255));
+        jIdx_BAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jIdx_BAS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdx_BAS.setText("na");
+        jIdx_BAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIdx_BASActionPerformed(evt);
+            }
+        });
+        add(jIdx_BAS);
+        jIdx_BAS.setBounds(140, 400, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
@@ -655,9 +720,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jStd_FGRActionPerformed
 
-    private void jStd_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CLOActionPerformed
+    private void jIdx_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_SEQActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_CLOActionPerformed
+    }//GEN-LAST:event_jIdx_SEQActionPerformed
 
     private void jCheckRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckRangeActionPerformed
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
@@ -667,6 +732,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
 
+    private void jStd_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CLOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jStd_CLOActionPerformed
+
+    private void jIdx_BASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_BASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdx_BASActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jCLO;
@@ -675,8 +748,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
     public static javax.swing.JCheckBox jCheckTitre;
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;
+    private javax.swing.JTextField jIdx_BAS;
+    private javax.swing.JTextField jIdx_SEQ;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -687,7 +765,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jMEM;
-    public static javax.swing.JLabel jMsgDEM;
+    public static javax.swing.JLabel jMsgTVPS;
     private javax.swing.JTextField jPctl_CLO;
     private javax.swing.JTextField jPctl_CON;
     private javax.swing.JTextField jPctl_DIS;
@@ -698,6 +776,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JSpinner jSEQ;
     private javax.swing.JSpinner jSPA;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jStd_CLO;
     private javax.swing.JTextField jStd_CON;
     private javax.swing.JTextField jStd_DIS;

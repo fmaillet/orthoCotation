@@ -170,6 +170,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //fourth tab
         JPanel panel4 = new JPanel(false);
         tabbedPane.addTab("TVPS-4", panel4);
+        //fith tab
+        JPanel panel5 = new JPanel(false);
+        tabbedPane.addTab("Reserved", panel5);
+        tabbedPane.setEnabledAt(4, false);
         
     }
     
@@ -347,6 +351,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelVB.updateFromAge () ;
         panelDEM.updateResults();
         panelDEM.updateNSUCO();
+        panelDEM.updateGROFFMAN () ;
         panelTVPS.updateResults();
     }
     
@@ -356,9 +361,14 @@ public class OrthoCotation extends JFrame implements ActionListener {
             comMenu.setEnabled(false) ;
             barreMenus.setEnabled(true);
             // msg panel DEM
-            Panel_DEM.jMsgDEM.setText(null);
+            Panel_DEM.jMsgDEM.setText("(Age ? Vous devez indiquer une date de naissance)");
+            Panel_DEM.jMsgDEM.setForeground(Color.BLUE);
+            Panel_TVPS.jMsgTVPS.setText("(Age ? Vous devez indiquer une date de naissance)");
+            Panel_TVPS.jMsgTVPS.setForeground(Color.BLUE);
             Panel_DEM.jMsgNSUCO.setText("(Age ? Vous devez indiquer une date de naissance)");
             Panel_DEM.jMsgNSUCO.setForeground(Color.BLUE);
+            Panel_DEM.jMsgGROFFMAN.setText("(Age ? Vous devez indiquer une date de naissance)");
+            Panel_DEM.jMsgGROFFMAN.setForeground(Color.BLUE);
         }
         else comMenu.setEnabled(true) ;
     }

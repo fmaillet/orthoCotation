@@ -7,15 +7,6 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -30,6 +21,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.IntervalMarker;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.Layer;
 import org.jfree.chart.ui.RectangleAnchor;
 import org.jfree.chart.ui.TextAnchor;
@@ -46,6 +38,7 @@ public class MyBarChart {
     ChartPanel panel ;
     
     CategoryPlot plot ;
+    
             
     DefaultCategoryDataset dataset ;
     BarRenderer barRenderer ;
@@ -56,7 +49,7 @@ public class MyBarChart {
         dataset = new DefaultCategoryDataset( );
         
          chart = ChartFactory.createBarChart(
-            "TVPS-3",           
+            "TVPS-3 scores & percentiles",           
             "Subtests",            
             "Scaled Scores",            
             dataset,          
@@ -64,6 +57,7 @@ public class MyBarChart {
             true, true, false);
          panel = new ChartPanel(chart);
          chart.removeLegend();
+         chart.setTitle(new TextTitle("TVPS-3 scores & percentiles", new Font (chart.getTitle().getFont().getFontName(), Font.BOLD , 17)));
          //Menu
          JPopupMenu popup = panel.getPopupMenu();
          popup.remove(0); popup.remove(0);
@@ -94,14 +88,16 @@ public class MyBarChart {
             new StandardCategoryItemLabelGenerator() {
              @Override
              public String generateLabel(CategoryDataset dataset, int row, int column) {
-                 
-                    return String.valueOf(Panel_TVPS.tvpsPctlValues[column]);
+                if (Panel_TVPS.tvpsPctlValues[column] < 100)
+                    return String.valueOf(Panel_TVPS.tvpsPctlValues[column]) + "è p." ;
+                else
+                    return ">99è p." ;
              }
             });
         barRenderer.setSeriesItemLabelFont(0, new Font("Arial", Font.ITALIC, 10));
         barRenderer.setDefaultItemLabelsVisible(true);
         ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, 
-        TextAnchor.BASELINE_CENTER);
+            TextAnchor.BASELINE_CENTER);
         barRenderer.setDefaultPositiveItemLabelPosition(position);
         
         barRenderer.setDrawBarOutline(false);
@@ -177,7 +173,8 @@ public class MyBarChart {
     
     public void changeAspect (boolean titre, boolean rge) {
         //Titre
-        if (titre) chart.setTitle("TVPS-3");
+        
+        if (titre) chart.setTitle(new TextTitle("TVPS-3 scores & percentiles", new Font (chart.getTitle().getFont().getFontName(), Font.BOLD , 17)));
         else chart.setTitle("");
         //Normal range
         if (rge) {

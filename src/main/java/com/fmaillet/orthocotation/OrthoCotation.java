@@ -375,6 +375,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     public static void main(String[] args) {
         
+        
+        
         //For connection
         user = new UserInfo () ;
         mySQLConnection = new MySQLClass () ;
@@ -404,8 +406,14 @@ public class OrthoCotation extends JFrame implements ActionListener {
         fen.getContentPane().add (infoClic) ;
         
         //AutoConnect
-        AutoConnect auto = new AutoConnect () ;
-        auto.start () ;
+        if (args.length > 0) {
+            user.nom = "Master" ;
+            connected () ;
+        }
+        else {
+            AutoConnect auto = new AutoConnect () ;
+            auto.start () ;
+        }
     }
     
     public static String getSoftVersion () {

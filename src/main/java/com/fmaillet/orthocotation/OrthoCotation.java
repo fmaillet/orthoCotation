@@ -71,6 +71,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static Panel_VB panelVB ;
     static Panel_DEM panelDEM ;
     static Panel_TVPS panelTVPS ;
+    static Panel_NEURO panelNEURO ;
     
     //Graphique
     public static MyPolarChart polarChart = new MyPolarChart () ;
@@ -173,8 +174,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         tabbedPane.addTab("TVPS-4", panel4);
         //fith tab
         if (master) {
-            JPanel panel5 = new JPanel(false);
-            tabbedPane.addTab("Neuro", panel5);
+            tabbedPane.addTab("Neuro", addTabPanel_NEURO ());
         }   
         
     }
@@ -294,13 +294,19 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelDEM = new Panel_DEM () ;
         panelDEM.setSize(700, 460);
         panelDEM.setVisible(true);
-        //basePanel.add(baseDatas) ;
-        //basePanel.revalidate() ;
-        //basePanel.repaint() ;
-        
-        
-        
+
         return panelDEM ;
+    }
+    
+    private static JPanel addTabPanel_NEURO () {
+        
+        
+        //Panel Base Datas
+        panelNEURO = new Panel_NEURO () ;
+        panelNEURO.setSize(700, 460);
+        panelNEURO.setVisible(true);
+
+        return panelNEURO ;
     }
     
     private static JPanel addTabPanel_TVPS () {
@@ -355,6 +361,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelDEM.updateNSUCO();
         panelDEM.updateGROFFMAN () ;
         panelTVPS.updateResults();
+        if (master) {
+            panelNEURO.updateThurstoneFI() ;
+            panelNEURO.updateBentonJLO () ;
+        }
     }
     
     public static void connected () {
@@ -371,6 +381,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
             Panel_DEM.jMsgNSUCO.setForeground(Color.BLUE);
             Panel_DEM.jMsgGROFFMAN.setText("(Age ? Vous devez indiquer une date de naissance)");
             Panel_DEM.jMsgGROFFMAN.setForeground(Color.BLUE);
+            if (master) {
+                Panel_NEURO.jMsgThurstone.setText("(Age ? Vous devez indiquer une date de naissance)");
+                Panel_NEURO.jMsgThurstone.setForeground(Color.BLUE);
+            }
         }
         else comMenu.setEnabled(true) ;
     }
@@ -418,7 +432,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.5.0 du 22/03/2018" ;
+        return "v1.6.0 du xx/03/2018" ;
     }
 
     @Override

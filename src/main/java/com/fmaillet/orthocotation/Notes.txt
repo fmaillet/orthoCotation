@@ -4,7 +4,13 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.5.0 (en cours)
+v1.6.0 (en cours)
+- 
+
+v1.5.0 (22-03-2018)
+- TVPS Norms ok
+- TVPS title graph & pctl format
+- master connection
 
 v1.4.1 (21-03-2018)
 - aide critères

@@ -26,7 +26,9 @@ public class Criterium_JDialog extends javax.swing.JDialog {
                 + "égale au double de la phorie. Ainsi, en cas d'exophorie, le sujet doit disposer du "
                 + "double de convergence; en cas d'ésophorie, le sujet doit disposer du double de divergence.<br>"
                 + "Le critère de Sheard permet d'évaluer l'effort de rééducation pour augmenter la réserve"
-                + " ou le prisme nécessaire pour diminuer la demande.<br><br>"
+                + " ou le prisme nécessaire pour diminuer la demande. "
+                 + "Un certain nombre d'études en ont confirmé le rôle prédictif : il est à la fois bien "
+                + "corrélé aux symptômes et à leur amélioration après augmentation des réserves fusionnelles.<br><br>"
                 + "<b>Exemples :</b><br>"
                 + "(VL) : un sujet présente E6 D6. Le critère de Sheard n'est pas rempli puisqu'il lui faudrait "
                 + "au moins D12 pour compenser confortablement son ésophorie.<br>"
@@ -34,11 +36,12 @@ public class Criterium_JDialog extends javax.swing.JDialog {
                 + "susceptible de lui permettre de compenser son ésophorie.<br>"
                 + "(VP) : un sujet présente X'17 C'15. Le sujet manque de (17x2)-15=9 dioptries d'amplitude de fusion en "
                 + "convergence pour compenser confortable son exophorie.<br>"
-                + "<br><br>"
-                + "Un certain nombre d'études ont confirmé le rôle prédictif du critère de Sheard : il est à la fois bien "
-                + "corrélé aux symptômes et à leur amélioration après augmentation des réserves fusionnelles."
+                + "<br>"
+                + "<b>En cochant le critère,</b> l'écart à la norme de l'amplitude de fusion est modifiée de la façon suivante :<br>"
+                + "1) si l'amplitude est suffisante, on conserve son écart à la norme;<br>"
+                + "2) si l'amplitude est insuffisante, on rapporte l'écart à la norme de ce qui manque pour atteindre le critère."
                 + "</blockquote>"
-                + ""
+                + "<html><h3>Critère de Percival :</h3><hr>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
         //Texte

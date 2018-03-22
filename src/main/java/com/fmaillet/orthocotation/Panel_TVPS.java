@@ -210,6 +210,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         //Positions
         jIdx_BAS.setLocation(jStd_CLO.getX(), jLabel12.getY()-2);
+        jPctl_BAS.setLocation(jPctl_CLO.getX(), jLabel12.getY()-2);
         jIdx_SEQ.setLocation(jStd_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
         jIdx_CPX.setLocation(jStd_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
@@ -217,6 +218,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+25);
         jIdx_ALL.setLocation(jStd_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
+        
         
         updateResults () ;
     }
@@ -373,6 +375,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jIdx_ALL = new javax.swing.JTextField();
+        jPctl_BAS = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -731,6 +734,13 @@ public class Panel_TVPS extends javax.swing.JPanel {
         });
         add(jIdx_ALL);
         jIdx_ALL.setBounds(140, 490, 40, 20);
+
+        jPctl_BAS.setEditable(false);
+        jPctl_BAS.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_BAS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_BAS.setText("na");
+        add(jPctl_BAS);
+        jPctl_BAS.setBounds(220, 380, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
@@ -839,6 +849,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jMEM;
     public static javax.swing.JLabel jMsgTVPS;
+    private javax.swing.JTextField jPctl_BAS;
     private javax.swing.JTextField jPctl_CLO;
     private javax.swing.JTextField jPctl_CON;
     private javax.swing.JTextField jPctl_DIS;

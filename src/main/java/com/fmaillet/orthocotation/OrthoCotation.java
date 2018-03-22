@@ -51,6 +51,7 @@ import org.jdatepicker.impl.UtilDateModel;
  */
 public class OrthoCotation extends JFrame implements ActionListener {
     
+    static public boolean master = false ;
     static public UserInfo user ;
     static public MySQLClass mySQLConnection ;
     
@@ -171,9 +172,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
         JPanel panel4 = new JPanel(false);
         tabbedPane.addTab("TVPS-4", panel4);
         //fith tab
-        JPanel panel5 = new JPanel(false);
-        tabbedPane.addTab("Reserved", panel5);
-        tabbedPane.setEnabledAt(4, false);
+        if (master) {
+            JPanel panel5 = new JPanel(false);
+            tabbedPane.addTab("Neuro", panel5);
+        }   
         
     }
     
@@ -375,11 +377,13 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     public static void main(String[] args) {
         
-        
-        
         //For connection
         user = new UserInfo () ;
         mySQLConnection = new MySQLClass () ;
+        if (args.length > 0) {
+            master = true ;
+            user.nom = "Master" ;
+        }
         
         // fenetre principale
         fen = new OrthoCotation () ;
@@ -406,10 +410,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         fen.getContentPane().add (infoClic) ;
         
         //AutoConnect
-        if (args.length > 0) {
-            user.nom = "Master" ;
-            connected () ;
-        }
+        if (master) connected () ;
         else {
             AutoConnect auto = new AutoConnect () ;
             auto.start () ;
@@ -417,7 +418,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.5.0 du xx/03/2018" ;
+        return "v1.5.0 du 22/03/2018" ;
     }
 
     @Override

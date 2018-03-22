@@ -214,7 +214,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
         jIdx_CPX.setLocation(jStd_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel14.setLocation(jLabel12.getX(), jIdx_CPX.getY()+2);
-        jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+40);
+        jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+25);
+        jIdx_ALL.setLocation(jStd_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
         
         updateResults () ;
     }
@@ -303,10 +305,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvps_idx[0] = tvpsStdValues[0] + tvpsStdValues[1] + tvpsStdValues[2] + tvpsStdValues[3] ;
         jIdx_BAS.setText(String.valueOf (tvps_idx[0])) ;
         //Sequencing
-        jIdx_SEQ.setText(String.valueOf (tvpsStdValues[4])) ;
+        tvps_idx[1] = tvpsStdValues[4] ;
+        jIdx_SEQ.setText(String.valueOf (tvps_idx[1])) ;
         //Complex
         tvps_idx[2] = tvpsStdValues[5] + tvpsStdValues[6] ;
         jIdx_CPX.setText(String.valueOf (tvps_idx[2])) ;
+        //Overall
+        int tvps_all = tvps_idx[0] + tvps_idx[1] + tvps_idx[2] ;
+        jIdx_ALL.setText(String.valueOf (tvps_all)) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }
@@ -365,6 +371,8 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jIdx_CPX = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        jIdx_ALL = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -706,6 +714,23 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jIdx_CPX.setBounds(140, 440, 40, 20);
         add(jSeparator3);
         jSeparator3.setBounds(10, 340, 518, 10);
+
+        jLabel16.setText("Overall :");
+        add(jLabel16);
+        jLabel16.setBounds(30, 490, 80, 14);
+
+        jIdx_ALL.setEditable(false);
+        jIdx_ALL.setBackground(new java.awt.Color(255, 255, 255));
+        jIdx_ALL.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jIdx_ALL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdx_ALL.setText("na");
+        jIdx_ALL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIdx_ALLActionPerformed(evt);
+            }
+        });
+        add(jIdx_ALL);
+        jIdx_ALL.setBounds(140, 490, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
@@ -780,6 +805,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jIdx_CPXActionPerformed
 
+    private void jIdx_ALLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_ALLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdx_ALLActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jCLO;
@@ -788,6 +817,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     public static javax.swing.JCheckBox jCheckTitre;
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;
+    private javax.swing.JTextField jIdx_ALL;
     private javax.swing.JTextField jIdx_BAS;
     private javax.swing.JTextField jIdx_CPX;
     private javax.swing.JTextField jIdx_SEQ;
@@ -798,6 +828,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

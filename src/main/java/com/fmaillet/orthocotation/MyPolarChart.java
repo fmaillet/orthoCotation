@@ -106,6 +106,11 @@ public class MyPolarChart {
         
     }
     
+    public void changeTransparency (int v) {
+        float d = (float) v / 100 ;
+        renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, d));
+    }
+    
     public JPanel addPolarPanel () {
         panel = new ChartPanel(chart);
         panel.setMouseZoomable(false);

@@ -7,7 +7,8 @@ elles ne sont pas dans baseDS
 v1.6.0 (en cours)
 - NEURO : Thurstone & début JLO
 - Help Critères
-- TVP : continue IUx (pctl)
+- TVP : continue Idx (pctl)
+- VB : transparency slider
 
 v1.5.0 (22-03-2018)
 - TVPS Norms ok

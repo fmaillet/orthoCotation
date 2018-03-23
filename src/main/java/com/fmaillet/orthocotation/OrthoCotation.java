@@ -36,6 +36,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
@@ -283,8 +284,27 @@ public class OrthoCotation extends JFrame implements ActionListener {
         infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
         infoClic.setBounds(radioPanel.getX(), radioPanel.getY()+radioPanel.getHeight()+10, 270, 25);
         panelVB.add (infoClic) ;
+        //Transparency
+        JSlider jTransparency = new JSlider ();
+        jTransparency.setMaximum(100); jTransparency.setMinimum(0); jTransparency.setValue(25);
+        jTransparency.setBounds(infoClic.getX()+120, infoClic.getY() + 40, 200, 17);
+        ChangeListener l = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                polarChart.changeTransparency( (int) jTransparency.getValue());
+            }
+            
+        } ;
+        
+        jTransparency.addChangeListener(l);
+        panelVB.add (jTransparency) ;
+        JLabel infoTransparency = new JLabel("Trasnparence :") ;
+        infoTransparency.setBounds(infoClic.getX(), jTransparency.getY()-4, 90, 25);
+        panelVB.add (infoTransparency) ;
         
         return panelVB ;
+
+            
     }
     
     private static JPanel addTabPanel_DEM () {

@@ -212,11 +212,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jIdx_BAS.setLocation(jStd_CLO.getX(), jLabel12.getY()-2);
         jPctl_BAS.setLocation(jPctl_CLO.getX(), jLabel12.getY()-2);
         jIdx_SEQ.setLocation(jStd_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jPctl_IdxSEQ.setLocation(jPctl_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
         jIdx_CPX.setLocation(jStd_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jPctl_CPX.setLocation(jPctl_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel14.setLocation(jLabel12.getX(), jIdx_CPX.getY()+2);
         jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+25);
         jIdx_ALL.setLocation(jStd_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jPctl_ALL.setLocation(jPctl_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
         
         
@@ -376,6 +379,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jIdx_ALL = new javax.swing.JTextField();
         jPctl_BAS = new javax.swing.JTextField();
+        jPctl_IdxSEQ = new javax.swing.JTextField();
+        jPctl_CPX = new javax.swing.JTextField();
+        jPctl_ALL = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -741,6 +747,27 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_BAS.setText("na");
         add(jPctl_BAS);
         jPctl_BAS.setBounds(220, 380, 40, 20);
+
+        jPctl_IdxSEQ.setEditable(false);
+        jPctl_IdxSEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_IdxSEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_IdxSEQ.setText("na");
+        add(jPctl_IdxSEQ);
+        jPctl_IdxSEQ.setBounds(220, 410, 40, 20);
+
+        jPctl_CPX.setEditable(false);
+        jPctl_CPX.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_CPX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_CPX.setText("na");
+        add(jPctl_CPX);
+        jPctl_CPX.setBounds(220, 440, 40, 20);
+
+        jPctl_ALL.setEditable(false);
+        jPctl_ALL.setBackground(new java.awt.Color(255, 255, 255));
+        jPctl_ALL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jPctl_ALL.setText("na");
+        add(jPctl_ALL);
+        jPctl_ALL.setBounds(220, 490, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
@@ -849,11 +876,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jMEM;
     public static javax.swing.JLabel jMsgTVPS;
+    private javax.swing.JTextField jPctl_ALL;
     private javax.swing.JTextField jPctl_BAS;
     private javax.swing.JTextField jPctl_CLO;
     private javax.swing.JTextField jPctl_CON;
+    private javax.swing.JTextField jPctl_CPX;
     private javax.swing.JTextField jPctl_DIS;
     private javax.swing.JTextField jPctl_FGR;
+    private javax.swing.JTextField jPctl_IdxSEQ;
     private javax.swing.JTextField jPctl_MEM;
     private javax.swing.JTextField jPctl_SEQ;
     private javax.swing.JTextField jPctl_SPA;

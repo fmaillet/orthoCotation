@@ -194,7 +194,7 @@ public class Panel_VB extends javax.swing.JPanel {
         int p2 = (int) jACA_2.getValue() ;
         int p3 = (int) jACA_3.getValue() ;
         
-        gradientACA = (double)( (double)(p3-p2) + (double)(p2-p1) + (double)(p1-p0) ) / 3.0 ;
+        gradientACA = (double)( (double)(p3-p0)/3 + (double)(p2-p0)/2 + (double)(p1-p0) ) / 3.0 ;
         
         jGradient.setText(String.format("%+.2f", gradientACA));
         gradientACA_isValid = true ;

@@ -88,7 +88,11 @@ public class MyBarChart {
             new StandardCategoryItemLabelGenerator() {
              @Override
              public String generateLabel(CategoryDataset dataset, int row, int column) {
-                if (Panel_TVPS.tvpsPctlValues[column] < 100)
+                 if (Panel_TVPS.tvpsPctlValues[column] < 1)
+                     return "<1er p." ;
+                 else if (Panel_TVPS.tvpsPctlValues[column] == 1)
+                     return "1er p." ;
+                 else if (Panel_TVPS.tvpsPctlValues[column] < 100)
                     return String.valueOf(Panel_TVPS.tvpsPctlValues[column]) + "è p." ;
                 else
                     return ">99è p." ;

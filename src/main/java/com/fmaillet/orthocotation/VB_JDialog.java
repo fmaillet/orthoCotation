@@ -33,6 +33,12 @@ public class VB_JDialog extends javax.swing.JDialog {
                 + "et la valeur attendue en fonction de l'âge pour permettre l'évaluation de l'écart à la norme.<br>"
                 + "Bien qu'il puisse être mesuré en monoculaire et en binoculaire, une seule mesure<br>"
                 + "synthétique est reportée ici afin de ne pas alourdir le schéma.</blockquote>"
+                + "<h3>Fluidité des vergences</h3><hr><blockquote>Rapportée en cycles par minute.<br>"
+                + "Mesuré avec un biprisme -3/+12 : nombre de cycles (convergence-divergence) que le patient est<br>"
+                + "capable de mener à bien en une minute. On doit exiger la vision simple et nette.</blockquote>"
+                + "<h3>Fluidité accommodative</h3><hr><blockquote>Rapportée en cycles par minute.<br>"
+                + "Mesuré avec un flip-flop -2/+2 (rock accommodatif): nombre de cycles que le patient est<br>"
+                + "capable de mener à bien en une minute. On doit exiger la vision simple et nette.</blockquote>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
         //Texte
@@ -56,6 +62,9 @@ public class VB_JDialog extends javax.swing.JDialog {
         jTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(700, 500));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         jButton1.setText("Fermer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +92,7 @@ public class VB_JDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jLabel1))
-                        .addGap(0, 324, Short.MAX_VALUE)))
+                        .addGap(0, 472, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

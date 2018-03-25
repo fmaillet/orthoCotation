@@ -4,11 +4,17 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.6.0 (en cours)
+v1.7.0 (en cours)
+
+
+v1.6.0 (25-03-2018)
 - NEURO : Thurstone & début JLO
-- Help Critères
-- TVP : continue Idx (pctl)
+- Help Critères & saisie VB
+- TVPS : index scores ok
+- TVPS : graph pctl (<1er...)
 - VB : transparency slider
+- NSUCO : msg genre not defined !
+- VB : bug gradient corrected
 
 v1.5.0 (22-03-2018)
 - TVPS Norms ok

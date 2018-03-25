@@ -201,6 +201,14 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          90, 93, 95, 98, 100, 103, 105, 108, 110, 113, 115, 118, 120, 123, 125,
                          128, 130, 133, 135, 138, 140, 143, 145} ;
     
+    int tvps_ALL[] =    {0, 0, 0, 0, 0, 0, 0, 55, 56, 56, 57, 57, 58, 59, 60, 60, 61, 62, 63, 63,
+                         64, 65, 66, 67, 67, 68, 69, 69, 70, 71, 72, 72, 73, 73, 74, 75, 76, 76, 77, 78,
+                         79, 79, 80, 80, 81, 82, 83, 83, 84, 85, 86, 86, 87, 87, 88, 89, 90, 90, 91, 92,
+                         93, 93, 94, 95, 96, 96, 97, 98, 99, 99, 100, 100, 101, 102, 103, 103, 104, 105, 106, 106,
+                         107, 108, 109, 109, 110, 110, 111, 112, 113, 113, 114, 115, 116, 116, 117, 118, 119, 119, 120, 120,
+                         121, 122, 123, 123, 124, 125, 126, 126, 127, 128, 129, 129, 130, 130, 131,
+                         132, 133, 133, 134, 134, 135, 136, 137, 138, 139, 139, 140, 140, 141, 142, 143, 143, 144, 145} ;
+
     
     /**
      * Creates new form Panel_TVPS
@@ -331,17 +339,27 @@ public class Panel_TVPS extends javax.swing.JPanel {
         tvps_idx[0] = tvpsStdValues[0] + tvpsStdValues[1] + tvpsStdValues[2] + tvpsStdValues[3] ;
         jIdx_BAS.setText(String.valueOf (tvps_idx[0])) ;
         jStd_BAS.setText(String.valueOf (tvps_BASIC[tvps_idx[0]])) ;
+        t = ((double) tvps_BASIC[tvps_idx[0]] -100.0 ) / 15.0 ;
+        jPctl_BAS.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         //Sequencing
         tvps_idx[1] = tvpsStdValues[4] ;
         jIdx_SEQ.setText(String.valueOf (tvps_idx[1])) ;
         jIdxStd_SEQ.setText(String.valueOf (tvps_IdxSEQ[tvps_idx[1]])) ;
+        t = ((double) tvps_IdxSEQ[tvps_idx[1]] -100.0 ) / 15.0 ;
+        jPctl_IdxSEQ.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         //Complex
         tvps_idx[2] = tvpsStdValues[5] + tvpsStdValues[6] ;
         jIdx_CPX.setText(String.valueOf (tvps_idx[2])) ;
         jIdxStd_CPX.setText(String.valueOf (tvps_CPLX[tvps_idx[2]])) ;
+        t = ((double) tvps_CPLX[tvps_idx[2]] -100.0 ) / 15.0 ;
+        jPctl_CPX.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         //Overall
         int tvps_all = tvps_idx[0] + tvps_idx[1] + tvps_idx[2] ;
         jIdx_ALL.setText(String.valueOf (tvps_all)) ;
+        if (tvps_all < 7) jIdxStd_ALL.setText("<55") ;
+        else jIdxStd_ALL.setText(String.valueOf (tvps_ALL[tvps_all])) ;
+        t = ((double) tvps_ALL[tvps_all] -100.0 ) / 15.0 ;
+        jPctl_ALL.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         
         OrthoCotation.barChart.updateGraph () ;
     }

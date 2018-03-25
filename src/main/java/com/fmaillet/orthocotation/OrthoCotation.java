@@ -79,6 +79,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
     public static MyBarChart barChart = new MyBarChart () ;
     public static JPanel radioPanel, tvpsChartPanel ;
     
+    //Genre
+    public static JRadioButton h, f ;
+    
     
     //Menus
     static JMenuBar barreMenus ;
@@ -245,11 +248,13 @@ public class OrthoCotation extends JFrame implements ActionListener {
         
         //Sexe
         ButtonGroup grp = new ButtonGroup();
-        JRadioButton h = new JRadioButton("Garçon"); grp.add(h);
-        JRadioButton f = new JRadioButton("Fille");  grp.add(f);
+        h = new JRadioButton("Garçon"); h.setSelected(false);
+        f = new JRadioButton("Fille"); f.setSelected(false);
+        grp.add(h); grp.add(f);
         h.setBounds(750, 13, 90, 27); f.setBounds(850, 13, 90, 27);
         h.setOpaque(false); f.setOpaque(false);
-        h.setSelected(true); h.setFont(new Font(h.getName(), Font.PLAIN, 18));
+        h.setFont(new Font(h.getName(), Font.PLAIN, 18));
+        
         f.setFont(new Font(h.getName(), Font.PLAIN, 18));
         getContentPane().add(h) ; getContentPane().add(f) ;
         h.addItemListener(new ItemListener() {
@@ -259,7 +264,17 @@ public class OrthoCotation extends JFrame implements ActionListener {
                 panelDEM.updateNSUCO();
             }
         });
-        
+        f.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                OrthoCotation.baseValues.homme = h.isSelected() ;
+                panelDEM.updateNSUCO();
+            }
+        });
+    }
+    
+    public static boolean isGenreDefined () {
+        return h.isSelected() | f.isSelected() ;
     }
     
     private static JPanel addTabPanel_VB () {
@@ -452,7 +467,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.6.0 du xx/03/2018" ;
+        return "v1.6.0 du 25/03/2018" ;
     }
 
     @Override

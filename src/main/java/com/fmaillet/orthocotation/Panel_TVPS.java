@@ -188,6 +188,16 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {0, 0, 0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 14}               //18.0
                         };
     
+    int tvps_BASIC[] = {51, 52, 54, 55, 56, 57, 59, 60, 61, 62, 64, 65, 66, 67, 69,
+                        70, 71, 72, 74, 75, 76, 77, 79, 80, 81, 83, 84, 85, 86, 88, 
+                        89, 90, 91, 93, 94, 95, 96, 98, 99, 100, 101, 103, 104, 105, 106,
+                        108, 109, 110, 111, 113, 114, 115, 117, 118, 119, 120, 122, 123, 124, 125,
+                        127, 128, 129, 130, 132, 133, 134, 135, 137, 138, 139, 140, 142, 143, 144, 145} ;
+    
+    int tvps_IdxSEQ[] = {50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125,
+                         130, 135, 140, 145} ;
+    
+    
     /**
      * Creates new form Panel_TVPS
      */
@@ -211,15 +221,22 @@ public class Panel_TVPS extends javax.swing.JPanel {
         //Positions
         jIdx_BAS.setLocation(jStd_CLO.getX(), jLabel12.getY()-2);
         jPctl_BAS.setLocation(jPctl_CLO.getX(), jLabel12.getY()-2);
+        jStd_BAS.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jLabel12.getY()-2);
+        
         jIdx_SEQ.setLocation(jStd_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jPctl_IdxSEQ.setLocation(jPctl_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdxStd_SEQ.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        
         jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
         jIdx_CPX.setLocation(jStd_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jPctl_CPX.setLocation(jPctl_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdxStd_CPX.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        
         jLabel14.setLocation(jLabel12.getX(), jIdx_CPX.getY()+2);
         jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+25);
         jIdx_ALL.setLocation(jStd_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jPctl_ALL.setLocation(jPctl_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdxStd_ALL.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
         
         
@@ -309,9 +326,11 @@ public class Panel_TVPS extends javax.swing.JPanel {
         //Basic proc.
         tvps_idx[0] = tvpsStdValues[0] + tvpsStdValues[1] + tvpsStdValues[2] + tvpsStdValues[3] ;
         jIdx_BAS.setText(String.valueOf (tvps_idx[0])) ;
+        jStd_BAS.setText(String.valueOf (tvps_BASIC[tvps_idx[0]-1])) ;
         //Sequencing
         tvps_idx[1] = tvpsStdValues[4] ;
         jIdx_SEQ.setText(String.valueOf (tvps_idx[1])) ;
+        jIdxStd_SEQ.setText(String.valueOf (tvps_IdxSEQ[tvps_idx[1]])) ;
         //Complex
         tvps_idx[2] = tvpsStdValues[5] + tvpsStdValues[6] ;
         jIdx_CPX.setText(String.valueOf (tvps_idx[2])) ;
@@ -382,6 +401,11 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_IdxSEQ = new javax.swing.JTextField();
         jPctl_CPX = new javax.swing.JTextField();
         jPctl_ALL = new javax.swing.JTextField();
+        jStd_BAS = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jIdxStd_SEQ = new javax.swing.JTextField();
+        jIdxStd_CPX = new javax.swing.JTextField();
+        jIdxStd_ALL = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -393,7 +417,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         add(jLabel15);
         jLabel15.setBounds(10, 11, 52, 17);
         add(jSepIdx);
-        jSepIdx.setBounds(30, 480, 260, 10);
+        jSepIdx.setBounds(30, 480, 330, 10);
 
         jMsgTVPS.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jMsgTVPS.setForeground(java.awt.Color.red);
@@ -499,10 +523,12 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jCLO.setBounds(57, 299, 48, 20);
 
         jLabel8.setText("Raw");
+        jLabel8.setToolTipText("Score brut");
         add(jLabel8);
         jLabel8.setBounds(70, 50, 30, 14);
 
         jLabel9.setText("Scaled");
+        jLabel9.setToolTipText("Scaled Score");
         add(jLabel9);
         jLabel9.setBounds(147, 50, 40, 14);
 
@@ -592,9 +618,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
         add(jIdx_SEQ);
         jIdx_SEQ.setBounds(140, 410, 40, 20);
 
-        jLabel10.setText("Percentile");
+        jLabel10.setText("Pctl");
+        jLabel10.setToolTipText("Percentile");
         add(jLabel10);
-        jLabel10.setBounds(223, 50, 60, 14);
+        jLabel10.setBounds(230, 50, 40, 14);
 
         jPctl_DIS.setEditable(false);
         jPctl_DIS.setBackground(new java.awt.Color(255, 255, 255));
@@ -768,6 +795,39 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jPctl_ALL.setText("na");
         add(jPctl_ALL);
         jPctl_ALL.setBounds(220, 490, 40, 20);
+
+        jStd_BAS.setEditable(false);
+        jStd_BAS.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_BAS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_BAS.setText("na");
+        add(jStd_BAS);
+        jStd_BAS.setBounds(300, 380, 40, 20);
+
+        jLabel17.setText("Std");
+        jLabel17.setToolTipText("Score standard");
+        add(jLabel17);
+        jLabel17.setBounds(310, 50, 40, 14);
+
+        jIdxStd_SEQ.setEditable(false);
+        jIdxStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdxStd_SEQ.setText("na");
+        add(jIdxStd_SEQ);
+        jIdxStd_SEQ.setBounds(300, 410, 40, 20);
+
+        jIdxStd_CPX.setEditable(false);
+        jIdxStd_CPX.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_CPX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdxStd_CPX.setText("na");
+        add(jIdxStd_CPX);
+        jIdxStd_CPX.setBounds(300, 440, 40, 20);
+
+        jIdxStd_ALL.setEditable(false);
+        jIdxStd_ALL.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_ALL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jIdxStd_ALL.setText("na");
+        add(jIdxStd_ALL);
+        jIdxStd_ALL.setBounds(300, 490, 40, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jDISStateChanged
@@ -854,6 +914,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
     public static javax.swing.JCheckBox jCheckTitre;
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;
+    private javax.swing.JTextField jIdxStd_ALL;
+    private javax.swing.JTextField jIdxStd_CPX;
+    private javax.swing.JTextField jIdxStd_SEQ;
     private javax.swing.JTextField jIdx_ALL;
     private javax.swing.JTextField jIdx_BAS;
     private javax.swing.JTextField jIdx_CPX;
@@ -866,6 +929,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -892,6 +956,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     private javax.swing.JSeparator jSepIdx;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jStd_BAS;
     private javax.swing.JTextField jStd_CLO;
     private javax.swing.JTextField jStd_CON;
     private javax.swing.JTextField jStd_DIS;

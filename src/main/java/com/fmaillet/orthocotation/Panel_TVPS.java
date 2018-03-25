@@ -188,7 +188,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
                          {0, 0, 0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 14}               //18.0
                         };
     
-    int tvps_BASIC[] = {51, 52, 54, 55, 56, 57, 59, 60, 61, 62, 64, 65, 66, 67, 69,
+    int tvps_BASIC[] = {50, 51, 52, 54, 55, 56, 57, 59, 60, 61, 62, 64, 65, 66, 67, 69,
                         70, 71, 72, 74, 75, 76, 77, 79, 80, 81, 83, 84, 85, 86, 88, 
                         89, 90, 91, 93, 94, 95, 96, 98, 99, 100, 101, 103, 104, 105, 106,
                         108, 109, 110, 111, 113, 114, 115, 117, 118, 119, 120, 122, 123, 124, 125,
@@ -196,6 +196,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
     
     int tvps_IdxSEQ[] = {50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125,
                          130, 135, 140, 145} ;
+    
+    int tvps_CPLX[] =   {50, 52, 55, 58, 60, 62, 65, 68, 70, 73, 75, 78, 80, 83, 85, 88,
+                         90, 93, 95, 98, 100, 103, 105, 108, 110, 113, 115, 118, 120, 123, 125,
+                         128, 130, 133, 135, 138, 140, 143, 145} ;
     
     
     /**
@@ -326,7 +330,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         //Basic proc.
         tvps_idx[0] = tvpsStdValues[0] + tvpsStdValues[1] + tvpsStdValues[2] + tvpsStdValues[3] ;
         jIdx_BAS.setText(String.valueOf (tvps_idx[0])) ;
-        jStd_BAS.setText(String.valueOf (tvps_BASIC[tvps_idx[0]-1])) ;
+        jStd_BAS.setText(String.valueOf (tvps_BASIC[tvps_idx[0]])) ;
         //Sequencing
         tvps_idx[1] = tvpsStdValues[4] ;
         jIdx_SEQ.setText(String.valueOf (tvps_idx[1])) ;
@@ -334,6 +338,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         //Complex
         tvps_idx[2] = tvpsStdValues[5] + tvpsStdValues[6] ;
         jIdx_CPX.setText(String.valueOf (tvps_idx[2])) ;
+        jIdxStd_CPX.setText(String.valueOf (tvps_CPLX[tvps_idx[2]])) ;
         //Overall
         int tvps_all = tvps_idx[0] + tvps_idx[1] + tvps_idx[2] ;
         jIdx_ALL.setText(String.valueOf (tvps_all)) ;
@@ -798,6 +803,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jStd_BAS.setEditable(false);
         jStd_BAS.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_BAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jStd_BAS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_BAS.setText("na");
         add(jStd_BAS);
@@ -810,6 +816,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jIdxStd_SEQ.setEditable(false);
         jIdxStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdxStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdxStd_SEQ.setText("na");
         add(jIdxStd_SEQ);
@@ -817,6 +824,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jIdxStd_CPX.setEditable(false);
         jIdxStd_CPX.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_CPX.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdxStd_CPX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdxStd_CPX.setText("na");
         add(jIdxStd_CPX);
@@ -824,6 +832,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jIdxStd_ALL.setEditable(false);
         jIdxStd_ALL.setBackground(new java.awt.Color(255, 255, 255));
+        jIdxStd_ALL.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdxStd_ALL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdxStd_ALL.setText("na");
         add(jIdxStd_ALL);

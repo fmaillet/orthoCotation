@@ -7,6 +7,7 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Paint;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -77,7 +78,9 @@ public class MyBarChart {
         plot.setRangeGridlinesVisible(true);
         plot.setRangeGridlinePaint(ChartColor.GRAY); 
         
-        barRenderer = (BarRenderer) plot.getRenderer();
+        //barRenderer = (BarRenderer) plot.getRenderer();
+        barRenderer = new CustomRenderer (OrthoCotation.panelTVPS) ;
+        plot.setRenderer(barRenderer) ;
         Color lightBlue= new Color(51, 153, 255,155);
         barRenderer.setSeriesPaint(0, lightBlue);
         plot.setForegroundAlpha(0.95f);
@@ -175,31 +178,32 @@ public class MyBarChart {
         barRenderer.setSeriesPaint(0, c);
     }
     
-    public void changeAspect (boolean titre, boolean rge) {
+    public void changeAspect (boolean titre, boolean subTitle, boolean rge) {
         //Titre
-        
         if (titre) chart.setTitle(new TextTitle("TVPS-3 scores & percentiles", new Font (chart.getTitle().getFont().getFontName(), Font.BOLD , 17)));
         else chart.setTitle("");
+        //Sous-titre
+        if (subTitle) plot.getDomainAxis().setLabel("Subtests");
+        else plot.getDomainAxis().setLabel("");
         //Normal range
         if (rge) {
             if (plot.getRangeMarkers(Layer.BACKGROUND) == null) plot.addRangeMarker(target, Layer.BACKGROUND);
             else if (plot.getRangeMarkers(Layer.BACKGROUND).isEmpty()) plot.addRangeMarker(target, Layer.BACKGROUND);
         }
         else plot.removeRangeMarker(target, Layer.BACKGROUND) ;
-    }
-    
-    private CategoryDataset createDataset( ) {
-
-      dataset.addValue( 1.0 , "base" , "DIS" );        
-      dataset.addValue( 3.0 , "base" , "MEM" );        
-      dataset.addValue( 5.0 , "base" , "SPA" ); 
-      dataset.addValue( 5.0 , "base" , "CON" );
-      dataset.addValue( 3.0 , "base" , "SEQ" );        
-      dataset.addValue( 5.0 , "base" , "FGR" ); 
-      dataset.addValue( 5.0 , "base" , "CLO" );
-
-      return dataset; 
-   }
-    
+    }   
 }
 
+class CustomRenderer extends BarRenderer {
+    static Panel_TVPS panel ;
+    
+    public CustomRenderer (Panel_TVPS panel) {
+        this.panel = panel ;
+    }
+    
+    public Paint getItemPaint(final int row, final int column) {
+            
+            if (panel.tvpsPctlValues[column] <= 5) return Color.RED;
+            else return Color.CYAN ;
+        }
+}

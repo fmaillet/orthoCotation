@@ -110,25 +110,23 @@
                   <Component id="jPctl_CPX" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="jPctl_ALL" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jIdxStd_SEQ" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jIdxStd_CPX" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jIdxStd_ALL" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jStd_BAS" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="173" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jCheckTitre" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jCheckRange" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jIdxStd_SEQ" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jIdxStd_CPX" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jIdxStd_ALL" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jStd_BAS" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="448" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jCheckSousTitre" min="-2" pref="111" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -253,6 +251,8 @@
                           <Component id="jCheckTitre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckRange" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jCheckSousTitre" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -816,6 +816,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="DIS :"/>
+        <Property name="toolTipText" type="java.lang.String" value="Discrimination"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckDISStateChanged"/>
@@ -825,6 +826,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="MEM :"/>
+        <Property name="toolTipText" type="java.lang.String" value="M&#xe9;moire"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckMEMStateChanged"/>
@@ -834,6 +836,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="SPA :"/>
+        <Property name="toolTipText" type="java.lang.String" value="Spatial"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckSPAStateChanged"/>
@@ -843,6 +846,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="CON :"/>
+        <Property name="toolTipText" type="java.lang.String" value="Constance de forme"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckCONStateChanged"/>
@@ -852,6 +856,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="SEQ :"/>
+        <Property name="toolTipText" type="java.lang.String" value="M&#xe9;moire de s&#xe9;quences"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckSEQStateChanged"/>
@@ -861,6 +866,7 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="FGR :"/>
+        <Property name="toolTipText" type="java.lang.String" value="Figure/Fond"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckFGRStateChanged"/>
@@ -870,10 +876,23 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="CLO :"/>
+        <Property name="toolTipText" type="java.lang.String" value="Closure"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckCLOStateChanged"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckSousTitre">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="&quot;Subtests&quot;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckSousTitreStateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

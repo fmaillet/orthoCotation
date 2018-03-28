@@ -2,6 +2,7 @@ package com.fmaillet.orthocotation;
 
 import com.fmaillet.orthocotation.ColorChooserButton.ColorChangedListener;
 import java.awt.Color;
+import javax.swing.JPanel;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /*
@@ -14,7 +15,7 @@ import org.apache.commons.math3.distribution.NormalDistribution;
  *
  * @author Fred
  */
-public class Panel_TVPS extends javax.swing.JPanel {
+public class Panel_TVPS extends JPanel {
 
     public static int tvpsStdValues[] = new int[7] ;
     public static int tvpsPctlValues[] = new int[7] ;
@@ -242,7 +243,6 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jIdxStd_ALL.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
         jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
         
-        
         updateResults () ;
     }
     
@@ -420,6 +420,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
         jCheckSEQ = new javax.swing.JCheckBox();
         jCheckFGR = new javax.swing.JCheckBox();
         jCheckCLO = new javax.swing.JCheckBox();
+        jCheckSousTitre = new javax.swing.JCheckBox();
 
         setMaximumSize(new java.awt.Dimension(800, 550));
         setMinimumSize(new java.awt.Dimension(800, 550));
@@ -717,6 +718,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckDIS.setSelected(true);
         jCheckDIS.setText("DIS :");
+        jCheckDIS.setToolTipText("Discrimination");
         jCheckDIS.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckDISStateChanged(evt);
@@ -725,6 +727,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckMEM.setSelected(true);
         jCheckMEM.setText("MEM :");
+        jCheckMEM.setToolTipText("Mémoire");
         jCheckMEM.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckMEMStateChanged(evt);
@@ -733,6 +736,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckSPA.setSelected(true);
         jCheckSPA.setText("SPA :");
+        jCheckSPA.setToolTipText("Spatial");
         jCheckSPA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckSPAStateChanged(evt);
@@ -741,6 +745,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckCON.setSelected(true);
         jCheckCON.setText("CON :");
+        jCheckCON.setToolTipText("Constance de forme");
         jCheckCON.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckCONStateChanged(evt);
@@ -749,6 +754,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckSEQ.setSelected(true);
         jCheckSEQ.setText("SEQ :");
+        jCheckSEQ.setToolTipText("Mémoire de séquences");
         jCheckSEQ.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckSEQStateChanged(evt);
@@ -757,6 +763,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckFGR.setSelected(true);
         jCheckFGR.setText("FGR :");
+        jCheckFGR.setToolTipText("Figure/Fond");
         jCheckFGR.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckFGRStateChanged(evt);
@@ -765,9 +772,18 @@ public class Panel_TVPS extends javax.swing.JPanel {
 
         jCheckCLO.setSelected(true);
         jCheckCLO.setText("CLO :");
+        jCheckCLO.setToolTipText("Closure");
         jCheckCLO.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckCLOStateChanged(evt);
+            }
+        });
+
+        jCheckSousTitre.setSelected(true);
+        jCheckSousTitre.setText("\"Subtests\"");
+        jCheckSousTitre.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckSousTitreStateChanged(evt);
             }
         });
 
@@ -840,21 +856,20 @@ public class Panel_TVPS extends javax.swing.JPanel {
                     .addComponent(jPctl_IdxSEQ, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPctl_CPX, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPctl_ALL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jIdxStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jIdxStd_CPX, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jIdxStd_ALL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_BAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckRange, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jIdxStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jIdxStd_CPX, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jIdxStd_ALL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStd_BAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(448, Short.MAX_VALUE))))
+                        .addComponent(jCheckRange, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckSousTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -955,7 +970,9 @@ public class Panel_TVPS extends javax.swing.JPanel {
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckTitre)
-                            .addComponent(jCheckRange)))
+                            .addComponent(jCheckRange))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckSousTitre))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
@@ -1044,11 +1061,11 @@ public class Panel_TVPS extends javax.swing.JPanel {
     }//GEN-LAST:event_jIdx_SEQActionPerformed
 
     private void jCheckRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckRangeActionPerformed
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
+        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckRangeActionPerformed
 
     private void jCheckTitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckTitreActionPerformed
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckRange.isSelected()) ;
+        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
 
     private void jStd_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CLOActionPerformed
@@ -1102,6 +1119,10 @@ public class Panel_TVPS extends javax.swing.JPanel {
         updateResults () ;
     }//GEN-LAST:event_jCheckCLOStateChanged
 
+    private void jCheckSousTitreStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckSousTitreStateChanged
+        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
+    }//GEN-LAST:event_jCheckSousTitreStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jCLO;
@@ -1114,6 +1135,7 @@ public class Panel_TVPS extends javax.swing.JPanel {
     public static javax.swing.JCheckBox jCheckRange;
     private javax.swing.JCheckBox jCheckSEQ;
     private javax.swing.JCheckBox jCheckSPA;
+    public static javax.swing.JCheckBox jCheckSousTitre;
     public static javax.swing.JCheckBox jCheckTitre;
     private javax.swing.JSpinner jDIS;
     private javax.swing.JSpinner jFGR;

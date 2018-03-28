@@ -134,13 +134,13 @@ public class MyBarChart {
         }
         else panel.setEnabled(true);
         
-        dataset.addValue( Panel_TVPS.tvpsStdValues[0] , "base" , "DIS" );        
-        dataset.addValue( Panel_TVPS.tvpsStdValues[1] , "base" , "MEM" );        
-        dataset.addValue( Panel_TVPS.tvpsStdValues[2] , "base" , "SPA" ); 
-        dataset.addValue( Panel_TVPS.tvpsStdValues[3] , "base" , "CON" );
-        dataset.addValue( Panel_TVPS.tvpsStdValues[4] , "base" , "SEQ" );        
-        dataset.addValue( Panel_TVPS.tvpsStdValues[5] , "base" , "FGR" ); 
-        dataset.addValue( Panel_TVPS.tvpsStdValues[6] , "base" , "CLO" );
+        if (Panel_TVPS.tvpsChkValues[0]) dataset.addValue( Panel_TVPS.tvpsStdValues[0] , "base" , "DIS" );        
+        if (Panel_TVPS.tvpsChkValues[1]) dataset.addValue( Panel_TVPS.tvpsStdValues[1] , "base" , "MEM" );        
+        if (Panel_TVPS.tvpsChkValues[2]) dataset.addValue( Panel_TVPS.tvpsStdValues[2] , "base" , "SPA" ); 
+        if (Panel_TVPS.tvpsChkValues[3]) dataset.addValue( Panel_TVPS.tvpsStdValues[3] , "base" , "CON" );
+        if (Panel_TVPS.tvpsChkValues[4]) dataset.addValue( Panel_TVPS.tvpsStdValues[4] , "base" , "SEQ" );        
+        if (Panel_TVPS.tvpsChkValues[5]) dataset.addValue( Panel_TVPS.tvpsStdValues[5] , "base" , "FGR" ); 
+        if (Panel_TVPS.tvpsChkValues[6]) dataset.addValue( Panel_TVPS.tvpsStdValues[6] , "base" , "CLO" );
         
         
         /*plot.setNoDataMessage("NO DATA!"); 

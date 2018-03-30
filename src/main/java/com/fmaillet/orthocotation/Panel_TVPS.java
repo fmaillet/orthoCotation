@@ -17,7 +17,7 @@ import org.apache.commons.math3.distribution.NormalDistribution;
  */
 public class Panel_TVPS extends JPanel {
 
-    public static int tvpsStdValues[] = new int[7] ;
+    public static int[] tvpsSclValues = new int[7] ;
     public static int tvpsPctlValues[] = new int[7] ;
     public static boolean tvpsChkValues[] = {true, true, true, true, true, true, true } ;
     static public ColorChooserButton jChgeColor ;
@@ -208,7 +208,7 @@ public class Panel_TVPS extends JPanel {
     public Panel_TVPS() {
         initComponents();
         
-        jChgeColor = new ColorChooserButton(Color.CYAN);
+        jChgeColor = new ColorChooserButton(new Color(51, 153, 255,155));
         jChgeColor.setBounds(200, 200, 100, 25);
         jChgeColor.setText("Couleur");
         jChgeColor.setEnabled(false);
@@ -223,24 +223,24 @@ public class Panel_TVPS extends JPanel {
         });
 
         //Positions
-        jIdx_BAS.setLocation(jStd_CLO.getX(), jLabel12.getY()-2);
+        jIdx_BAS.setLocation(jScl_CLO.getX(), jLabel12.getY()-2);
         jPctl_BAS.setLocation(jPctl_CLO.getX(), jLabel12.getY()-2);
         jStd_BAS.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jLabel12.getY()-2);
         
-        jIdx_SEQ.setLocation(jStd_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jPctl_IdxSEQ.setLocation(jPctl_CLO.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jIdxStd_SEQ.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_BAS.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdx_SEQ.setLocation(jScl_CLO.getX(), jIdx_BAS.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jPctl_IdxSEQ.setLocation(jPctl_CLO.getX(), jIdx_BAS.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jIdxStd_SEQ.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_BAS.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
         
         jLabel13.setLocation(jLabel12.getX(), jIdx_SEQ.getY()+2);
-        jIdx_CPX.setLocation(jStd_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jPctl_CPX.setLocation(jPctl_CLO.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jIdxStd_CPX.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_SEQ.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdx_CPX.setLocation(jScl_CLO.getX(), jIdx_SEQ.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jPctl_CPX.setLocation(jPctl_CLO.getX(), jIdx_SEQ.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jIdxStd_CPX.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_SEQ.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
         
         jLabel14.setLocation(jLabel12.getX(), jIdx_CPX.getY()+2);
         jSepIdx.setLocation(jLabel14.getX(), jLabel14.getY()+25);
-        jIdx_ALL.setLocation(jStd_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jPctl_ALL.setLocation(jPctl_CLO.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
-        jIdxStd_ALL.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_CPX.getY()+ (jStd_CLO.getY()-jStd_FGR.getY()));
+        jIdx_ALL.setLocation(jScl_CLO.getX(), jIdx_CPX.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jPctl_ALL.setLocation(jPctl_CLO.getX(), jIdx_CPX.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
+        jIdxStd_ALL.setLocation(jPctl_CLO.getX()+jPctl_CLO.getX()-jIdx_BAS.getX(), jIdx_CPX.getY()+ (jScl_CLO.getY()-jScl_FGR.getY()));
         jLabel16.setLocation(jLabel12.getX(), jIdx_ALL.getY()+2);
         
         updateResults () ;
@@ -272,74 +272,81 @@ public class Panel_TVPS extends JPanel {
     public void updateResults () {
         int tvps_idx[] = new int [4] ;
         
-        tvpsStdValues[0] = (int) jDIS.getValue() ;
-        tvpsStdValues[1] = (int) jMEM.getValue() ;
-        tvpsStdValues[2] = (int) jSPA.getValue() ;
-        tvpsStdValues[3] = (int) jCON.getValue() ;
-        tvpsStdValues[4] = (int) jSEQ.getValue() ;
-        tvpsStdValues[5] = (int) jFGR.getValue() ;
-        tvpsStdValues[6] = (int) jCLO.getValue() ;
+        tvpsSclValues[0] = (int) jDIS.getValue() ;
+        tvpsSclValues[1] = (int) jMEM.getValue() ;
+        tvpsSclValues[2] = (int) jSPA.getValue() ;
+        tvpsSclValues[3] = (int) jCON.getValue() ;
+        tvpsSclValues[4] = (int) jSEQ.getValue() ;
+        tvpsSclValues[5] = (int) jFGR.getValue() ;
+        tvpsSclValues[6] = (int) jCLO.getValue() ;
         
         if (OrthoCotation.baseValues.patientAge.years == 0) return ;
         jMsgTVPS.setText(null);
         
         //DIS
-        tvpsStdValues[0] = tvps_DIS[indexAge()][tvpsStdValues[0]-1] ;
-        jStd_DIS.setText(String.valueOf(tvpsStdValues[0]));
-        double t = ( (double) tvpsStdValues[0] - 10.0 ) / 3.0 ;
+        tvpsSclValues[0] = tvps_DIS[indexAge()][tvpsSclValues[0]-1] ;
+        jScl_DIS.setText(String.valueOf(tvpsSclValues[0]));
+        double t = ( (double) tvpsSclValues[0] - 10.0 ) / 3.0 ;
         tvpsPctlValues[0] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_DIS.setText(String.valueOf (tvpsPctlValues[0])) ;
+        jStd_DIS.setText(String.valueOf (tvpsSclValues[0]*5+50)) ;
         //MEM
-        tvpsStdValues[1] = tvps_MEM[indexAge()][tvpsStdValues[1]-1] ;
-        jStd_MEM.setText(String.valueOf(tvpsStdValues[1]));
-        t = ( (double) tvpsStdValues[1] - 10.0 ) / 3.0 ;
+        tvpsSclValues[1] = tvps_MEM[indexAge()][tvpsSclValues[1]-1] ;
+        jScl_MEM.setText(String.valueOf(tvpsSclValues[1]));
+        t = ( (double) tvpsSclValues[1] - 10.0 ) / 3.0 ;
         tvpsPctlValues[1] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_MEM.setText(String.valueOf (tvpsPctlValues[1])) ;
+        jStd_MEM.setText(String.valueOf (tvpsSclValues[1]*5+50)) ;
         //SPA
-        tvpsStdValues[2] = tvps_SPA[indexAge()][tvpsStdValues[2]-1] ;
-        jStd_SPA.setText(String.valueOf(tvpsStdValues[2]));
-        t = ( (double) tvpsStdValues[2] - 10.0 ) / 3.0 ;
+        tvpsSclValues[2] = tvps_SPA[indexAge()][tvpsSclValues[2]-1] ;
+        jScl_SPA.setText(String.valueOf(tvpsSclValues[2]));
+        t = ( (double) tvpsSclValues[2] - 10.0 ) / 3.0 ;
         tvpsPctlValues[2] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_SPA.setText(String.valueOf (tvpsPctlValues[2])) ;
+        jStd_SPA.setText(String.valueOf (tvpsSclValues[2]*5+50)) ;
         //CON
-        tvpsStdValues[3] = tvps_CON[indexAge()][tvpsStdValues[3]-1] ;
-        jStd_CON.setText(String.valueOf(tvpsStdValues[3]));
-        t = ( (double) tvpsStdValues[3] - 10.0 ) / 3.0 ;
+        tvpsSclValues[3] = tvps_CON[indexAge()][tvpsSclValues[3]-1] ;
+        jScl_CON.setText(String.valueOf(tvpsSclValues[3]));
+        t = ( (double) tvpsSclValues[3] - 10.0 ) / 3.0 ;
         tvpsPctlValues[3] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_CON.setText(String.valueOf (tvpsPctlValues[3])) ;
+        jStd_CON.setText(String.valueOf (tvpsSclValues[3]*5+50)) ;
         //SEQ
-        tvpsStdValues[4] = tvps_SEQ[indexAge()][tvpsStdValues[4]-1] ;
-        jStd_SEQ.setText(String.valueOf(tvpsStdValues[4]));
-        t = ( (double) tvpsStdValues[4] - 10.0 ) / 3.0 ;
+        tvpsSclValues[4] = tvps_SEQ[indexAge()][tvpsSclValues[4]-1] ;
+        jScl_SEQ.setText(String.valueOf(tvpsSclValues[4]));
+        t = ( (double) tvpsSclValues[4] - 10.0 ) / 3.0 ;
         tvpsPctlValues[4] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_SEQ.setText(String.valueOf (tvpsPctlValues[4])) ;
+        jStd_SEQ.setText(String.valueOf (tvpsSclValues[4]*5+50)) ;
         //FGR
-        tvpsStdValues[5] = tvps_FGR[indexAge()][tvpsStdValues[5]-1] ;
-        jStd_FGR.setText(String.valueOf(tvpsStdValues[5]));
-        t = ( (double) tvpsStdValues[5] - 10.0 ) / 3.0 ;
+        tvpsSclValues[5] = tvps_FGR[indexAge()][tvpsSclValues[5]-1] ;
+        jScl_FGR.setText(String.valueOf(tvpsSclValues[5]));
+        t = ( (double) tvpsSclValues[5] - 10.0 ) / 3.0 ;
         tvpsPctlValues[5] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_FGR.setText(String.valueOf (tvpsPctlValues[5])) ;
+        jStd_FGR.setText(String.valueOf (tvpsSclValues[5]*5+50)) ;
         //CLO
-        tvpsStdValues[6] = tvps_CLO[indexAge()][tvpsStdValues[6]-1] ;
-        jStd_CLO.setText(String.valueOf(tvpsStdValues[6]));
-        t = ( (double) tvpsStdValues[6] - 10.0 ) / 3.0 ;
+        tvpsSclValues[6] = tvps_CLO[indexAge()][tvpsSclValues[6]-1] ;
+        jScl_CLO.setText(String.valueOf(tvpsSclValues[6]));
+        t = ( (double) tvpsSclValues[6] - 10.0 ) / 3.0 ;
         tvpsPctlValues[6] = (int) Math.round(zScoreToPercentile(t)) ;
         jPctl_CLO.setText(String.valueOf (tvpsPctlValues[6])) ;
+        jStd_CLO.setText(String.valueOf (tvpsSclValues[6]*5+50)) ;
         
         //Basic proc.
-        tvps_idx[0] = tvpsStdValues[0] + tvpsStdValues[1] + tvpsStdValues[2] + tvpsStdValues[3] ;
+        tvps_idx[0] = tvpsSclValues[0] + tvpsSclValues[1] + tvpsSclValues[2] + tvpsSclValues[3] ;
         jIdx_BAS.setText(String.valueOf (tvps_idx[0])) ;
         jStd_BAS.setText(String.valueOf (tvps_BASIC[tvps_idx[0]])) ;
         t = ((double) tvps_BASIC[tvps_idx[0]] -100.0 ) / 15.0 ;
         jPctl_BAS.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         //Sequencing
-        tvps_idx[1] = tvpsStdValues[4] ;
+        tvps_idx[1] = tvpsSclValues[4] ;
         jIdx_SEQ.setText(String.valueOf (tvps_idx[1])) ;
         jIdxStd_SEQ.setText(String.valueOf (tvps_IdxSEQ[tvps_idx[1]])) ;
         t = ((double) tvps_IdxSEQ[tvps_idx[1]] -100.0 ) / 15.0 ;
         jPctl_IdxSEQ.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         //Complex
-        tvps_idx[2] = tvpsStdValues[5] + tvpsStdValues[6] ;
+        tvps_idx[2] = tvpsSclValues[5] + tvpsSclValues[6] ;
         jIdx_CPX.setText(String.valueOf (tvps_idx[2])) ;
         jIdxStd_CPX.setText(String.valueOf (tvps_CPLX[tvps_idx[2]])) ;
         t = ((double) tvps_CPLX[tvps_idx[2]] -100.0 ) / 15.0 ;
@@ -376,12 +383,12 @@ public class Panel_TVPS extends JPanel {
         jCLO = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jStd_DIS = new javax.swing.JTextField();
-        jStd_MEM = new javax.swing.JTextField();
-        jStd_SPA = new javax.swing.JTextField();
-        jStd_CON = new javax.swing.JTextField();
-        jStd_SEQ = new javax.swing.JTextField();
-        jStd_FGR = new javax.swing.JTextField();
+        jScl_DIS = new javax.swing.JTextField();
+        jScl_MEM = new javax.swing.JTextField();
+        jScl_SPA = new javax.swing.JTextField();
+        jScl_CON = new javax.swing.JTextField();
+        jScl_SEQ = new javax.swing.JTextField();
+        jScl_FGR = new javax.swing.JTextField();
         jIdx_SEQ = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPctl_DIS = new javax.swing.JTextField();
@@ -397,7 +404,7 @@ public class Panel_TVPS extends JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jStd_CLO = new javax.swing.JTextField();
+        jScl_CLO = new javax.swing.JTextField();
         jIdx_BAS = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jIdx_CPX = new javax.swing.JTextField();
@@ -421,6 +428,13 @@ public class Panel_TVPS extends JPanel {
         jCheckFGR = new javax.swing.JCheckBox();
         jCheckCLO = new javax.swing.JCheckBox();
         jCheckSousTitre = new javax.swing.JCheckBox();
+        jStd_CLO = new javax.swing.JTextField();
+        jStd_FGR = new javax.swing.JTextField();
+        jStd_SEQ = new javax.swing.JTextField();
+        jStd_CON = new javax.swing.JTextField();
+        jStd_SPA = new javax.swing.JTextField();
+        jStd_MEM = new javax.swing.JTextField();
+        jStd_DIS = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(800, 550));
         setMinimumSize(new java.awt.Dimension(800, 550));
@@ -489,64 +503,64 @@ public class Panel_TVPS extends JPanel {
         jLabel9.setText("Scaled");
         jLabel9.setToolTipText("Scaled Score");
 
-        jStd_DIS.setEditable(false);
-        jStd_DIS.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_DIS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_DIS.setText("na");
+        jScl_DIS.setEditable(false);
+        jScl_DIS.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_DIS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_DIS.setText("na");
 
-        jStd_MEM.setEditable(false);
-        jStd_MEM.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_MEM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_MEM.setText("na");
-        jStd_MEM.addActionListener(new java.awt.event.ActionListener() {
+        jScl_MEM.setEditable(false);
+        jScl_MEM.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_MEM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_MEM.setText("na");
+        jScl_MEM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_MEMActionPerformed(evt);
+                jScl_MEMActionPerformed(evt);
             }
         });
 
-        jStd_SPA.setEditable(false);
-        jStd_SPA.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_SPA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_SPA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_SPA.setText("na");
-        jStd_SPA.addActionListener(new java.awt.event.ActionListener() {
+        jScl_SPA.setEditable(false);
+        jScl_SPA.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_SPA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_SPA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_SPA.setText("na");
+        jScl_SPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_SPAActionPerformed(evt);
+                jScl_SPAActionPerformed(evt);
             }
         });
 
-        jStd_CON.setEditable(false);
-        jStd_CON.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_CON.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_CON.setText("na");
-        jStd_CON.addActionListener(new java.awt.event.ActionListener() {
+        jScl_CON.setEditable(false);
+        jScl_CON.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_CON.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_CON.setText("na");
+        jScl_CON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_CONActionPerformed(evt);
+                jScl_CONActionPerformed(evt);
             }
         });
 
-        jStd_SEQ.setEditable(false);
-        jStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_SEQ.setText("na");
-        jStd_SEQ.addActionListener(new java.awt.event.ActionListener() {
+        jScl_SEQ.setEditable(false);
+        jScl_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_SEQ.setText("na");
+        jScl_SEQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_SEQActionPerformed(evt);
+                jScl_SEQActionPerformed(evt);
             }
         });
 
-        jStd_FGR.setEditable(false);
-        jStd_FGR.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_FGR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_FGR.setText("na");
-        jStd_FGR.addActionListener(new java.awt.event.ActionListener() {
+        jScl_FGR.setEditable(false);
+        jScl_FGR.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_FGR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_FGR.setText("na");
+        jScl_FGR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_FGRActionPerformed(evt);
+                jScl_FGRActionPerformed(evt);
             }
         });
 
@@ -621,14 +635,14 @@ public class Panel_TVPS extends JPanel {
 
         jLabel13.setText("Sequencing :");
 
-        jStd_CLO.setEditable(false);
-        jStd_CLO.setBackground(new java.awt.Color(255, 255, 255));
-        jStd_CLO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jStd_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jStd_CLO.setText("na");
-        jStd_CLO.addActionListener(new java.awt.event.ActionListener() {
+        jScl_CLO.setEditable(false);
+        jScl_CLO.setBackground(new java.awt.Color(255, 255, 255));
+        jScl_CLO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jScl_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jScl_CLO.setText("na");
+        jScl_CLO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jStd_CLOActionPerformed(evt);
+                jScl_CLOActionPerformed(evt);
             }
         });
 
@@ -787,6 +801,48 @@ public class Panel_TVPS extends JPanel {
             }
         });
 
+        jStd_CLO.setEditable(false);
+        jStd_CLO.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CLO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_CLO.setText("na");
+
+        jStd_FGR.setEditable(false);
+        jStd_FGR.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_FGR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_FGR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_FGR.setText("na");
+
+        jStd_SEQ.setEditable(false);
+        jStd_SEQ.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_SEQ.setText("na");
+
+        jStd_CON.setEditable(false);
+        jStd_CON.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_CON.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_CON.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_CON.setText("na");
+
+        jStd_SPA.setEditable(false);
+        jStd_SPA.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_SPA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_SPA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_SPA.setText("na");
+
+        jStd_MEM.setEditable(false);
+        jStd_MEM.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_MEM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_MEM.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_MEM.setText("na");
+
+        jStd_DIS.setEditable(false);
+        jStd_DIS.setBackground(new java.awt.Color(255, 255, 255));
+        jStd_DIS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jStd_DIS.setText("na");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -814,25 +870,25 @@ public class Panel_TVPS extends JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jStd_DIS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jStd_MEM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jStd_CON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScl_DIS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScl_MEM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScl_CON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jSPA, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jStd_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScl_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jSEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jFGR, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jStd_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCLO, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jStd_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -894,8 +950,20 @@ public class Panel_TVPS extends JPanel {
                             .addComponent(jPctl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPctl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPctl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jStd_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_CON, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jStd_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -925,44 +993,51 @@ public class Panel_TVPS extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jDIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckDIS)
-                    .addComponent(jStd_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_DIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jMEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckMEM)
-                    .addComponent(jStd_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_MEM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckSPA)
-                    .addComponent(jStd_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_SPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckCON)
-                    .addComponent(jStd_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_CON, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckSEQ)
-                    .addComponent(jStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_SEQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckFGR)
-                    .addComponent(jStd_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_FGR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckCLO)
-                    .addComponent(jStd_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPctl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPctl_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStd_CLO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,25 +1111,25 @@ public class Panel_TVPS extends JPanel {
         updateResults () ;
     }//GEN-LAST:event_jCLOStateChanged
 
-    private void jStd_MEMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_MEMActionPerformed
+    private void jScl_MEMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_MEMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_MEMActionPerformed
+    }//GEN-LAST:event_jScl_MEMActionPerformed
 
-    private void jStd_SPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_SPAActionPerformed
+    private void jScl_SPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_SPAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_SPAActionPerformed
+    }//GEN-LAST:event_jScl_SPAActionPerformed
 
-    private void jStd_CONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CONActionPerformed
+    private void jScl_CONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_CONActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_CONActionPerformed
+    }//GEN-LAST:event_jScl_CONActionPerformed
 
-    private void jStd_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_SEQActionPerformed
+    private void jScl_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_SEQActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_SEQActionPerformed
+    }//GEN-LAST:event_jScl_SEQActionPerformed
 
-    private void jStd_FGRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_FGRActionPerformed
+    private void jScl_FGRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_FGRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_FGRActionPerformed
+    }//GEN-LAST:event_jScl_FGRActionPerformed
 
     private void jIdx_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_SEQActionPerformed
         // TODO add your handling code here:
@@ -1068,9 +1143,9 @@ public class Panel_TVPS extends JPanel {
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
 
-    private void jStd_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStd_CLOActionPerformed
+    private void jScl_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_CLOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jStd_CLOActionPerformed
+    }//GEN-LAST:event_jScl_CLOActionPerformed
 
     private void jIdx_BASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_BASActionPerformed
         // TODO add your handling code here:
@@ -1171,6 +1246,13 @@ public class Panel_TVPS extends JPanel {
     private javax.swing.JTextField jPctl_SPA;
     private javax.swing.JSpinner jSEQ;
     private javax.swing.JSpinner jSPA;
+    private javax.swing.JTextField jScl_CLO;
+    private javax.swing.JTextField jScl_CON;
+    private javax.swing.JTextField jScl_DIS;
+    private javax.swing.JTextField jScl_FGR;
+    private javax.swing.JTextField jScl_MEM;
+    private javax.swing.JTextField jScl_SEQ;
+    private javax.swing.JTextField jScl_SPA;
     private javax.swing.JSeparator jSepIdx;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

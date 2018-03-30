@@ -39,6 +39,7 @@ public class MyBarChart {
     ChartPanel panel ;
     
     CategoryPlot plot ;
+    Color currentColor ;
     
             
     DefaultCategoryDataset dataset ;
@@ -78,11 +79,14 @@ public class MyBarChart {
         plot.setRangeGridlinesVisible(true);
         plot.setRangeGridlinePaint(ChartColor.GRAY); 
         
+        Color lightBlue = new Color(51, 153, 255,155);
+        currentColor = lightBlue ;
         //barRenderer = (BarRenderer) plot.getRenderer();
-        barRenderer = new CustomRenderer (OrthoCotation.panelTVPS) ;
+        barRenderer = new CustomRenderer (OrthoCotation.panelTVPS, currentColor) ;
         plot.setRenderer(barRenderer) ;
-        Color lightBlue= new Color(51, 153, 255,155);
-        barRenderer.setSeriesPaint(0, lightBlue);
+        
+        //barRenderer.setSeriesPaint(0, lightBlue);
+        
         plot.setForegroundAlpha(0.95f);
         
         barRenderer.setDrawBarOutline(false);
@@ -137,13 +141,13 @@ public class MyBarChart {
         }
         else panel.setEnabled(true);
         
-        if (Panel_TVPS.tvpsChkValues[0]) dataset.addValue( Panel_TVPS.tvpsStdValues[0] , "base" , "DIS" );        
-        if (Panel_TVPS.tvpsChkValues[1]) dataset.addValue( Panel_TVPS.tvpsStdValues[1] , "base" , "MEM" );        
-        if (Panel_TVPS.tvpsChkValues[2]) dataset.addValue( Panel_TVPS.tvpsStdValues[2] , "base" , "SPA" ); 
-        if (Panel_TVPS.tvpsChkValues[3]) dataset.addValue( Panel_TVPS.tvpsStdValues[3] , "base" , "CON" );
-        if (Panel_TVPS.tvpsChkValues[4]) dataset.addValue( Panel_TVPS.tvpsStdValues[4] , "base" , "SEQ" );        
-        if (Panel_TVPS.tvpsChkValues[5]) dataset.addValue( Panel_TVPS.tvpsStdValues[5] , "base" , "FGR" ); 
-        if (Panel_TVPS.tvpsChkValues[6]) dataset.addValue( Panel_TVPS.tvpsStdValues[6] , "base" , "CLO" );
+        if (Panel_TVPS.tvpsChkValues[0]) dataset.addValue( Panel_TVPS.tvpsSclValues[0] , "base" , "DIS" );        
+        if (Panel_TVPS.tvpsChkValues[1]) dataset.addValue( Panel_TVPS.tvpsSclValues[1] , "base" , "MEM" );        
+        if (Panel_TVPS.tvpsChkValues[2]) dataset.addValue( Panel_TVPS.tvpsSclValues[2] , "base" , "SPA" ); 
+        if (Panel_TVPS.tvpsChkValues[3]) dataset.addValue( Panel_TVPS.tvpsSclValues[3] , "base" , "CON" );
+        if (Panel_TVPS.tvpsChkValues[4]) dataset.addValue( Panel_TVPS.tvpsSclValues[4] , "base" , "SEQ" );        
+        if (Panel_TVPS.tvpsChkValues[5]) dataset.addValue( Panel_TVPS.tvpsSclValues[5] , "base" , "FGR" ); 
+        if (Panel_TVPS.tvpsChkValues[6]) dataset.addValue( Panel_TVPS.tvpsSclValues[6] , "base" , "CLO" );
         
         
         /*plot.setNoDataMessage("NO DATA!"); 
@@ -175,7 +179,9 @@ public class MyBarChart {
     }
     
     public void changeColor(Color c) {
-        barRenderer.setSeriesPaint(0, c);
+        currentColor = c ;
+        CustomRenderer.chgColor (c) ;
+        updateGraph () ;
     }
     
     public void changeAspect (boolean titre, boolean subTitle, boolean rge) {
@@ -196,14 +202,20 @@ public class MyBarChart {
 
 class CustomRenderer extends BarRenderer {
     static Panel_TVPS panel ;
+    static Color c ;
     
-    public CustomRenderer (Panel_TVPS panel) {
+    public CustomRenderer (Panel_TVPS panel, Color c) {
+        this.c = c ; 
         this.panel = panel ;
+    }
+    
+    public static void chgColor (Color col) {
+        c  = col ;
     }
     
     public Paint getItemPaint(final int row, final int column) {
             
             if (panel.tvpsPctlValues[column] <= 5) return Color.RED;
-            else return Color.CYAN ;
+            else return this.c ;
         }
 }

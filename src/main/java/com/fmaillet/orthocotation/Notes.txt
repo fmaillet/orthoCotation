@@ -7,7 +7,6 @@ elles ne sont pas dans baseDS
 v1.7.0 (en cours)
 - TVPS: std scores & checked subtests
 
-
 v1.6.0 (25-03-2018)
 - NEURO : Thurstone & début JLO
 - Help Critères & saisie VB

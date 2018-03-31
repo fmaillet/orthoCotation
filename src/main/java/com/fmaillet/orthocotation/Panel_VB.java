@@ -90,8 +90,7 @@ public class Panel_VB extends javax.swing.JPanel {
         g.drawRect(jCheckPPC.getX()-5,jCheckPPC.getY()-5,330,70);
         //ACA
         g.drawRect(jLabel1.getX()-5,jLabel1.getY()-12,530,78);  
-        /*g.setColor(Color.RED);  
-        g.fillRect(230,80,10,10); */ 
+        
     }
     
     double gradientACA, calculACA, meanACA ;
@@ -194,7 +193,14 @@ public class Panel_VB extends javax.swing.JPanel {
         int p2 = (int) jACA_2.getValue() ;
         int p3 = (int) jACA_3.getValue() ;
         
-        gradientACA = (double)( (double)(p3-p0)/3 + (double)(p2-p0)/2 + (double)(p1-p0) ) / 3.0 ;
+        double s = 0 ; double i = 0 ;
+        if (jACA_1.isEnabled()) {s = s + (double)(p1-p0) / 1.0 ; i++ ;}
+        if (jACA_2.isEnabled()) {s = s + (double)(p2-p0) / 2.0 ; i++ ;}
+        if (jACA_3.isEnabled()) {s = s + (double)(p3-p0) / 3.0 ; i++ ;}
+        
+        gradientACA = s / i ;
+        
+        //gradientACA = (double)( (double)(p3-p0)/3.0 + (double)(p2-p0)/2.0 + (double)(p1-p0) ) / 3.0 ;
         
         jGradient.setText(String.format("%+.2f", gradientACA));
         gradientACA_isValid = true ;
@@ -209,7 +215,7 @@ public class Panel_VB extends javax.swing.JPanel {
         jACAds.setText(String.format("%+.2f", ds) + " DS");
     }
     
-    private void calculACA () {
+    public void calculACA () {
         double e = (double) jEIP.getValue() ;
         int p = (int) jACA_PP.getValue() ;
         int l = (int) jACA_PL.getValue() ;
@@ -1305,7 +1311,7 @@ public class Panel_VB extends javax.swing.JPanel {
     }//GEN-LAST:event_jACA_1StateChanged
 
     private void jACA_1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_1PropertyChange
-        // TODO add your handling code here:
+        gradientACA () ;
     }//GEN-LAST:event_jACA_1PropertyChange
 
     private void jACA_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_2StateChanged
@@ -1313,7 +1319,7 @@ public class Panel_VB extends javax.swing.JPanel {
     }//GEN-LAST:event_jACA_2StateChanged
 
     private void jACA_2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_2PropertyChange
-        // TODO add your handling code here:
+        gradientACA () ;
     }//GEN-LAST:event_jACA_2PropertyChange
 
     private void jACA_3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jACA_3StateChanged
@@ -1321,7 +1327,7 @@ public class Panel_VB extends javax.swing.JPanel {
     }//GEN-LAST:event_jACA_3StateChanged
 
     private void jACA_3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jACA_3PropertyChange
-        // TODO add your handling code here:
+        gradientACA () ;
     }//GEN-LAST:event_jACA_3PropertyChange
 
     private void jGradientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGradientActionPerformed
@@ -1498,5 +1504,6 @@ class MyMouseListener extends MouseAdapter {
         if (source == Panel_VB.jSphere_1) Panel_VB.jACA_1.setEnabled(!Panel_VB.jACA_1.isEnabled());
         else if (source == Panel_VB.jSphere_2) Panel_VB.jACA_2.setEnabled(!Panel_VB.jACA_2.isEnabled());
         else if (source == Panel_VB.jSphere_3) Panel_VB.jACA_3.setEnabled(!Panel_VB.jACA_3.isEnabled());
+        
   }
 }

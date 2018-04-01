@@ -313,7 +313,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         
         jTransparency.addChangeListener(l);
         panelVB.add (jTransparency) ;
-        JLabel infoTransparency = new JLabel("Trasnparence :") ;
+        JLabel infoTransparency = new JLabel("Transparence :") ;
         infoTransparency.setBounds(infoClic.getX(), jTransparency.getY()-4, 90, 25);
         panelVB.add (infoTransparency) ;
         
@@ -367,7 +367,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelTVPS.add (infoClic) ;
         
         //On déplace certains items
-        panelTVPS.jChgeColor.setLocation(infoClic.getX()+30, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS.jChgeColor.setLocation(infoClic.getX()+70, infoClic.getY()+infoClic.getHeight()+60);
         panelTVPS.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
         panelTVPS.jCheckRange.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+panelTVPS.jCheckTitre.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
         
@@ -467,7 +467,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.0 du xx/03/2018" ;
+        return "v1.7.0 du 01/04/2018" ;
     }
 
     @Override

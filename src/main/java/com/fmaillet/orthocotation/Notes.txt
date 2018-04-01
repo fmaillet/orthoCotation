@@ -4,8 +4,11 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.7.0 (en cours)
+v1.7.0 (01/04/2018)
 - TVPS: std scores & checked subtests
+- TVPS : Scl or Std scores choose
+- VB : gradient select lenses ok
+- GroffMan test : labels
 
 v1.6.0 (25-03-2018)
 - NEURO : Thurstone & début JLO

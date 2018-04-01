@@ -247,6 +247,23 @@ public class Panel_DEM extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jMsgGROFFMAN = new javax.swing.JLabel();
         jMsgGenre = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jUnit10 = new javax.swing.JLabel();
+        jGROFFMAN_A_A = new javax.swing.JSpinner();
+        jGROFFMAN_B_A = new javax.swing.JSpinner();
+        jUnit11 = new javax.swing.JLabel();
+        jGROFFMAN_A_B = new javax.swing.JSpinner();
+        jGROFFMAN_B_B = new javax.swing.JSpinner();
+        jUnit12 = new javax.swing.JLabel();
+        jGROFFMAN_A_C = new javax.swing.JSpinner();
+        jGROFFMAN_B_C = new javax.swing.JSpinner();
+        jUnit13 = new javax.swing.JLabel();
+        jGROFFMAN_A_C1 = new javax.swing.JSpinner();
+        jGROFFMAN_B_C1 = new javax.swing.JSpinner();
+        jUnit14 = new javax.swing.JLabel();
+        jGROFFMAN_A_E = new javax.swing.JSpinner();
+        jGROFFMAN_B_E = new javax.swing.JSpinner();
 
         setPreferredSize(new java.awt.Dimension(700, 550));
 
@@ -474,15 +491,111 @@ public class Panel_DEM extends javax.swing.JPanel {
         jMsgGenre.setForeground(java.awt.Color.red);
         jMsgGenre.setText("!! Genre non défini !");
 
+        jLabel20.setText("Forme A :");
+
+        jLabel21.setText("Forme B :");
+
+        jUnit10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit10.setText("A");
+
+        jGROFFMAN_A_A.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_A_A.setEnabled(false);
+        jGROFFMAN_A_A.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_A_AStateChanged(evt);
+            }
+        });
+
+        jGROFFMAN_B_A.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_B_A.setEnabled(false);
+        jGROFFMAN_B_A.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_B_AStateChanged(evt);
+            }
+        });
+
+        jUnit11.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit11.setText("B");
+
+        jGROFFMAN_A_B.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_A_B.setEnabled(false);
+        jGROFFMAN_A_B.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_A_BStateChanged(evt);
+            }
+        });
+
+        jGROFFMAN_B_B.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_B_B.setEnabled(false);
+        jGROFFMAN_B_B.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_B_BStateChanged(evt);
+            }
+        });
+
+        jUnit12.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit12.setText("C");
+
+        jGROFFMAN_A_C.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_A_C.setEnabled(false);
+        jGROFFMAN_A_C.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_A_CStateChanged(evt);
+            }
+        });
+
+        jGROFFMAN_B_C.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_B_C.setEnabled(false);
+        jGROFFMAN_B_C.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_B_CStateChanged(evt);
+            }
+        });
+
+        jUnit13.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit13.setText("D");
+
+        jGROFFMAN_A_C1.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_A_C1.setEnabled(false);
+        jGROFFMAN_A_C1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_A_C1StateChanged(evt);
+            }
+        });
+
+        jGROFFMAN_B_C1.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_B_C1.setEnabled(false);
+        jGROFFMAN_B_C1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_B_C1StateChanged(evt);
+            }
+        });
+
+        jUnit14.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jUnit14.setText("E");
+
+        jGROFFMAN_A_E.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_A_E.setEnabled(false);
+        jGROFFMAN_A_E.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_A_EStateChanged(evt);
+            }
+        });
+
+        jGROFFMAN_B_E.setModel(new javax.swing.SpinnerNumberModel(5, 0, 5, 1));
+        jGROFFMAN_B_E.setEnabled(false);
+        jGROFFMAN_B_E.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jGROFFMAN_B_EStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator3))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
@@ -615,7 +728,54 @@ public class Panel_DEM extends javax.swing.JPanel {
                                         .addComponent(jNSUCO_P_B, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jLabel19))))
+                            .addComponent(jLabel19)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jUnit10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jGROFFMAN_B_A, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jGROFFMAN_A_A, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jUnit11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8))
+                                    .addComponent(jGROFFMAN_B_B, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jGROFFMAN_A_B, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jUnit12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8))
+                                    .addComponent(jGROFFMAN_B_C, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jGROFFMAN_A_C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jUnit13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8))
+                                    .addComponent(jGROFFMAN_B_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jGROFFMAN_A_C1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jUnit14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8))
+                                    .addComponent(jGROFFMAN_B_E, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jGROFFMAN_A_E, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -691,37 +851,75 @@ public class Panel_DEM extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jUnit5)
-                    .addComponent(jUnit7)
-                    .addComponent(jUnit8)
-                    .addComponent(jUnit9))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jUnit5)
+                            .addComponent(jUnit7)
+                            .addComponent(jUnit8)
+                            .addComponent(jUnit9))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jMsgGenre))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jNSUCO_S_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_S_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_S_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_S_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jNSUCO_P_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_P_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_P_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jNSUCO_P_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jMsgGROFFMAN))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jNSUCO_S_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_S_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_S_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_S_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(jNSUCO_P_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_P_P, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_P_H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jNSUCO_P_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(jMsgGROFFMAN))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUnit10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jGROFFMAN_A_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jGROFFMAN_B_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUnit13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jGROFFMAN_A_C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jGROFFMAN_B_C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUnit11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jGROFFMAN_A_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jGROFFMAN_B_B, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUnit12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jGROFFMAN_A_C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jGROFFMAN_B_C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jMsgGenre)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(jUnit14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jGROFFMAN_A_E, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jGROFFMAN_B_E, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -785,6 +983,46 @@ public class Panel_DEM extends javax.swing.JPanel {
         updateNSUCO () ;
     }//GEN-LAST:event_jNSUCO_P_BStateChanged
 
+    private void jGROFFMAN_A_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_A_AStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_A_AStateChanged
+
+    private void jGROFFMAN_B_AStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_B_AStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_B_AStateChanged
+
+    private void jGROFFMAN_A_BStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_A_BStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_A_BStateChanged
+
+    private void jGROFFMAN_B_BStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_B_BStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_B_BStateChanged
+
+    private void jGROFFMAN_A_CStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_A_CStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_A_CStateChanged
+
+    private void jGROFFMAN_B_CStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_B_CStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_B_CStateChanged
+
+    private void jGROFFMAN_A_C1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_A_C1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_A_C1StateChanged
+
+    private void jGROFFMAN_B_C1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_B_C1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_B_C1StateChanged
+
+    private void jGROFFMAN_A_EStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_A_EStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_A_EStateChanged
+
+    private void jGROFFMAN_B_EStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jGROFFMAN_B_EStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGROFFMAN_B_EStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jError_A;
@@ -793,6 +1031,16 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JSpinner jError_T;
     private javax.swing.JTextField jErrors;
     private javax.swing.JLabel jErrors_ds;
+    private javax.swing.JSpinner jGROFFMAN_A_A;
+    private javax.swing.JSpinner jGROFFMAN_A_B;
+    private javax.swing.JSpinner jGROFFMAN_A_C;
+    private javax.swing.JSpinner jGROFFMAN_A_C1;
+    private javax.swing.JSpinner jGROFFMAN_A_E;
+    private javax.swing.JSpinner jGROFFMAN_B_A;
+    private javax.swing.JSpinner jGROFFMAN_B_B;
+    private javax.swing.JSpinner jGROFFMAN_B_C;
+    private javax.swing.JSpinner jGROFFMAN_B_C1;
+    private javax.swing.JSpinner jGROFFMAN_B_E;
     private javax.swing.JTextField jH_Time;
     private javax.swing.JLabel jH_Time_ds;
     private javax.swing.JLabel jLabel1;
@@ -807,6 +1055,8 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -835,6 +1085,11 @@ public class Panel_DEM extends javax.swing.JPanel {
     private javax.swing.JSpinner jTest_B;
     private javax.swing.JSpinner jTest_C;
     private javax.swing.JLabel jUnit1;
+    private javax.swing.JLabel jUnit10;
+    private javax.swing.JLabel jUnit11;
+    private javax.swing.JLabel jUnit12;
+    private javax.swing.JLabel jUnit13;
+    private javax.swing.JLabel jUnit14;
     private javax.swing.JLabel jUnit2;
     private javax.swing.JLabel jUnit3;
     private javax.swing.JLabel jUnit4;

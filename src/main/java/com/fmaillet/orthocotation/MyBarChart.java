@@ -132,49 +132,83 @@ public class MyBarChart {
         return panel ;
     }
     
+    public void updateVisibleScores () {
+        if (Panel_TVPS.jScoresUnit.getSelectedIndex() == 0) {
+            //Scaled datas
+            plot.getRangeAxis().setRange(0.0, 20);
+            plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
+            barRenderer.setSeriesVisible(1, false) ;
+            barRenderer.setSeriesVisible(0, true) ;
+            target.setStartValue(7.0); target.setEndValue(13.0);
+            plot.getRangeAxis().setLabel("Scaled scores");
+        }
+        else {
+            plot.getRangeAxis().setRange(40.0, 150);
+            plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
+            barRenderer.setSeriesVisible(1, true) ;
+            barRenderer.setSeriesVisible(0, false) ;
+            target.setStartValue(85.0); target.setEndValue(115.0);
+            plot.getRangeAxis().setLabel("Standard scores");
+        }
+    }
+    
     public void updateGraph () {
         dataset.clear();
-        
+                
         if (OrthoCotation.user.nom == null) {
             panel.setEnabled(false);
             return ;
         }
         else panel.setEnabled(true);
         
-        if (Panel_TVPS.tvpsChkValues[0]) dataset.addValue( Panel_TVPS.tvpsSclValues[0] , "base" , "DIS" );        
-        if (Panel_TVPS.tvpsChkValues[1]) dataset.addValue( Panel_TVPS.tvpsSclValues[1] , "base" , "MEM" );        
-        if (Panel_TVPS.tvpsChkValues[2]) dataset.addValue( Panel_TVPS.tvpsSclValues[2] , "base" , "SPA" ); 
-        if (Panel_TVPS.tvpsChkValues[3]) dataset.addValue( Panel_TVPS.tvpsSclValues[3] , "base" , "CON" );
-        if (Panel_TVPS.tvpsChkValues[4]) dataset.addValue( Panel_TVPS.tvpsSclValues[4] , "base" , "SEQ" );        
-        if (Panel_TVPS.tvpsChkValues[5]) dataset.addValue( Panel_TVPS.tvpsSclValues[5] , "base" , "FGR" ); 
-        if (Panel_TVPS.tvpsChkValues[6]) dataset.addValue( Panel_TVPS.tvpsSclValues[6] , "base" , "CLO" );
+        if (Panel_TVPS.tvpsChkValues[0]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[0] , "Scaled" , "DIS" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[0]*5+50 , "Standard" , "DIS" );
+        }        
+        if (Panel_TVPS.tvpsChkValues[1]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[1] , "Scaled" , "MEM" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[1]*5+50 , "Standard" , "MEM" );
+        }        
+        if (Panel_TVPS.tvpsChkValues[2]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[2] , "Scaled" , "SPA" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[2]*5+50 , "Standard" , "SPA" );
+        } 
+        if (Panel_TVPS.tvpsChkValues[3]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[3] , "Scaled" , "CON" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[3]*5+50 , "Standard" , "CON" );
+        }
+        if (Panel_TVPS.tvpsChkValues[4]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[4] , "Scaled" , "SEQ" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[4]*5+50 , "Standard" , "SEQ" );
+        }        
+        if (Panel_TVPS.tvpsChkValues[5]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[5] , "Scaled" , "FGR" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[5]*5+50 , "Standard" , "FGR" );
+        } 
+        if (Panel_TVPS.tvpsChkValues[6]) {
+            dataset.addValue( Panel_TVPS.tvpsSclValues[6] , "Scaled" , "CLO" );
+            dataset.addValue( Panel_TVPS.tvpsSclValues[6]*5+50 , "Standard" , "CLO" );
+        }
+        
+        
+        updateVisibleScores () ;    
         
         
         /*plot.setNoDataMessage("NO DATA!"); 
         plot.getDomainAxis().setLabel("Subtests");
         plot.getRangeAxis().setLabel("Scaled scores");*/
-        
-        
-        
-        
+       
         //barRenderer.setSeriesPositiveItemLabelPosition(0,new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
-        
-        
         //barRenderer.setItemMargin(3.0);
-        
-        
+
         //barRenderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-        
-        
-        
+
         /*final GradientPaint gp0 = new GradientPaint(
             0.0f, 0.0f, Color.blue, 
             0.0f, 0.0f, Color.lightGray
         );
         barRenderer.setSeriesPaint(0, gp0);*/
-        
-        
-        
+
         Panel_TVPS.jChgeColor.setEnabled(true);
     }
     
@@ -203,6 +237,7 @@ public class MyBarChart {
 class CustomRenderer extends BarRenderer {
     static Panel_TVPS panel ;
     static Color c ;
+    Color lightRed = new Color(255, 51, 51);
     
     public CustomRenderer (Panel_TVPS panel, Color c) {
         this.c = c ; 
@@ -215,7 +250,7 @@ class CustomRenderer extends BarRenderer {
     
     public Paint getItemPaint(final int row, final int column) {
             
-            if (panel.tvpsPctlValues[column] <= 5) return Color.RED;
+            if (panel.tvpsPctlValues[column] <= 5) return lightRed;
             else return this.c ;
         }
 }

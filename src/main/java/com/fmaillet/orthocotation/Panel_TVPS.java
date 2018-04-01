@@ -208,8 +208,9 @@ public class Panel_TVPS extends JPanel {
     public Panel_TVPS() {
         initComponents();
         
+        //Chge color button
         jChgeColor = new ColorChooserButton(new Color(51, 153, 255,155));
-        jChgeColor.setBounds(200, 200, 100, 25);
+        jChgeColor.setBounds(jScoresUnit.getX(), jScoresUnit.getY()+50, 100, 25);
         jChgeColor.setText("Couleur");
         jChgeColor.setEnabled(false);
         this.add (jChgeColor) ;
@@ -221,6 +222,8 @@ public class Panel_TVPS extends JPanel {
                         OrthoCotation.barChart.changeColor(newColor);
             }
         });
+        //Scaled or Standard button
+        
 
         //Positions
         jIdx_BAS.setLocation(jScl_CLO.getX(), jLabel12.getY()-2);
@@ -435,10 +438,11 @@ public class Panel_TVPS extends JPanel {
         jStd_SPA = new javax.swing.JTextField();
         jStd_MEM = new javax.swing.JTextField();
         jStd_DIS = new javax.swing.JTextField();
+        jScoresUnit = new javax.swing.JComboBox<>();
 
-        setMaximumSize(new java.awt.Dimension(800, 550));
-        setMinimumSize(new java.awt.Dimension(800, 550));
-        setPreferredSize(new java.awt.Dimension(800, 550));
+        setMaximumSize(new java.awt.Dimension(900, 550));
+        setMinimumSize(new java.awt.Dimension(900, 550));
+        setPreferredSize(new java.awt.Dimension(900, 550));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(java.awt.Color.gray);
@@ -569,11 +573,6 @@ public class Panel_TVPS extends JPanel {
         jIdx_SEQ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdx_SEQ.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdx_SEQ.setText("na");
-        jIdx_SEQ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIdx_SEQActionPerformed(evt);
-            }
-        });
 
         jLabel10.setText("Pctl");
         jLabel10.setToolTipText("Percentile");
@@ -640,22 +639,12 @@ public class Panel_TVPS extends JPanel {
         jScl_CLO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jScl_CLO.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jScl_CLO.setText("na");
-        jScl_CLO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jScl_CLOActionPerformed(evt);
-            }
-        });
 
         jIdx_BAS.setEditable(false);
         jIdx_BAS.setBackground(new java.awt.Color(255, 255, 255));
         jIdx_BAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdx_BAS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdx_BAS.setText("na");
-        jIdx_BAS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIdx_BASActionPerformed(evt);
-            }
-        });
 
         jLabel14.setText("Complex Proc. :");
 
@@ -664,11 +653,6 @@ public class Panel_TVPS extends JPanel {
         jIdx_CPX.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdx_CPX.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdx_CPX.setText("na");
-        jIdx_CPX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIdx_CPXActionPerformed(evt);
-            }
-        });
 
         jLabel16.setText("Overall :");
 
@@ -677,11 +661,6 @@ public class Panel_TVPS extends JPanel {
         jIdx_ALL.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jIdx_ALL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jIdx_ALL.setText("na");
-        jIdx_ALL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIdx_ALLActionPerformed(evt);
-            }
-        });
 
         jPctl_BAS.setEditable(false);
         jPctl_BAS.setBackground(new java.awt.Color(255, 255, 255));
@@ -843,6 +822,13 @@ public class Panel_TVPS extends JPanel {
         jStd_DIS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jStd_DIS.setText("na");
 
+        jScoresUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scaled scores", "Standard Scores" }));
+        jScoresUnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jScoresUnitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -918,14 +904,16 @@ public class Panel_TVPS extends JPanel {
                     .addComponent(jIdxStd_CPX, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jIdxStd_ALL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jStd_BAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScoresUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jCheckRange, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckSousTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77))
+                .addGap(108, 108, 108))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -972,7 +960,7 @@ public class Panel_TVPS extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1045,7 +1033,8 @@ public class Panel_TVPS extends JPanel {
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckTitre)
-                            .addComponent(jCheckRange))
+                            .addComponent(jCheckRange)
+                            .addComponent(jScoresUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckSousTitre))
                     .addGroup(layout.createSequentialGroup()
@@ -1131,10 +1120,6 @@ public class Panel_TVPS extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jScl_FGRActionPerformed
 
-    private void jIdx_SEQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_SEQActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIdx_SEQActionPerformed
-
     private void jCheckRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckRangeActionPerformed
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckRangeActionPerformed
@@ -1142,22 +1127,6 @@ public class Panel_TVPS extends JPanel {
     private void jCheckTitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckTitreActionPerformed
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
-
-    private void jScl_CLOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScl_CLOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScl_CLOActionPerformed
-
-    private void jIdx_BASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_BASActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIdx_BASActionPerformed
-
-    private void jIdx_CPXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_CPXActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIdx_CPXActionPerformed
-
-    private void jIdx_ALLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIdx_ALLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIdx_ALLActionPerformed
 
     private void jCheckDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckDISStateChanged
         tvpsChkValues[0] = jCheckDIS.isSelected() ;
@@ -1197,6 +1166,10 @@ public class Panel_TVPS extends JPanel {
     private void jCheckSousTitreStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckSousTitreStateChanged
         OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckSousTitreStateChanged
+
+    private void jScoresUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScoresUnitActionPerformed
+        OrthoCotation.barChart.updateVisibleScores();
+    }//GEN-LAST:event_jScoresUnitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1253,6 +1226,7 @@ public class Panel_TVPS extends JPanel {
     private javax.swing.JTextField jScl_MEM;
     private javax.swing.JTextField jScl_SEQ;
     private javax.swing.JTextField jScl_SPA;
+    public static javax.swing.JComboBox<String> jScoresUnit;
     private javax.swing.JSeparator jSepIdx;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

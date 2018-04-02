@@ -39,9 +39,10 @@ public class AutoConnect extends Thread {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         java.util.Date dt = new java.util.Date();
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            jdbc:mysql://localhost/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             DriverManager.setLoginTimeout(5);
-            laConnection = DriverManager.getConnection ("jdbc:mysql://fredericmaillet.fr/fmaillet_professionnels", "fmaillet_fredo", "mastercog");
+            laConnection = DriverManager.getConnection ("jdbc:mysql://fredericmaillet.fr/fmaillet_professionnels?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "fmaillet_fredo", "mastercog");
             if (laConnection != null) {
             transmission = laConnection.createStatement (ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) ;
             //On cherche la macAdress
@@ -65,6 +66,8 @@ public class AutoConnect extends Thread {
                         break ;
                 } catch (ParseException e) {}
                 
+                //On sauve la date limite
+                OrthoCotation.user.dateLimite = dateLimite ;
                 //Récupérer les données
                 OrthoCotation.user.nom = leResultat.getString("NOM") ;
                 OrthoCotation.user.prenom = leResultat.getString("PRENOM") ;

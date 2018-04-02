@@ -405,8 +405,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
     public static void connected () {
         //System.out.println ("From main : Connected " + OrthoCotation.user.nom) ;
         if (OrthoCotation.user.nom != null) {
-            comMenu.setEnabled(false) ;
             barreMenus.setEnabled(true);
+            comMenu.setEnabled(false) ;
             // msg panel DEM
             Panel_DEM.jMsgDEM.setText("(Age ? Vous devez indiquer une date de naissance)");
             Panel_DEM.jMsgDEM.setForeground(Color.BLUE);
@@ -467,7 +467,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.1 du 02/04/2018" ;
+        return "v1.7.2 du 02/04/2018" ;
     }
 
     @Override
@@ -504,7 +504,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
             ConnectDialog connect = new ConnectDialog (this, true) ;
             connect.setLocationRelativeTo(null);
             connect.setVisible (true) ;
-            comMenu.setEnabled(OrthoCotation.user.nom != null);
+            //comMenu.setEnabled(OrthoCotation.user.nom != null);
         }
         else if (source == exitItem) {
             System.exit(0);

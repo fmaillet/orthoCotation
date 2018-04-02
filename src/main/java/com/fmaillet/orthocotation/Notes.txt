@@ -4,8 +4,12 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.7.1 (en cours)
-- correction date du bilan (décalage 1 moi)
+v1.7.2 (02/04/2018)
+- corrected connect bug
+- about dialog box shows user infos
+
+v1.7.1 (02/04/2018)
+- correction date du bilan (décalage 1 mois)
 - correction tvps demo mode
 
 v1.7.0 (01/04/2018)

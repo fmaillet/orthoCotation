@@ -239,8 +239,12 @@ public class ConnectDialog extends java.awt.Dialog {
         //Connection
         try {
             //On ouvre la transmission avec le serveur
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            laConnection = DriverManager.getConnection ("jdbc:mysql://fredericmaillet.fr/fmaillet_professionnels", "fmaillet_fredo", "mastercog");
+            //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            laConnection = DriverManager.getConnection ("jdbc:mysql://fredericmaillet.fr/fmaillet_professionnels?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "fmaillet_fredo", "mastercog");
+        } catch (Exception e) {
+            jMessages.append ("-> Connection error : \n"+e.toString()) ;
+        }
+        try {
             transmission = laConnection.createStatement (ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE) ;
             //On cherche dans la table Pro
             leResultat = transmission.executeQuery ("select * from Pro where ADELI = " + a) ;
@@ -326,20 +330,7 @@ public class ConnectDialog extends java.awt.Dialog {
         } catch (Exception e) {
             jMessages.append ("-> Pb connection (identification) : \n"+e.toString()) ;
         }
-        //Vérif version du logiciel
-        try {
-            transmission = laConnection.createStatement (ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE) ;
-            String soft = "STE" ;
-            leResultat = transmission.executeQuery ("select * from Softs where SOFT = \"STE\"") ;
-            if (leResultat.next()) {
-                version = leResultat.getString("VERSION") ;
-                long ver = Long.parseLong(version);
-                
-            }
-            
-        } catch (SQLException e) {
-            jMessages.append ("-> Pb connection (get verison) : \n"+e.toString()) ;
-        }
+        
         //On ferme
         try {
             laConnection.close();

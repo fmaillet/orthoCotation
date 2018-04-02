@@ -46,7 +46,7 @@ public class UserInfo {
     
     String nom, prenom, titre, message, activite, adeli, code, mail ;
     String adr1, adr2, cp, ville, tel1, tel2 ;
-    
+    String dateLimite ;
     
     
     static public String macaddress = null ;

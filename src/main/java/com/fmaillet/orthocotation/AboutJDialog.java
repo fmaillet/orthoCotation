@@ -5,6 +5,15 @@
  */
 package com.fmaillet.orthocotation;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.format.TextStyle;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  *
  * @author Fred
@@ -17,6 +26,23 @@ public class AboutJDialog extends javax.swing.JDialog {
     public AboutJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        //Infos utilisateur
+        if (OrthoCotation.user.nom == null) {
+            jName.setText("DEMO");
+            jDateLimite.setText("no limit in demo");
+        }
+        else {
+            jName.setText(OrthoCotation.user.titre + " " +OrthoCotation.user.nom.toUpperCase() + " " + OrthoCotation.user.prenom ) ;
+            DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            try { 
+                LocalDate d = LocalDate.parse(OrthoCotation.user.dateLimite, sdf);
+                //d.format( DateTimeFormatter.ofLocalizedDate( FormatStyle.FULL ).withLocale( Locale.FRANCE ) ) ;
+                Month month = d.getMonth() ;
+                jDateLimite.setText(d.getDayOfMonth()+ " " + month.getDisplayName( TextStyle.FULL , Locale.FRANCE )  + " " + d.getYear()) ;
+            } catch (Exception e) {jDateLimite.setText("error") ;}
+            
+        }
     }
 
     /**
@@ -32,6 +58,10 @@ public class AboutJDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jDateLimite = new javax.swing.JTextField();
+        jName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("orthoCotation : A Propos..");
@@ -56,6 +86,16 @@ public class AboutJDialog extends javax.swing.JDialog {
         jTextArea1.setText("Application dédiée à simplifier la rédaction des comptes-rendus en centralisant la cotation de\nl'essentiel des outils utilisés par l'orthoptiste dans sa pratique régulière.\n\nDévelopper une application prend du temps.\nLa cotation et le schéma de synthèse de la vision binoculaire (aka \"schéma de maillet\") sont\nen accès libre.\nL'accès aux autres fonctionnalités est subordonné à une modeste participation forfaitaire\nannuelle à cet effort de développement.\n\n(c) Frédéric Maillet\nOrthoptiste\nNeuropsychologue spécialiste de la vision\n\n(Toulouse 2018)");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel2.setText("Utilisateur :");
+
+        jLabel3.setText("Date limite d'utilisation :");
+
+        jDateLimite.setEditable(false);
+        jDateLimite.setText("jTextField1");
+
+        jName.setEditable(false);
+        jName.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,7 +107,15 @@ public class AboutJDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jName, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                    .addComponent(jDateLimite))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -76,11 +124,19 @@ public class AboutJDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jDateLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -97,7 +153,11 @@ public class AboutJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JTextField jDateLimite;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jName;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

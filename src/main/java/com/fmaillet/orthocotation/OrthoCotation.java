@@ -206,7 +206,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //Date du jour par défaut
         LocalDate now = LocalDate.now();
         
-        modelBilan.setDate(now.getYear(), now.getMonthValue(), now.getDayOfMonth());
+        modelBilan.setDate(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
         modelBilan.setSelected(true);
         
         // Date de naissance
@@ -467,7 +467,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.0 du 01/04/2018" ;
+        return "v1.7.1 du 02/04/2018" ;
     }
 
     @Override

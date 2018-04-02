@@ -4,6 +4,10 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
+v1.7.1 (en cours)
+- correction date du bilan (décalage 1 moi)
+- correction tvps demo mode
+
 v1.7.0 (01/04/2018)
 - TVPS: std scores & checked subtests
 - TVPS : Scl or Std scores choose

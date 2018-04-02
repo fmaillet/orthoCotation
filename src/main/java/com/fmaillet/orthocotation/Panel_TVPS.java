@@ -283,6 +283,7 @@ public class Panel_TVPS extends JPanel {
         tvpsSclValues[5] = (int) jFGR.getValue() ;
         tvpsSclValues[6] = (int) jCLO.getValue() ;
         
+        if (OrthoCotation.user.nom == null) return ;
         if (OrthoCotation.baseValues.patientAge.years == 0) return ;
         jMsgTVPS.setText(null);
         

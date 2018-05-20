@@ -70,8 +70,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static JDatePickerImpl dateBirth ;
     static JLabel labelAge ;
     static Panel_VB panelVB ;
+    static Panel_Optic panelOPTIC ;
     static Panel_DEM panelDEM ;
-    static Panel_TVPS panelTVPS ;
+    static Panel_TVPS3 panelTVPS3 ;
+    static Panel_TVPS4 panelTVPS4 ;
     static Panel_NEURO panelNEURO ;
     
     //Graphique
@@ -168,14 +170,14 @@ public class OrthoCotation extends JFrame implements ActionListener {
 
         //Premier tab
         tabbedPane.addTab("Vision binoculaire", addTabPanel_VB () );
-        
+        //Optique
+        tabbedPane.addTab("Optique", addTabPanel_OPTIC () );
         //Second tab
         tabbedPane.addTab("DEM, NSUCO", addTabPanel_DEM ());
          //third tab
-        tabbedPane.addTab("TVPS-3", addTabPanel_TVPS ());
+        tabbedPane.addTab("TVPS-3", addTabPanel_TVPS3 ());
         //fourth tab
-        JPanel panel4 = new JPanel(false);
-        tabbedPane.addTab("TVPS-4", panel4);
+        tabbedPane.addTab("TVPS-4", addTabPanel_TVPS4 ());
         //fith tab
         if (master) {
             tabbedPane.addTab("Neuro", addTabPanel_NEURO ());
@@ -323,8 +325,6 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     private static JPanel addTabPanel_DEM () {
-        
-        
         //Panel Base Datas
         panelDEM = new Panel_DEM () ;
         panelDEM.setSize(700, 460);
@@ -334,8 +334,6 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     private static JPanel addTabPanel_NEURO () {
-        
-        
         //Panel Base Datas
         panelNEURO = new Panel_NEURO () ;
         panelNEURO.setSize(700, 460);
@@ -344,13 +342,24 @@ public class OrthoCotation extends JFrame implements ActionListener {
         return panelNEURO ;
     }
     
-    private static JPanel addTabPanel_TVPS () {
+    private static JPanel addTabPanel_OPTIC () {
         
         
         //Panel Base Datas
-        panelTVPS = new Panel_TVPS () ;
-        panelTVPS.setSize(700, 460);
-        panelTVPS.setVisible(true);
+        panelOPTIC = new Panel_Optic () ;
+        panelOPTIC.setSize(700, 460);
+        panelOPTIC.setVisible(true);
+
+        return panelOPTIC ;
+    }
+    
+    private static JPanel addTabPanel_TVPS3 () {
+        
+        
+        //Panel Base Datas
+        panelTVPS3 = new Panel_TVPS3 () ;
+        panelTVPS3.setSize(700, 460);
+        panelTVPS3.setVisible(true);
         //basePanel.add(baseDatas) ;
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
@@ -358,20 +367,50 @@ public class OrthoCotation extends JFrame implements ActionListener {
         tvpsChartPanel = barChart.addBarPanel();
         tvpsChartPanel.setBounds(660, 20, 500, 300);
         tvpsChartPanel.setVisible(true);
-        panelTVPS.add (tvpsChartPanel) ;
+        panelTVPS3.add (tvpsChartPanel) ;
         
         //Label "clic droit"
         JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
         infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
         infoClic.setBounds(tvpsChartPanel.getX(), tvpsChartPanel.getY()+tvpsChartPanel.getHeight()+10, 270, 25);
-        panelTVPS.add (infoClic) ;
+        panelTVPS3.add (infoClic) ;
         
         //On déplace certains items
-        panelTVPS.jChgeColor.setLocation(infoClic.getX()+70, infoClic.getY()+infoClic.getHeight()+60);
-        panelTVPS.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
-        panelTVPS.jCheckRange.setLocation(infoClic.getX()+30+panelTVPS.jChgeColor.getWidth()+panelTVPS.jCheckTitre.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS3.jChgeColor.setLocation(infoClic.getX()+70, infoClic.getY()+infoClic.getHeight()+60);
+        panelTVPS3.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS3.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS3.jCheckRange.setLocation(infoClic.getX()+30+panelTVPS3.jChgeColor.getWidth()+panelTVPS3.jCheckTitre.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
         
-        return panelTVPS ;
+        return panelTVPS3 ;
+    }
+    
+    private static JPanel addTabPanel_TVPS4 () {
+        
+        
+        //Panel Base Datas
+        panelTVPS4 = new Panel_TVPS4 () ;
+        panelTVPS4.setSize(700, 460);
+        panelTVPS4.setVisible(true);
+        //basePanel.add(baseDatas) ;
+        //basePanel.revalidate() ;
+        //basePanel.repaint() ;
+        
+        /*tvpsChartPanel = barChart.addBarPanel();
+        tvpsChartPanel.setBounds(660, 20, 500, 300);
+        tvpsChartPanel.setVisible(true);
+        panelTVPS4.add (tvpsChartPanel) ;*/
+        
+        //Label "clic droit"
+        JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
+        infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
+        infoClic.setBounds(tvpsChartPanel.getX(), tvpsChartPanel.getY()+tvpsChartPanel.getHeight()+10, 270, 25);
+        panelTVPS3.add (infoClic) ;
+        
+        //On déplace certains items
+        panelTVPS4.jChgeColor.setLocation(infoClic.getX()+70, infoClic.getY()+infoClic.getHeight()+60);
+        panelTVPS4.jCheckTitre.setLocation(infoClic.getX()+30+panelTVPS3.jChgeColor.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        panelTVPS4.jCheckRange.setLocation(infoClic.getX()+30+panelTVPS3.jChgeColor.getWidth()+panelTVPS3.jCheckTitre.getWidth()+15, infoClic.getY()+infoClic.getHeight()+15);
+        
+        return panelTVPS4 ;
     }
     
     private static void calculateAge () {
@@ -395,7 +434,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelDEM.updateResults();
         panelDEM.updateNSUCO();
         panelDEM.updateGROFFMAN () ;
-        panelTVPS.updateResults();
+        panelTVPS3.updateResults();
         if (master) {
             panelNEURO.updateThurstoneFI() ;
             panelNEURO.updateBentonJLO () ;
@@ -410,8 +449,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
             // msg panel DEM
             Panel_DEM.jMsgDEM.setText("(Age ? Vous devez indiquer une date de naissance)");
             Panel_DEM.jMsgDEM.setForeground(Color.BLUE);
-            Panel_TVPS.jMsgTVPS.setText("(Age ? Vous devez indiquer une date de naissance)");
-            Panel_TVPS.jMsgTVPS.setForeground(Color.BLUE);
+            Panel_TVPS3.jMsgTVPS.setText("(Age ? Vous devez indiquer une date de naissance)");
+            Panel_TVPS3.jMsgTVPS.setForeground(Color.BLUE);
             Panel_DEM.jMsgNSUCO.setText("(Age ? Vous devez indiquer une date de naissance)");
             Panel_DEM.jMsgNSUCO.setForeground(Color.BLUE);
             Panel_DEM.jMsgGROFFMAN.setText("(Age ? Vous devez indiquer une date de naissance)");
@@ -467,7 +506,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.2 du 02/04/2018" ;
+        return "v1.7.3 du 20/05/2018" ;
     }
 
     @Override

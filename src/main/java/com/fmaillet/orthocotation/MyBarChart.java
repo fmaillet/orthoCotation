@@ -82,7 +82,7 @@ public class MyBarChart {
         Color lightBlue = new Color(51, 153, 255,155);
         currentColor = lightBlue ;
         //barRenderer = (BarRenderer) plot.getRenderer();
-        barRenderer = new CustomRenderer (OrthoCotation.panelTVPS, currentColor) ;
+        barRenderer = new CustomRenderer (OrthoCotation.panelTVPS3, currentColor) ;
         plot.setRenderer(barRenderer) ;
         
         //barRenderer.setSeriesPaint(0, lightBlue);
@@ -95,12 +95,12 @@ public class MyBarChart {
             new StandardCategoryItemLabelGenerator() {
              @Override
              public String generateLabel(CategoryDataset dataset, int row, int column) {
-                 if (Panel_TVPS.tvpsPctlValues[column] < 1)
+                 if (Panel_TVPS3.tvpsPctlValues[column] < 1)
                      return "<1er p." ;
-                 else if (Panel_TVPS.tvpsPctlValues[column] == 1)
+                 else if (Panel_TVPS3.tvpsPctlValues[column] == 1)
                      return "1er p." ;
-                 else if (Panel_TVPS.tvpsPctlValues[column] < 100)
-                    return String.valueOf(Panel_TVPS.tvpsPctlValues[column]) + "è p." ;
+                 else if (Panel_TVPS3.tvpsPctlValues[column] < 100)
+                    return String.valueOf(Panel_TVPS3.tvpsPctlValues[column]) + "è p." ;
                 else
                     return ">99è p." ;
              }
@@ -133,7 +133,7 @@ public class MyBarChart {
     }
     
     public void updateVisibleScores () {
-        if (Panel_TVPS.jScoresUnit.getSelectedIndex() == 0) {
+        if (Panel_TVPS3.jScoresUnit.getSelectedIndex() == 0) {
             //Scaled datas
             plot.getRangeAxis().setRange(0.0, 20);
             plot.getRangeAxis().setUpperMargin(plot.getRangeAxis().getUpperMargin() * 2);
@@ -161,33 +161,33 @@ public class MyBarChart {
         }
         else panel.setEnabled(true);
         
-        if (Panel_TVPS.tvpsChkValues[0]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[0] , "Scaled" , "DIS" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[0]*5+50 , "Standard" , "DIS" );
+        if (Panel_TVPS3.tvpsChkValues[0]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[0] , "Scaled" , "DIS" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[0]*5+50 , "Standard" , "DIS" );
         }        
-        if (Panel_TVPS.tvpsChkValues[1]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[1] , "Scaled" , "MEM" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[1]*5+50 , "Standard" , "MEM" );
+        if (Panel_TVPS3.tvpsChkValues[1]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[1] , "Scaled" , "MEM" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[1]*5+50 , "Standard" , "MEM" );
         }        
-        if (Panel_TVPS.tvpsChkValues[2]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[2] , "Scaled" , "SPA" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[2]*5+50 , "Standard" , "SPA" );
+        if (Panel_TVPS3.tvpsChkValues[2]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[2] , "Scaled" , "SPA" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[2]*5+50 , "Standard" , "SPA" );
         } 
-        if (Panel_TVPS.tvpsChkValues[3]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[3] , "Scaled" , "CON" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[3]*5+50 , "Standard" , "CON" );
+        if (Panel_TVPS3.tvpsChkValues[3]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[3] , "Scaled" , "CON" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[3]*5+50 , "Standard" , "CON" );
         }
-        if (Panel_TVPS.tvpsChkValues[4]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[4] , "Scaled" , "SEQ" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[4]*5+50 , "Standard" , "SEQ" );
+        if (Panel_TVPS3.tvpsChkValues[4]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[4] , "Scaled" , "SEQ" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[4]*5+50 , "Standard" , "SEQ" );
         }        
-        if (Panel_TVPS.tvpsChkValues[5]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[5] , "Scaled" , "FGR" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[5]*5+50 , "Standard" , "FGR" );
+        if (Panel_TVPS3.tvpsChkValues[5]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[5] , "Scaled" , "FGR" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[5]*5+50 , "Standard" , "FGR" );
         } 
-        if (Panel_TVPS.tvpsChkValues[6]) {
-            dataset.addValue( Panel_TVPS.tvpsSclValues[6] , "Scaled" , "CLO" );
-            dataset.addValue( Panel_TVPS.tvpsSclValues[6]*5+50 , "Standard" , "CLO" );
+        if (Panel_TVPS3.tvpsChkValues[6]) {
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[6] , "Scaled" , "CLO" );
+            dataset.addValue( Panel_TVPS3.tvpsSclValues[6]*5+50 , "Standard" , "CLO" );
         }
         
         
@@ -209,7 +209,7 @@ public class MyBarChart {
         );
         barRenderer.setSeriesPaint(0, gp0);*/
 
-        Panel_TVPS.jChgeColor.setEnabled(true);
+        Panel_TVPS3.jChgeColor.setEnabled(true);
     }
     
     public void changeColor(Color c) {
@@ -235,11 +235,11 @@ public class MyBarChart {
 }
 
 class CustomRenderer extends BarRenderer {
-    static Panel_TVPS panel ;
+    static Panel_TVPS3 panel ;
     static Color c ;
     Color lightRed = new Color(255, 51, 51);
     
-    public CustomRenderer (Panel_TVPS panel, Color c) {
+    public CustomRenderer (Panel_TVPS3 panel, Color c) {
         this.c = c ; 
         this.panel = panel ;
     }

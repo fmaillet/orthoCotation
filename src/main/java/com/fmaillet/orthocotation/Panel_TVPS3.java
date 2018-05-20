@@ -15,7 +15,7 @@ import org.apache.commons.math3.distribution.NormalDistribution;
  *
  * @author Fred
  */
-public class Panel_TVPS extends JPanel {
+public class Panel_TVPS3 extends JPanel {
 
     public static int[] tvpsSclValues = new int[7] ;
     public static int tvpsPctlValues[] = new int[7] ;
@@ -205,7 +205,7 @@ public class Panel_TVPS extends JPanel {
     /**
      * Creates new form Panel_TVPS
      */
-    public Panel_TVPS() {
+    public Panel_TVPS3() {
         initComponents();
         
         //Chge color button

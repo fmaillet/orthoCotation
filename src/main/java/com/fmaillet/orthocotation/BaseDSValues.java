@@ -42,7 +42,7 @@ public class BaseDSValues {
     }
     
     public double updateFDV (int a, boolean s) {
-        double ds = - Math.abs( (double) a - 15.0 ) / 3.0 ;
+        double ds =  ((double) a - 15.0)  / 3.0 ;
         fdv.raw = (double) a ;
         fdv.ds = ds ;
         fdv.selected = s ;

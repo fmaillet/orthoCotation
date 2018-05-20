@@ -42,6 +42,13 @@ public class Norms_JDialog extends javax.swing.JDialog {
                 + "<tr><td>Convergence de près (C')</td><td align=\"center\">C'23</td><td align=\"center\">+/-8</td></tr>"
                 + "<tr><td colspan=\"3\" align=\"center\"><i><small>(pas de normes pour la vision de loin : on utilise les normes adultes)</small></i></td></tr>"
                 + "</table>"
+                + "<br>"
+                + "<h3>Amplitude accommodative</h3><hr><blockquote>"
+                + "<ul><li>Minimum attendu : 15 - (âge/4)<br>"
+                + "Attention : c'est une valeur seuil, il n'y a donc pas d'écart-type associé et on ne peut pas calculer d'écart à la norme.</li>"
+                + "<li>Moyenne attendue : 18 - (âge/3)<br>"
+                + "C'est la moyenne attendue pour l'âge. Son écart-type est de 2. On peut donc calculer un écart à la norme.</li>"
+                + "</ul></blockquote>"
                 + "<br><br><i>(à suivre...)</i></html>";
         
         //Texte

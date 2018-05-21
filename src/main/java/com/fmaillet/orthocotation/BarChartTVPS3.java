@@ -33,7 +33,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author Fred
  */
-public class MyBarChart {
+public class BarChartTVPS3 {
     
     static JFreeChart chart ;
     ChartPanel panel ;
@@ -46,7 +46,7 @@ public class MyBarChart {
     BarRenderer barRenderer ;
     final IntervalMarker target ;
     
-    public MyBarChart () {
+    public BarChartTVPS3 () {
         
         dataset = new DefaultCategoryDataset( );
         
@@ -95,12 +95,12 @@ public class MyBarChart {
             new StandardCategoryItemLabelGenerator() {
              @Override
              public String generateLabel(CategoryDataset dataset, int row, int column) {
-                 if (Panel_TVPS3.tvpsPctlValues[column] < 1)
+                 if (Panel_TVPS3.tvpsPctlValues[Panel_TVPS3.transposeColumn[column]] < 1)
                      return "<1er p." ;
-                 else if (Panel_TVPS3.tvpsPctlValues[column] == 1)
+                 else if (Panel_TVPS3.tvpsPctlValues[Panel_TVPS3.transposeColumn[column]] == 1)
                      return "1er p." ;
-                 else if (Panel_TVPS3.tvpsPctlValues[column] < 100)
-                    return String.valueOf(Panel_TVPS3.tvpsPctlValues[column]) + "è p." ;
+                 else if (Panel_TVPS3.tvpsPctlValues[Panel_TVPS3.transposeColumn[column]] < 100)
+                    return String.valueOf(Panel_TVPS3.tvpsPctlValues[Panel_TVPS3.transposeColumn[column]]) + "è p." ;
                 else
                     return ">99è p." ;
              }
@@ -250,7 +250,7 @@ class CustomRenderer extends BarRenderer {
     
     public Paint getItemPaint(final int row, final int column) {
             
-            if (panel.tvpsPctlValues[column] <= 5) return lightRed;
+            if (panel.tvpsPctlValues[panel.transposeColumn[column]] <= 5) return lightRed;
             else return this.c ;
         }
 }

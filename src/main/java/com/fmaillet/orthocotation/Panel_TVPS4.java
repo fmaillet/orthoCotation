@@ -22,6 +22,8 @@ public class Panel_TVPS4 extends JPanel {
     public static boolean tvpsChkValues[] = {true, true, true, true, true, true, true } ;
     static public ColorChooserButton jChgeColor ;
     
+    static public int[] transposeColumn = new int [7] ;
+    
     int tvps_DIS[][] = { {7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19, 19, 19}, //4.0
                          {5, 7, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 19, 19, 19, 19, 19, 19},  //4.6
                          {4, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 19, 19, 19, 19, 19, 19},  //5.0
@@ -233,7 +235,7 @@ public class Panel_TVPS4 extends JPanel {
             public void colorChanged(Color newColor) {
                     // do something with newColor ...
                     if (OrthoCotation.baseValues.patientAge.years != 0) 
-                        OrthoCotation.barChart.changeColor(newColor);
+                        OrthoCotation.barChartTVPS4.changeColor(newColor);
             }
         });
         //Scaled or Standard button
@@ -300,6 +302,11 @@ public class Panel_TVPS4 extends JPanel {
         /*if (OrthoCotation.user.nom == null) return ;
         if (OrthoCotation.baseValues.patientAge.years == 0) return ;
         jMsgTVPS.setText(null);*/
+        
+        //update column transposition
+        int j = 0 ;
+        for (int i=0; i<7; i++)
+            if (tvpsChkValues[i]) transposeColumn[j++] = i ;
         
         //DIS
         tvpsSclValues[0] = tvps_DIS[indexAge()][tvpsSclValues[0]-1] ;
@@ -377,7 +384,7 @@ public class Panel_TVPS4 extends JPanel {
         t = ((double) tvps_ALL[tvps_all] -100.0 ) / 15.0 ;
         jPctl_ALL.setText(String.valueOf ((int) Math.round(zScoreToPercentile(t)))) ;
         
-        OrthoCotation.barChart.updateGraph () ;
+        OrthoCotation.barChartTVPS4.updateGraph () ;
     }
 
     /**
@@ -1137,11 +1144,11 @@ public class Panel_TVPS4 extends JPanel {
     }//GEN-LAST:event_jScl_FGRActionPerformed
 
     private void jCheckRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckRangeActionPerformed
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
+        OrthoCotation.barChartTVPS4.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckRangeActionPerformed
 
     private void jCheckTitreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckTitreActionPerformed
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
+        OrthoCotation.barChartTVPS4.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckTitreActionPerformed
 
     private void jCheckDISStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckDISStateChanged
@@ -1180,11 +1187,11 @@ public class Panel_TVPS4 extends JPanel {
     }//GEN-LAST:event_jCheckCLOStateChanged
 
     private void jCheckSousTitreStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckSousTitreStateChanged
-        OrthoCotation.barChart.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
+        OrthoCotation.barChartTVPS4.changeAspect (jCheckTitre.isSelected(), jCheckSousTitre.isSelected(), jCheckRange.isSelected()) ;
     }//GEN-LAST:event_jCheckSousTitreStateChanged
 
     private void jScoresUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScoresUnitActionPerformed
-        OrthoCotation.barChart.updateVisibleScores();
+        OrthoCotation.barChartTVPS4.updateVisibleScores();
     }//GEN-LAST:event_jScoresUnitActionPerformed
 
 

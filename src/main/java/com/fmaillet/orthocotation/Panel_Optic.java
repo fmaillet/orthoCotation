@@ -11,6 +11,8 @@ package com.fmaillet.orthocotation;
  */
 public class Panel_Optic extends javax.swing.JPanel {
 
+    int chgeOrigin = 0 ;
+    
     /**
      * Creates new form Panel_Optic
      */
@@ -19,6 +21,7 @@ public class Panel_Optic extends javax.swing.JPanel {
     }
     
     private void transpose1 () {
+        chgeOrigin = 1 ;
         int angle = (Integer) jAngle_1.getValue() ;
         jAngle_2.setValue( (angle +90 ) % 180 );
         
@@ -28,9 +31,11 @@ public class Panel_Optic extends javax.swing.JPanel {
         double sphere = (double) jSphere_1.getValue() ;
         //double astig = (double) jAstigmatisme_1.getValue() ;
         jSphere_2.setValue( sphere + astig  );
+        chgeOrigin = 0 ;
     }
     
     private void transpose2 () {
+        chgeOrigin = 2 ;
         int angle = (Integer) jAngle_2.getValue() ;
         jAngle_1.setValue( (angle +90 ) % 180 );
         
@@ -40,6 +45,7 @@ public class Panel_Optic extends javax.swing.JPanel {
         double sphere = (double) jSphere_2.getValue() ;
         //double astig = (double) jAstigmatisme_1.getValue() ;
         jSphere_1.setValue( sphere + astig  );
+        chgeOrigin = 0 ;
     }
 
     /**
@@ -212,6 +218,7 @@ public class Panel_Optic extends javax.swing.JPanel {
         double sphere = (double) jSphere_1.getValue() ;
         //On écrit 2 sur 1
         jAngle_1.setValue( (Integer) jAngle_2.getValue() );
+        
         jAstigmatisme_1.setValue( (double) jAstigmatisme_2.getValue()  );
         jSphere_1.setValue( (double) jSphere_2.getValue()  );
         //On écrit 1 sur 2
@@ -221,28 +228,28 @@ public class Panel_Optic extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jAngle_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_1StateChanged
-        transpose1 () ;
+        if (chgeOrigin == 0) transpose1 () ;
 
     }//GEN-LAST:event_jAngle_1StateChanged
 
     private void jAstigmatisme_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_1StateChanged
-        transpose1 () ;
+        if (chgeOrigin == 0) transpose1 () ;
     }//GEN-LAST:event_jAstigmatisme_1StateChanged
 
     private void jSphere_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_1StateChanged
-        transpose1 () ;
+        if (chgeOrigin == 0) transpose1 () ;
     }//GEN-LAST:event_jSphere_1StateChanged
 
     private void jSphere_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_2StateChanged
-        transpose2 () ;
+        if (chgeOrigin == 0) transpose2 () ;
     }//GEN-LAST:event_jSphere_2StateChanged
 
     private void jAstigmatisme_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_2StateChanged
-        transpose2 () ;
+        if (chgeOrigin == 0) transpose2 () ;
     }//GEN-LAST:event_jAstigmatisme_2StateChanged
 
     private void jAngle_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_2StateChanged
-        transpose2 () ;
+        if (chgeOrigin == 0) transpose2 () ;
     }//GEN-LAST:event_jAngle_2StateChanged
 
 

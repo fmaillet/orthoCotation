@@ -78,8 +78,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     //Graphique
     public static MyPolarChart polarChart = new MyPolarChart () ;
-    public static MyBarChart barChart = new MyBarChart () ;
-    public static JPanel radioPanel, tvpsChartPanel ;
+    public static BarChartTVPS3 barChartTVPS3 = new BarChartTVPS3 () ;
+    public static BarChartTVPS4 barChartTVPS4 = new BarChartTVPS4 () ;
+    public static JPanel radioPanel, tvps3ChartPanel, tvps4ChartPanel ;
     
     //Genre
     public static JRadioButton h, f ;
@@ -364,15 +365,15 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
         
-        tvpsChartPanel = barChart.addBarPanel();
-        tvpsChartPanel.setBounds(660, 20, 500, 300);
-        tvpsChartPanel.setVisible(true);
-        panelTVPS3.add (tvpsChartPanel) ;
+        tvps3ChartPanel = barChartTVPS3.addBarPanel();
+        tvps3ChartPanel.setBounds(660, 20, 500, 300);
+        tvps3ChartPanel.setVisible(true);
+        panelTVPS3.add (tvps3ChartPanel) ;
         
         //Label "clic droit"
         JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
         infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
-        infoClic.setBounds(tvpsChartPanel.getX(), tvpsChartPanel.getY()+tvpsChartPanel.getHeight()+10, 270, 25);
+        infoClic.setBounds(tvps3ChartPanel.getX(), tvps3ChartPanel.getY()+tvps3ChartPanel.getHeight()+10, 270, 25);
         panelTVPS3.add (infoClic) ;
         
         //On déplace certains items
@@ -394,16 +395,16 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //basePanel.revalidate() ;
         //basePanel.repaint() ;
         
-        /*tvpsChartPanel = barChart.addBarPanel();
-        tvpsChartPanel.setBounds(660, 20, 500, 300);
-        tvpsChartPanel.setVisible(true);
-        panelTVPS4.add (tvpsChartPanel) ;*/
+        tvps4ChartPanel = barChartTVPS4.addBarPanel();
+        tvps4ChartPanel.setBounds(660, 20, 500, 300);
+        tvps4ChartPanel.setVisible(true);
+        panelTVPS4.add (tvps4ChartPanel) ;
         
         //Label "clic droit"
         JLabel infoClic = new JLabel ("(Clic droit sur le schéma pour enregistrer ou copier)") ;
         infoClic.setFont(new Font(infoClic.getName(), Font.ITALIC, 11));
-        infoClic.setBounds(tvpsChartPanel.getX(), tvpsChartPanel.getY()+tvpsChartPanel.getHeight()+10, 270, 25);
-        panelTVPS3.add (infoClic) ;
+        infoClic.setBounds(tvps4ChartPanel.getX(), tvps4ChartPanel.getY()+tvps4ChartPanel.getHeight()+10, 270, 25);
+        panelTVPS4.add (infoClic) ;
         
         //On déplace certains items
         panelTVPS4.jChgeColor.setLocation(infoClic.getX()+70, infoClic.getY()+infoClic.getHeight()+60);
@@ -435,6 +436,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         panelDEM.updateNSUCO();
         panelDEM.updateGROFFMAN () ;
         panelTVPS3.updateResults();
+        panelTVPS4.updateResults();
         if (master) {
             panelNEURO.updateThurstoneFI() ;
             panelNEURO.updateBentonJLO () ;
@@ -506,7 +508,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.3 du 20/05/2018" ;
+        return "v1.7.4 du 21/05/2018" ;
     }
 
     @Override

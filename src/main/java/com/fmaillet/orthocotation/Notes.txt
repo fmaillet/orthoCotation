@@ -4,7 +4,13 @@ A FAIRE :
 - critère de sheard sans l'âge => récupérer directement les bonnes valeurs de phorie, etc... car
 elles ne sont pas dans baseDS
 
-v1.7.3 (en cours)
+v1.7.5 (en cours)
+
+v1.7.4 (21-05-2018)
+- optic : corrected tranpose dble event
+- TVPS : corrected transpose column bug
+
+v1.7.3 (20-05-2018)
 - longueur PPA unit8 corrected
 - corrected : bug signe FDV
 - TVPS4 : seuils à 18

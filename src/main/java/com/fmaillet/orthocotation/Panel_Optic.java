@@ -18,33 +18,78 @@ public class Panel_Optic extends javax.swing.JPanel {
      */
     public Panel_Optic() {
         initComponents();
+        
+        jUnit1.setText("\u0394     à");
     }
     
-    private void transpose1 () {
+    private void transposeOD1 () {
         chgeOrigin = 1 ;
-        int angle = (Integer) jAngle_1.getValue() ;
-        jAngle_2.setValue( (angle +90 ) % 180 );
+        int angle = (Integer) jAngle_OD1.getValue() ;
+        jAngle_OD2.setValue( (angle +90 ) % 180 );
         
-        double astig = (double) jAstigmatisme_1.getValue() ;
-        jAstigmatisme_2.setValue( - astig  );
+        double astig = (double) jAstigmatisme_OD1.getValue() ;
+        jAstigmatisme_OD2.setValue( - astig  );
         
-        double sphere = (double) jSphere_1.getValue() ;
+        double sphere = (double) jSphere_OD1.getValue() ;
         //double astig = (double) jAstigmatisme_1.getValue() ;
-        jSphere_2.setValue( sphere + astig  );
+        jSphere_OD2.setValue( sphere + astig  );
         chgeOrigin = 0 ;
     }
     
-    private void transpose2 () {
-        chgeOrigin = 2 ;
-        int angle = (Integer) jAngle_2.getValue() ;
-        jAngle_1.setValue( (angle +90 ) % 180 );
+    private void calculPrisme () {
+        double h = (Integer) jHorizontal.getValue() ;
+        double v = (Integer) jVertical.getValue() ;
         
-        double astig = (double) jAstigmatisme_2.getValue() ;
-        jAstigmatisme_1.setValue( - astig  );
+        double r = Math.sqrt( (h*h) + (v*v) ) ;
+        jResult.setText(String.format("%+.1f", r));
         
-        double sphere = (double) jSphere_2.getValue() ;
+        double a = Math.toDegrees( Math.atan( v / h) ) ;
+        if (jBaseH.getSelectedIndex() == 0) a = a + 90 ;
+        if (jBaseV.getSelectedIndex() == 1 && jBaseH.getSelectedIndex() == 1) a = a + 270 ;
+        if (jBaseV.getSelectedIndex() == 1 && jBaseH.getSelectedIndex() == 0) a = a + 90 ;
+        //jAngleR.setText(String.format("%+.1f", a));
+        jAngleR.setText(String.valueOf(Math.round(a)));
+    }
+    
+    private void transposeOG1 () {
+        chgeOrigin = 1 ;
+        int angle = (Integer) jAngle_OG1.getValue() ;
+        jAngle_OG2.setValue( (angle +90 ) % 180 );
+        
+        double astig = (double) jAstigmatisme_OG1.getValue() ;
+        jAstigmatisme_OG2.setValue( - astig  );
+        
+        double sphere = (double) jSphere_OG1.getValue() ;
         //double astig = (double) jAstigmatisme_1.getValue() ;
-        jSphere_1.setValue( sphere + astig  );
+        jSphere_OG2.setValue( sphere + astig  );
+        chgeOrigin = 0 ;
+    }
+    
+    private void transposeOD2 () {
+        chgeOrigin = 2 ;
+        int angle = (Integer) jAngle_OD2.getValue() ;
+        jAngle_OD1.setValue( (angle +90 ) % 180 );
+        
+        double astig = (double) jAstigmatisme_OD2.getValue() ;
+        jAstigmatisme_OD1.setValue( - astig  );
+        
+        double sphere = (double) jSphere_OD2.getValue() ;
+        //double astig = (double) jAstigmatisme_1.getValue() ;
+        jSphere_OD1.setValue( sphere + astig  );
+        chgeOrigin = 0 ;
+    }
+    
+    private void transposeOG2 () {
+        chgeOrigin = 2 ;
+        int angle = (Integer) jAngle_OG2.getValue() ;
+        jAngle_OG1.setValue( (angle +90 ) % 180 );
+        
+        double astig = (double) jAstigmatisme_OG2.getValue() ;
+        jAstigmatisme_OG1.setValue( - astig  );
+        
+        double sphere = (double) jSphere_OG2.getValue() ;
+        //double astig = (double) jAstigmatisme_1.getValue() ;
+        jSphere_OG1.setValue( sphere + astig  );
         chgeOrigin = 0 ;
     }
 
@@ -59,42 +104,69 @@ public class Panel_Optic extends javax.swing.JPanel {
 
         jLabel15 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jSphere_1 = new javax.swing.JSpinner();
-        jAstigmatisme_1 = new javax.swing.JSpinner();
-        jAngle_1 = new javax.swing.JSpinner();
+        jSphere_OD1 = new javax.swing.JSpinner();
+        jAstigmatisme_OD1 = new javax.swing.JSpinner();
+        jAngle_OD1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jSphere_2 = new javax.swing.JSpinner();
-        jAstigmatisme_2 = new javax.swing.JSpinner();
-        jAngle_2 = new javax.swing.JSpinner();
+        jSphere_OD2 = new javax.swing.JSpinner();
+        jAstigmatisme_OD2 = new javax.swing.JSpinner();
+        jAngle_OD2 = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jSphere_OG2 = new javax.swing.JSpinner();
+        jAstigmatisme_OG2 = new javax.swing.JSpinner();
+        jAngle_OG2 = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jSphere_OG1 = new javax.swing.JSpinner();
+        jAstigmatisme_OG1 = new javax.swing.JSpinner();
+        jAngle_OG1 = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jHorizontal = new javax.swing.JSpinner();
+        jVertical = new javax.swing.JSpinner();
+        jBaseH = new javax.swing.JComboBox<>();
+        jBaseV = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jResult = new javax.swing.JTextField();
+        jUnit1 = new javax.swing.JLabel();
+        jAngleR = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(java.awt.Color.gray);
         jLabel15.setText("Verres");
 
-        jSphere_1.setModel(new javax.swing.SpinnerNumberModel(-1.25d, null, null, 0.25d));
-        jSphere_1.addChangeListener(new javax.swing.event.ChangeListener() {
+        jSphere_OD1.setModel(new javax.swing.SpinnerNumberModel(-1.25d, null, null, 0.25d));
+        jSphere_OD1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSphere_1StateChanged(evt);
+                jSphere_OD1StateChanged(evt);
             }
         });
 
-        jAstigmatisme_1.setModel(new javax.swing.SpinnerNumberModel(0.25d, null, null, 0.25d));
-        jAstigmatisme_1.addChangeListener(new javax.swing.event.ChangeListener() {
+        jAstigmatisme_OD1.setModel(new javax.swing.SpinnerNumberModel(0.25d, null, null, 0.25d));
+        jAstigmatisme_OD1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jAstigmatisme_1StateChanged(evt);
+                jAstigmatisme_OD1StateChanged(evt);
             }
         });
 
-        jAngle_1.setModel(new javax.swing.SpinnerNumberModel(10, 0, 360, 1));
-        jAngle_1.addChangeListener(new javax.swing.event.ChangeListener() {
+        jAngle_OD1.setModel(new javax.swing.SpinnerNumberModel(10, 0, 360, 1));
+        jAngle_OD1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jAngle_1StateChanged(evt);
+                jAngle_OD1StateChanged(evt);
             }
         });
 
@@ -113,24 +185,24 @@ public class Panel_Optic extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("à");
 
-        jSphere_2.setModel(new javax.swing.SpinnerNumberModel(-1.0d, null, null, 0.25d));
-        jSphere_2.addChangeListener(new javax.swing.event.ChangeListener() {
+        jSphere_OD2.setModel(new javax.swing.SpinnerNumberModel(-1.0d, null, null, 0.25d));
+        jSphere_OD2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSphere_2StateChanged(evt);
+                jSphere_OD2StateChanged(evt);
             }
         });
 
-        jAstigmatisme_2.setModel(new javax.swing.SpinnerNumberModel(-0.25d, null, null, 0.25d));
-        jAstigmatisme_2.addChangeListener(new javax.swing.event.ChangeListener() {
+        jAstigmatisme_OD2.setModel(new javax.swing.SpinnerNumberModel(-0.25d, null, null, 0.25d));
+        jAstigmatisme_OD2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jAstigmatisme_2StateChanged(evt);
+                jAstigmatisme_OD2StateChanged(evt);
             }
         });
 
-        jAngle_2.setModel(new javax.swing.SpinnerNumberModel(100, 0, 360, 1));
-        jAngle_2.addChangeListener(new javax.swing.event.ChangeListener() {
+        jAngle_OD2.setModel(new javax.swing.SpinnerNumberModel(100, 0, 360, 1));
+        jAngle_OD2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jAngle_2StateChanged(evt);
+                jAngle_OD2StateChanged(evt);
             }
         });
 
@@ -145,43 +217,239 @@ public class Panel_Optic extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("à");
+
+        jSphere_OG2.setModel(new javax.swing.SpinnerNumberModel(-1.0d, null, null, 0.25d));
+        jSphere_OG2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSphere_OG2StateChanged(evt);
+            }
+        });
+
+        jAstigmatisme_OG2.setModel(new javax.swing.SpinnerNumberModel(-0.25d, null, null, 0.25d));
+        jAstigmatisme_OG2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jAstigmatisme_OG2StateChanged(evt);
+            }
+        });
+
+        jAngle_OG2.setModel(new javax.swing.SpinnerNumberModel(100, 0, 360, 1));
+        jAngle_OG2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jAngle_OG2StateChanged(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("(");
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("<->");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jSphere_OG1.setModel(new javax.swing.SpinnerNumberModel(-1.25d, null, null, 0.25d));
+        jSphere_OG1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSphere_OG1StateChanged(evt);
+            }
+        });
+
+        jAstigmatisme_OG1.setModel(new javax.swing.SpinnerNumberModel(0.25d, null, null, 0.25d));
+        jAstigmatisme_OG1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jAstigmatisme_OG1StateChanged(evt);
+            }
+        });
+
+        jAngle_OG1.setModel(new javax.swing.SpinnerNumberModel(10, 0, 360, 1));
+        jAngle_OG1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jAngle_OG1StateChanged(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("(");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("°  )");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("à");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText("°  )");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setForeground(java.awt.Color.gray);
+        jLabel16.setText("Prisme oblique");
+
+        jLabel13.setText("Horizontal :");
+
+        jLabel14.setText("Vertical :");
+
+        jHorizontal.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jHorizontal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jHorizontalStateChanged(evt);
+            }
+        });
+
+        jVertical.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jVertical.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jVerticalStateChanged(evt);
+            }
+        });
+
+        jBaseH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Base externe", "Base interne" }));
+        jBaseH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBaseHActionPerformed(evt);
+            }
+        });
+
+        jBaseV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Base sup", "Base inf" }));
+        jBaseV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBaseVActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fmaillet/orthocotation/Lunettes-angles.png"))); // NOI18N
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jResult.setEditable(false);
+        jResult.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jResult.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jResult.setText("0");
+        jResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jResultActionPerformed(evt);
+            }
+        });
+
+        jUnit1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jUnit1.setText("d     à");
+
+        jAngleR.setEditable(false);
+        jAngleR.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jAngleR.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jAngleR.setText("0");
+        jAngleR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAngleRActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("°");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jSphere_1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAstigmatisme_1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAngle_1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1)
-                        .addGap(30, 30, 30)
-                        .addComponent(jSphere_2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAstigmatisme_2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAngle_2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
-                .addGap(127, 127, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSphere_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jAstigmatisme_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jAngle_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton1)
+                                .addGap(30, 30, 30)
+                                .addComponent(jSphere_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jAstigmatisme_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jAngle_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(28, 28, 28))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jSphere_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jAstigmatisme_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jAngle_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jButton2)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jSphere_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel14))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jVertical, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBaseV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBaseH, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jResult, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jUnit1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jAngleR, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jAstigmatisme_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jAngle_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                        .addComponent(jLabel17))))))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,81 +461,218 @@ public class Panel_Optic extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSphere_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jAstigmatisme_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jAngle_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSphere_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAstigmatisme_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAngle_OD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5)
                         .addComponent(jButton1))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSphere_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jAstigmatisme_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jAngle_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSphere_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAstigmatisme_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAngle_OD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jSphere_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAstigmatisme_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAngle_OG2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel7)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jSphere_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAstigmatisme_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jAngle_OG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jBaseH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel14)
+                                        .addComponent(jVertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jBaseV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jUnit1)
+                            .addComponent(jAngleR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //On sauve 1
-        int angle = (Integer) jAngle_1.getValue() ;
-        double astig = (double) jAstigmatisme_1.getValue() ;
-        double sphere = (double) jSphere_1.getValue() ;
+        int angle = (Integer) jAngle_OD1.getValue() ;
+        double astig = (double) jAstigmatisme_OD1.getValue() ;
+        double sphere = (double) jSphere_OD1.getValue() ;
         //On écrit 2 sur 1
-        jAngle_1.setValue( (Integer) jAngle_2.getValue() );
+        jAngle_OD1.setValue( (Integer) jAngle_OD2.getValue() );
         
-        jAstigmatisme_1.setValue( (double) jAstigmatisme_2.getValue()  );
-        jSphere_1.setValue( (double) jSphere_2.getValue()  );
+        jAstigmatisme_OD1.setValue( (double) jAstigmatisme_OD2.getValue()  );
+        jSphere_OD1.setValue( (double) jSphere_OD2.getValue()  );
         //On écrit 1 sur 2
-        jAngle_2.setValue( angle );
-        jAstigmatisme_2.setValue( astig );
-        jSphere_2.setValue( sphere  );
+        jAngle_OD2.setValue( angle );
+        jAstigmatisme_OD2.setValue( astig );
+        jSphere_OD2.setValue( sphere  );
     }//GEN-LAST:event_jButton1ActionPerformed
+   
+    private void jAngle_OD1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_OD1StateChanged
+        if (chgeOrigin == 0) transposeOD1 () ;
 
-    private void jAngle_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_1StateChanged
-        if (chgeOrigin == 0) transpose1 () ;
+    }//GEN-LAST:event_jAngle_OD1StateChanged
 
-    }//GEN-LAST:event_jAngle_1StateChanged
+    private void jAstigmatisme_OD1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_OD1StateChanged
+        if (chgeOrigin == 0) transposeOD1 () ;
+    }//GEN-LAST:event_jAstigmatisme_OD1StateChanged
 
-    private void jAstigmatisme_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_1StateChanged
-        if (chgeOrigin == 0) transpose1 () ;
-    }//GEN-LAST:event_jAstigmatisme_1StateChanged
+    private void jSphere_OD1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_OD1StateChanged
+        if (chgeOrigin == 0) transposeOD1 () ;
+    }//GEN-LAST:event_jSphere_OD1StateChanged
 
-    private void jSphere_1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_1StateChanged
-        if (chgeOrigin == 0) transpose1 () ;
-    }//GEN-LAST:event_jSphere_1StateChanged
+    private void jSphere_OD2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_OD2StateChanged
+        if (chgeOrigin == 0) transposeOD2 () ;
+    }//GEN-LAST:event_jSphere_OD2StateChanged
 
-    private void jSphere_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_2StateChanged
-        if (chgeOrigin == 0) transpose2 () ;
-    }//GEN-LAST:event_jSphere_2StateChanged
+    private void jAstigmatisme_OD2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_OD2StateChanged
+        if (chgeOrigin == 0) transposeOD2 () ;
+    }//GEN-LAST:event_jAstigmatisme_OD2StateChanged
 
-    private void jAstigmatisme_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_2StateChanged
-        if (chgeOrigin == 0) transpose2 () ;
-    }//GEN-LAST:event_jAstigmatisme_2StateChanged
+    private void jAngle_OD2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_OD2StateChanged
+        if (chgeOrigin == 0) transposeOD2 () ;
+    }//GEN-LAST:event_jAngle_OD2StateChanged
 
-    private void jAngle_2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_2StateChanged
-        if (chgeOrigin == 0) transpose2 () ;
-    }//GEN-LAST:event_jAngle_2StateChanged
+    private void jSphere_OG2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_OG2StateChanged
+        if (chgeOrigin == 0) transposeOG2 () ;
+    }//GEN-LAST:event_jSphere_OG2StateChanged
+
+    private void jAstigmatisme_OG2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_OG2StateChanged
+        if (chgeOrigin == 0) transposeOG2 () ;
+    }//GEN-LAST:event_jAstigmatisme_OG2StateChanged
+
+    private void jAngle_OG2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_OG2StateChanged
+        if (chgeOrigin == 0) transposeOG2 () ;
+    }//GEN-LAST:event_jAngle_OG2StateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //On sauve 1
+        int angle = (Integer) jAngle_OG1.getValue() ;
+        double astig = (double) jAstigmatisme_OG1.getValue() ;
+        double sphere = (double) jSphere_OG1.getValue() ;
+        //On écrit 2 sur 1
+        jAngle_OG1.setValue( (Integer) jAngle_OG2.getValue() );
+        
+        jAstigmatisme_OG1.setValue( (double) jAstigmatisme_OG2.getValue()  );
+        jSphere_OG1.setValue( (double) jSphere_OG2.getValue()  );
+        //On écrit 1 sur 2
+        jAngle_OG2.setValue( angle );
+        jAstigmatisme_OG2.setValue( astig );
+        jSphere_OG2.setValue( sphere  );
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jSphere_OG1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSphere_OG1StateChanged
+        if (chgeOrigin == 0) transposeOG1 () ;
+    }//GEN-LAST:event_jSphere_OG1StateChanged
+
+    private void jAstigmatisme_OG1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAstigmatisme_OG1StateChanged
+        if (chgeOrigin == 0) transposeOG1 () ;
+    }//GEN-LAST:event_jAstigmatisme_OG1StateChanged
+
+    private void jAngle_OG1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jAngle_OG1StateChanged
+        if (chgeOrigin == 0) transposeOG1 () ;
+    }//GEN-LAST:event_jAngle_OG1StateChanged
+
+    private void jResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jResultActionPerformed
+
+    private void jHorizontalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jHorizontalStateChanged
+        calculPrisme () ;
+    }//GEN-LAST:event_jHorizontalStateChanged
+
+    private void jVerticalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jVerticalStateChanged
+        calculPrisme () ;
+    }//GEN-LAST:event_jVerticalStateChanged
+
+    private void jAngleRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngleRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAngleRActionPerformed
+
+    private void jBaseHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaseHActionPerformed
+        calculPrisme () ;
+    }//GEN-LAST:event_jBaseHActionPerformed
+
+    private void jBaseVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaseVActionPerformed
+        calculPrisme () ;
+    }//GEN-LAST:event_jBaseVActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner jAngle_1;
-    private javax.swing.JSpinner jAngle_2;
-    private javax.swing.JSpinner jAstigmatisme_1;
-    private javax.swing.JSpinner jAstigmatisme_2;
+    private javax.swing.JTextField jAngleR;
+    private javax.swing.JSpinner jAngle_OD1;
+    private javax.swing.JSpinner jAngle_OD2;
+    private javax.swing.JSpinner jAngle_OG1;
+    private javax.swing.JSpinner jAngle_OG2;
+    private javax.swing.JSpinner jAstigmatisme_OD1;
+    private javax.swing.JSpinner jAstigmatisme_OD2;
+    private javax.swing.JSpinner jAstigmatisme_OG1;
+    private javax.swing.JSpinner jAstigmatisme_OG2;
+    private javax.swing.JComboBox<String> jBaseH;
+    private javax.swing.JComboBox<String> jBaseV;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JSpinner jHorizontal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jResult;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSphere_1;
-    private javax.swing.JSpinner jSphere_2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSpinner jSphere_OD1;
+    private javax.swing.JSpinner jSphere_OD2;
+    private javax.swing.JSpinner jSphere_OG1;
+    private javax.swing.JSpinner jSphere_OG2;
+    private javax.swing.JLabel jUnit1;
+    private javax.swing.JSpinner jVertical;
     // End of variables declaration//GEN-END:variables
 }

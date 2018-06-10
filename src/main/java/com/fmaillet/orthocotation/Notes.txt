@@ -5,6 +5,8 @@ A FAIRE :
 elles ne sont pas dans baseDS
 
 v1.7.5 (en cours)
+- optic : 2 yeux + Prisme oblique
+- TVPS4 : DIS norms ok
 
 v1.7.4 (21-05-2018)
 - optic : corrected tranpose dble event

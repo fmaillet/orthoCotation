@@ -123,13 +123,12 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     }
     
     private void createTexFile () {
-        
         // NOTE: you should really be using UTF-8
         final Charset charset = Charset.defaultCharset();
         //final Path dst = Paths.get("document.tex");
         try {
             final BufferedWriter writer = Files.newBufferedWriter(dst, charset);
-            writer.write("\\documentclass[12pt,a4paper, oneside,french]{article}"); writer.newLine();
+            /*writer.write("\\documentclass[12pt,a4paper, oneside,french]{article}"); writer.newLine();
             writer.write("\\usepackage{babel}"); writer.newLine();
             writer.write("\\usepackage[utf8]{inputenc}"); writer.newLine();
             writer.write("\\usepackage{libertine}"); writer.newLine();
@@ -138,7 +137,11 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             writer.write("\\DisableLigatures{encoding = *, family = * }"); writer.newLine();
             
             writer.write("\\usepackage{datetime}"); writer.newLine();
-            writer.write("\\usepackage{lipsum}"); writer.newLine();
+            writer.write("\\usepackage{lipsum}"); writer.newLine();*/
+            
+            writePreamble (writer) ;
+            writeStructure (writer) ;
+            
             writer.write("\\title{Bilan Orthoptique}"); writer.newLine();
             writer.write("\\author{" + OrthoCotation.user.titre + " " + OrthoCotation.user.nom + " " + OrthoCotation.user.prenom
                     + "}"); writer.newLine();
@@ -164,6 +167,41 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             System.out.println (ex) ;
         }   
         System.out.println ("Creation document.tex ok") ;
+    }
+    
+    private void writePreamble(BufferedWriter writer) {
+        try {
+            writer.write("\\documentclass[12pt,a4paper, oneside,french]{article}"); writer.newLine();
+            writer.write("\\usepackage{babel}"); writer.newLine();
+            writer.write("\\usepackage[OT1]{fontenc}"); writer.newLine();
+            writer.write("\\usepackage[utf8]{inputenc}"); writer.newLine();
+            writer.write("\\usepackage{libertine}"); writer.newLine();
+            writer.write("\\usepackage{graphicx}"); writer.newLine();
+            writer.write("\\usepackage{microtype}"); writer.newLine();
+            writer.write("\\DisableLigatures{encoding = *, family = * }"); writer.newLine();
+            writer.write("\\usepackage{datetime}"); writer.newLine();
+            writer.write("\\usepackage{lipsum}"); writer.newLine();
+            writer.write("\\usepackage{fancyhdr,lastpage, framed, color, fancybox}"); writer.newLine();
+            
+        } catch (IOException ex) {
+            System.out.println ("Error writing document.tex preamble");
+        }
+    }
+    
+    private void writeStructure(BufferedWriter writer) {
+        try {
+            //writer.write("\\usepackage{gfsdidot}"); writer.newLine(); // fonts
+            writer.write("\\pagestyle{empty}"); writer.newLine();
+            writer.write("\\makeatletter"); writer.newLine();
+            writer.write("\\newcommand{\\vhrulefill}[1]{\\leavevmode\\leaders\\hrule\\@height#1\\hfill \\kern\\z@}"); writer.newLine();
+            writer.write("\\makeatother"); writer.newLine();
+            
+            writer.write("\\usepackage{geometry}"); writer.newLine();
+            writer.write("\\geometry{top=1cm,bottom=1.5cm,left=3cm,right=3cm}"); writer.newLine();
+            
+        } catch (IOException ex) {
+            System.out.println ("Error writing document.tex preamble");
+        }
     }
     
     private void showCrossPlatformPDF () {

@@ -7,14 +7,16 @@ package com.fmaillet.orthocotation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -31,6 +33,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -68,7 +71,8 @@ public class OrthoCotation extends JFrame implements ActionListener {
     static JTabbedPane tabbedPane ;
     static JPanel basePanel ;
     
-    public Image iconConnect, iconApp ;
+    public Image iconApp ;
+    Image logo ;
     
     //Synthèse des valeurs
     public static BaseDSValues baseValues = new BaseDSValues () ;
@@ -105,7 +109,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         setLayout(null);  setSize(1200, 700);
         
         //Image du trophé
-        iconConnect = getToolkit().getImage(getClass().getResource("connect.png"));
+        //iconConnect = getToolkit().getImage(getClass().getResource("connect.png"));
         //Icone de l'appli
         //iconApp = getToolkit().getImage(getClass().getResource("iconorg.png"));
         List<Image> icons = new ArrayList<Image>();
@@ -123,6 +127,19 @@ public class OrthoCotation extends JFrame implements ActionListener {
         icons.add(new ImageIcon(iconURL).getImage());
         //ImageIcon icon = new ImageIcon(iconURL);
         setIconImages(icons);
+        
+        iconURL = getClass().getResource("logo-eye1.png");
+        logo = new ImageIcon(iconURL).getImage() ;
+        System.out.println (logo.getHeight(null)) ;
+        //Logo
+        BufferedImage buf = toBufferedImage (logo) ;
+        //Save logo png
+        File myLogo = new File("logo.png");
+        try {
+            ImageIO.write( buf, "PNG", myLogo);
+        } catch (IOException ex) {
+            Logger.getLogger(OrthoCotation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         getContentPane().setBackground(Color.CYAN);
         setLocationRelativeTo(null);
@@ -182,6 +199,25 @@ public class OrthoCotation extends JFrame implements ActionListener {
         //Barre d'âge
         initDateLabels () ;
     }
+    
+    public static BufferedImage toBufferedImage(Image img)
+{
+    if (img instanceof BufferedImage)
+    {
+        return (BufferedImage) img;
+    }
+
+    // Create a buffered image with transparency
+    BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+    // Draw the image on to the buffered image
+    Graphics2D bGr = bimage.createGraphics();
+    bGr.drawImage(img, 0, 0, null);
+    bGr.dispose();
+
+    // Return the buffered image
+    return bimage;
+}
     
     private static void addTabbedPanes (int w, int h) {
         //Tabbed panes

@@ -36,7 +36,7 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class MyPolarChart {
     
-    static JFreeChart chart ;
+    public static JFreeChart chart ;
     static XYSeriesCollection dataset ;
     static DefaultPolarItemRenderer renderer ;
     Shape nullShape  = new Ellipse2D.Double(0,0,0,0);

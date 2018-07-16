@@ -14,6 +14,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +29,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +40,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
@@ -44,6 +51,7 @@ import javax.swing.event.ChangeListener;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.jfree.chart.ChartUtils;
 
 
 /**
@@ -89,6 +97,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     //Menus
     static JMenuBar barreMenus ;
     static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsItem, comMenu, helpCriteriumItem ;
+    static JMenuItem redactionItem, helpRedactionItem ; ;
     
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMO (NON CONNECTE)");
@@ -136,6 +145,12 @@ public class OrthoCotation extends JFrame implements ActionListener {
 
             }
           });
+        //Menu rédaction
+        JMenu redactionMenu = new JMenu ("Rédaction") ;
+        barreMenus.add(redactionMenu) ;
+        redactionItem = new JMenuItem ("Rédaction") ;
+        redactionMenu.add(redactionItem) ;
+        redactionItem.addActionListener(this);
         //Entrée menu Aide
         JMenu helpMenu = new JMenu ("Aide") ;
         barreMenus.add(helpMenu) ;
@@ -148,6 +163,10 @@ public class OrthoCotation extends JFrame implements ActionListener {
         helpCriteriumItem = new JMenuItem ("Critères") ;
         helpCriteriumItem.addActionListener(this);
         helpMenu.add(helpCriteriumItem) ;
+        helpRedactionItem = new JMenuItem ("Rédaction") ;
+        helpRedactionItem.addActionListener(this);
+        helpMenu.addSeparator();
+        helpMenu.add(helpRedactionItem) ;
         // A propos
         helpMenu.addSeparator();
         aboutItem = new JMenuItem ("A Propos") ;
@@ -508,7 +527,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
     }
     
     public static String getSoftVersion () {
-        return "v1.7.5beta du 3/06/2018" ;
+        return "v1.7.5beta du 16/07/2018" ;
     }
 
     @Override
@@ -546,6 +565,30 @@ public class OrthoCotation extends JFrame implements ActionListener {
             connect.setLocationRelativeTo(null);
             connect.setVisible (true) ;
             //comMenu.setEnabled(OrthoCotation.user.nom != null);
+        }
+        else if (source == helpRedactionItem) {
+            JOptionPane.showMessageDialog(this,
+                "Expérimental !!\n"
+                        + "Compilateur de compte-rendu...\n\n"
+                        + " Vous devez installer MikTex: https://miktex.org/",
+                "Aide à la rédaction",
+                JOptionPane.WARNING_MESSAGE);
+        }
+        else if (source == redactionItem) {
+            try {
+
+                OutputStream out = new FileOutputStream("polarChart.png");
+                ChartUtils.writeChartAsPNG(out,
+                        polarChart.chart,
+                        radioPanel.getWidth(),
+                        radioPanel.getHeight());
+
+            } catch (IOException ex) { }
+            RedactionFrame redac = new RedactionFrame () ;
+            redac.setVisible(true);
+            redac.addComponents();
+            
+            
         }
         else if (source == exitItem) {
             System.exit(0);

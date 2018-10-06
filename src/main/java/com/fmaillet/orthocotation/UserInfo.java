@@ -6,8 +6,6 @@ import java.net.NetworkInterface;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.ListIterator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

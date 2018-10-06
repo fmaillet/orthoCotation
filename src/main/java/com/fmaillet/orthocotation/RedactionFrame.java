@@ -6,31 +6,48 @@
 package com.fmaillet.orthocotation;
 
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.Timer;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
 import org.icepdf.ri.common.views.DocumentViewController;
@@ -40,7 +57,7 @@ import org.icepdf.ri.util.PropertiesManager;
  *
  * @author Fred
  */
-public class RedactionFrame extends JFrame implements ActionListener, WindowListener {
+public class RedactionFrame extends JFrame implements ActionListener, WindowListener, FocusListener {
     
     final Path dst = Paths.get("document.tex");
     
@@ -48,6 +65,12 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     JButton compile ;
     //PDF Viewer
     SwingController controller ;
+    
+    //To update "prénom" change
+    JTextField childrenFirstName, childrenLastName ;
+    String oldPrenomValue ;
+    JTextArea intro, sm, moc ;
+    boolean waitForChange = false;
     
     public RedactionFrame () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMO (NON CONNECTE)");
@@ -57,6 +80,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         
         addWindowListener(this);
         
+        
         System.getProperties().put("org.icepdf.core.scaleImages", "false"); 
         System.getProperties().put("org.icepdf.core.imageReference","smoothScaled");
         System.getProperties().put("org.icepdf.core.target.dither", "VALUE_DITHER_DISABLE"); 
@@ -64,6 +88,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         System.getProperties().put("org.icepdf.core.target.interpolation", "VALUE_INTERPOLATION_NEAREST_ NEIGHBOR");
         System.getProperties().put("org.icepdf.core.screen.interpolation", "VALUE_INTERPOLATION_NEAREST_NEIGHBOR");
         System.getProperties().put("org.icepdf.core.awtFontLoading", "true");
+        
         
     }
     
@@ -118,9 +143,123 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         //controller.setPageFitMode(DocumentViewController.PAGE_FIT_WINDOW_WIDTH, true);
         //controller.setToolBarVisible(false);
         
+        // Just to be able to update prenom
+        Runnable taskUpdatePrenom = new Runnable() {
+            public void run() {
+                System.out.println ("old: " + oldPrenomValue + " new: " + childrenFirstName.getText()) ;
+                if (waitForChange  || oldPrenomValue.contentEquals(childrenFirstName.getText())) return ;
+                String replacedStr = intro.getText().replaceAll(oldPrenomValue, childrenFirstName.getText());
+                intro.setText(null);
+                intro.append(replacedStr);
+                oldPrenomValue = childrenFirstName.getText() ;
+            }
+        };
+        ScheduledExecutorService scheduler
+                            = Executors.newSingleThreadScheduledExecutor();
         
+        // Children name
+        JLabel j1 = new JLabel ("Prénom :") ;
+        j1.setBounds(130, 10, 90, 30);
+        this.getContentPane().add(j1);
+        oldPrenomValue = "Prénom" ;
+        childrenFirstName = new JTextField (oldPrenomValue);
+        childrenFirstName.setBounds(190, 10, 120, 30);
+        childrenFirstName.setVisible(true);
+        this.getContentPane().add(childrenFirstName);
+        childrenFirstName.addFocusListener(this);
+        JLabel j2 = new JLabel ("Nom :") ;
+        j2.setBounds(320, 10, 90, 30);
+        this.getContentPane().add(j2);
+        childrenLastName = new JTextField ("Nom");
+        childrenLastName.setBounds(370, 10, 120, 30);
+        childrenLastName.setVisible(true);
+        this.getContentPane().add(childrenLastName);
+        // Add listeners
+        childrenFirstName.getDocument().addDocumentListener(new DocumentListener() {
+            Future<?> resultScheduled = null ;
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                
+                int delay = 3;
+                if (resultScheduled == null)
+                    resultScheduled = scheduler.schedule(taskUpdatePrenom, delay, TimeUnit.SECONDS);
+                else if (resultScheduled.isDone())
+                    resultScheduled = scheduler.schedule(taskUpdatePrenom, delay, TimeUnit.SECONDS);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                
+            }
+        });
+        
+        //Intro
+        intro = new JTextArea(5, 20);
+        JScrollPane scrollIntro = new JScrollPane(intro);
+        scrollIntro.setBounds(10, 65, 800, 120);
+        this.getContentPane().add(scrollIntro);
+        scrollIntro.setOpaque(false); intro.setOpaque(false);
+        scrollIntro.setBorder(new TitledBorder("Introduction"));
+        scrollIntro.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        intro.append("Je vois Prénom dans le cadre de difficultés scolaires. \n");
+        intro.append("Il n'y a pas d'antécédents visuels particuliers. Prénom dit bien voir et n'exprime pas de plainte visuelle.\n");
+        //Sensorimoteur
+        sm = new JTextArea(5, 20);
+        JScrollPane scrollSm = new JScrollPane(sm);
+        scrollSm.setBounds(10, 190, 800, 150);
+        this.getContentPane().add(scrollSm);
+        scrollSm.setBorder(new TitledBorder("Sensorimoteur"));
+        scrollSm.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollSm.setOpaque(false); sm.setOpaque(false);
+        sm.append("La vision binoculaire est normale. \n");
+        sm.append("L'acuité visuelle avec correction est à 10/10ème ODG.\n");
+        //Motricité oculaire
+        moc = new JTextArea(5, 20);
+        JScrollPane scrollMoc = new JScrollPane(moc);
+        scrollMoc.setBounds(10, 345, 800, 150);
+        this.getContentPane().add(scrollMoc);
+        scrollMoc.setBorder(new TitledBorder("Motricité oculaire conjuguée"));
+        scrollMoc.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollMoc.setOpaque(false); moc.setOpaque(false);
+        moc.append("Le NSUCO rapporte une précision correcte des saccades et des poursuites. \n");
+        moc.append("La fixation est normale et le réflexe vestibulo-oculaire semble à même d'en garantir la stabilité.\n");
+    }
+    
+    private void changePrenomUpdate () {
+        waitForChange = true ;
+        System.out.println ("old: " + oldPrenomValue + " new: " + childrenFirstName.getText()) ;
+        String replacedStr = intro.getText().replaceAll(oldPrenomValue, childrenFirstName.getText());
+        intro.setText(null);
+        intro.append(replacedStr);
+        oldPrenomValue = childrenFirstName.getText() ;
+        waitForChange = false ;
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
         
     }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        Object source = e.getSource () ;
+        if (source == childrenFirstName)
+            changePrenomUpdate () ;
+    }
+    
+    class RemindTask extends TimerTask {
+        public void run() {
+          System.out.println("Time's up!");
+          
+          //timer.cancel(); //Not necessary because we call System.exit
+          
+        }
+      }
     
     private void createTexFile () {
         // NOTE: you should really be using UTF-8
@@ -136,28 +275,35 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             writer.write("\\usepackage{microtype}"); writer.newLine();
             writer.write("\\DisableLigatures{encoding = *, family = * }"); writer.newLine();
             
-            writer.write("\\usepackage{datetime}"); writer.newLine();
+            
             writer.write("\\usepackage{lipsum}"); writer.newLine();*/
             
             writePreamble (writer) ;
             writeStructure (writer) ;
             
-            writer.write("\\title{Bilan Orthoptique}"); writer.newLine();
-            writer.write("\\author{" + OrthoCotation.user.titre + " " + OrthoCotation.user.nom + " " + OrthoCotation.user.prenom
-                    + "}"); writer.newLine();
-            writer.write("\\date{\\today}"); writer.newLine();
+            //writer.write("\\opening{}"); writer.newLine();
             
-            writer.write("\\begin{document}"); writer.newLine();
-            writer.write("\\maketitle"); writer.newLine();
-            writer.write("\\currenttime"); writer.newLine();
-            writer.write("\\\\"); writer.newLine();
-            writer.write("\\lipsum[1-3]. fited tty."); writer.newLine();
+            writer.write(intro.getText()); writer.newLine();
+            writer.write("\\vspace{0.5cm}"); writer.newLine();
             
-            writer.write("\\begin{figure}"); writer.newLine();
+            writer.write("\\begin{snugshade}Sensorimoteur\\end{snugshade}"); writer.newLine();
+            writer.write("\\begin{wrapfigure}{r}{4.5cm}"); writer.newLine();
+            //writer.write("\\caption{Ecarts à la norme}"); writer.newLine();
             writer.write("\\centering"); writer.newLine();
-            writer.write("\\includegraphics[scale=0.5]{polarChart.png}"); writer.newLine();
-            writer.write("\\end{figure}"); writer.newLine();
-            writer.write("\\lipsum[1]"); writer.newLine();
+            writer.write("\\includegraphics[width=6cm, height=6cm]{polarChart.png}"); writer.newLine();
+            writer.write("\\vspace{-70pt}"); writer.newLine();
+            writer.write("\\end{wrapfigure}"); writer.newLine();
+            writer.write(sm.getText()); writer.newLine();
+            
+            writer.write("\\begin{snugshade}Motricité oculaire conjuguée\\end{snugshade}"); writer.newLine();
+            writer.write(moc.getText()); writer.newLine();
+            writer.write("\\begin{snugshade}Perception visuelle et spatiale\\end{snugshade}"); writer.newLine();
+            writer.write("\\lipsum[2]"); writer.newLine();
+            writer.write("\\begin{snugshade}Conclusion\\end{snugshade}"); writer.newLine();
+            writer.write("\\lipsum[2]"); writer.newLine();
+            writer.write("\\closing{Respectueusement,}"); writer.newLine();
+                  
+            //writer.write("\\end{letter}"); writer.newLine();
             writer.write("\\end{document}"); writer.newLine();
             writer.write(""); writer.newLine();
             writer.close(); 
@@ -171,17 +317,23 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     
     private void writePreamble(BufferedWriter writer) {
         try {
-            writer.write("\\documentclass[12pt,a4paper, oneside,french]{article}"); writer.newLine();
+            writer.write("\\documentclass[11pt,a4paper, french]{letter}"); writer.newLine();
+            writer.write("\\usepackage[right=2cm, bottom=2cm, left=2.5cm, top=2cm]{geometry}"); writer.newLine();
             writer.write("\\usepackage{babel}"); writer.newLine();
             writer.write("\\usepackage[OT1]{fontenc}"); writer.newLine();
-            writer.write("\\usepackage[utf8]{inputenc}"); writer.newLine();
+            writer.write("\\usepackage[latin1]{inputenc}"); writer.newLine();
             writer.write("\\usepackage{libertine}"); writer.newLine();
             writer.write("\\usepackage{graphicx}"); writer.newLine();
+            writer.write("\\usepackage{wrapfig}"); writer.newLine();
+            
+            writer.write("\\usepackage{framed}"); writer.newLine();
             writer.write("\\usepackage{microtype}"); writer.newLine();
             writer.write("\\DisableLigatures{encoding = *, family = * }"); writer.newLine();
             writer.write("\\usepackage{datetime}"); writer.newLine();
             writer.write("\\usepackage{lipsum}"); writer.newLine();
             writer.write("\\usepackage{fancyhdr,lastpage, framed, color, fancybox}"); writer.newLine();
+            writer.write("\\definecolor{Navy}{RGB}{50,90,122}"); writer.newLine();
+            writer.write("\\definecolor{shadecolor}{rgb}{1,0.8,0.3}"); writer.newLine();
             
         } catch (IOException ex) {
             System.out.println ("Error writing document.tex preamble");
@@ -189,15 +341,54 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     }
     
     private void writeStructure(BufferedWriter writer) {
+        
+        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
+        Date b = (Date) OrthoCotation.dateBilan.getModel().getValue() ;
+        Date n = (Date) OrthoCotation.dateBirth.getModel().getValue() ;
         try {
-            //writer.write("\\usepackage{gfsdidot}"); writer.newLine(); // fonts
-            writer.write("\\pagestyle{empty}"); writer.newLine();
-            writer.write("\\makeatletter"); writer.newLine();
-            writer.write("\\newcommand{\\vhrulefill}[1]{\\leavevmode\\leaders\\hrule\\@height#1\\hfill \\kern\\z@}"); writer.newLine();
-            writer.write("\\makeatother"); writer.newLine();
+            writer.write("\\pagestyle{fancy}"); writer.newLine();
+            writer.write("\\fancyhf{}"); writer.newLine();
+            writer.write("\\renewcommand{\\headrulewidth}{0pt}"); writer.newLine();
+            writer.write("\\cfoot{Page \\thepage \\hspace{1pt}/\\pageref{LastPage}}"); writer.newLine(); // fonts
+            writer.write("\\begin{document}"); writer.newLine();
             
-            writer.write("\\usepackage{geometry}"); writer.newLine();
-            writer.write("\\geometry{top=1cm,bottom=1.5cm,left=3cm,right=3cm}"); writer.newLine();
+            writer.write("\\colorbox{Navy}{"); writer.newLine();
+            writer.write("\\parbox[t]{\\linewidth}{"); writer.newLine();
+            writer.write("\\vspace*{14pt}"); writer.newLine();
+            writer.write("\\hfill \\color{white} \\textsc{\\huge BILAN NEUROVISUEL}"); writer.newLine();
+            writer.write("\\vspace*{14pt}"); writer.newLine();
+            writer.write("}}"); writer.newLine();
+            writer.write("\\vspace{28pt}"); writer.newLine();
+            //writer.write("\\thispagestyle{fancy}"); writer.newLine();
+            writer.write("\\date{\\begin{flushright}\\today\\end{flushright}}"); writer.newLine();
+            /*if (n != null) 
+                writer.write("\\begin{letter}{\\Large \\bfseries " + childrenFirstName.getText() + " " + childrenLastName.getText() + " (" + df.format(n) + ")"); 
+            else
+                writer.write("\\begin{letter}{\\Large \\bfseries " + childrenFirstName.getText() + " " + childrenLastName.getText() + " (" + "???" + ")");
+            writer.newLine();*/
+            
+            writer.write("\\\\ " + "\\large Bilan réalisé le " + df.format(b) ); writer.newLine();
+            writer.write("\\\\ "); writer.newLine();
+            
+            
+            if (OrthoCotation.user.nom != null) {
+                writer.write("\\signature{"); writer.newLine();
+                writer.write(OrthoCotation.user.prenom + " " + OrthoCotation.user.nom + " \\\\"); writer.newLine();
+                writer.write("\\textbf{" + OrthoCotation.user.activite + "} \\\\"); writer.newLine();
+                writer.write("\\small{" + OrthoCotation.user.adr1 + "} \\\\"); writer.newLine();
+                if (OrthoCotation.user.adr1 != "")
+                    writer.write("\\small{" + OrthoCotation.user.adr2 + "} \\\\"); writer.newLine();
+                writer.write("\\small{E: john@initech.com | M: (000) 111 1111}"); writer.newLine();
+                writer.write("}"); writer.newLine();
+            }
+            else {
+                writer.write("\\signature{"); writer.newLine();
+                writer.write("John Smith \\\\"); writer.newLine();
+                writer.write("\\textbf{Orthoptiste} \\\\"); writer.newLine();
+                writer.write("\\small{123, avenue de Toulouse} \\\\"); writer.newLine();
+                writer.write("\\small{E: john@demo.com | M: (000) 111 1111}"); writer.newLine();
+                writer.write("}"); writer.newLine();
+            }
             
         } catch (IOException ex) {
             System.out.println ("Error writing document.tex preamble");
@@ -332,3 +523,4 @@ class StreamGobbler extends Thread
               }
     }
 }
+

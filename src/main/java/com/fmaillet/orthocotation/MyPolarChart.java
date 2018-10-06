@@ -37,6 +37,8 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class MyPolarChart {
     
     public static JFreeChart chart ;
+    public static List<Title> subTitles ;
+    public static  TextTitle title ;
     static XYSeriesCollection dataset ;
     static DefaultPolarItemRenderer renderer ;
     Shape nullShape  = new Ellipse2D.Double(0,0,0,0);
@@ -92,15 +94,16 @@ public class MyPolarChart {
         plot.setRadiusGridlinePaint(Color.lightGray);
         plot.setOutlineVisible(false);
         
-        TextTitle title = new TextTitle ("Ecarts à la norme des principaux indicateurs orthoptiques", new java.awt.Font("SansSerif", Font.BOLD, 14) ) ;
+        title = new TextTitle ("Ecarts à la norme des principaux indicateurs orthoptiques", new java.awt.Font("SansSerif", Font.BOLD, 14) ) ;
         
         chart = new JFreeChart ("Title", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         chart.setTitle(title);
         chart.setBackgroundPaint(Color.WHITE);
         chart.setBorderVisible(false);
-        List<Title> subTitles = new ArrayList<Title>();
+        subTitles = new ArrayList<Title>();
         subTitles.add(new TextTitle("(exprimé en déviation standard, DS)"));
         chart.setSubtitles(subTitles);
+        
         chart.removeLegend();
         
         
@@ -109,6 +112,11 @@ public class MyPolarChart {
     public void changeTransparency (int v) {
         float d = (float) v / 100 ;
         renderer.setFillComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, d));
+    }
+    
+    public void restoreTitles () {
+        chart.setTitle(title);
+        chart.removeLegend();
     }
     
     public JPanel addPolarPanel () {

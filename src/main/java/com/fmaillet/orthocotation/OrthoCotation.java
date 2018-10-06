@@ -100,8 +100,9 @@ public class OrthoCotation extends JFrame implements ActionListener {
     
     //Menus
     static JMenuBar barreMenus ;
-    static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsItem, comMenu, helpCriteriumItem ;
-    static JMenuItem redactionItem, helpRedactionItem ; ;
+    static JMenu helpNormsMenu ;
+    static JMenuItem exitItem, aboutItem, helpVBItem, helpNormsVBItem, comMenu, helpCriteriumItem ;
+    static JMenuItem redactionItem, helpRedactionItem, helpTvps4NormsItem ; 
     
     public OrthoCotation () {
         setTitle ("orthoCotation ("+OrthoCotation.getSoftVersion()+") - MODE DEMO (NON CONNECTE)");
@@ -174,14 +175,24 @@ public class OrthoCotation extends JFrame implements ActionListener {
         helpVBItem = new JMenuItem ("Vision binoculaire") ;
         helpVBItem.addActionListener(this);
         helpMenu.add(helpVBItem) ;
-        helpNormsItem = new JMenuItem ("Normes utilisées") ;
-        helpNormsItem.addActionListener(this);
-        helpMenu.add(helpNormsItem) ;
-        helpCriteriumItem = new JMenuItem ("Critères") ;
+        
+        // submenu normes
+        helpNormsMenu = new JMenu ("Normes utilisées") ;
+        helpMenu.add(helpNormsMenu) ;
+        helpCriteriumItem = new JMenuItem ("Critères VB") ;
         helpCriteriumItem.addActionListener(this);
-        helpMenu.add(helpCriteriumItem) ;
+        helpNormsMenu.add(helpCriteriumItem) ;
+        helpNormsVBItem = new JMenuItem ("Vision binoculaire") ;
+        helpNormsVBItem.addActionListener(this);
+        helpNormsMenu.add(helpNormsVBItem) ;
+        helpNormsMenu.addSeparator();
+        helpTvps4NormsItem = new JMenuItem ("TVPS-4") ;
+        helpTvps4NormsItem.addActionListener(this);
+        helpNormsMenu.add(helpTvps4NormsItem) ;
+        
         helpRedactionItem = new JMenuItem ("Rédaction") ;
         helpRedactionItem.addActionListener(this);
+        
         helpMenu.addSeparator();
         helpMenu.add(helpRedactionItem) ;
         // A propos
@@ -527,7 +538,11 @@ public class OrthoCotation extends JFrame implements ActionListener {
         mySQLConnection = new MySQLClass () ;
         if (args.length > 0) {
             master = true ;
-            user.nom = "Master" ;
+            user.nom = "Maillet" ;
+            user.prenom = "Frédéric" ;
+            user.activite = "Orthoptiste Neuropsychologue" ;
+            user.adr1 = "209 avenue de castres" ;
+            user.adr2 = "RDC BAT G" ;
         }
         
         // fenetre principale
@@ -584,7 +599,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
             about.setLocationRelativeTo(null) ;
             about.setVisible(true);
         }
-        else if (source == helpNormsItem) {
+        else if (source == helpNormsVBItem) {
             Norms_JDialog about = new Norms_JDialog(this, true);
             about.pack();
             about.setLocationRelativeTo(null) ;
@@ -592,6 +607,12 @@ public class OrthoCotation extends JFrame implements ActionListener {
         }
         else if (source == helpCriteriumItem) {
             Criterium_JDialog about = new Criterium_JDialog(this, true);
+            about.pack();
+            about.setLocationRelativeTo(null) ;
+            about.setVisible(true);
+        }
+        else if (source == helpTvps4NormsItem) {
+            TVPS4Norms_JDialog about = new TVPS4Norms_JDialog(this, true);
             about.pack();
             about.setLocationRelativeTo(null) ;
             about.setVisible(true);
@@ -614,12 +635,15 @@ public class OrthoCotation extends JFrame implements ActionListener {
             try {
 
                 OutputStream out = new FileOutputStream("polarChart.png");
+                /*polarChart.chart.setTitle("");
+                polarChart.subTitles.clear();
+                polarChart.chart.setSubtitles(polarChart.subTitles);*/
                 ChartUtils.writeChartAsPNG(out,
                         polarChart.chart,
                         radioPanel.getWidth(),
-                        radioPanel.getHeight());
-
-            } catch (IOException ex) { }
+                        radioPanel.getHeight(), null, true, 0);
+                //polarChart.restoreTitles();
+            } catch (IOException ex) { System.out.println ("Erreur polar Chart cration !") ;}
             RedactionFrame redac = new RedactionFrame () ;
             redac.setVisible(true);
             redac.addComponents();

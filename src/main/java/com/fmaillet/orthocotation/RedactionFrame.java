@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -70,6 +71,8 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     JTextField childrenFirstName, childrenLastName ;
     String oldPrenomValue ;
     JTextArea intro, sm, moc ;
+    JCheckBox schema ;
+    
     boolean waitForChange = false;
     
     public RedactionFrame () {
@@ -198,6 +201,11 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             }
         });
         
+        //Schema de Maillet
+        schema = new JCheckBox ("Shéma de Maillet") ;
+        schema.setBounds(125, 40, 150, 30);
+        schema.setSelected(true);
+        this.getContentPane().add(schema);
         //Intro
         intro = new JTextArea(5, 20);
         JScrollPane scrollIntro = new JScrollPane(intro);
@@ -218,6 +226,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         scrollSm.setOpaque(false); sm.setOpaque(false);
         sm.append("La vision binoculaire est normale. \n");
         sm.append("L'acuité visuelle avec correction est à 10/10ème ODG.\n");
+        
         //Motricité oculaire
         moc = new JTextArea(5, 20);
         JScrollPane scrollMoc = new JScrollPane(moc);
@@ -287,12 +296,14 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             writer.write("\\vspace{0.5cm}"); writer.newLine();
             
             writer.write("\\begin{snugshade}Sensorimoteur\\end{snugshade}"); writer.newLine();
-            writer.write("\\begin{wrapfigure}{r}{4.5cm}"); writer.newLine();
-            //writer.write("\\caption{Ecarts à la norme}"); writer.newLine();
-            writer.write("\\centering"); writer.newLine();
-            writer.write("\\includegraphics[width=6cm, height=6cm]{polarChart.png}"); writer.newLine();
-            writer.write("\\vspace{-70pt}"); writer.newLine();
-            writer.write("\\end{wrapfigure}"); writer.newLine();
+            if (schema.isSelected()) {
+                writer.write("\\begin{wrapfigure}{r}{4.5cm}"); writer.newLine();
+                //writer.write("\\caption{Ecarts à la norme}"); writer.newLine();
+                writer.write("\\centering"); writer.newLine();
+                writer.write("\\includegraphics[width=6cm, height=6cm]{polarChart.png}"); writer.newLine();
+                writer.write("\\vspace{-70pt}"); writer.newLine();
+                writer.write("\\end{wrapfigure}"); writer.newLine();
+            }
             writer.write(sm.getText()); writer.newLine();
             
             writer.write("\\begin{snugshade}Motricité oculaire conjuguée\\end{snugshade}"); writer.newLine();

@@ -854,6 +854,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckSPA">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="SPA :"/>
         <Property name="toolTipText" type="java.lang.String" value="Spatial"/>
@@ -864,6 +867,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckCON">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="CON :"/>
         <Property name="toolTipText" type="java.lang.String" value="Constance de forme"/>

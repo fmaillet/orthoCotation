@@ -642,7 +642,18 @@ public class OrthoCotation extends JFrame implements ActionListener {
                         polarChart.chart,
                         radioPanel.getWidth(),
                         radioPanel.getHeight(), null, true, 0);
-                //polarChart.restoreTitles();
+                //TVPS-3
+                out = new FileOutputStream("tvps3.png");
+                ChartUtils.writeChartAsPNG(out,
+                        barChartTVPS3.chart,
+                        tvps3ChartPanel.getWidth(),
+                        tvps3ChartPanel.getHeight(), null, true, 0);
+                //TVPS-4
+                out = new FileOutputStream("tvps4.png");
+                ChartUtils.writeChartAsPNG(out,
+                        barChartTVPS4.chart,
+                        tvps4ChartPanel.getWidth(),
+                        tvps4ChartPanel.getHeight(), null, true, 0);
             } catch (IOException ex) { System.out.println ("Erreur polar Chart cration !") ;}
             RedactionFrame redac = new RedactionFrame () ;
             redac.setVisible(true);

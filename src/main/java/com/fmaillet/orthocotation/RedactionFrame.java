@@ -35,6 +35,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -71,7 +72,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
     JTextField childrenFirstName, childrenLastName ;
     String oldPrenomValue ;
     JTextArea intro, sm, moc ;
-    JCheckBox schema ;
+    JCheckBox schema, tvps3, tvps4 ;
     
     boolean waitForChange = false;
     
@@ -203,7 +204,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         
         //Schema de Maillet
         schema = new JCheckBox ("Shéma de Maillet") ;
-        schema.setBounds(125, 40, 150, 30);
+        schema.setBounds(125, 40, 140, 30);
         schema.setSelected(true);
         this.getContentPane().add(schema);
         //Intro
@@ -216,6 +217,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         scrollIntro.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         intro.append("Je vois Prénom dans le cadre de difficultés scolaires. \n");
         intro.append("Il n'y a pas d'antécédents visuels particuliers. Prénom dit bien voir et n'exprime pas de plainte visuelle.\n");
+
         //Sensorimoteur
         sm = new JTextArea(5, 20);
         JScrollPane scrollSm = new JScrollPane(sm);
@@ -237,6 +239,20 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
         scrollMoc.setOpaque(false); moc.setOpaque(false);
         moc.append("Le NSUCO rapporte une précision correcte des saccades et des poursuites. \n");
         moc.append("La fixation est normale et le réflexe vestibulo-oculaire semble à même d'en garantir la stabilité.\n");
+        //Groupe TVPS
+        ButtonGroup bgTVPS = new ButtonGroup();
+        //TVPS-3
+        tvps3 = new JCheckBox ("TVPS-3") ;
+        tvps3.setBounds(270, 40, 75, 30);
+        tvps3.setSelected(false);
+        this.getContentPane().add(tvps3);
+        bgTVPS.add(tvps3);
+        //TVPS-4
+        tvps4 = new JCheckBox ("TVPS-4") ;
+        tvps4.setBounds(345, 40, 75, 30);
+        tvps4.setSelected(true);
+        this.getContentPane().add(tvps4);
+        bgTVPS.add(tvps4);
     }
     
     private void changePrenomUpdate () {
@@ -293,6 +309,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             //writer.write("\\opening{}"); writer.newLine();
             
             writer.write(intro.getText()); writer.newLine();
+            writer.write("\\lipsum[2]"); writer.newLine();
             writer.write("\\vspace{0.5cm}"); writer.newLine();
             
             writer.write("\\begin{snugshade}Sensorimoteur\\end{snugshade}"); writer.newLine();
@@ -300,7 +317,7 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
                 writer.write("\\begin{wrapfigure}{r}{4.5cm}"); writer.newLine();
                 //writer.write("\\caption{Ecarts à la norme}"); writer.newLine();
                 writer.write("\\centering"); writer.newLine();
-                writer.write("\\includegraphics[width=6cm, height=6cm]{polarChart.png}"); writer.newLine();
+                writer.write("\\includegraphics[width=6cm]{polarChart.png}"); writer.newLine();
                 writer.write("\\vspace{-70pt}"); writer.newLine();
                 writer.write("\\end{wrapfigure}"); writer.newLine();
             }
@@ -309,6 +326,19 @@ public class RedactionFrame extends JFrame implements ActionListener, WindowList
             writer.write("\\begin{snugshade}Motricité oculaire conjuguée\\end{snugshade}"); writer.newLine();
             writer.write(moc.getText()); writer.newLine();
             writer.write("\\begin{snugshade}Perception visuelle et spatiale\\end{snugshade}"); writer.newLine();
+            if (tvps3.isSelected() || tvps4.isSelected()) {
+                writer.write("\\begin{wrapfigure}{r}{4.5cm}"); writer.newLine();
+                //writer.write("\\caption{Ecarts à la norme}"); writer.newLine();
+                writer.write("\\centering"); writer.newLine();
+                if (tvps3.isSelected()) {
+                    writer.write("\\includegraphics[width=6cm]{tvps3.png}"); writer.newLine();
+                }
+                else {
+                    writer.write("\\includegraphics[width=6cm]{tvps4.png}"); writer.newLine();
+                }
+                //writer.write("\\vspace{-70pt}"); writer.newLine();
+                writer.write("\\end{wrapfigure}"); writer.newLine();
+            }
             writer.write("\\lipsum[2]"); writer.newLine();
             writer.write("\\begin{snugshade}Conclusion\\end{snugshade}"); writer.newLine();
             writer.write("\\lipsum[2]"); writer.newLine();

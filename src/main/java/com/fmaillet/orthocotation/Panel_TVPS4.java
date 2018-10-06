@@ -760,6 +760,7 @@ public class Panel_TVPS4 extends JPanel {
             }
         });
 
+        jCheckSPA.setBackground(new java.awt.Color(204, 255, 255));
         jCheckSPA.setSelected(true);
         jCheckSPA.setText("SPA :");
         jCheckSPA.setToolTipText("Spatial");
@@ -769,6 +770,7 @@ public class Panel_TVPS4 extends JPanel {
             }
         });
 
+        jCheckCON.setBackground(new java.awt.Color(204, 255, 255));
         jCheckCON.setSelected(true);
         jCheckCON.setText("CON :");
         jCheckCON.setToolTipText("Constance de forme");

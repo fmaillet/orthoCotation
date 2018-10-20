@@ -614,6 +614,7 @@ public class OrthoCotation extends JFrame implements ActionListener {
         else if (source == helpTvps4NormsItem) {
             TVPS4Norms_JDialog about = new TVPS4Norms_JDialog(this, true);
             about.pack();
+            about.setSize(500, 700);
             about.setLocationRelativeTo(null) ;
             about.setVisible(true);
         }

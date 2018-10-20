@@ -160,37 +160,53 @@ public class BarChartTVPS4 {
             return ;
         }
         else panel.setEnabled(true);
+        int count = 0 ;
         
         if (Panel_TVPS4.tvpsChkValues[0]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[0] , "Scaled" , "DIS" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[0]*5+50 , "Standard" , "DIS" );
+            count++;
         }        
         if (Panel_TVPS4.tvpsChkValues[1]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[1] , "Scaled" , "MEM" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[1]*5+50 , "Standard" , "MEM" );
+            count++;
         }        
         if (Panel_TVPS4.tvpsChkValues[2]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[2] , "Scaled" , "SPA" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[2]*5+50 , "Standard" , "SPA" );
+            count++;
         } 
         if (Panel_TVPS4.tvpsChkValues[3]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[3] , "Scaled" , "CON" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[3]*5+50 , "Standard" , "CON" );
+            count++;
         }
         if (Panel_TVPS4.tvpsChkValues[4]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[4] , "Scaled" , "SEQ" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[4]*5+50 , "Standard" , "SEQ" );
+            count++;
         }        
         if (Panel_TVPS4.tvpsChkValues[5]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[5] , "Scaled" , "FGR" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[5]*5+50 , "Standard" , "FGR" );
+            count++;
         } 
         if (Panel_TVPS4.tvpsChkValues[6]) {
             dataset.addValue( Panel_TVPS4.tvpsSclValues[6] , "Scaled" , "CLO" );
             dataset.addValue( Panel_TVPS4.tvpsSclValues[6]*5+50 , "Standard" , "CLO" );
+            count++;
         }
-        
-        
+
+        // on change la taille du graphique s'il n'y a pas beaucoup d'items'
+        if (OrthoCotation.tvps4ChartPanel != null){
+            if (count < 5) {
+                OrthoCotation.tvps4ChartPanel.setSize(400, 250);
+            }
+            else
+                OrthoCotation.tvps4ChartPanel.setSize(500, 300);
+        }
+        // mise à jour 
         updateVisibleScores () ;    
         
         

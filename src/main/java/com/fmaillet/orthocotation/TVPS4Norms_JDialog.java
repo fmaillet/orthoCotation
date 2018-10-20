@@ -23,11 +23,12 @@ public class TVPS4Norms_JDialog extends javax.swing.JDialog {
         // 5.0
         String HTMLTEXT = "<html><h3>5.0 :</h3>" ;
         HTMLTEXT = HTMLTEXT + "<table border=\"1\" style=\"width:80%\">" ;
-        HTMLTEXT = HTMLTEXT + "<tr><th></th><th>DIS</th><th>MEM</th><th>SPA</th><th>CON</th></tr>" ;
+        HTMLTEXT = HTMLTEXT + "<tr><th></th><th>DIS</th><th>MEM</th><th>SPA</th><th>CON</th><th>SEQ</th></tr>" ;
         for (int j=0;j<19; j++)
             HTMLTEXT = HTMLTEXT + "<tr><td align=\"center\">" + j + "</td><td align=\"center\">" + Panel_TVPS4.tvps_DIS[0][j]
                     +"</td><td align=\"center\">" + Panel_TVPS4.tvps_MEM[0][j] +"</td><td align=\"center\">" + Panel_TVPS4.tvps_SPA[0][j] +"</td>"
-                    + "<td align=\"center\">" + Panel_TVPS4.tvps_CON[0][j] +"</td></tr>" ;
+                    + "<td align=\"center\">" + Panel_TVPS4.tvps_CON[0][j] +"</td>"
+                    + "<td align=\"center\">" + Panel_TVPS4.tvps_SEQ[0][j] +"</td></tr>" ;
         HTMLTEXT = HTMLTEXT + "</table>" ;
         
         /*        + "<br><br><table border=\"1\" style=\"width:80%\">"
